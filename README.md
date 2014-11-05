@@ -1,7 +1,7 @@
-H5P Mark The Words
+H5P Drag And Drop Text
 ==========
 
-Test your users by making them select the correct words from a text.
+Drag words to their correct position in the text in order to complete this task.
 
 ## License
 

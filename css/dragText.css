@@ -25,6 +25,13 @@
   padding: 1em;
 }
 
+.h5p-dropZone {
+  border-radius: 0.25em;
+  border: 1px solid #a0a0a0;
+  padding: 0.25em 0.5em;
+  width: 6em;
+}
+
 /* Actual text paragraphs */
 .h5p-word .h5p-word-inner p {
   font-size: 1em;

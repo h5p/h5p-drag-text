@@ -1,5 +1,5 @@
 {
-  "title": "Mark The Words",
+  "title": "Drag and drop text",
   "description": "void",
   "majorVersion": 1,
   "minorVersion": 0,
@@ -7,15 +7,15 @@
   "runnable": 1,
   "author": "Joubel AS",
   "license": "cc-by-sa",
-  "machineName": "H5P.MarkTheWords",
+  "machineName": "H5P.DragText",
   "preloadedCss": [
     {
-      "path": "css/word.css"
+      "path": "css/dragText.css"
     }
   ],
   "preloadedJs": [
     {
-      "path": "js/word.js"
+      "path": "js/dragText.js"
     }
   ],
   "preloadedDependencies": [
@@ -23,6 +23,11 @@
       "machineName": "FontAwesome",
       "majorVersion": 4,
       "minorVersion": 1
+    },
+    {
+      "machineName": "jQuery.ui",
+      "majorVersion": 1,
+      "minorVersion": 10
     },
     {
       "machineName": "H5P.JoubelUI",

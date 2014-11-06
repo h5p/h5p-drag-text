@@ -233,3 +233,31 @@ button.h5p-retry-button.h5p-retry-button {
 .h5p-word-selectable {
   cursor: pointer;
 }
+/* Tooltip styling */
+.h5p-blanks .joubel-tip-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/* Feedback for dropzones */
+.h5p-correct-feedback:after {
+  position: relative;
+  right: -0.3em;
+  text-decoration: none;
+  content: "\f00c";
+  font-family: 'H5PFontAwesome4';
+  color: #39692e;
+}
+.h5p-wrong-feedback:after {
+  position: relative;
+  right: -0.3em;
+  font-family: 'H5PFontAwesome4';
+  text-decoration: none;
+  content: "\f00d";
+  color: #c33f62;
+}
+
+/* Dropzone styling */
+.h5p-dropzone-container {
+  padding-right: 0.25em;
+}

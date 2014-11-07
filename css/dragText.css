@@ -1,5 +1,3 @@
-/* H5P SHARED STYLING: */
-
 /* IcoMoon font licensed under the GNU General Public License: http://www.gnu.org/licenses/gpl.html */
 @font-face {
   font-family: 'icomoon-word';
@@ -13,88 +11,41 @@
 }
 
 /* The main containers for the module, specific to this module. */
-.h5p-word {
+.h5p-drag {
   position: relative;
   background: rgba(255, 255, 255, 0.9);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6FFFFFF,endColorstr=#e6FFFFFF);
   overflow: hidden;
   font-family: Verdana, Arial, sans-serif;
 }
-.h5p-word .h5p-word-inner {
+.h5p-drag .h5p-drag-inner {
   overflow: hidden;
   padding: 1em;
 }
 
-.h5p-dropZone {
-  border-radius: 0.25em;
-  border: 1px solid #a0a0a0;
-  padding: 0.25em 0.5em;
-  width: 6em;
-}
-
-/* Actual text paragraphs */
-.h5p-word .h5p-word-inner p {
+.h5p-drag .h5p-drag-inner p {
   font-size: 1em;
   font-weight: normal;
   line-height: 1.75em;
   padding: 0;
   margin: 0 0 1em;
 }
-/* Header and footer blocks (title + evaluation, buttons) */
-.h5p-word .h5p-word-title {
+/* Header and footer blocks */
+.h5p-drag .h5p-drag-title {
   margin: 0 0 0.4em;
   border-bottom: 0.1em solid #ddd;
 }
-.h5p-word .h5p-word-footer {
+.h5p-drag .h5p-drag-footer {
   margin-top: 0.4em;
   border-top: 0.1em solid #ddd;
 }
-.h5p-word .h5p-button-bar {
-  margin-top: .8em;
-  min-height: 2.134em;
-}
-.h5p-word button.h5p-button {
-  float: right;
-  display: none;
-  font-size: 1em;
-  line-height: 1.2em;
-  padding: 0.2em 1em;
-  border: 0.2em solid #fff;
-  border-radius: 0.4em;
-  margin-left: 0.8em;
-  margin-bottom: 0.1em;
-  cursor: pointer;
-  color: #fff;
-  box-shadow: 0 0 0.5em #999;
 
-  background: rgb(100,152,254); /* Old browsers */
-  background: -moz-linear-gradient(top,  rgba(100,152,254,1) 0%, rgba(4,104,206,1) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(100,152,254,1)), color-stop(100%,rgba(4,104,206,1))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* IE10+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6498fe', endColorstr='#0468ce',GradientType=0 );
-}
-.h5p-word button.h5p-button:hover {
-  background: rgb(4,104,206); /* Old browsers */
-  background: -moz-linear-gradient(top,  rgba(4,104,206,1) 0%, rgba(100,152,254,1) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(4,104,206,1)), color-stop(100%,rgba(100,152,254,1))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  rgba(4,104,206,1) 0%,rgba(100,152,254,1) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  rgba(4,104,206,1) 0%,rgba(100,152,254,1) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  rgba(4,104,206,1) 0%,rgba(100,152,254,1) 100%); /* IE10+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0468ce', endColorstr='#6498fe',GradientType=0 ); /* IE6-9 */
-}
-.h5p-word button.h5p-button:before {
-  font-family: 'H5PFontAwesome4';
-  content: "\f06e";
-  padding-right: 0.5em;
-}
-.h5p-word .h5p-word-evaluation-container {
+/* Evaluation container and evaluation emoticons */
+.h5p-drag .h5p-drag-evaluation-container {
   float: left;
   padding: 1em 0 0 0;
   max-width: 50%;
 }
-.h5p-word .h5p-word-evaluation-container .h5p-word-evaluation-score-emoticon:before {
+.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score-emoticon:before {
   display: block;
   float: left;
 
@@ -103,7 +54,7 @@
   line-height: 1em; /* inherits 4em */
   content: "\e605";
 }
-.h5p-word .h5p-word-evaluation-container.max-score .h5p-word-evaluation-score-emoticon:before {
+.h5p-drag .h5p-drag-evaluation-container.max-score .h5p-drag-evaluation-score-emoticon:before {
   content: "\e606";
 }
 
@@ -133,7 +84,7 @@
   90% { transform: translate(2px, 2px) rotate(0deg);}
   100% {transform: translate(1px, -2px) rotate(-1deg);}
 }
-.h5p-word .h5p-word-evaluation-container .h5p-word-evaluation-score {
+.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score {
   position: relative;
   display: block;
   background: #ffffff;
@@ -147,8 +98,8 @@
   line-height: 1.3em;
 }
 
-.h5p-word .h5p-word-evaluation-container .h5p-word-evaluation-score:before,
-.h5p-word .h5p-word-evaluation-container .h5p-word-evaluation-score:after {
+.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score:before,
+.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score:after {
   right: 100%;
   border: solid transparent;
   content: " ";
@@ -158,99 +109,104 @@
   pointer-events: none;
 }
 
-.h5p-word .h5p-word-evaluation-container .h5p-word-evaluation-score:before {
+.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score:before {
   margin-top: -11px;
   top: 50%;
   border-width: 11px;
   border-color: transparent;
   border-right-color: #ccc;
 }
-.h5p-word .h5p-word-evaluation-container .h5p-word-evaluation-score:after {
+.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score:after {
   margin-top: -10px;
   top: 50%;
   border-width: 10px;
   border-color: transparent;
   border-right-color: #ffffff;
 }
-/* Correctly answered marking */
-.h5p-word .h5p-word-correct{
-  padding-right: 0.5em;
-  background: #d1e2ce;
-  color: #6aa81b;
-  font-weight: bold;
-}
-.h5p-word .h5p-word-correct:after {
-  position: relative;
-  right: -0.25em;
 
-  text-decoration: none;
-  content: "\f00c";
-  font-family: 'H5PFontAwesome4';
-  color: #39692e;
+/* Button bar and buttons */
+.h5p-drag .h5p-button-bar {
+  margin-top: .8em;
+  min-height: 2.134em;
 }
-/* Wrongly answered marking */
-.h5p-word .h5p-word-wrong {
-  padding-right: 0.5em;
-  background-color: #e6ced1;
-  color: #c33f62;
-  text-decoration: line-through;
-}
-.h5p-word .h5p-word-wrong:after {
-  position: relative;
-  right: -0.25em;
+.h5p-drag button.h5p-button {
+  float: right;
+  display: none;
+  font-size: 1em;
+  line-height: 1.2em;
+  padding: 0.2em 1em;
+  border: 0.2em solid #fff;
+  border-radius: 0.4em;
+  margin-left: 0.8em;
+  margin-bottom: 0.1em;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 0 0.5em #999;
 
-  font-family: 'H5PFontAwesome4';
-  text-decoration: none;
-  content: "\f00d";
-  color: #c33f62;
+  background: rgb(100,152,254); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(100,152,254,1) 0%, rgba(4,104,206,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(100,152,254,1)), color-stop(100%,rgba(4,104,206,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6498fe', endColorstr='#0468ce',GradientType=0 );
 }
-/* SPECIFIC CSS CLASSES FOR MARK THE WORDS MODULE: */
-/* Start state for button: */
-.h5p-word button.h5p-button.h5p-check-button:before {
+.h5p-drag button.h5p-button:hover {
+  background: rgb(4,104,206); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(4,104,206,1) 0%, rgba(100,152,254,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(4,104,206,1)), color-stop(100%,rgba(100,152,254,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(4,104,206,1) 0%,rgba(100,152,254,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(4,104,206,1) 0%,rgba(100,152,254,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(4,104,206,1) 0%,rgba(100,152,254,1) 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0468ce', endColorstr='#6498fe',GradientType=0 ); /* IE6-9 */
+}
+
+.h5p-drag button.h5p-button:before {
+  font-family: 'H5PFontAwesome4';
+  content: "\f06e";
+  padding-right: 0.5em;
+}
+
+/* Button icons */
+button.h5p-button.h5p-check-button:before {
   content: "\f058";
 }
-.h5p-word button.h5p-button.h5p-retry-button:before {
+button.h5p-button.h5p-retry-button:before {
   content: "\f021";
 }
-.h5p-word button.h5p-button.h5p-check-button {
+button.h5p-show-solution-button:before {
+  content: "\f06e";
+}
+
+/* Buttons starting state: */
+button.h5p-button.h5p-check-button {
   display: inline-block;
 }
 button.h5p-retry-button.h5p-retry-button {
   display: none;
 }
+button.h5p-show-solution-button.h5p-show-solution-button {
+  display: none;
+}
 
-/* Colors and styling for word selections */
-.h5p-word .h5p-word-selected {
-  padding: 0.1em;
-  background: #93b8e2;
-  border: 0.2em #0000ff dotted;
-}
-.h5p-word-missed {
-  padding: 0.2em;
-  background: #e9f9f7;
-  border: 0.2em #0000ff dotted;
-}
-.h5p-word-selectable {
-  cursor: pointer;
-}
 /* Tooltip styling */
-.h5p-blanks .joubel-tip-container {
+.h5p-drag .joubel-tip-container {
   position: absolute;
   top: 0;
   right: 0;
 }
 /* Feedback for dropzones */
 .h5p-correct-feedback:after {
-  position: relative;
-  right: -0.3em;
+  position: absolute;
+  right: -1em;
+  font-family: 'H5PFontAwesome4';
   text-decoration: none;
   content: "\f00c";
-  font-family: 'H5PFontAwesome4';
   color: #39692e;
 }
 .h5p-wrong-feedback:after {
-  position: relative;
-  right: -0.3em;
+  position: absolute;
+  right: -1em;
   font-family: 'H5PFontAwesome4';
   text-decoration: none;
   content: "\f00d";
@@ -259,5 +215,47 @@ button.h5p-retry-button.h5p-retry-button {
 
 /* Dropzone styling */
 .h5p-dropzone-container {
-  padding-right: 0.25em;
+  position: relative;
+  bottom: -0.6em;
+  display: inline-block;
+  padding-right: 0.8em;
+}
+
+.h5p-dropzone {
+  position:relative;
+  width: 10em;
+  height: 2em;
+  background-color: #deedeb;
+  border-radius: 2em;
+  display: inline-block;
+}
+
+/* Draggable styling */
+.h5p-draggables-container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2em;
+  display: inline-block;
+}
+
+.h5p-draggable {
+  position: relative;
+  cursor: pointer;
+  border-radius: 1em;
+  border: 0.1em solid;
+  padding: 0.2em;
+  margin: 0.3em;
+  display: inline-block;
+}
+
+/* Show solution container */
+.h5p-show-solution-container {
+  position: relative;
+  color: #6aa81b;
+  font-weight: bold;
+  display: inline-block;
+  left: 1em;
+  padding-right: 0.3em;
+  bottom: 0.6em;
 }

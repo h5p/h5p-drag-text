@@ -48,7 +48,6 @@
 .h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score-emoticon:before {
   display: block;
   float: left;
-
   font-family: icomoon-word;
   font-size: 4em;
   line-height: 1em; /* inherits 4em */
@@ -93,8 +92,6 @@
   margin-left: 5.5em;
   z-index: 1;
   border: 1px solid #ccc;
-  -webkit-filter: drop-shadow(0 0 0.2em #999999);
-  filter: drop-shadow(0 0 0.2em #999999);
   line-height: 1.3em;
 }
 
@@ -216,7 +213,6 @@ button.h5p-show-solution-button.h5p-show-solution-button {
 /* Dropzone styling */
 .h5p-dropzone-container {
   position: relative;
-  bottom: -0.6em;
   display: inline-block;
   padding-right: 0.8em;
 }
@@ -224,7 +220,7 @@ button.h5p-show-solution-button.h5p-show-solution-button {
 .h5p-dropzone {
   position:relative;
   width: 10em;
-  height: 2em;
+  height: 2.5em;
   background-color: #deedeb;
   border-radius: 2em;
   display: inline-block;
@@ -233,14 +229,14 @@ button.h5p-show-solution-button.h5p-show-solution-button {
 /* Draggable styling */
 .h5p-draggables-container {
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 2em;
+  padding-top: 3em;
   display: inline-block;
 }
 
 .h5p-draggable {
   position: relative;
+  margin-left: auto;
+  margin-top: auto;
   cursor: pointer;
   border-radius: 1em;
   border: 0.1em solid;
@@ -257,5 +253,4 @@ button.h5p-show-solution-button.h5p-show-solution-button {
   display: inline-block;
   left: 1em;
   padding-right: 0.3em;
-  bottom: 0.6em;
 }

@@ -73,7 +73,6 @@ H5P.DragText = (function ($) {
 
     // Add score and button containers.
     this.addFooter();
-    this.addDragDropFunctionality()
   };
 
   /**
@@ -86,80 +85,26 @@ H5P.DragText = (function ($) {
   };
 
   /**
-   * Adds functionality to drag and drop objects.
+   * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
    */
-  C.prototype.addDragDropFunctionality = function () {
+  C.prototype.instantFeedbackEvaluation = function () {
     var self = this;
-
-    //Update all droppables
-    self.droppablesArray.forEach(function (droppable) {
-      droppable.getDropzone().droppable({
-        drop: function( event, ui) {
-          self.draggablesArray.forEach( function (draggable) {
-            if (draggable.getDraggableElement().is(ui.draggable)) {
-              droppable.setDraggable(draggable);
-            }
-          });
-          if (self.params.instantFeedback) {
-            droppable.setFeedback();
-            instantFeedbackEvaluation();
-          }
-        }
-      });
-    });
-
-    //Update all draggables
-    self.draggablesArray.forEach( function (draggable) {
-      draggable.getDraggableElement().draggable({
-        revert: function (isValidDrop) {
-          this.data("uiDraggable").originalPosition = {
-            top: 0,
-            left: 0
-          };
-          var dropzone = draggable.getInsideDropzone();
-          if (!isValidDrop) {
-            if (dropzone !== null){
-              dropzone.removeDraggable();
-            }
-          }
-          else {
-            if (dropzone.hasDraggable()){
-              dropzone.removeDraggable();
-            }
-            $(draggable.getDraggableElement()).detach().css({top: 0, left:0 }).appendTo(dropzone.getDropzone());
-          }
-          if (self.params.instantFeedback) {
-            if (dropzone !== null) {
-              dropzone.setFeedback();
-            }
-            instantFeedbackEvaluation();
-          }
-          return !isValidDrop;
-        }
-      });
-    });
-
-    //Feedback function for checking if all fields are filled, and show evaluation if that is the case.
-    function instantFeedbackEvaluation() {
-      var allFilled = true;
-      self.draggablesArray.forEach(function (entry) {
-        if (entry.insideDropzone === null) {
-          allFilled = false;
-          //Hides "retry" and "show solution" buttons.
-          self.$retryButton.hide();
-          self.$showAnswersButton.hide();
-          self.hideEvaluation();
-          return;
-        }
-      });
-      if (allFilled){
-        //Shows "retry" and "show solution" buttons.
-        self.$retryButton.show();
-        self.$showAnswersButton.show();
-        self.showEvaluation();
+    var allFilled = true;
+    self.draggablesArray.forEach(function (entry) {
+      if (entry.insideDropzone === null) {
+        allFilled = false;
+        //Hides "retry" and "show solution" buttons.
+        self.$retryButton.hide();
+        self.$showAnswersButton.hide();
+        self.hideEvaluation();
       }
+    });
+    if (allFilled){
+      //Shows "retry" and "show solution" buttons.
+      self.$retryButton.show();
+      self.$showAnswersButton.show();
+      self.showEvaluation();
     }
-
   };
 
 
@@ -237,9 +182,10 @@ H5P.DragText = (function ($) {
    * Resets the draggables back to their original position.
    */
   C.prototype.resetTask = function () {
-    this.draggablesArray.forEach(function (entry) {
-      entry.removeFromZone();
-      entry.resetPosition();
+    var self = this;
+    self.draggablesArray.forEach(function (entry) {
+      self.moveDraggableToDroppable(entry, null);
+      entry.appendDraggableTo(self.$draggables);
     });
   };
 
@@ -332,24 +278,20 @@ H5P.DragText = (function ($) {
       if (clozeEnd === -1) {
         continue; // No end
       }
-      // Create new cloze
       self.$wordContainer.append(textField.slice(currentIndex, clozeStart - 1));
-      self.addCloze(textField.substring(clozeStart, clozeEnd));
+      self.addDragNDrop(textField.substring(clozeStart, clozeEnd));
       clozeEnd++;
       currentIndex = clozeEnd;
-
-      // Find the next cloze
       clozeStart = textField.indexOf('*', clozeEnd);
     }
     self.$wordContainer.append(textField.slice(currentIndex, textField.length-1));
   };
 
   /**
-   * Makes a cloze from the specified text, creates a draggable and droppable object and pushes
-   * them to their respective arrays.
-   * @param {String} text Text that will be made into a cloze.
+   * Makes a drag n drop from the specified text.
+   * @param {String} text Text for the drag n drop.
    */
-  C.prototype.addCloze = function (text) {
+  C.prototype.addDragNDrop = function (text) {
     var self = this;
     var tip = undefined;
     var answer = text;
@@ -360,12 +302,69 @@ H5P.DragText = (function ($) {
       tip = answersAndTip[1];
     }
 
-    var draggable = new Draggable(answer);
+    var $draggable = $('<div/>', {
+      text: answer,
+      class: DRAGGABLE
+    }).draggable({
+      revert: function (isValidDrop) {
+        this.data("uiDraggable").originalPosition = {
+          top: 0,
+          left: 0
+        };
+        var dropzone = droppable;
+        if (!isValidDrop) {
+          self.moveDraggableToDroppable(draggable, null);
+        }
+        if (self.params.instantFeedback) {
+          if (dropzone !== null) {
+            dropzone.setFeedback();
+          }
+          self.instantFeedbackEvaluation();
+        }
+        return !isValidDrop;
+      }
+    });
+
+    var draggable = new Draggable(answer, $draggable);
     draggable.appendDraggableTo(self.$draggables);
-    var droppable = new Droppable(answer, tip);
+
+    var $dropzoneContainer = $('<div/>', {
+      class: DROPZONE_CONTAINER
+    });
+    var $dropzone = $('<div/>', {
+      class: DROPZONE
+    }).appendTo($dropzoneContainer)
+        .droppable({
+      drop: function( event, ui) {
+        self.draggablesArray.forEach( function (draggable) {
+          if (draggable.getDraggableElement().is(ui.draggable)) {
+            self.moveDraggableToDroppable(draggable, droppable);
+          }
+        });
+        if (self.params.instantFeedback) {
+          droppable.setFeedback();
+          self.instantFeedbackEvaluation();
+        }
+      }
+    });
+
+    var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer);
     droppable.appendDroppableTo(self.$wordContainer);
+
     self.draggablesArray.push(draggable);
     self.droppablesArray.push(droppable);
+  };
+
+  C.prototype.moveDraggableToDroppable = function (draggable, droppable) {
+    draggable.removeFromZone();
+    if (droppable !== null) {
+      droppable.appendInsideDroppableTo(this.$draggables);
+      droppable.setDraggable(draggable);
+      draggable.appendDraggableTo(droppable.getDropzone());
+    }
+    else {
+      draggable.appendDraggableTo(this.$draggables);
+    }
   };
 
   /**
@@ -382,50 +381,23 @@ H5P.DragText = (function ($) {
    *
    * @param {String} text A string that will be turned into a selectable word.
    */
-  function Draggable(text) {
+  function Draggable(text, $draggable) {
     var self = this;
     self.text = text;
-    self.$draggable = null;
     self.insideDropzone = null;
+    self.$draggable = $draggable;
 
-    self.createDraggable();
   }
+
+  Draggable.prototype.appendDraggableTo = function ($container) {
+    this.$draggable.detach().css({top: 0,left: 0}).appendTo($container);
+  };
 
   /**
    * Disables the draggable, making it immovable.
    */
   Draggable.prototype.disableDraggable = function () {
     this.$draggable.draggable({ disabled: true});
-  };
-
-  /**
-   * Creates the draggable and adds the revert functionality for it.
-   */
-  Draggable.prototype.createDraggable = function () {
-    var self = this;
-    this.$draggable = $('<div/>', {
-      html: this.text,
-      class: DRAGGABLE
-    }).draggable({
-        revert: function (isValidDrop) {
-          this.data("uiDraggable").originalPosition = {
-            top: 0,
-            left: 0
-          };
-          if (!isValidDrop) {
-            self.removeFromZone();
-            return true;
-          }
-        }
-    });
-  };
-
-  /**
-   * Appends this draggable to the provided container.
-   * @param {jQuery} $container JQuery object this draggable is appended to.
-   */
-  Draggable.prototype.appendDraggableTo = function ($container) {
-    this.$draggable.appendTo($container);
   };
 
   /**
@@ -438,17 +410,10 @@ H5P.DragText = (function ($) {
   };
 
   /**
-   * Resets the position of this draggable.
-   */
-  Draggable.prototype.resetPosition = function () {
-    this.$draggable.css({ left: 0, top:0 });
-  };
-
-  /**
    * Removes this draggable from its dropzone, if it is contained in one.
    */
   Draggable.prototype.removeFromZone = function () {
-    if (this.insideDropzone) {
+    if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }
     this.insideDropzone = null;
@@ -459,19 +424,10 @@ H5P.DragText = (function ($) {
    * @param {jQuery} droppable The droppable this draggable will be added to.
    */
   Draggable.prototype.addToZone = function (droppable) {
-    if (this.insideDropzone) {
+    if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }
     this.insideDropzone = droppable;
-  };
-
-  /**
-   * Gets the dropzone which the draggable is inside.
-   *
-   * @returns {Droppable} The Droppable which this draggable is inside.
-   */
-  Draggable.prototype.getInsideDropzone = function () {
-    return this.insideDropzone;
   };
 
   /**
@@ -488,32 +444,14 @@ H5P.DragText = (function ($) {
    *
    * @param {String} text The correct text string for this drop box.
    * @param {String} tip A tip for this container, optional to provide.
-   * @param {Array} draggablesArray Array for keeping track of all the draggables, might want to remove.
-   * @param {Boolean} instantFeedback Decides whether the dropbox should give instant feedback upon drop.
    */
-  function Droppable(text, tip) {
+  function Droppable(text, tip, $dropzone, $dropzoneContainer) {
     var self = this;
     self.text = text;
     self.tip = tip;
     self.containedDraggable = null;
-    self.$dropzoneContainer = null;
-    self.$dropzone = null;
-
-    self.createDroppable();
-  }
-
-  /**
-   * Creates the droppable container for this class.
-   */
-  Droppable.prototype.createDroppable = function () {
-    var self = this;
-    self.$dropzoneContainer = $('<div/>', {
-      class: DROPZONE_CONTAINER
-    });
-
-    self.$dropzone = $('<div/>', {
-      class: DROPZONE
-    }).appendTo(self.$dropzoneContainer);
+    self.$dropzone = $dropzone;
+    self.$dropzoneContainer = $dropzoneContainer;
 
     if(self.tip !== undefined) {
       self.$dropzoneContainer.append(H5P.JoubelUI.createTip(self.tip, self.$dropzoneContainer));
@@ -523,7 +461,7 @@ H5P.DragText = (function ($) {
       class: SHOW_SOLUTION_CONTAINER,
       text: self.text
     }).appendTo(self.$dropzoneContainer).hide();
-  };
+  }
 
   /**
    * Displays the solution next to the drop box.
@@ -547,6 +485,12 @@ H5P.DragText = (function ($) {
     this.$dropzoneContainer.appendTo($container);
   };
 
+  Droppable.prototype.appendInsideDroppableTo = function ($container) {
+    if (this.containedDraggable !== null) {
+      this.containedDraggable.appendDraggableTo($container);
+    }
+  };
+
   /**
    * Sets the contained draggable in this drop box to the provided argument.
    * @param {Draggable} droppedDraggable A draggable that has been dropped on this box.
@@ -557,7 +501,6 @@ H5P.DragText = (function ($) {
       return;
     }
     if (self.containedDraggable !== null) {
-      self.containedDraggable.resetPosition();
       self.containedDraggable.removeFromZone();
     }
     self.containedDraggable = droppedDraggable;

@@ -154,6 +154,9 @@ H5P.DragText = (function ($) {
     });
   };
 
+  /**
+   * Shows feedback for dropzones.
+   */
   C.prototype.showDropzoneFeedback = function () {
     this.droppablesArray.forEach( function (droppable) {
       droppable.setFeedback();
@@ -227,6 +230,42 @@ H5P.DragText = (function ($) {
     self.$wordContainer.appendTo($container);
     self.$draggables.appendTo($container);
     self.addDropzoneWidth();
+
+    var maxWidth = self.getRealDeviceWidth();
+  };
+
+  /**
+   * Method for calculating real device width, used for displaying draggables.
+   * @returns {Number} maxWidth The real device width for the application.
+   */
+  C.prototype.getRealDeviceWidth = function () {
+    var diff = 1000;
+    var maxWidth = 9999;
+    var lastWidth = 0;
+    while (diff >= 1) {
+      var tempWidth = maxWidth;
+      if (window.matchMedia('(max-width: '+maxWidth+'px)').matches)
+      {
+        maxWidth = maxWidth - (Math.abs(lastWidth-maxWidth)/2);
+        diff = Math.abs(lastWidth-maxWidth);
+      }
+      else {
+        maxWidth = maxWidth + (Math.abs(lastWidth-maxWidth)/2);
+        diff = Math.abs(lastWidth-maxWidth);
+      }
+      lastWidth = tempWidth;
+    }
+    maxWidth = Math.floor(maxWidth);
+    console.log(maxWidth);
+
+    console.log($(window).width());
+    console.log(this.$inner.width());
+    console.log(screen.width);
+    var widthRatio =  this.$inner.width()/$(window).width();
+    console.log(widthRatio);
+    var realDeviceWidth = widthRatio * maxWidth;
+    console.log(realDeviceWidth);
+    return maxWidth;
   };
 
   /**

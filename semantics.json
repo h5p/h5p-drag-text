@@ -34,13 +34,6 @@
     "common": true
   },
   {
-    "label": "Enable \"Check\" button",
-    "name": "enableCheckAnswer",
-    "type": "boolean",
-    "default": true,
-    "optional": true
-  },
-  {
     "label": "Text for \"Retry\" button",
     "name": "tryAgain",
     "type": "text",

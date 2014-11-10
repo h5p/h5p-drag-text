@@ -49,7 +49,6 @@ H5P.DragText = (function ($) {
       textField: "This is a *nice*, *flexible* content type, which allows you to highlight all the *wonderful* words in this *exciting* sentence.\n"+
         "This is another line of *fantastic* text.",
       checkAnswer: "Check",
-      enableCheckAnswer: true,
       tryAgain: "Retry",
       enableTryAgain: true,
       score: "Score : @score of @total.",
@@ -120,10 +119,7 @@ H5P.DragText = (function ($) {
       self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
       self.$retryButton.hide();
-
-      if (self.params.enableCheckAnswer) {
-        self.$checkAnswerButton.show();
-      }
+      self.$checkAnswerButton.show();
       if (self.params.enableShowSolution) {
         self.$showAnswersButton.hide();
       }
@@ -143,10 +139,7 @@ H5P.DragText = (function ($) {
       });
       self.$showAnswersButton.hide();
     });
-
-    if (!self.params.enableCheckAnswer) {
-      self.$checkAnswerButton.hide();
-    }
+    self.$checkAnswerButton.hide();
 
     self.$buttonContainer.appendTo(self.$footer);
   };
@@ -188,9 +181,8 @@ H5P.DragText = (function ($) {
 
     if (score === maxScore) {
       this.$showAnswersButton.hide();
-      if (!this.params.instantFeedback) {
-        this.disableDraggables();
-      }
+      this.$retryButton.hide();
+      this.disableDraggables();
     }
     return score === maxScore;
   };

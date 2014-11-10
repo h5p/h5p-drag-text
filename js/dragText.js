@@ -85,30 +85,6 @@ H5P.DragText = (function ($) {
   };
 
   /**
-   * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
-   */
-  C.prototype.instantFeedbackEvaluation = function () {
-    var self = this;
-    var allFilled = true;
-    self.draggablesArray.forEach(function (entry) {
-      if (entry.insideDropzone === null) {
-        allFilled = false;
-        //Hides "retry" and "show solution" buttons.
-        self.$retryButton.hide();
-        self.$showAnswersButton.hide();
-        self.hideEvaluation();
-      }
-    });
-    if (allFilled){
-      //Shows "retry" and "show solution" buttons.
-      self.$retryButton.show();
-      self.$showAnswersButton.show();
-      self.showEvaluation();
-    }
-  };
-
-
-  /**
    * Add check solution, show solution and retry buttons, and their functionality.
    */
   C.prototype.addButtons = function () {
@@ -121,7 +97,6 @@ H5P.DragText = (function ($) {
       type: 'button',
       text: this.params.checkAnswer
     }).appendTo(self.$buttonContainer).click(function () {
-      self.showEvaluation();
       if (!self.showEvaluation()) {
         if (self.params.enableTryAgain) {
           self.$retryButton.show();
@@ -144,6 +119,7 @@ H5P.DragText = (function ($) {
       text: this.params.tryAgain
     }).appendTo(self.$buttonContainer).click(function () {
       self.resetTask();
+      self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
       self.$retryButton.hide();
 
@@ -166,7 +142,6 @@ H5P.DragText = (function ($) {
     }).appendTo(self.$buttonContainer).click(function () {
       self.droppablesArray.forEach( function (droppable) {
         droppable.showSolution();
-        droppable.removeDraggable()
       });
       self.$showAnswersButton.hide();
     });
@@ -185,7 +160,12 @@ H5P.DragText = (function ($) {
     var self = this;
     self.draggablesArray.forEach(function (entry) {
       self.moveDraggableToDroppable(entry, null);
-      entry.appendDraggableTo(self.$draggables);
+    });
+  };
+
+  C.prototype.showDropzoneFeedback = function () {
+    this.droppablesArray.forEach( function (droppable) {
+      droppable.setFeedback();
     });
   };
 
@@ -197,6 +177,7 @@ H5P.DragText = (function ($) {
   C.prototype.showEvaluation = function () {
     this.hideEvaluation();
     this.calculateScore();
+    this.showDropzoneFeedback();
 
     var score = this.correctAnswers;
     var maxScore = this.droppablesArray.length;
@@ -210,6 +191,7 @@ H5P.DragText = (function ($) {
 
     if (score === maxScore) {
       this.$evaluation.addClass(EVALUATION_EMOTICON_MAX_SCORE);
+      this.$showAnswersButton.hide();
       if (!this.params.instantFeedback) {
         this.disableDraggables();
       }
@@ -256,9 +238,10 @@ H5P.DragText = (function ($) {
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
     self.handleText();
 
-    //$wordContainer.html(textField);
+    self.addDraggablesRandomly(self.$draggables);
     self.$wordContainer.appendTo($container);
     self.$draggables.appendTo($container);
+    self.addDropzoneWidth();
   };
 
   /**
@@ -288,6 +271,33 @@ H5P.DragText = (function ($) {
   };
 
   /**
+   * Matches the width of all dropzones to the widest draggable.
+   */
+  C.prototype.addDropzoneWidth = function () {
+    var widest = 0;
+    //Find widest draggable
+    this.draggablesArray.forEach( function (draggable) {
+      if (draggable.getDraggableElement().width() > widest) {
+        if (draggable.getDraggableElement().html().length >= 20) {
+          draggable.setShortFormat();
+          widest = draggable.getDraggableElement().width();
+          draggable.removeShortFormat();
+        }
+        else {
+          widest = draggable.getDraggableElement().width();
+        }
+      }
+    });
+    //add 20% padding:
+    widest = widest + (widest/5);
+
+    //Adjust all droppable to widest size.
+    this.droppablesArray.forEach( function (droppable) {
+      droppable.getDropzone().width(widest);
+    });
+  };
+
+  /**
    * Makes a drag n drop from the specified text.
    * @param {String} text Text for the drag n drop.
    */
@@ -302,18 +312,16 @@ H5P.DragText = (function ($) {
       tip = answersAndTip[1];
     }
 
+    //Make the draggable
     var $draggable = $('<div/>', {
       text: answer,
       class: DRAGGABLE
     }).draggable({
       revert: function (isValidDrop) {
-        this.data("uiDraggable").originalPosition = {
-          top: 0,
-          left: 0
-        };
         var dropzone = droppable;
         if (!isValidDrop) {
           self.moveDraggableToDroppable(draggable, null);
+          return true;
         }
         if (self.params.instantFeedback) {
           if (dropzone !== null) {
@@ -326,8 +334,8 @@ H5P.DragText = (function ($) {
     });
 
     var draggable = new Draggable(answer, $draggable);
-    draggable.appendDraggableTo(self.$draggables);
 
+    //Make the dropzone
     var $dropzoneContainer = $('<div/>', {
       class: DROPZONE_CONTAINER
     });
@@ -355,6 +363,11 @@ H5P.DragText = (function ($) {
     self.droppablesArray.push(droppable);
   };
 
+  /**
+   * Moves a draggable onto a droppable, and updates all parameters in the objects.
+   * @param {Draggable} draggable Draggable instance.
+   * @param {Droppable} droppable The droppable instance the draggable is put on.
+   */
   C.prototype.moveDraggableToDroppable = function (draggable, droppable) {
     draggable.removeFromZone();
     if (droppable !== null) {
@@ -368,11 +381,85 @@ H5P.DragText = (function ($) {
   };
 
   /**
+   * Adds the draggable words to the provided container in random order.
+   * @param {jQuery} $container Container the draggables will be added to.
+   */
+  C.prototype.addDraggablesRandomly = function ($container) {
+    var tempArray = this.draggablesArray.slice();
+    while (tempArray.length >= 1) {
+      var randIndex = parseInt(Math.random()*tempArray.length);
+      tempArray[randIndex].appendDraggableTo($container);
+      tempArray.splice(randIndex, 1);
+    }
+  };
+
+  /**
+   * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
+   */
+  C.prototype.instantFeedbackEvaluation = function () {
+    var self = this;
+    var allFilled = true;
+    self.draggablesArray.forEach(function (entry) {
+      if (entry.insideDropzone === null) {
+        allFilled = false;
+        //Hides "retry" and "show solution" buttons.
+        self.$retryButton.hide();
+        self.$showAnswersButton.hide();
+        self.hideEvaluation();
+      }
+    });
+    if (allFilled){
+      //Shows "retry" and "show solution" buttons.
+      self.$retryButton.show();
+      self.$showAnswersButton.show();
+      self.showEvaluation();
+    }
+  };
+
+  /**
    * Disables all draggables, user will not be able to interact with them any more.
    */
   C.prototype.disableDraggables = function () {
     this.draggablesArray.forEach( function (entry) {
       entry.disableDraggable();
+    });
+  };
+
+  /**
+   * Used for contracts.
+   * Checks if the parent program can proceed. Always true.
+   * @returns {Boolean} true
+   */
+  C.prototype.getAnswerGiven = function () {
+    return true;
+  };
+
+  /**
+   * Used for contracts.
+   * Checks the current score for this task.
+   * @returns {Number} The current score.
+   */
+  C.prototype.getScore = function () {
+    this.calculateScore();
+    return this.correctAnswers;
+  };
+
+  /**
+   * Used for contracts.
+   * Checks the maximum score for this task.
+   * @returns {Number} The maximum score.
+   */
+  C.prototype.getMaxScore = function () {
+    return this.droppablesArray.length;
+  };
+
+  /**
+   * Used for contracts.
+   * Sets feedback on the dropzones.
+   */
+  C.prototype.showSolutions = function () {
+    this.droppablesArray.forEach( function (droppable) {
+      droppable.setFeedback();
     });
   };
 
@@ -387,8 +474,18 @@ H5P.DragText = (function ($) {
     self.insideDropzone = null;
     self.$draggable = $draggable;
 
+    self.shortFormat = self.text;
+    //Shortens the draggable string if inside a dropbox.
+    if (self.shortFormat.length > 20) {
+      self.shortFormat = self.shortFormat.slice(0,17)+'...';
+    }
+
   }
 
+  /**
+   * Moves the draggable to the provided container.
+   * @param {jQuery} $container Container the draggable will append to.
+   */
   Draggable.prototype.appendDraggableTo = function ($container) {
     this.$draggable.detach().css({top: 0,left: 0}).appendTo($container);
   };
@@ -414,8 +511,10 @@ H5P.DragText = (function ($) {
    */
   Draggable.prototype.removeFromZone = function () {
     if (this.insideDropzone !== null) {
+      this.insideDropzone.removeFeedback();
       this.insideDropzone.removeDraggable();
     }
+    this.removeShortFormat();
     this.insideDropzone = null;
   };
 
@@ -428,6 +527,7 @@ H5P.DragText = (function ($) {
       this.insideDropzone.removeDraggable();
     }
     this.insideDropzone = droppable;
+    this.setShortFormat();
   };
 
   /**
@@ -437,6 +537,20 @@ H5P.DragText = (function ($) {
    */
   Draggable.prototype.getAnswerText = function () {
     return this.text;
+  };
+
+  /**
+   * Sets short format of draggable when inside a dropbox.
+   */
+  Draggable.prototype.setShortFormat = function () {
+    this.$draggable.html(this.shortFormat);
+  };
+
+  /**
+   * Removes the short format of draggable when it is outside a dropbox.
+   */
+  Draggable.prototype.removeShortFormat = function () {
+    this.$draggable.html(this.text);
   };
 
   /**
@@ -517,15 +631,6 @@ H5P.DragText = (function ($) {
   };
 
   /**
-   * Checks if the dropzone has a draggable inside.
-   *
-   * @returns {Boolean} True when it has a draggable.
-   */
-  Droppable.prototype.hasDraggable = function () {
-    return this.containedDraggable !== null;
-  };
-
-  /**
    * Checks if this drop box contains the correct draggable.
    *
    * @returns {Boolean} True if this box has the correct answer.
@@ -541,13 +646,46 @@ H5P.DragText = (function ($) {
    * Sets CSS styling feedback for this drop box.
    */
   Droppable.prototype.setFeedback = function () {
+    //Draggable is correct
     if (this.isCorrect()) {
-      this.$dropzone.removeClass(WRONG_FEEDBACK);
+      if (this.$dropzone.hasClass(WRONG_FEEDBACK)) {
+        this.$dropzone.removeClass(WRONG_FEEDBACK);
+      }
       this.$dropzone.addClass(CORRECT_FEEDBACK);
     }
+    //Does not contain a draggable
+    else if (this.containedDraggable === null) {
+      if (this.$dropzone.hasClass(WRONG_FEEDBACK)) {
+        this.$dropzone.removeClass(WRONG_FEEDBACK);
+      }
+      if (this.$dropzone.hasClass(CORRECT_FEEDBACK)) {
+        this.$dropzone.removeClass(CORRECT_FEEDBACK);
+      }
+    }
+    //Draggable is wrong
     else {
-      this.$dropzone.removeClass(CORRECT_FEEDBACK);
+      if (this.$dropzone.hasClass(CORRECT_FEEDBACK)) {
+        this.$dropzone.removeClass(CORRECT_FEEDBACK);
+      }
       this.$dropzone.addClass(WRONG_FEEDBACK);
+    }
+  };
+
+  /**
+   * Sets short format of draggable when inside a dropbox.
+   */
+  Droppable.prototype.setShortFormat = function () {
+    if (this.containedDraggable !== null) {
+      this.containedDraggable.setShortFormat();
+    }
+  };
+
+  /**
+   * Removes the short format of draggable when it is outside a dropbox.
+   */
+  Droppable.prototype.removeShortFormat = function () {
+    if (this.containedDraggable !== null) {
+      this.containedDraggable.removeShortFormat();
     }
   };
 
@@ -555,8 +693,12 @@ H5P.DragText = (function ($) {
    * Removes all CSS styling feedback for this drop box.
    */
   Droppable.prototype.removeFeedback = function () {
-    this.$dropzone.removeClass(WRONG_FEEDBACK);
-    this.$dropzone.removeClass(CORRECT_FEEDBACK);
+    if (this.$dropzone.hasClass(WRONG_FEEDBACK)) {
+      this.$dropzone.removeClass(WRONG_FEEDBACK);
+    }
+    if (this.$dropzone.hasClass(CORRECT_FEEDBACK)) {
+      this.$dropzone.removeClass(CORRECT_FEEDBACK);
+    }
   };
 
   /**

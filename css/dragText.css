@@ -215,6 +215,7 @@ button.h5p-show-solution-button.h5p-show-solution-button {
   position: relative;
   display: inline-block;
   padding-right: 0.8em;
+  padding-top: 1em;
 }
 
 .h5p-dropzone {
@@ -222,8 +223,10 @@ button.h5p-show-solution-button.h5p-show-solution-button {
   width: 10em;
   height: 2.5em;
   background-color: #deedeb;
-  border-radius: 2em;
+  border-radius: 0.6em;
   display: inline-block;
+  vertical-align: middle;
+  text-align: center
 }
 
 /* Draggable styling */
@@ -235,13 +238,12 @@ button.h5p-show-solution-button.h5p-show-solution-button {
 
 .h5p-draggable {
   position: relative;
-  margin-left: auto;
-  margin-top: auto;
   cursor: pointer;
-  border-radius: 1em;
+  border-radius: 0.6em;
   border: 0.1em solid;
   padding: 0.2em;
   margin: 0.3em;
+  text-align: center;
   display: inline-block;
 }
 
@@ -253,4 +255,12 @@ button.h5p-show-solution-button.h5p-show-solution-button {
   display: inline-block;
   left: 1em;
   padding-right: 0.3em;
+}
+
+.h5p-drag-selectable-words {
+  line-height: 1.4em;
+}
+
+.ui-draggable-dragging {
+  z-index: 2;
 }

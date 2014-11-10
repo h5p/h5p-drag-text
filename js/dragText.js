@@ -18,8 +18,6 @@ H5P.DragText = (function ($) {
 
   //Special Sub-containers:
   var EVALUATION_SCORE = "h5p-drag-evaluation-score";
-  var EVALUATION_EMOTICON = "h5p-drag-evaluation-score-emoticon";
-  var EVALUATION_EMOTICON_MAX_SCORE = "max-score";
   var DROPZONE = "h5p-dropzone";
   var DRAGGABLE = "h5p-draggable";
   var SHOW_SOLUTION_CONTAINER = "h5p-show-solution-container";
@@ -185,19 +183,14 @@ H5P.DragText = (function ($) {
     var scoreText = this.params.score.replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());
 
-    //Append evaluation emoticon and score to evaluation container.
-    $('<div class='+EVALUATION_EMOTICON+'></div>').appendTo(this.$evaluation);
+    //Append score to evaluation container.
     $('<div class=' + EVALUATION_SCORE + '>' + scoreText + '</div>').appendTo(this.$evaluation);
 
     if (score === maxScore) {
-      this.$evaluation.addClass(EVALUATION_EMOTICON_MAX_SCORE);
       this.$showAnswersButton.hide();
       if (!this.params.instantFeedback) {
         this.disableDraggables();
       }
-    }
-    else {
-      this.$evaluation.removeClass(EVALUATION_EMOTICON_MAX_SCORE);
     }
     return score === maxScore;
   };

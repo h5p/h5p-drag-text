@@ -193,7 +193,7 @@ button.h5p-show-solution-button.h5p-show-solution-button {
   right: 0;
 }
 /* Feedback for dropzones */
-.h5p-correct-feedback:after {
+.h5p-correct-feedback:before {
   position: absolute;
   right: -1em;
   font-family: 'H5PFontAwesome4';
@@ -201,7 +201,7 @@ button.h5p-show-solution-button.h5p-show-solution-button {
   content: "\f00c";
   color: #39692e;
 }
-.h5p-wrong-feedback:after {
+.h5p-wrong-feedback:before {
   position: absolute;
   right: -1em;
   font-family: 'H5PFontAwesome4';
@@ -237,7 +237,6 @@ button.h5p-show-solution-button.h5p-show-solution-button {
 }
 
 .h5p-draggable {
-  position: relative;
   cursor: pointer;
   border-radius: 0.6em;
   border: 0.1em solid;

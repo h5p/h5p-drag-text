@@ -191,10 +191,25 @@ button.h5p-show-solution-button.h5p-show-solution-button {
   padding-right: 0.3em;
 }
 
-.h5p-drag-selectable-words {
+.h5p-drag-droppable-words {
   line-height: 1.4em;
 }
 
 .ui-draggable-dragging {
   z-index: 2;
+}
+
+.h5p-drag-task {
+  position: relative;
+  display: inline-block;
+}
+
+/* Wide Screen css : */
+.h5p-drag-wide-screen {
+  float: right;
+  padding-top: 0em;
+}
+
+.h5p-drag-draggable-wide-screen {
+  display: block;
 }

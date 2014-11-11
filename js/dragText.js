@@ -8,8 +8,9 @@ H5P.DragText = (function ($) {
   //CSS Main Containers:
   var MAIN_CONTAINER = "h5p-drag";
   var INNER_CONTAINER = "h5p-drag-inner";
+  var TASK_CONTAINER = "h5p-drag-task";
   var TITLE_CONTAINER = "h5p-drag-title";
-  var WORDS_CONTAINER = "h5p-drag-selectable-words";
+  var WORDS_CONTAINER = "h5p-drag-droppable-words";
   var FOOTER_CONTAINER = "h5p-drag-footer";
   var EVALUATION_CONTAINER = "h5p-drag-evaluation-container";
   var BUTTON_CONTAINER = "h5p-button-bar";
@@ -21,6 +22,8 @@ H5P.DragText = (function ($) {
   var DROPZONE = "h5p-dropzone";
   var DRAGGABLE = "h5p-draggable";
   var SHOW_SOLUTION_CONTAINER = "h5p-show-solution-container";
+  var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
+  var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
 
   //CSS Buttons:
   var BUTTONS = "h5p-button";
@@ -70,6 +73,14 @@ H5P.DragText = (function ($) {
 
     // Add score and button containers.
     this.addFooter();
+
+
+    //Changes css when wide screen is detected.
+    var self = this;
+    self.changeLayoutToFitWidth();
+    $(window).resize(function (event) {
+      self.changeLayoutToFitWidth();
+    });
   };
 
   /**
@@ -139,7 +150,6 @@ H5P.DragText = (function ($) {
       });
       self.$showAnswersButton.hide();
     });
-    self.$checkAnswerButton.hide();
 
     self.$buttonContainer.appendTo(self.$footer);
   };
@@ -216,25 +226,52 @@ H5P.DragText = (function ($) {
    */
   C.prototype.addTaskTo = function ($container) {
     var self = this;
+    self.widest = 0;
     self.clozesArray = [];
     self.droppablesArray = [];
     self.draggablesArray = [];
 
+    self.$taskContainer = $('<div/>', {
+      class: TASK_CONTAINER
+    });
+
     self.$draggables = $('<div/>', {
       class: DRAGGABLES_CONTAINER
     });
+
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
     self.handleText();
 
     self.addDraggablesRandomly(self.$draggables);
-    self.$wordContainer.appendTo($container);
-    self.$draggables.appendTo($container);
+    self.$wordContainer.appendTo(self.$taskContainer);
+    self.$draggables.appendTo(self.$taskContainer);
+    self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
 
-    var maxWidth = self.getRealDeviceWidth();
+  };
+
+  C.prototype.changeLayoutToFitWidth = function () {
+    var self = this;
+    console.log("RESIZED");
+    if (screen.width > screen.height) {
+      console.log("width biggest");
+      self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
+      self.$wordContainer.detach().appendTo(self.$taskContainer);
+      self.draggablesArray.forEach(function (draggable) {
+        draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
+      });
+    }
+    else {
+      self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
+      self.$draggables.detach().appendTo(self.$taskContainer);
+      self.draggablesArray.forEach(function (draggable) {
+        draggable.getDraggableElement().removeClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
+      });
+    }
   };
 
   /**
+   * Not used at the moment.
    * Method for calculating real device width, used for displaying draggables.
    * @returns {Number} maxWidth The real device width for the application.
    */
@@ -301,20 +338,21 @@ H5P.DragText = (function ($) {
     var widest = 0;
     //Find widest draggable
     this.draggablesArray.forEach( function (draggable) {
-      if (draggable.getDraggableElement().width() > widest) {
+      if ($(draggable.getDraggableElement()).innerWidth() > widest) {
         if (draggable.getDraggableElement().html().length >= 20) {
           draggable.setShortFormat();
-          widest = draggable.getDraggableElement().width();
+          widest = $(draggable.getDraggableElement()).innerWidth();
           draggable.removeShortFormat();
         }
         else {
-          widest = draggable.getDraggableElement().width();
+          widest = $(draggable.getDraggableElement()).innerWidth();
         }
       }
     });
     //add 20% padding:
     widest = widest + (widest/5);
-
+    //set value for use when resizing window.
+    this.widest = widest;
     //Adjust all droppable to widest size.
     this.droppablesArray.forEach( function (droppable) {
       droppable.getDropzone().width(widest);

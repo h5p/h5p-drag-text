@@ -193,6 +193,7 @@ H5P.DragText = (function ($) {
     $('<div class=' + EVALUATION_SCORE + '>' + scoreText + '</div>').appendTo(this.$evaluation);
 
     if (score === maxScore) {
+      this.$checkAnswerButton.hide();
       this.$showAnswersButton.hide();
       this.$retryButton.hide();
       this.disableDraggables();

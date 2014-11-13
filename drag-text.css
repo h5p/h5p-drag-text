@@ -1,11 +1,11 @@
 /* IcoMoon font licensed under the GNU General Public License: http://www.gnu.org/licenses/gpl.html */
 @font-face {
   font-family: 'icomoon-word';
-  src:url('../fonts/icomoon.eot');
-  src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/icomoon.woff') format('woff'),
-  url('../fonts/icomoon.ttf') format('truetype'),
-  url('../fonts/icomoon.svg#icomoon') format('svg');
+  src:url('fonts/icomoon.eot');
+  src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+  url('fonts/icomoon.woff') format('woff'),
+  url('fonts/icomoon.ttf') format('truetype'),
+  url('fonts/icomoon.svg#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -57,11 +57,11 @@
 }
 
 /* Button bar and buttons */
-.h5p-drag .h5p-button-bar {
+.h5p-drag .h5p-drag-button-bar {
   margin-top: .8em;
   min-height: 2.134em;
 }
-.h5p-drag button.h5p-button {
+.h5p-drag button.h5p-drag-button {
   float: right;
   display: none;
   font-size: 1em;
@@ -83,7 +83,7 @@
   background: -ms-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* IE10+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6498fe', endColorstr='#0468ce',GradientType=0 );
 }
-.h5p-drag button.h5p-button:hover {
+.h5p-drag button.h5p-drag-button:hover {
   background: rgb(4,104,206); /* Old browsers */
   background: -moz-linear-gradient(top,  rgba(4,104,206,1) 0%, rgba(100,152,254,1) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(4,104,206,1)), color-stop(100%,rgba(100,152,254,1))); /* Chrome,Safari4+ */
@@ -93,52 +93,55 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0468ce', endColorstr='#6498fe',GradientType=0 ); /* IE6-9 */
 }
 
-.h5p-drag button.h5p-button:before {
+.h5p-drag button.h5p-drag-button:before {
   font-family: 'H5PFontAwesome4';
   content: "\f06e";
   padding-right: 0.5em;
 }
 
 /* Button icons */
-button.h5p-button.h5p-check-button:before {
+button.h5p-drag-button.h5p-drag-check-button:before {
   content: "\f058";
 }
-button.h5p-button.h5p-retry-button:before {
+button.h5p-drag-button.h5p-drag-retry-button:before {
   content: "\f021";
 }
-button.h5p-show-solution-button:before {
+button.h5p-drag-show-solution-button:before {
   content: "\f06e";
 }
 
 /* Buttons starting state: */
-button.h5p-button.h5p-check-button {
+button.h5p-drag-button.h5p-drag-check-button {
   display: inline-block;
 }
-button.h5p-retry-button.h5p-retry-button {
+button.h5p-drag-retry-button {
   display: none;
 }
-button.h5p-show-solution-button.h5p-show-solution-button {
+button.h5p-drag-show-solution-button {
   display: none;
 }
 
 /* Tooltip styling */
 .h5p-drag .joubel-tip-container {
+  left: 4em;
+  bottom: 1.4em;
   position: absolute;
-  top: 0;
-  right: 0;
 }
 /* Feedback for dropzones */
-.h5p-correct-feedback:before {
+.h5p-drag-correct-feedback:after {
   position: absolute;
-  right: -1em;
+  left: 5.2em;
+  bottom: 0.5em;
   font-family: 'H5PFontAwesome4';
   text-decoration: none;
   content: "\f00c";
   color: #39692e;
 }
-.h5p-wrong-feedback:before {
+
+.h5p-drag-wrong-feedback:after {
   position: absolute;
-  right: -1em;
+  left: 5.2em;
+  bottom: 0.5em;
   font-family: 'H5PFontAwesome4';
   text-decoration: none;
   content: "\f00d";
@@ -146,14 +149,14 @@ button.h5p-show-solution-button.h5p-show-solution-button {
 }
 
 /* Dropzone styling */
-.h5p-dropzone-container {
+.h5p-drag-dropzone-container {
   position: relative;
   display: inline-block;
-  padding-right: 0.8em;
+  padding-right: 1.2em;
   padding-top: 1em;
 }
 
-.h5p-dropzone {
+.h5p-drag-dropzone {
   position:relative;
   width: 10em;
   height: 2.5em;
@@ -165,13 +168,13 @@ button.h5p-show-solution-button.h5p-show-solution-button {
 }
 
 /* Draggable styling */
-.h5p-draggables-container {
+.h5p-drag-draggables-container {
   position: relative;
   padding-top: 3em;
   display: inline-block;
 }
 
-.h5p-draggable {
+.h5p-drag-draggable {
   cursor: pointer;
   border-radius: 0.6em;
   border: 0.1em solid;
@@ -182,13 +185,14 @@ button.h5p-show-solution-button.h5p-show-solution-button {
 }
 
 /* Show solution container */
-.h5p-show-solution-container {
+.h5p-drag-show-solution-container {
   position: relative;
-  color: #6aa81b;
+  color: #39692e;
   font-weight: bold;
   display: inline-block;
   left: 1em;
   padding-right: 0.3em;
+  padding-left: 0.3em;
 }
 
 .h5p-drag-droppable-words {
@@ -200,6 +204,7 @@ button.h5p-show-solution-button.h5p-show-solution-button {
 }
 
 .h5p-drag-task {
+  width: 100%;
   position: relative;
   display: inline-block;
 }

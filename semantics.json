@@ -23,7 +23,7 @@
     "name": "textField",
     "type": "text",
     "widget": "textarea",
-    "placeholder": "Oslo is the capital of *Norway*, and *polarbears:white furry animal* walk in their streets.",
+    "placeholder": "Oslo is the capital of *Norway*",
     "description": "Droppable words are added with an asterisk (*) in front and behind the correct word/phrase. You may add a textual tip, using a colon (:) in front of the tip. Example: H5P content may be edited using a *browser:Something you use every day*."
   },
   {
@@ -44,8 +44,7 @@
     "label": "Enable \"Retry\" button",
     "name": "enableTryAgain",
     "type": "boolean",
-    "default": true,
-    "optional": true
+    "default": true
   },
   {
     "label": "Feedback text",
@@ -66,8 +65,7 @@
     "label": "Enable \"Show Solution\" button",
     "name": "enableShowSolution",
     "type": "boolean",
-    "default": true,
-    "optional": true
+    "default": true
   },
   {
     "label": "Instant feedback",

@@ -1,21 +1,21 @@
 {
   "title": "Drag and drop text",
-  "description": "void",
+  "description": "Drag words to their correct position in the text in order to complete this task.",
   "majorVersion": 1,
   "minorVersion": 0,
   "patchVersion": 0,
   "runnable": 1,
   "author": "Joubel AS",
-  "license": "cc-by-sa",
+  "license": "MIT",
   "machineName": "H5P.DragText",
   "preloadedCss": [
     {
-      "path": "css/dragText.css"
+      "path": "drag-text.css"
     }
   ],
   "preloadedJs": [
     {
-      "path": "js/dragText.js"
+      "path": "drag-text.js"
     }
   ],
   "preloadedDependencies": [

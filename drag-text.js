@@ -172,6 +172,9 @@ H5P.DragText = (function ($) {
     if (self.params.instantFeedback) {
       self.$checkAnswerButton.hide();
     }
+    else {
+      self.$checkAnswerButton.show();
+    }
 
     //Retry button
     self.$retryButton =  $('<button/>', {
@@ -183,6 +186,7 @@ H5P.DragText = (function ($) {
       self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
       self.$retryButton.hide();
+      console.log(self.params.instantFeedback);
       if (!self.params.instantFeedback) {
         self.$checkAnswerButton.show();
 

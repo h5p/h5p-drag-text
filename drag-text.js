@@ -161,6 +161,8 @@ H5P.DragText = (function ($) {
         if (self.params.enableShowSolution) {
           self.$showAnswersButton.show();
         }
+        self.$checkAnswerButton.hide();
+        self.disableDraggables();
       }
       else {
         self.$showAnswersButton.hide();
@@ -185,11 +187,11 @@ H5P.DragText = (function ($) {
       self.resetTask();
       self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
+      self.enableDraggables();
       self.$retryButton.hide();
       console.log(self.params.instantFeedback);
       if (!self.params.instantFeedback) {
         self.$checkAnswerButton.show();
-
       }
       if (self.params.enableShowSolution) {
         self.$showAnswersButton.hide();
@@ -523,6 +525,16 @@ H5P.DragText = (function ($) {
   };
 
   /**
+   * Enables all draggables, user will be able to interact with them again.
+   * @public
+   */
+  C.prototype.enableDraggables = function () {
+    this.draggablesArray.forEach( function (entry) {
+      entry.enableDraggable();
+    });
+  };
+
+  /**
    * Used for contracts.
    * Checks if the parent program can proceed. Always true.
    * @public
@@ -599,6 +611,14 @@ H5P.DragText = (function ($) {
    */
   Draggable.prototype.disableDraggable = function () {
     this.$draggable.draggable({ disabled: true});
+  };
+
+  /**
+   * Enables the draggable, making it movable.
+   * @public
+   */
+  Draggable.prototype.enableDraggable = function () {
+    this.$draggable.draggable({ disabled: false});
   };
 
   /**

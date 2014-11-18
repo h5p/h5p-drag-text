@@ -45,6 +45,7 @@ H5P.DragText = (function ($) {
   function C(params, id) {
     this.$ = $(this);
     this.id = id;
+    var self = this;
 
     // Set default behavior.
     this.params = $.extend({}, {
@@ -59,10 +60,40 @@ H5P.DragText = (function ($) {
       enableShowSolution: true,
       instantFeedback: false
     }, params);
+
+    /**
+     * Adds the draggables on the right side of the screen if widescreen is detected.
+     * @private
+     */
+    this.changeLayoutToFitWidth = function () {
+      //Find ratio of width to em, and make sure it is less than the predefined ratio: 35
+      if ((self.$inner.width() / parseFloat($("body").css("font-size")) > 35) && (self.widest < 150)) {
+        // Adds a class that floats the draggables to the right.
+        self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
+        // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
+        self.$wordContainer.detach().appendTo(self.$taskContainer);
+        // Set margin so the wordContainer does not expand when there are no more draggables left.
+        self.$wordContainer.css({'margin-right': this.widest});
+        // Set all draggables to be blocks
+        self.draggablesArray.forEach(function (draggable) {
+          draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
+        });
+      }
+      else {
+        // Remove the specific wide screen settings.
+        self.$wordContainer.css({'margin-right': 0});
+        self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
+        self.$draggables.detach().appendTo(self.$taskContainer);
+        self.draggablesArray.forEach(function (draggable) {
+          draggable.getDraggableElement().removeClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
+        });
+      }
+    };
   }
 
   /**
    * Append field to wrapper.
+   * @public
    * @param {jQuery} container the jQuery object which this module will attach itself to.
    */
   C.prototype.attach = function (container) {
@@ -83,20 +114,19 @@ H5P.DragText = (function ($) {
 
     // Add score and button containers.
     this.addFooter();
+  };
 
-    //Changes initial layout if widescreen is detected.
+  /**
+   * Changes layout responsively when resized.
+   * @public
+   */
+  C.prototype.resize = function () {
     this.changeLayoutToFitWidth();
   };
 
   /**
-   * Change layout if widescreen is detected.
-   */
-  C.prototype.resize = function () {
-    self.changeLayoutToFitWidth();
-  };
-
-  /**
    * Append footer to inner block.
+   * @public
    */
   C.prototype.addFooter = function () {
     this.$footer = $('<div/>', {
@@ -112,6 +142,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Add check solution, show solution and retry buttons, and their functionality.
+   * @public
    */
   C.prototype.addButtons = function () {
     var self = this;
@@ -138,6 +169,10 @@ H5P.DragText = (function ($) {
       }
     });
 
+    if (self.params.instantFeedback) {
+      self.$checkAnswerButton.hide();
+    }
+
     //Retry button
     self.$retryButton =  $('<button/>', {
       'class': BUTTONS+' '+RETRY_BUTTON,
@@ -148,7 +183,10 @@ H5P.DragText = (function ($) {
       self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
       self.$retryButton.hide();
-      self.$checkAnswerButton.show();
+      if (!self.params.instantFeedback) {
+        self.$checkAnswerButton.show();
+
+      }
       if (self.params.enableShowSolution) {
         self.$showAnswersButton.hide();
       }
@@ -174,6 +212,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Resets the draggables back to their original position.
+   * @public
    */
   C.prototype.resetTask = function () {
     var self = this;
@@ -184,6 +223,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Shows feedback for dropzones.
+   * @public
    */
   C.prototype.showDropzoneFeedback = function () {
     this.droppablesArray.forEach( function (droppable) {
@@ -193,6 +233,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Evaluate task and display score text for word markings.
+   * @public
    *
    * @return {Boolean} Returns true if maxScore was achieved.
    */
@@ -224,6 +265,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Calculate score and store them in class variables.
+   * @public
    */
   C.prototype.calculateScore = function () {
     var self = this;
@@ -244,6 +286,7 @@ H5P.DragText = (function ($) {
   
   /**
    * Handle task and add it to container.
+   * @public
    * @param {jQuery} $container The object which our task will attach to.
    */
   C.prototype.addTaskTo = function ($container) {
@@ -272,40 +315,16 @@ H5P.DragText = (function ($) {
   };
 
   /**
-   * Adds the draggables on the right side of the screen if widescreen is detected.
-   */
-  C.prototype.changeLayoutToFitWidth = function () {
-    var self = this;
-    if (screen.width > screen.height) {
-      // Adds a class that floats the draggables to the right.
-      self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
-      // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
-      self.$wordContainer.detach().appendTo(self.$taskContainer);
-      // Set margin so the wordContainer does not expand when there are no more draggables left.
-      self.$wordContainer.css({'margin-right': this.widest});
-      // Set all draggables to be blocks
-      self.draggablesArray.forEach(function (draggable) {
-        draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
-      });
-    }
-    else {
-      // Remove the specific wide screen settings.
-      self.$wordContainer.css({'margin-right': 0});
-      self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
-      self.$draggables.detach().appendTo(self.$taskContainer);
-      self.draggablesArray.forEach(function (draggable) {
-        draggable.getDraggableElement().removeClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
-      });
-    }
-  };
-
-  /**
    * Parses the text and sends identified dropzones to the addDragNDrop method for further handling.
    * Appends the parsed text to wordContainer.
+   * @public
    */
   C.prototype.handleText = function () {
     var self = this;
-    var textField = self.params.textField;
+
+    //Replace newlines with break line tag
+    var textField = self.params.textField.replace(/(\r\n|\n|\r)/gm,"<br/>");
+
     // Go through the text and replace all the asterisks with input fields
     var dropStart = textField.indexOf('*');
     var currentIndex = 0;
@@ -330,7 +349,8 @@ H5P.DragText = (function ($) {
   };
 
   /**
-   * Matches the width of all dropzones to the widest draggable.
+   * Matches the width of all dropzones to the widest draggable, and sets widest class variable.
+   * @public
    */
   C.prototype.addDropzoneWidth = function () {
     var widest = 0;
@@ -359,11 +379,12 @@ H5P.DragText = (function ($) {
 
   /**
    * Makes a drag n drop from the specified text.
+   * @public
    * @param {String} text Text for the drag n drop.
    */
   C.prototype.addDragNDrop = function (text) {
     var self = this;
-    var tip = undefined;
+    var tip;
     var answer = text;
     var answersAndTip = answer.split(':');
 
@@ -425,6 +446,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Moves a draggable onto a droppable, and updates all parameters in the objects.
+   * @public
    * @param {Draggable} draggable Draggable instance.
    * @param {Droppable} droppable The droppable instance the draggable is put on.
    */
@@ -442,6 +464,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Adds the draggable words to the provided container in random order.
+   * @public
    * @param {jQuery} $container Container the draggables will be added to.
    */
   C.prototype.addDraggablesRandomly = function ($container) {
@@ -455,6 +478,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
+   * @public
    */
   C.prototype.instantFeedbackEvaluation = function () {
     var self = this;
@@ -486,6 +510,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Disables all draggables, user will not be able to interact with them any more.
+   * @public
    */
   C.prototype.disableDraggables = function () {
     this.draggablesArray.forEach( function (entry) {
@@ -496,6 +521,7 @@ H5P.DragText = (function ($) {
   /**
    * Used for contracts.
    * Checks if the parent program can proceed. Always true.
+   * @public
    * @returns {Boolean} true
    */
   C.prototype.getAnswerGiven = function () {
@@ -505,6 +531,7 @@ H5P.DragText = (function ($) {
   /**
    * Used for contracts.
    * Checks the current score for this task.
+   * @public
    * @returns {Number} The current score.
    */
   C.prototype.getScore = function () {
@@ -515,6 +542,7 @@ H5P.DragText = (function ($) {
   /**
    * Used for contracts.
    * Checks the maximum score for this task.
+   * @public
    * @returns {Number} The maximum score.
    */
   C.prototype.getMaxScore = function () {
@@ -524,6 +552,7 @@ H5P.DragText = (function ($) {
   /**
    * Used for contracts.
    * Sets feedback on the dropzones.
+   * @public
    */
   C.prototype.showSolutions = function () {
     this.droppablesArray.forEach( function (droppable) {
@@ -533,7 +562,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Private class for keeping track of draggable text.
-   *
+   * @private
    * @param {String} text String that will be turned into a selectable word.
    * @param {jQuery} draggable Draggable object.
    */
@@ -553,6 +582,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Moves the draggable to the provided container.
+   * @public
    * @param {jQuery} $container Container the draggable will append to.
    */
   Draggable.prototype.appendDraggableTo = function ($container) {
@@ -561,6 +591,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Disables the draggable, making it immovable.
+   * @public
    */
   Draggable.prototype.disableDraggable = function () {
     this.$draggable.draggable({ disabled: true});
@@ -568,6 +599,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Gets the draggable jQuery object for this class.
+   * @public
    *
    * @returns {jQuery} Draggable item.
    */
@@ -577,6 +609,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Removes this draggable from its dropzone, if it is contained in one.
+   * @public
    */
   Draggable.prototype.removeFromZone = function () {
     if (this.insideDropzone !== null) {
@@ -589,6 +622,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Adds this draggable to the given dropzone.
+   * @public
    * @param {Droppable} droppable The droppable this draggable will be added to.
    */
   Draggable.prototype.addToZone = function (droppable) {
@@ -601,6 +635,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Gets the answer text for this draggable.
+   * @public
    *
    * @returns {String} The answer text in this draggable.
    */
@@ -610,6 +645,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Sets short format of draggable when inside a dropbox.
+   * @public
    */
   Draggable.prototype.setShortFormat = function () {
     this.$draggable.html(this.shortFormat);
@@ -617,6 +653,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Removes the short format of draggable when it is outside a dropbox.
+   * @public
    */
   Draggable.prototype.removeShortFormat = function () {
     this.$draggable.html(this.text);
@@ -624,6 +661,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Private class for keeping track of droppable zones.
+   * @private
    *
    * @param {String} text Correct text string for this drop box.
    * @param {undefined/String} tip Tip for this container, optional.
@@ -650,6 +688,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Displays the solution next to the drop box.
+   * @public
    */
   Droppable.prototype.showSolution = function () {
     this.$showSolution.show();
@@ -657,6 +696,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Hides the solution.
+   * @public
    */
   Droppable.prototype.hideSolution = function () {
     this.$showSolution.hide();
@@ -664,12 +704,17 @@ H5P.DragText = (function ($) {
 
   /**
    * Appends the droppable to the provided container.
+   * @public
    * @param {jQuery} $container Container which the dropzone will be appended to.
    */
   Droppable.prototype.appendDroppableTo = function ($container) {
     this.$dropzoneContainer.appendTo($container);
   };
-
+  /**
+   * Appends the draggable contained within this dropzone to the argument.
+   * @public
+   * @param {jQuery} $container Container which the draggable will append to.
+   */
   Droppable.prototype.appendInsideDroppableTo = function ($container) {
     if (this.containedDraggable !== null) {
       this.containedDraggable.appendDraggableTo($container);
@@ -678,6 +723,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Sets the contained draggable in this drop box to the provided argument.
+   * @public
    * @param {Draggable} droppedDraggable A draggable that has been dropped on this box.
    */
   Droppable.prototype.setDraggable = function(droppedDraggable) {
@@ -694,6 +740,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Removes the contained draggable in this box.
+   * @public
    */
   Droppable.prototype.removeDraggable = function () {
     if (this.containedDraggable !== null) {
@@ -703,6 +750,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Checks if this drop box contains the correct draggable.
+   * @public
    *
    * @returns {Boolean} True if this box has the correct answer.
    */
@@ -715,27 +763,38 @@ H5P.DragText = (function ($) {
 
   /**
    * Sets CSS styling feedback for this drop box.
+   * @public
    */
   Droppable.prototype.setFeedback = function () {
     //Draggable is correct
     if (this.isCorrect()) {
-      this.$dropzone.removeClass(WRONG_FEEDBACK);
-      this.$dropzone.addClass(CORRECT_FEEDBACK);
+      this.$dropzoneContainer.removeClass(WRONG_FEEDBACK);
+      this.$dropzoneContainer.addClass(CORRECT_FEEDBACK);
     }
     //Does not contain a draggable
     else if (this.containedDraggable === null) {
-      this.$dropzone.removeClass(WRONG_FEEDBACK);
-      this.$dropzone.removeClass(CORRECT_FEEDBACK);
+      this.$dropzoneContainer.removeClass(WRONG_FEEDBACK);
+      this.$dropzoneContainer.removeClass(CORRECT_FEEDBACK);
     }
     //Draggable is wrong
     else {
-      this.$dropzone.removeClass(CORRECT_FEEDBACK);
-      this.$dropzone.addClass(WRONG_FEEDBACK);
+      this.$dropzoneContainer.removeClass(CORRECT_FEEDBACK);
+      this.$dropzoneContainer.addClass(WRONG_FEEDBACK);
     }
   };
 
   /**
+   * Removes all CSS styling feedback for this drop box.
+   * @public
+   */
+  Droppable.prototype.removeFeedback = function () {
+    this.$dropzoneContainer.removeClass(WRONG_FEEDBACK);
+    this.$dropzoneContainer.removeClass(CORRECT_FEEDBACK);
+  };
+
+  /**
    * Sets short format of draggable when inside a dropbox.
+   * @public
    */
   Droppable.prototype.setShortFormat = function () {
     if (this.containedDraggable !== null) {
@@ -745,6 +804,7 @@ H5P.DragText = (function ($) {
 
   /**
    * Removes the short format of draggable when it is outside a dropbox.
+   * @public
    */
   Droppable.prototype.removeShortFormat = function () {
     if (this.containedDraggable !== null) {
@@ -753,15 +813,8 @@ H5P.DragText = (function ($) {
   };
 
   /**
-   * Removes all CSS styling feedback for this drop box.
-   */
-  Droppable.prototype.removeFeedback = function () {
-    this.$dropzone.removeClass(WRONG_FEEDBACK);
-    this.$dropzone.removeClass(CORRECT_FEEDBACK);
-  };
-
-  /**
    * Gets this object's dropzone jQuery object.
+   * @public
    *
    * @returns {jQuery} This object's dropzone.
    */

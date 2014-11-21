@@ -111,9 +111,15 @@
 
 /* Tooltip styling */
 .h5p-drag .joubel-tip-container {
-  left: 4em;
-  bottom: 1.4em;
+  top: -1.2em;
+  right: -1.2em;
   position: absolute;
+}
+
+.h5p-feedback-container {
+  width: 1em;
+  display: inline-block;
+  position: relative;
 }
 /* Feedback for dropzones */
 .h5p-drag-correct-feedback:after {
@@ -174,8 +180,7 @@
   color: #39692e;
   font-weight: bold;
   display: inline-block;
-  padding-right: 0.3em;
-  padding-left: 0.3em;
+  padding-left: 0.5em;
 }
 
 .h5p-drag-droppable-words {

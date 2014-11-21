@@ -24,6 +24,7 @@ H5P.DragText = (function ($) {
   var SHOW_SOLUTION_CONTAINER = "h5p-drag-show-solution-container";
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
+  var FEEDBACK_CONTAINER = 'h5p-feedback-container';
 
   //CSS Buttons:
   var BUTTONS = "h5p-drag-button";
@@ -66,8 +67,8 @@ H5P.DragText = (function ($) {
      * @private
      */
     this.changeLayoutToFitWidth = function () {
-      //Find ratio of width to em, and make sure it is less than the predefined ratio: 35
-      if ((self.$inner.width() / parseFloat($("body").css("font-size")) > 35) && (self.widest < 150)) {
+      //Find ratio of width to em, and make sure it is less than the predefined ratio.
+      if ((self.$inner.width() / parseFloat($("body").css("font-size")) > 43) && (self.widest < 150)) {
         // Adds a class that floats the draggables to the right.
         self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
         // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
@@ -189,7 +190,6 @@ H5P.DragText = (function ($) {
       self.hideEvaluation();
       self.enableDraggables();
       self.$retryButton.hide();
-      console.log(self.params.instantFeedback);
       if (!self.params.instantFeedback) {
         self.$checkAnswerButton.show();
       }
@@ -704,10 +704,16 @@ H5P.DragText = (function ($) {
       self.$dropzone.append(H5P.JoubelUI.createTip(self.tip, self.$dropzone));
     }
 
+    self.$feedbackContainer = $('<div/>', {
+      'class': FEEDBACK_CONTAINER
+    }).appendTo(self.$dropzoneContainer);
+
     self.$showSolution = $('<div/>', {
       'class': SHOW_SOLUTION_CONTAINER,
       text: self.text
     }).appendTo(self.$dropzoneContainer).hide();
+
+
   }
 
   /**
@@ -792,18 +798,18 @@ H5P.DragText = (function ($) {
   Droppable.prototype.setFeedback = function () {
     //Draggable is correct
     if (this.isCorrect()) {
-      this.$dropzoneContainer.removeClass(WRONG_FEEDBACK);
-      this.$dropzoneContainer.addClass(CORRECT_FEEDBACK);
+      this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
+      this.$feedbackContainer.addClass(CORRECT_FEEDBACK);
     }
     //Does not contain a draggable
     else if (this.containedDraggable === null) {
-      this.$dropzoneContainer.removeClass(WRONG_FEEDBACK);
-      this.$dropzoneContainer.removeClass(CORRECT_FEEDBACK);
+      this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
+      this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
     }
     //Draggable is wrong
     else {
-      this.$dropzoneContainer.removeClass(CORRECT_FEEDBACK);
-      this.$dropzoneContainer.addClass(WRONG_FEEDBACK);
+      this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
+      this.$feedbackContainer.addClass(WRONG_FEEDBACK);
     }
   };
 
@@ -812,8 +818,8 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.removeFeedback = function () {
-    this.$dropzoneContainer.removeClass(WRONG_FEEDBACK);
-    this.$dropzoneContainer.removeClass(CORRECT_FEEDBACK);
+    this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
+    this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
   };
 
   /**

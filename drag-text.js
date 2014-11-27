@@ -55,10 +55,10 @@ H5P.DragText = (function ($) {
         "This is another line of *fantastic* text.",
       checkAnswer: "Check",
       tryAgain: "Retry",
-      enableTryAgain: true,
+      enableRetryButton: true,
       score: "Score : @score of @total.",
       showSolution : "Show Solution",
-      enableShowSolution: true,
+      enableSolutionsButton: true,
       instantFeedback: false
     }, params);
 
@@ -156,10 +156,10 @@ H5P.DragText = (function ($) {
       text: this.params.checkAnswer
     }).appendTo(self.$buttonContainer).click(function () {
       if (!self.showEvaluation()) {
-        if (self.params.enableTryAgain) {
+        if (self.params.enableRetryButton) {
           self.$retryButton.show();
         }
-        if (self.params.enableShowSolution) {
+        if (self.params.enableSolutionsButton) {
           self.$showAnswersButton.show();
         }
         self.$checkAnswerButton.hide();
@@ -185,20 +185,16 @@ H5P.DragText = (function ($) {
       type: 'button',
       text: this.params.tryAgain
     }).appendTo(self.$buttonContainer).click(function () {
-      self.resetTask();
+      self.resetDraggables();
       self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
       self.enableDraggables();
       self.$retryButton.hide();
+      self.$showAnswersButton.hide();
       if (!self.params.instantFeedback) {
         self.$checkAnswerButton.show();
       }
-      if (self.params.enableShowSolution) {
-        self.$showAnswersButton.hide();
-      }
-      self.droppablesArray.forEach(function (droppable) {
-        droppable.hideSolution();
-      });
+      self.hideAllSolutions();
     });
 
     //Show Solution button
@@ -214,17 +210,6 @@ H5P.DragText = (function ($) {
     });
 
     self.$buttonContainer.appendTo(self.$footer);
-  };
-
-  /**
-   * Resets the draggables back to their original position.
-   * @public
-   */
-  C.prototype.resetTask = function () {
-    var self = this;
-    self.draggablesArray.forEach(function (entry) {
-      self.moveDraggableToDroppable(entry, null);
-    });
   };
 
   /**
@@ -288,6 +273,15 @@ H5P.DragText = (function ($) {
    */
   C.prototype.hideEvaluation = function () {
     this.$evaluation.html('');
+  };
+
+  /**
+   * Hides solution text for all dropzones.
+   */
+  C.prototype.hideAllSolutions = function () {
+    this.droppablesArray.forEach(function (droppable) {
+      droppable.hideSolution();
+    });
   };
   
   /**
@@ -502,10 +496,10 @@ H5P.DragText = (function ($) {
     });
     if (allFilled){
       //Shows "retry" and "show solution" buttons.
-      if (self.params.enableShowSolution) {
+      if (self.params.enableSolutionsButton) {
         self.$showAnswersButton.show();
       }
-      if (self.params.enableTryAgain) {
+      if (self.params.enableRetryButton) {
         self.$retryButton.show();
       }
 
@@ -573,6 +567,38 @@ H5P.DragText = (function ($) {
   C.prototype.showSolutions = function () {
     this.droppablesArray.forEach( function (droppable) {
       droppable.setFeedback();
+    });
+  };
+
+  /**
+   * Used for contracts.
+   * Resets the complete task back to its' initial state.
+   * @public
+   */
+  C.prototype.resetTask = function () {
+    var self = this;
+    //Reset draggables parameters and position
+    self.resetDraggables();
+    self.addDraggablesRandomly(self.$draggables);
+    //Hides solution text and re-enable draggables
+    self.hideEvaluation();
+    self.enableDraggables();
+    //Show and hide buttons
+    self.$retryButton.hide();
+    self.$showAnswersButton.hide();
+    if (!self.params.instantFeedback) {
+      self.$checkAnswerButton.show();
+    }
+    self.hideAllSolutions();
+  };
+
+  /**
+   * Resets the position of all draggables.
+   */
+  C.prototype.resetDraggables = function () {
+    var self = this;
+    self.draggablesArray.forEach(function (entry) {
+      self.moveDraggableToDroppable(entry, null);
     });
   };
 

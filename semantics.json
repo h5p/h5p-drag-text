@@ -42,7 +42,7 @@
   },
   {
     "label": "Enable \"Retry\" button",
-    "name": "enableTryAgain",
+    "name": "enableRetryButton",
     "type": "boolean",
     "default": true
   },
@@ -63,7 +63,7 @@
   },
   {
     "label": "Enable \"Show Solution\" button",
-    "name": "enableShowSolution",
+    "name": "enableSolutionsButton",
     "type": "boolean",
     "default": true
   },

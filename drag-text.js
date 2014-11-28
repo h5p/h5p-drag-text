@@ -62,11 +62,13 @@ H5P.DragText = (function ($) {
         "This is another line of *fantastic* text.",
       checkAnswer: "Check",
       tryAgain: "Retry",
-      enableRetry: true,
+      behaviour: {
+        enableRetry: true,
+        enableSolutionsButton: true,
+        instantFeedback: false
+      },
       score: "Score : @score of @total.",
-      showSolution : "Show Solution",
-      enableSolutionsButton: true,
-      instantFeedback: false
+      showSolution : "Show Solution"
     }, params);
 
     /**
@@ -163,10 +165,10 @@ H5P.DragText = (function ($) {
       text: this.params.checkAnswer
     }).appendTo(self.$buttonContainer).click(function () {
       if (!self.showEvaluation()) {
-        if (self.params.enableRetry) {
+        if (self.params.behaviour.enableRetry) {
           self.$retryButton.show();
         }
-        if (self.params.enableSolutionsButton) {
+        if (self.params.behaviour.enableSolutionsButton) {
           self.$showAnswersButton.show();
         }
         self.$checkAnswerButton.hide();
@@ -179,7 +181,7 @@ H5P.DragText = (function ($) {
       }
     });
 
-    if (self.params.instantFeedback) {
+    if (self.params.behaviour.instantFeedback) {
       self.$checkAnswerButton.hide();
     }
     else {
@@ -198,7 +200,7 @@ H5P.DragText = (function ($) {
       self.enableDraggables();
       self.$retryButton.hide();
       self.$showAnswersButton.hide();
-      if (!self.params.instantFeedback) {
+      if (!self.params.behaviour.instantFeedback) {
         self.$checkAnswerButton.show();
       }
       self.hideAllSolutions();
@@ -433,7 +435,7 @@ H5P.DragText = (function ($) {
           self.moveDraggableToDroppable(draggable, null);
           return true;
         }
-        if (self.params.instantFeedback) {
+        if (self.params.behaviour.instantFeedback) {
           if (dropzone !== null) {
             dropzone.addFeedback();
           }
@@ -459,7 +461,7 @@ H5P.DragText = (function ($) {
             self.moveDraggableToDroppable(draggable, droppable);
           }
         });
-        if (self.params.instantFeedback) {
+        if (self.params.behaviour.instantFeedback) {
           droppable.addFeedback();
           self.instantFeedbackEvaluation();
         }
@@ -525,10 +527,10 @@ H5P.DragText = (function ($) {
     });
     if (allFilled){
       //Shows "retry" and "show solution" buttons.
-      if (self.params.enableSolutionsButton) {
+      if (self.params.behaviour.enableSolutionsButton) {
         self.$showAnswersButton.show();
       }
-      if (self.params.enableRetry) {
+      if (self.params.behaviour.enableRetry) {
         self.$retryButton.show();
       }
 
@@ -615,7 +617,7 @@ H5P.DragText = (function ($) {
     //Show and hide buttons
     self.$retryButton.hide();
     self.$showAnswersButton.hide();
-    if (!self.params.instantFeedback) {
+    if (!self.params.behaviour.instantFeedback) {
       self.$checkAnswerButton.show();
     }
     self.hideAllSolutions();

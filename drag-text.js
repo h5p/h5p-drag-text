@@ -19,12 +19,14 @@ H5P.DragText = (function ($) {
 
   //Special Sub-containers:
   var EVALUATION_SCORE = "h5p-drag-evaluation-score";
+  var EVALUATION_EMOTICON = "h5p-drag-evaluation-emoticon";
+  var EVALUATION_MAX_SCORE = "h5p-drag-evaluation-max-score";
   var DROPZONE = "h5p-drag-dropzone";
   var DRAGGABLE = "h5p-drag-draggable";
   var SHOW_SOLUTION_CONTAINER = "h5p-drag-show-solution-container";
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
-  var FEEDBACK_CONTAINER = 'h5p-feedback-container';
+  var FEEDBACK_CONTAINER = 'h5p-drag-feedback-container';
 
   //CSS Buttons:
   var BUTTONS = "h5p-drag-button";
@@ -35,6 +37,11 @@ H5P.DragText = (function ($) {
   //CSS Dropzone feedback:
   var CORRECT_FEEDBACK = 'h5p-drag-correct-feedback';
   var WRONG_FEEDBACK = 'h5p-drag-wrong-feedback';
+
+  //CSS Draggable feedback:
+  var DRAGGABLE_DROPPED = 'h5p-drag-dropped';
+  var DRAGGABLE_FEEDBACK_CORRECT = 'h5p-drag-draggable-correct';
+  var DRAGGABLE_FEEDBACK_WRONG = 'h5p-drag-draggable-wrong';
 
   /**
    * Initialize module.
@@ -55,7 +62,7 @@ H5P.DragText = (function ($) {
         "This is another line of *fantastic* text.",
       checkAnswer: "Check",
       tryAgain: "Retry",
-      enableRetryButton: true,
+      enableRetry: true,
       score: "Score : @score of @total.",
       showSolution : "Show Solution",
       enableSolutionsButton: true,
@@ -156,7 +163,7 @@ H5P.DragText = (function ($) {
       text: this.params.checkAnswer
     }).appendTo(self.$buttonContainer).click(function () {
       if (!self.showEvaluation()) {
-        if (self.params.enableRetryButton) {
+        if (self.params.enableRetry) {
           self.$retryButton.show();
         }
         if (self.params.enableSolutionsButton) {
@@ -218,7 +225,17 @@ H5P.DragText = (function ($) {
    */
   C.prototype.showDropzoneFeedback = function () {
     this.droppablesArray.forEach( function (droppable) {
-      droppable.setFeedback();
+      droppable.addFeedback();
+    });
+  };
+
+  /**
+   * Shows feedback for draggables.
+   * @public
+   */
+  C.prototype.showDraggableFeedback = function () {
+    this.draggablesArray.forEach( function (draggable) {
+      draggable.addFeedback();
     });
   };
 
@@ -239,6 +256,11 @@ H5P.DragText = (function ($) {
     var scoreText = this.params.score.replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());
 
+    //Append emoticon to evaluation container.
+    $('<div/>', {
+      'class': EVALUATION_EMOTICON
+    }).appendTo(this.$evaluation);
+
     //Append score to evaluation container.
     $('<div/>', {
       'class': EVALUATION_SCORE,
@@ -246,10 +268,17 @@ H5P.DragText = (function ($) {
     }).appendTo(this.$evaluation);
 
     if (score === maxScore) {
+      //Add happy emoticon
+      this.$evaluation.addClass(EVALUATION_MAX_SCORE);
+
+      //Hide buttons and disable task
       this.$checkAnswerButton.hide();
       this.$showAnswersButton.hide();
       this.$retryButton.hide();
       this.disableDraggables();
+    }
+    else {
+      this.$evaluation.removeClass(EVALUATION_MAX_SCORE);
     }
     return score === maxScore;
   };
@@ -406,7 +435,7 @@ H5P.DragText = (function ($) {
         }
         if (self.params.instantFeedback) {
           if (dropzone !== null) {
-            dropzone.setFeedback();
+            dropzone.addFeedback();
           }
           self.instantFeedbackEvaluation();
         }
@@ -431,7 +460,7 @@ H5P.DragText = (function ($) {
           }
         });
         if (self.params.instantFeedback) {
-          droppable.setFeedback();
+          droppable.addFeedback();
           self.instantFeedbackEvaluation();
         }
       }
@@ -499,7 +528,7 @@ H5P.DragText = (function ($) {
       if (self.params.enableSolutionsButton) {
         self.$showAnswersButton.show();
       }
-      if (self.params.enableRetryButton) {
+      if (self.params.enableRetry) {
         self.$retryButton.show();
       }
 
@@ -566,7 +595,7 @@ H5P.DragText = (function ($) {
    */
   C.prototype.showSolutions = function () {
     this.droppablesArray.forEach( function (droppable) {
-      droppable.setFeedback();
+      droppable.addFeedback();
     });
   };
 
@@ -619,7 +648,6 @@ H5P.DragText = (function ($) {
     if (self.shortFormat.length > 20) {
       self.shortFormat = self.shortFormat.slice(0,17)+'...';
     }
-
   }
 
   /**
@@ -629,6 +657,20 @@ H5P.DragText = (function ($) {
    */
   Draggable.prototype.appendDraggableTo = function ($container) {
     this.$draggable.detach().css({top: 0,left: 0}).appendTo($container);
+  };
+
+  /**
+   * Sets dropped feedback if the on the draggable if parameter is true.
+   * @public
+   * @params {Boolean} isDropped Decides whether the draggable has been dropped.
+   */
+  Draggable.prototype.toggleDroppedFeedback = function (isDropped) {
+    if (isDropped) {
+      this.$draggable.addClass(DRAGGABLE_DROPPED);
+    }
+    else {
+      this.$draggable.removeClass(DRAGGABLE_DROPPED);
+    }
   };
 
   /**
@@ -666,6 +708,7 @@ H5P.DragText = (function ($) {
       this.insideDropzone.removeFeedback();
       this.insideDropzone.removeDraggable();
     }
+    this.toggleDroppedFeedback(false);
     this.removeShortFormat();
     this.insideDropzone = null;
   };
@@ -679,6 +722,7 @@ H5P.DragText = (function ($) {
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }
+    this.toggleDroppedFeedback(true);
     this.insideDropzone = droppable;
     this.setShortFormat();
   };
@@ -716,7 +760,7 @@ H5P.DragText = (function ($) {
    * @param {String} text Correct text string for this drop box.
    * @param {undefined/String} tip Tip for this container, optional.
    * @param {jQuery} dropzone Dropzone object.
-   * @param {jQuery} dropzoneContainer Container for the dropzone.
+   * @param {jQuery} dropzone Container Container for the dropzone.
    */
   function Droppable(text, tip, dropzone, dropzoneContainer) {
     var self = this;
@@ -738,8 +782,6 @@ H5P.DragText = (function ($) {
       'class': SHOW_SOLUTION_CONTAINER,
       text: self.text
     }).appendTo(self.$dropzoneContainer).hide();
-
-
   }
 
   /**
@@ -821,21 +863,30 @@ H5P.DragText = (function ($) {
    * Sets CSS styling feedback for this drop box.
    * @public
    */
-  Droppable.prototype.setFeedback = function () {
+  Droppable.prototype.addFeedback = function () {
     //Draggable is correct
     if (this.isCorrect()) {
-      this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
-      this.$feedbackContainer.addClass(CORRECT_FEEDBACK);
+      this.$feedbackContainer.removeClass(WRONG_FEEDBACK).addClass(CORRECT_FEEDBACK);
+
+      //Draggable feedback
+      this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).addClass(DRAGGABLE_FEEDBACK_CORRECT);
     }
     //Does not contain a draggable
     else if (this.containedDraggable === null) {
       this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
       this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
+
+      //Draggable feedback
     }
     //Draggable is wrong
     else {
       this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
       this.$feedbackContainer.addClass(WRONG_FEEDBACK);
+
+      //Draggable feedback
+      if (this.containedDraggable !== null) {
+        this.containedDraggable.getDraggableElement().addClass(DRAGGABLE_FEEDBACK_WRONG).removeClass(DRAGGABLE_FEEDBACK_CORRECT);
+      }
     }
   };
 
@@ -846,6 +897,11 @@ H5P.DragText = (function ($) {
   Droppable.prototype.removeFeedback = function () {
     this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
     this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
+
+    //Draggable feedback
+    if (this.containedDraggable !== null) {
+      this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).removeClass(DRAGGABLE_FEEDBACK_CORRECT);
+    }
   };
 
   /**

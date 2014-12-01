@@ -195,7 +195,6 @@ H5P.DragText = (function ($) {
       text: this.params.tryAgain
     }).appendTo(self.$buttonContainer).click(function () {
       self.resetDraggables();
-      self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
       self.enableDraggables();
       self.$retryButton.hide();
@@ -489,7 +488,7 @@ H5P.DragText = (function ($) {
       draggable.appendDraggableTo(droppable.getDropzone());
     }
     else {
-      draggable.appendDraggableTo(this.$draggables);
+      draggable.revertDraggableTo(this.$draggables);
     }
   };
 
@@ -610,7 +609,6 @@ H5P.DragText = (function ($) {
     var self = this;
     //Reset draggables parameters and position
     self.resetDraggables();
-    self.addDraggablesRandomly(self.$draggables);
     //Hides solution text and re-enable draggables
     self.hideEvaluation();
     self.enableDraggables();
@@ -658,7 +656,25 @@ H5P.DragText = (function ($) {
    * @param {jQuery} $container Container the draggable will append to.
    */
   Draggable.prototype.appendDraggableTo = function ($container) {
-    this.$draggable.detach().css({top: 0,left: 0}).appendTo($container);
+    this.$draggable.detach().css({left: 0, top: 0}).appendTo($container);
+  };
+
+  /**
+   * Reverts the draggable to its' provided container.
+   * @public
+   * @params {jQuery} $container The parent which the draggable will revert to.
+   */
+  Draggable.prototype.revertDraggableTo = function ($container) {
+    // get the relative distance between draggable and container.
+    var offLeft = this.$draggable.offset().left - $container.offset().left;
+    var offTop = this.$draggable.offset().top - $container.offset().top;
+
+    // Prepend draggable to new container, but keep the offset,
+    // then animate to new container's top:0, left:0
+    this.$draggable.detach()
+      .prependTo($container)
+      .css({left: offLeft, top: offTop})
+      .animate({left:0, top:0});
   };
 
   /**
@@ -781,8 +797,7 @@ H5P.DragText = (function ($) {
     }).appendTo(self.$dropzoneContainer);
 
     self.$showSolution = $('<div/>', {
-      'class': SHOW_SOLUTION_CONTAINER,
-      text: self.text
+      'class': SHOW_SOLUTION_CONTAINER
     }).appendTo(self.$dropzoneContainer).hide();
   }
 
@@ -791,6 +806,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.showSolution = function () {
+    this.$showSolution.html(this.text);
     this.$showSolution.show();
   };
 
@@ -799,6 +815,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.hideSolution = function () {
+    this.$showSolution.html('');
     this.$showSolution.hide();
   };
 
@@ -817,7 +834,7 @@ H5P.DragText = (function ($) {
    */
   Droppable.prototype.appendInsideDroppableTo = function ($container) {
     if (this.containedDraggable !== null) {
-      this.containedDraggable.appendDraggableTo($container);
+      this.containedDraggable.revertDraggableTo($container);
     }
   };
 

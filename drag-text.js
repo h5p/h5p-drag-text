@@ -62,11 +62,13 @@ H5P.DragText = (function ($) {
         "This is another line of *fantastic* text.",
       checkAnswer: "Check",
       tryAgain: "Retry",
-      enableRetry: true,
+      behaviour: {
+        enableRetry: true,
+        enableSolutionsButton: true,
+        instantFeedback: false
+      },
       score: "Score : @score of @total.",
-      showSolution : "Show Solution",
-      enableSolutionsButton: true,
-      instantFeedback: false
+      showSolution : "Show Solution"
     }, params);
 
     /**
@@ -163,10 +165,10 @@ H5P.DragText = (function ($) {
       text: this.params.checkAnswer
     }).appendTo(self.$buttonContainer).click(function () {
       if (!self.showEvaluation()) {
-        if (self.params.enableRetry) {
+        if (self.params.behaviour.enableRetry) {
           self.$retryButton.show();
         }
-        if (self.params.enableSolutionsButton) {
+        if (self.params.behaviour.enableSolutionsButton) {
           self.$showAnswersButton.show();
         }
         self.$checkAnswerButton.hide();
@@ -179,7 +181,7 @@ H5P.DragText = (function ($) {
       }
     });
 
-    if (self.params.instantFeedback) {
+    if (self.params.behaviour.instantFeedback) {
       self.$checkAnswerButton.hide();
     }
     else {
@@ -193,12 +195,11 @@ H5P.DragText = (function ($) {
       text: this.params.tryAgain
     }).appendTo(self.$buttonContainer).click(function () {
       self.resetDraggables();
-      self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
       self.enableDraggables();
       self.$retryButton.hide();
       self.$showAnswersButton.hide();
-      if (!self.params.instantFeedback) {
+      if (!self.params.behaviour.instantFeedback) {
         self.$checkAnswerButton.show();
       }
       self.hideAllSolutions();
@@ -433,7 +434,7 @@ H5P.DragText = (function ($) {
           self.moveDraggableToDroppable(draggable, null);
           return true;
         }
-        if (self.params.instantFeedback) {
+        if (self.params.behaviour.instantFeedback) {
           if (dropzone !== null) {
             dropzone.addFeedback();
           }
@@ -459,7 +460,7 @@ H5P.DragText = (function ($) {
             self.moveDraggableToDroppable(draggable, droppable);
           }
         });
-        if (self.params.instantFeedback) {
+        if (self.params.behaviour.instantFeedback) {
           droppable.addFeedback();
           self.instantFeedbackEvaluation();
         }
@@ -487,7 +488,7 @@ H5P.DragText = (function ($) {
       draggable.appendDraggableTo(droppable.getDropzone());
     }
     else {
-      draggable.appendDraggableTo(this.$draggables);
+      draggable.revertDraggableTo(this.$draggables);
     }
   };
 
@@ -525,10 +526,10 @@ H5P.DragText = (function ($) {
     });
     if (allFilled){
       //Shows "retry" and "show solution" buttons.
-      if (self.params.enableSolutionsButton) {
+      if (self.params.behaviour.enableSolutionsButton) {
         self.$showAnswersButton.show();
       }
-      if (self.params.enableRetry) {
+      if (self.params.behaviour.enableRetry) {
         self.$retryButton.show();
       }
 
@@ -608,14 +609,13 @@ H5P.DragText = (function ($) {
     var self = this;
     //Reset draggables parameters and position
     self.resetDraggables();
-    self.addDraggablesRandomly(self.$draggables);
     //Hides solution text and re-enable draggables
     self.hideEvaluation();
     self.enableDraggables();
     //Show and hide buttons
     self.$retryButton.hide();
     self.$showAnswersButton.hide();
-    if (!self.params.instantFeedback) {
+    if (!self.params.behaviour.instantFeedback) {
       self.$checkAnswerButton.show();
     }
     self.hideAllSolutions();
@@ -656,7 +656,25 @@ H5P.DragText = (function ($) {
    * @param {jQuery} $container Container the draggable will append to.
    */
   Draggable.prototype.appendDraggableTo = function ($container) {
-    this.$draggable.detach().css({top: 0,left: 0}).appendTo($container);
+    this.$draggable.detach().css({left: 0, top: 0}).appendTo($container);
+  };
+
+  /**
+   * Reverts the draggable to its' provided container.
+   * @public
+   * @params {jQuery} $container The parent which the draggable will revert to.
+   */
+  Draggable.prototype.revertDraggableTo = function ($container) {
+    // get the relative distance between draggable and container.
+    var offLeft = this.$draggable.offset().left - $container.offset().left;
+    var offTop = this.$draggable.offset().top - $container.offset().top;
+
+    // Prepend draggable to new container, but keep the offset,
+    // then animate to new container's top:0, left:0
+    this.$draggable.detach()
+      .prependTo($container)
+      .css({left: offLeft, top: offTop})
+      .animate({left:0, top:0});
   };
 
   /**
@@ -779,8 +797,7 @@ H5P.DragText = (function ($) {
     }).appendTo(self.$dropzoneContainer);
 
     self.$showSolution = $('<div/>', {
-      'class': SHOW_SOLUTION_CONTAINER,
-      text: self.text
+      'class': SHOW_SOLUTION_CONTAINER
     }).appendTo(self.$dropzoneContainer).hide();
   }
 
@@ -789,6 +806,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.showSolution = function () {
+    this.$showSolution.html(this.text);
     this.$showSolution.show();
   };
 
@@ -797,6 +815,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.hideSolution = function () {
+    this.$showSolution.html('');
     this.$showSolution.hide();
   };
 
@@ -815,7 +834,7 @@ H5P.DragText = (function ($) {
    */
   Droppable.prototype.appendInsideDroppableTo = function ($container) {
     if (this.containedDraggable !== null) {
-      this.containedDraggable.appendDraggableTo($container);
+      this.containedDraggable.revertDraggableTo($container);
     }
   };
 

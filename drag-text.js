@@ -397,8 +397,8 @@ H5P.DragText = (function ($) {
         }
       }
     });
-    //add 20% padding:
-    widest = widest + (widest/5);
+    //add 20% padding and a static minimum size: 20px:
+    widest = widest + 20 + (widest/5);
     //set value for use when resizing window.
     this.widest = widest;
     //Adjust all droppable to widest size.
@@ -598,6 +598,10 @@ H5P.DragText = (function ($) {
     this.droppablesArray.forEach( function (droppable) {
       droppable.addFeedback();
     });
+    //Remove all buttons in "show solution" mode.
+    this.$retryButton.hide();
+    this.$showAnswersButton.hide();
+    this.$checkAnswerButton.hide();
   };
 
   /**
@@ -892,15 +896,13 @@ H5P.DragText = (function ($) {
     }
     //Does not contain a draggable
     else if (this.containedDraggable === null) {
-      this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
-      this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
+      this.$feedbackContainer.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
 
       //Draggable feedback
     }
     //Draggable is wrong
     else {
-      this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
-      this.$feedbackContainer.addClass(WRONG_FEEDBACK);
+      this.$feedbackContainer.removeClass(CORRECT_FEEDBACK).addClass(WRONG_FEEDBACK);
 
       //Draggable feedback
       if (this.containedDraggable !== null) {
@@ -914,8 +916,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.removeFeedback = function () {
-    this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
-    this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
+    this.$feedbackContainer.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
 
     //Draggable feedback
     if (this.containedDraggable !== null) {

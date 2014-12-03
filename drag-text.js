@@ -398,7 +398,10 @@ H5P.DragText = (function ($) {
       }
     });
     //add 20% padding and a static minimum size: 20px:
-    widest = widest + 20 + (widest/5);
+    widest = widest + (widest/5);
+    if (widest < 80) {
+      widest = 80;
+    }
     //set value for use when resizing window.
     this.widest = widest;
     //Adjust all droppable to widest size.

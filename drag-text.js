@@ -26,7 +26,6 @@ H5P.DragText = (function ($) {
   var SHOW_SOLUTION_CONTAINER = "h5p-drag-show-solution-container";
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
-  var FEEDBACK_CONTAINER = 'h5p-drag-feedback-container';
 
   //CSS Buttons:
   var BUTTONS = "h5p-drag-button";
@@ -600,6 +599,7 @@ H5P.DragText = (function ($) {
   C.prototype.showSolutions = function () {
     this.droppablesArray.forEach( function (droppable) {
       droppable.addFeedback();
+      droppable.showSolution();
     });
     //Remove all buttons in "show solution" mode.
     this.$retryButton.hide();
@@ -799,22 +799,20 @@ H5P.DragText = (function ($) {
       self.$dropzone.append(H5P.JoubelUI.createTip(self.tip, self.$dropzone));
     }
 
-    self.$feedbackContainer = $('<div/>', {
-      'class': FEEDBACK_CONTAINER
-    }).appendTo(self.$dropzoneContainer);
-
     self.$showSolution = $('<div/>', {
       'class': SHOW_SOLUTION_CONTAINER
     }).appendTo(self.$dropzoneContainer).hide();
   }
 
   /**
-   * Displays the solution next to the drop box.
+   * Displays the solution next to the drop box if it is not correct.
    * @public
    */
   Droppable.prototype.showSolution = function () {
-    this.$showSolution.html(this.text);
-    this.$showSolution.show();
+    if ((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() !== this.text)) {
+      this.$showSolution.html(this.text);
+      this.$showSolution.show();
+    }
   };
 
   /**
@@ -892,20 +890,18 @@ H5P.DragText = (function ($) {
   Droppable.prototype.addFeedback = function () {
     //Draggable is correct
     if (this.isCorrect()) {
-      this.$feedbackContainer.removeClass(WRONG_FEEDBACK).addClass(CORRECT_FEEDBACK);
+      this.$dropzone.removeClass(WRONG_FEEDBACK).addClass(CORRECT_FEEDBACK);
 
       //Draggable feedback
       this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).addClass(DRAGGABLE_FEEDBACK_CORRECT);
     }
     //Does not contain a draggable
     else if (this.containedDraggable === null) {
-      this.$feedbackContainer.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
-
-      //Draggable feedback
+      this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
     }
     //Draggable is wrong
     else {
-      this.$feedbackContainer.removeClass(CORRECT_FEEDBACK).addClass(WRONG_FEEDBACK);
+      this.$dropzone.removeClass(CORRECT_FEEDBACK).addClass(WRONG_FEEDBACK);
 
       //Draggable feedback
       if (this.containedDraggable !== null) {
@@ -919,7 +915,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.removeFeedback = function () {
-    this.$feedbackContainer.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
+    this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
 
     //Draggable feedback
     if (this.containedDraggable !== null) {

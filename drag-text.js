@@ -831,7 +831,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.showSolution = function () {
-    if ((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() !== this.text)) {
+    if (!((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text))) {
       this.$showSolution.html(this.text);
       this.$showSolution.show();
     }

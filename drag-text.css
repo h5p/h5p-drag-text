@@ -327,6 +327,6 @@
   display: block;
 }
 
-.h5p-drag-dropzone.ui-droppable.h5p-drag-correct-feedback.ui-droppable-disabled.ui-state-disabled{
+.h5p-drag-dropzone.ui-droppable.ui-droppable-disabled.ui-state-disabled{
   opacity: 1;
 }

@@ -5,6 +5,7 @@
     "type": "text",
     "widget": "html",
     "description": "Describe how the user should solve the task.",
+    "default": "Drag the words into the correct boxes",
     "enterMode": "p",
     "tags": [
       "strong",

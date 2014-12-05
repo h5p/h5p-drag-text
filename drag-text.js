@@ -195,11 +195,15 @@ H5P.DragText = (function ($) {
     }).appendTo(self.$buttonContainer).click(function () {
       self.resetDraggables();
       self.hideEvaluation();
-      self.enableDraggables();
+
       self.$retryButton.hide();
       self.$showAnswersButton.hide();
-      if (!self.params.behaviour.instantFeedback) {
+      if (self.params.behaviour.instantFeedback) {
+        self.enableAllDropzonesAndDraggables();
+      }
+      else{
         self.$checkAnswerButton.show();
+        self.enableDraggables();
       }
       self.hideAllSolutions();
     });
@@ -213,6 +217,7 @@ H5P.DragText = (function ($) {
       self.droppablesArray.forEach( function (droppable) {
         droppable.showSolution();
       });
+      self.disableDraggables();
       self.$showAnswersButton.hide();
     });
 
@@ -460,11 +465,18 @@ H5P.DragText = (function ($) {
         self.draggablesArray.forEach( function (draggable) {
           if (draggable.getDraggableElement().is(ui.draggable)) {
             self.moveDraggableToDroppable(draggable, droppable);
+
           }
         });
         if (self.params.behaviour.instantFeedback) {
           droppable.addFeedback();
           self.instantFeedbackEvaluation();
+          if (!self.params.behaviour.enableRetry) {
+            droppable.disableDropzoneAndContainedDraggable();
+          }
+          if (droppable.isCorrect()) {
+            droppable.disableDropzoneAndContainedDraggable();
+          }
         }
       }
     });
@@ -538,6 +550,16 @@ H5P.DragText = (function ($) {
       //Shows evaluation text
       self.showEvaluation();
     }
+  };
+
+  /**
+   * Enables all dropzones and all draggables.
+   */
+  C.prototype.enableAllDropzonesAndDraggables = function () {
+    this.enableDraggables();
+    this.droppablesArray.forEach( function (droppable) {
+      droppable.enableDropzone();
+    });
   };
 
   /**
@@ -809,7 +831,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.showSolution = function () {
-    if ((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() !== this.text)) {
+    if (!((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text))) {
       this.$showSolution.html(this.text);
       this.$showSolution.show();
     }
@@ -931,6 +953,23 @@ H5P.DragText = (function ($) {
     if (this.containedDraggable !== null) {
       this.containedDraggable.setShortFormat();
     }
+  };
+
+  /**
+   * Disables dropzone and the contained draggable.
+   */
+  Droppable.prototype.disableDropzoneAndContainedDraggable = function () {
+    if (this.containedDraggable !== null) {
+      this.containedDraggable.disableDraggable()
+    }
+    this.$dropzone.droppable({ disabled: true});
+  };
+
+  /**
+   * Enable dropzone.
+   */
+  Droppable.prototype.enableDropzone = function () {
+    this.$dropzone.droppable({ disabled: false});
   };
 
   /**

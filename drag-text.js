@@ -623,6 +623,7 @@ H5P.DragText = (function ($) {
       droppable.addFeedback();
       droppable.showSolution();
     });
+    this.disableDraggables();
     //Remove all buttons in "show solution" mode.
     this.$retryButton.hide();
     this.$showAnswersButton.hide();

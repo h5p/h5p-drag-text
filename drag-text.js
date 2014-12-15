@@ -641,7 +641,7 @@ H5P.DragText = (function ($) {
     self.resetDraggables();
     //Hides solution text and re-enable draggables
     self.hideEvaluation();
-    self.enableDraggables();
+    self.enableAllDropzonesAndDraggables();
     //Show and hide buttons
     self.$retryButton.hide();
     self.$showAnswersButton.hide();

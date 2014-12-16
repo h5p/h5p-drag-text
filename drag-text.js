@@ -19,12 +19,13 @@ H5P.DragText = (function ($) {
 
   //Special Sub-containers:
   var EVALUATION_SCORE = "h5p-drag-evaluation-score";
+  var EVALUATION_EMOTICON = "h5p-drag-evaluation-emoticon";
+  var EVALUATION_MAX_SCORE = "h5p-drag-evaluation-max-score";
   var DROPZONE = "h5p-drag-dropzone";
   var DRAGGABLE = "h5p-drag-draggable";
   var SHOW_SOLUTION_CONTAINER = "h5p-drag-show-solution-container";
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
-  var FEEDBACK_CONTAINER = 'h5p-feedback-container';
 
   //CSS Buttons:
   var BUTTONS = "h5p-drag-button";
@@ -35,6 +36,11 @@ H5P.DragText = (function ($) {
   //CSS Dropzone feedback:
   var CORRECT_FEEDBACK = 'h5p-drag-correct-feedback';
   var WRONG_FEEDBACK = 'h5p-drag-wrong-feedback';
+
+  //CSS Draggable feedback:
+  var DRAGGABLE_DROPPED = 'h5p-drag-dropped';
+  var DRAGGABLE_FEEDBACK_CORRECT = 'h5p-drag-draggable-correct';
+  var DRAGGABLE_FEEDBACK_WRONG = 'h5p-drag-draggable-wrong';
 
   /**
    * Initialize module.
@@ -55,11 +61,13 @@ H5P.DragText = (function ($) {
         "This is another line of *fantastic* text.",
       checkAnswer: "Check",
       tryAgain: "Retry",
-      enableTryAgain: true,
+      behaviour: {
+        enableRetry: true,
+        enableSolutionsButton: true,
+        instantFeedback: false
+      },
       score: "Score : @score of @total.",
-      showSolution : "Show Solution",
-      enableShowSolution: true,
-      instantFeedback: false
+      showSolution : "Show Solution"
     }, params);
 
     /**
@@ -156,10 +164,10 @@ H5P.DragText = (function ($) {
       text: this.params.checkAnswer
     }).appendTo(self.$buttonContainer).click(function () {
       if (!self.showEvaluation()) {
-        if (self.params.enableTryAgain) {
+        if (self.params.behaviour.enableRetry) {
           self.$retryButton.show();
         }
-        if (self.params.enableShowSolution) {
+        if (self.params.behaviour.enableSolutionsButton) {
           self.$showAnswersButton.show();
         }
         self.$checkAnswerButton.hide();
@@ -172,7 +180,7 @@ H5P.DragText = (function ($) {
       }
     });
 
-    if (self.params.instantFeedback) {
+    if (self.params.behaviour.instantFeedback) {
       self.$checkAnswerButton.hide();
     }
     else {
@@ -185,20 +193,19 @@ H5P.DragText = (function ($) {
       type: 'button',
       text: this.params.tryAgain
     }).appendTo(self.$buttonContainer).click(function () {
-      self.resetTask();
-      self.addDraggablesRandomly(self.$draggables);
+      self.resetDraggables();
       self.hideEvaluation();
-      self.enableDraggables();
+
       self.$retryButton.hide();
-      if (!self.params.instantFeedback) {
+      self.$showAnswersButton.hide();
+      if (self.params.behaviour.instantFeedback) {
+        self.enableAllDropzonesAndDraggables();
+      }
+      else{
         self.$checkAnswerButton.show();
+        self.enableDraggables();
       }
-      if (self.params.enableShowSolution) {
-        self.$showAnswersButton.hide();
-      }
-      self.droppablesArray.forEach(function (droppable) {
-        droppable.hideSolution();
-      });
+      self.hideAllSolutions();
     });
 
     //Show Solution button
@@ -210,21 +217,11 @@ H5P.DragText = (function ($) {
       self.droppablesArray.forEach( function (droppable) {
         droppable.showSolution();
       });
+      self.disableDraggables();
       self.$showAnswersButton.hide();
     });
 
     self.$buttonContainer.appendTo(self.$footer);
-  };
-
-  /**
-   * Resets the draggables back to their original position.
-   * @public
-   */
-  C.prototype.resetTask = function () {
-    var self = this;
-    self.draggablesArray.forEach(function (entry) {
-      self.moveDraggableToDroppable(entry, null);
-    });
   };
 
   /**
@@ -233,7 +230,17 @@ H5P.DragText = (function ($) {
    */
   C.prototype.showDropzoneFeedback = function () {
     this.droppablesArray.forEach( function (droppable) {
-      droppable.setFeedback();
+      droppable.addFeedback();
+    });
+  };
+
+  /**
+   * Shows feedback for draggables.
+   * @public
+   */
+  C.prototype.showDraggableFeedback = function () {
+    this.draggablesArray.forEach( function (draggable) {
+      draggable.addFeedback();
     });
   };
 
@@ -254,6 +261,11 @@ H5P.DragText = (function ($) {
     var scoreText = this.params.score.replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());
 
+    //Append emoticon to evaluation container.
+    $('<div/>', {
+      'class': EVALUATION_EMOTICON
+    }).appendTo(this.$evaluation);
+
     //Append score to evaluation container.
     $('<div/>', {
       'class': EVALUATION_SCORE,
@@ -261,10 +273,17 @@ H5P.DragText = (function ($) {
     }).appendTo(this.$evaluation);
 
     if (score === maxScore) {
+      //Add happy emoticon
+      this.$evaluation.addClass(EVALUATION_MAX_SCORE);
+
+      //Hide buttons and disable task
       this.$checkAnswerButton.hide();
       this.$showAnswersButton.hide();
       this.$retryButton.hide();
       this.disableDraggables();
+    }
+    else {
+      this.$evaluation.removeClass(EVALUATION_MAX_SCORE);
     }
     return score === maxScore;
   };
@@ -288,6 +307,15 @@ H5P.DragText = (function ($) {
    */
   C.prototype.hideEvaluation = function () {
     this.$evaluation.html('');
+  };
+
+  /**
+   * Hides solution text for all dropzones.
+   */
+  C.prototype.hideAllSolutions = function () {
+    this.droppablesArray.forEach(function (droppable) {
+      droppable.hideSolution();
+    });
   };
   
   /**
@@ -373,8 +401,11 @@ H5P.DragText = (function ($) {
         }
       }
     });
-    //add 20% padding:
+    //add 20% padding and a static minimum size: 20px:
     widest = widest + (widest/5);
+    if (widest < 80) {
+      widest = 80;
+    }
     //set value for use when resizing window.
     this.widest = widest;
     //Adjust all droppable to widest size.
@@ -410,9 +441,9 @@ H5P.DragText = (function ($) {
           self.moveDraggableToDroppable(draggable, null);
           return true;
         }
-        if (self.params.instantFeedback) {
+        if (self.params.behaviour.instantFeedback) {
           if (dropzone !== null) {
-            dropzone.setFeedback();
+            dropzone.addFeedback();
           }
           self.instantFeedbackEvaluation();
         }
@@ -434,11 +465,18 @@ H5P.DragText = (function ($) {
         self.draggablesArray.forEach( function (draggable) {
           if (draggable.getDraggableElement().is(ui.draggable)) {
             self.moveDraggableToDroppable(draggable, droppable);
+
           }
         });
-        if (self.params.instantFeedback) {
-          droppable.setFeedback();
+        if (self.params.behaviour.instantFeedback) {
+          droppable.addFeedback();
           self.instantFeedbackEvaluation();
+          if (!self.params.behaviour.enableRetry) {
+            droppable.disableDropzoneAndContainedDraggable();
+          }
+          if (droppable.isCorrect()) {
+            droppable.disableDropzoneAndContainedDraggable();
+          }
         }
       }
     });
@@ -464,7 +502,7 @@ H5P.DragText = (function ($) {
       draggable.appendDraggableTo(droppable.getDropzone());
     }
     else {
-      draggable.appendDraggableTo(this.$draggables);
+      draggable.revertDraggableTo(this.$draggables);
     }
   };
 
@@ -502,16 +540,26 @@ H5P.DragText = (function ($) {
     });
     if (allFilled){
       //Shows "retry" and "show solution" buttons.
-      if (self.params.enableShowSolution) {
+      if (self.params.behaviour.enableSolutionsButton) {
         self.$showAnswersButton.show();
       }
-      if (self.params.enableTryAgain) {
+      if (self.params.behaviour.enableRetry) {
         self.$retryButton.show();
       }
 
       //Shows evaluation text
       self.showEvaluation();
     }
+  };
+
+  /**
+   * Enables all dropzones and all draggables.
+   */
+  C.prototype.enableAllDropzonesAndDraggables = function () {
+    this.enableDraggables();
+    this.droppablesArray.forEach( function (droppable) {
+      droppable.enableDropzone();
+    });
   };
 
   /**
@@ -572,7 +620,44 @@ H5P.DragText = (function ($) {
    */
   C.prototype.showSolutions = function () {
     this.droppablesArray.forEach( function (droppable) {
-      droppable.setFeedback();
+      droppable.addFeedback();
+      droppable.showSolution();
+    });
+    this.disableDraggables();
+    //Remove all buttons in "show solution" mode.
+    this.$retryButton.hide();
+    this.$showAnswersButton.hide();
+    this.$checkAnswerButton.hide();
+  };
+
+  /**
+   * Used for contracts.
+   * Resets the complete task back to its' initial state.
+   * @public
+   */
+  C.prototype.resetTask = function () {
+    var self = this;
+    //Reset draggables parameters and position
+    self.resetDraggables();
+    //Hides solution text and re-enable draggables
+    self.hideEvaluation();
+    self.enableAllDropzonesAndDraggables();
+    //Show and hide buttons
+    self.$retryButton.hide();
+    self.$showAnswersButton.hide();
+    if (!self.params.behaviour.instantFeedback) {
+      self.$checkAnswerButton.show();
+    }
+    self.hideAllSolutions();
+  };
+
+  /**
+   * Resets the position of all draggables.
+   */
+  C.prototype.resetDraggables = function () {
+    var self = this;
+    self.draggablesArray.forEach(function (entry) {
+      self.moveDraggableToDroppable(entry, null);
     });
   };
 
@@ -593,7 +678,6 @@ H5P.DragText = (function ($) {
     if (self.shortFormat.length > 20) {
       self.shortFormat = self.shortFormat.slice(0,17)+'...';
     }
-
   }
 
   /**
@@ -602,7 +686,39 @@ H5P.DragText = (function ($) {
    * @param {jQuery} $container Container the draggable will append to.
    */
   Draggable.prototype.appendDraggableTo = function ($container) {
-    this.$draggable.detach().css({top: 0,left: 0}).appendTo($container);
+    this.$draggable.detach().css({left: 0, top: 0}).appendTo($container);
+  };
+
+  /**
+   * Reverts the draggable to its' provided container.
+   * @public
+   * @params {jQuery} $container The parent which the draggable will revert to.
+   */
+  Draggable.prototype.revertDraggableTo = function ($container) {
+    // get the relative distance between draggable and container.
+    var offLeft = this.$draggable.offset().left - $container.offset().left;
+    var offTop = this.$draggable.offset().top - $container.offset().top;
+
+    // Prepend draggable to new container, but keep the offset,
+    // then animate to new container's top:0, left:0
+    this.$draggable.detach()
+      .prependTo($container)
+      .css({left: offLeft, top: offTop})
+      .animate({left:0, top:0});
+  };
+
+  /**
+   * Sets dropped feedback if the on the draggable if parameter is true.
+   * @public
+   * @params {Boolean} isDropped Decides whether the draggable has been dropped.
+   */
+  Draggable.prototype.toggleDroppedFeedback = function (isDropped) {
+    if (isDropped) {
+      this.$draggable.addClass(DRAGGABLE_DROPPED);
+    }
+    else {
+      this.$draggable.removeClass(DRAGGABLE_DROPPED);
+    }
   };
 
   /**
@@ -640,6 +756,7 @@ H5P.DragText = (function ($) {
       this.insideDropzone.removeFeedback();
       this.insideDropzone.removeDraggable();
     }
+    this.toggleDroppedFeedback(false);
     this.removeShortFormat();
     this.insideDropzone = null;
   };
@@ -653,6 +770,7 @@ H5P.DragText = (function ($) {
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }
+    this.toggleDroppedFeedback(true);
     this.insideDropzone = droppable;
     this.setShortFormat();
   };
@@ -690,7 +808,7 @@ H5P.DragText = (function ($) {
    * @param {String} text Correct text string for this drop box.
    * @param {undefined/String} tip Tip for this container, optional.
    * @param {jQuery} dropzone Dropzone object.
-   * @param {jQuery} dropzoneContainer Container for the dropzone.
+   * @param {jQuery} dropzone Container Container for the dropzone.
    */
   function Droppable(text, tip, dropzone, dropzoneContainer) {
     var self = this;
@@ -704,24 +822,20 @@ H5P.DragText = (function ($) {
       self.$dropzone.append(H5P.JoubelUI.createTip(self.tip, self.$dropzone));
     }
 
-    self.$feedbackContainer = $('<div/>', {
-      'class': FEEDBACK_CONTAINER
-    }).appendTo(self.$dropzoneContainer);
-
     self.$showSolution = $('<div/>', {
-      'class': SHOW_SOLUTION_CONTAINER,
-      text: self.text
+      'class': SHOW_SOLUTION_CONTAINER
     }).appendTo(self.$dropzoneContainer).hide();
-
-
   }
 
   /**
-   * Displays the solution next to the drop box.
+   * Displays the solution next to the drop box if it is not correct.
    * @public
    */
   Droppable.prototype.showSolution = function () {
-    this.$showSolution.show();
+    if (!((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text))) {
+      this.$showSolution.html(this.text);
+      this.$showSolution.show();
+    }
   };
 
   /**
@@ -729,6 +843,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.hideSolution = function () {
+    this.$showSolution.html('');
     this.$showSolution.hide();
   };
 
@@ -747,7 +862,7 @@ H5P.DragText = (function ($) {
    */
   Droppable.prototype.appendInsideDroppableTo = function ($container) {
     if (this.containedDraggable !== null) {
-      this.containedDraggable.appendDraggableTo($container);
+      this.containedDraggable.revertDraggableTo($container);
     }
   };
 
@@ -795,21 +910,26 @@ H5P.DragText = (function ($) {
    * Sets CSS styling feedback for this drop box.
    * @public
    */
-  Droppable.prototype.setFeedback = function () {
+  Droppable.prototype.addFeedback = function () {
     //Draggable is correct
     if (this.isCorrect()) {
-      this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
-      this.$feedbackContainer.addClass(CORRECT_FEEDBACK);
+      this.$dropzone.removeClass(WRONG_FEEDBACK).addClass(CORRECT_FEEDBACK);
+
+      //Draggable feedback
+      this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).addClass(DRAGGABLE_FEEDBACK_CORRECT);
     }
     //Does not contain a draggable
     else if (this.containedDraggable === null) {
-      this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
-      this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
+      this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
     }
     //Draggable is wrong
     else {
-      this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
-      this.$feedbackContainer.addClass(WRONG_FEEDBACK);
+      this.$dropzone.removeClass(CORRECT_FEEDBACK).addClass(WRONG_FEEDBACK);
+
+      //Draggable feedback
+      if (this.containedDraggable !== null) {
+        this.containedDraggable.getDraggableElement().addClass(DRAGGABLE_FEEDBACK_WRONG).removeClass(DRAGGABLE_FEEDBACK_CORRECT);
+      }
     }
   };
 
@@ -818,8 +938,12 @@ H5P.DragText = (function ($) {
    * @public
    */
   Droppable.prototype.removeFeedback = function () {
-    this.$feedbackContainer.removeClass(WRONG_FEEDBACK);
-    this.$feedbackContainer.removeClass(CORRECT_FEEDBACK);
+    this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
+
+    //Draggable feedback
+    if (this.containedDraggable !== null) {
+      this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).removeClass(DRAGGABLE_FEEDBACK_CORRECT);
+    }
   };
 
   /**
@@ -830,6 +954,23 @@ H5P.DragText = (function ($) {
     if (this.containedDraggable !== null) {
       this.containedDraggable.setShortFormat();
     }
+  };
+
+  /**
+   * Disables dropzone and the contained draggable.
+   */
+  Droppable.prototype.disableDropzoneAndContainedDraggable = function () {
+    if (this.containedDraggable !== null) {
+      this.containedDraggable.disableDraggable()
+    }
+    this.$dropzone.droppable({ disabled: true});
+  };
+
+  /**
+   * Enable dropzone.
+   */
+  Droppable.prototype.enableDropzone = function () {
+    this.$dropzone.droppable({ disabled: false});
   };
 
   /**

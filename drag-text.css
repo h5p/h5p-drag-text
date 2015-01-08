@@ -34,6 +34,9 @@
   margin: 0 0 0.4em;
   border-bottom: 0.1em solid #ddd;
 }
+.h5p-drag .h5p-drag-title p {
+  margin: 0;
+}
 .h5p-drag .h5p-drag-footer {
   margin-top: 0.4em;
   border-top: 0.1em solid #ddd;

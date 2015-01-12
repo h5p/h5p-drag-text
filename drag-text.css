@@ -196,13 +196,13 @@
   white-space: nowrap;
   display: inline-block;
   padding-right: 0.1em;
-  padding-top: 1em;
+  padding-top: 0.3em;
 }
 .h5p-drag-dropzone {
   position:relative;
   padding-right: 2.2em;
   width: 10em;
-  height: 2.5em;
+  height: 1.7em;
   background-color: #cee0f4;
   border-radius: 0.6em;
   display: inline-block;
@@ -213,14 +213,14 @@
 /* Draggable styling */
 .h5p-drag-draggables-container {
   position: relative;
-  padding-top: 3em;
+  padding-top: 0.5em;
   display: inline-block;
 }
 
 .h5p-drag-draggable {
   cursor: pointer;
   border-radius: 0.6em;
-  padding: 0.2em;
+  padding: 0.05em 0.2em;
   margin: 0.3em;
   text-align: center;
   display: inline-block;
@@ -306,7 +306,7 @@
 }
 
 .h5p-drag-droppable-words {
-  line-height: 1.4em;
+  line-height: 1em;
 }
 
 .ui-draggable-dragging {

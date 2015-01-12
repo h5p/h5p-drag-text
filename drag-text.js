@@ -90,7 +90,8 @@ H5P.DragText = (function ($) {
         self.draggablesArray.forEach(function (draggable) {
           draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
         });
-      } else {
+      }
+      else {
         // Remove the specific wide screen settings.
         self.$wordContainer.css({'margin-right': 0});
         self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
@@ -395,7 +396,7 @@ H5P.DragText = (function ($) {
       //Find the initial natural width of the draggable.
       var naturalDraggableWidth = $(draggable.getDraggableElement()).css('width', 'initial').width();
 
-      if (naturalDraggableWidth> widest) {
+      if (naturalDraggableWidth > widest) {
         if (draggable.getDraggableElement().html().length >= 20) {
           draggable.setShortFormat();
           widest = $(draggable.getDraggableElement()).width();

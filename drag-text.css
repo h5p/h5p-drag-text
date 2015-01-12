@@ -202,7 +202,7 @@
   position:relative;
   padding-right: 2.2em;
   width: 10em;
-  height: 1.45em;
+  height: 1.25em;
   background-color: #cee0f4;
   border-radius: 0.6em;
   display: inline-block;
@@ -333,7 +333,7 @@
 .h5p-drag .h5p-drag-draggable.h5p-drag-dropped {
   margin: 0em 0.3em;
   padding-top: 0em;
-  padding-bottom: 0.3em;
+  padding-bottom: 0.15em;
 }
 
 .h5p-drag-dropzone.ui-droppable.ui-droppable-disabled.ui-state-disabled{

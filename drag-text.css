@@ -141,7 +141,6 @@
 
 .h5p-drag button.h5p-drag-button:before {
   font-family: 'H5PFontAwesome4';
-  content: "\f06e";
   padding-right: 0.5em;
 }
 

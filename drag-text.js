@@ -79,7 +79,8 @@ H5P.DragText = (function ($) {
       self.addDropzoneWidth();
 
       //Find ratio of width to em, and make sure it is less than the predefined ratio.
-      if ((self.$inner.width() / parseFloat($("body").css("font-size")) > 43) && (self.widest < 200)) {
+      if ((self.$inner.width() / parseFloat(self.$inner.css("font-size")) > 43) && (self.widest < 200)) {
+
         // Adds a class that floats the draggables to the right.
         self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
         // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
@@ -409,10 +410,10 @@ H5P.DragText = (function ($) {
       //Return the draggable width to inherited, so that it will expand to fill dropzones.
       $(draggable.getDraggableElement()).css('width', 'inherit');
     });
-    //add 20% padding and a static minimum size: 80px:
+    //add 20% padding and a static minimum size: 20px:
     widest = widest + (widest/5);
-    if (widest < 80) {
-      widest = 80;
+    if (widest < 20) {
+      widest = 20;
     }
     //set value for use when resizing window.
     this.widest = widest;

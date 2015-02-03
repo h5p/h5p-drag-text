@@ -49,9 +49,10 @@ H5P.DragText = (function ($) {
    *
    * @returns {Object} C Drag Text instance
    */
-  function C(params, id) {
+  function C(params, contentId) {
     this.$ = $(this);
-    this.id = id;
+    this.contentId = contentId;
+    H5P.EventDispatcher.call(this);
     var self = this;
 
     // Set default behavior.
@@ -103,6 +104,9 @@ H5P.DragText = (function ($) {
       }
     };
   }
+  
+  C.prototype = Object.create(H5P.EventDispatcher.prototype);
+  C.prototype.constructor = C;
 
   /**
    * Append field to wrapper.
@@ -182,6 +186,7 @@ H5P.DragText = (function ($) {
         self.$retryButton.hide();
         self.$checkAnswerButton.hide();
       }
+      
     });
 
     if (self.params.behaviour.instantFeedback) {
@@ -261,6 +266,8 @@ H5P.DragText = (function ($) {
 
     var score = this.correctAnswers;
     var maxScore = this.droppablesArray.length;
+    
+    this.triggerXAPICompleted(score, maxScore);
 
     var scoreText = this.params.score.replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());

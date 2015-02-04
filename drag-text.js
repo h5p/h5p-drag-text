@@ -296,6 +296,7 @@ H5P.DragText = (function ($) {
     else {
       this.$evaluation.removeClass(EVALUATION_MAX_SCORE);
     }
+    this.trigger('resize');
     return score === maxScore;
   };
 
@@ -318,6 +319,7 @@ H5P.DragText = (function ($) {
    */
   C.prototype.hideEvaluation = function () {
     this.$evaluation.html('');
+    this.trigger('resize');
   };
 
   /**
@@ -327,6 +329,7 @@ H5P.DragText = (function ($) {
     this.droppablesArray.forEach(function (droppable) {
       droppable.hideSolution();
     });
+    this.trigger('resize');
   };
   
   /**
@@ -520,6 +523,7 @@ H5P.DragText = (function ($) {
     else {
       draggable.revertDraggableTo(this.$draggables);
     }
+    this.trigger('resize');
   };
 
   /**
@@ -644,6 +648,7 @@ H5P.DragText = (function ($) {
     this.$retryButton.hide();
     this.$showAnswersButton.hide();
     this.$checkAnswerButton.hide();
+    this.trigger('resize');
   };
 
   /**
@@ -665,6 +670,7 @@ H5P.DragText = (function ($) {
       self.$checkAnswerButton.show();
     }
     self.hideAllSolutions();
+    this.trigger('resize');
   };
 
   /**
@@ -675,6 +681,7 @@ H5P.DragText = (function ($) {
     self.draggablesArray.forEach(function (entry) {
       self.moveDraggableToDroppable(entry, null);
     });
+    this.trigger('resize');
   };
 
   /**

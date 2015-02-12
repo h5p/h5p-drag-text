@@ -471,6 +471,11 @@ H5P.DragText = (function ($) {
     });
 
     var draggable = new Draggable(answer, $draggable);
+    draggable.on('xAPI', function(event) {
+      if (event.getVerb() === 'attempted') {
+        self.triggerXAPI('attempted');
+      }
+    });
 
     //Make the dropzone
     var $dropzoneContainer = $('<div/>', {
@@ -691,6 +696,7 @@ H5P.DragText = (function ($) {
    * @param {jQuery} draggable Draggable object.
    */
   function Draggable(text, draggable) {
+    H5P.EventDispatcher.call(this);
     var self = this;
     self.text = text;
     self.insideDropzone = null;
@@ -702,6 +708,9 @@ H5P.DragText = (function ($) {
       self.shortFormat = self.shortFormat.slice(0,17)+'...';
     }
   }
+  
+  Draggable.prototype = Object.create(H5P.EventDispatcher.prototype);
+  Draggable.prototype.constructor = Draggable;
 
   /**
    * Moves the draggable to the provided container.
@@ -790,6 +799,7 @@ H5P.DragText = (function ($) {
    * @param {Droppable} droppable The droppable this draggable will be added to.
    */
   Draggable.prototype.addToZone = function (droppable) {
+    this.triggerXAPI('attempted');
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }

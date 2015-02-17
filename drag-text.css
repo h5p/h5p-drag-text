@@ -200,6 +200,7 @@
 }
 .h5p-drag-dropzone {
   position:relative;
+  top: -0.1em;
   padding-right: 1.65em;
   width: 10em;
   height: 1.25em;

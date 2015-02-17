@@ -76,8 +76,6 @@ H5P.DragText = (function ($) {
      * @private
      */
     this.changeLayoutToFitWidth = function () {
-      //Resize dropzones.
-      self.addDropzoneWidth();
 
       //Find ratio of width to em, and make sure it is less than the predefined ratio.
       if ((self.$inner.width() / parseFloat(self.$inner.css("font-size")) > 43) && (self.widest < 200)) {
@@ -104,7 +102,7 @@ H5P.DragText = (function ($) {
       }
     };
   }
-  
+
   C.prototype = Object.create(H5P.EventDispatcher.prototype);
   C.prototype.constructor = C;
 
@@ -186,7 +184,7 @@ H5P.DragText = (function ($) {
         self.$retryButton.hide();
         self.$checkAnswerButton.hide();
       }
-      
+
     });
 
     if (self.params.behaviour.instantFeedback) {
@@ -266,7 +264,7 @@ H5P.DragText = (function ($) {
 
     var score = this.correctAnswers;
     var maxScore = this.droppablesArray.length;
-    
+
     this.triggerXAPICompleted(score, maxScore);
 
     var scoreText = this.params.score.replace(/@score/g, score.toString())
@@ -331,7 +329,7 @@ H5P.DragText = (function ($) {
     });
     this.trigger('resize');
   };
-  
+
   /**
    * Handle task and add it to container.
    * @public
@@ -708,7 +706,7 @@ H5P.DragText = (function ($) {
       self.shortFormat = self.shortFormat.slice(0,17)+'...';
     }
   }
-  
+
   Draggable.prototype = Object.create(H5P.EventDispatcher.prototype);
   Draggable.prototype.constructor = Draggable;
 

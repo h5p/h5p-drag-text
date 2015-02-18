@@ -70,7 +70,9 @@ H5P.DragText = (function ($) {
       score: "Score : @score of @total.",
       showSolution : "Show Solution"
     }, params);
-
+    
+    this.on('resize', this.resize, this);
+    
     /**
      * Adds the draggables on the right side of the screen if widescreen is detected.
      * @private

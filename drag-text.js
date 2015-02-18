@@ -76,10 +76,10 @@ H5P.DragText = (function ($) {
      * @private
      */
     this.changeLayoutToFitWidth = function () {
+      self.addDropzoneWidth();
 
       //Find ratio of width to em, and make sure it is less than the predefined ratio.
       if ((self.$inner.width() / parseFloat(self.$inner.css("font-size")) > 43) && (self.widest < 200)) {
-
         // Adds a class that floats the draggables to the right.
         self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
         // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
@@ -90,8 +90,7 @@ H5P.DragText = (function ($) {
         self.draggablesArray.forEach(function (draggable) {
           draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
         });
-      }
-      else {
+      } else {
         // Remove the specific wide screen settings.
         self.$wordContainer.css({'margin-right': 0});
         self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
@@ -358,6 +357,7 @@ H5P.DragText = (function ($) {
     self.$draggables.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
+
   };
 
   /**
@@ -399,35 +399,35 @@ H5P.DragText = (function ($) {
    * @public
    */
   C.prototype.addDropzoneWidth = function () {
+    var self = this;
     var widest = 0;
     //Find widest draggable
-    this.draggablesArray.forEach( function (draggable) {
+    this.draggablesArray.forEach(function (draggable) {
       //Find the initial natural width of the draggable.
-      var naturalDraggableWidth = $(draggable.getDraggableElement()).css('width', 'initial').width();
+      var naturalDraggableWidth = $(draggable.getDraggableElement()).css('position', 'absolute').css('width', 'initial').width();
 
       if (naturalDraggableWidth > widest) {
         if (draggable.getDraggableElement().html().length >= 20) {
           draggable.setShortFormat();
           widest = $(draggable.getDraggableElement()).width();
           draggable.removeShortFormat();
-        }
-        else {
+        } else {
           widest = naturalDraggableWidth;
         }
       }
       //Return the draggable width to inherited, so that it will expand to fill dropzones.
-      $(draggable.getDraggableElement()).css('width', 'inherit');
+      $(draggable.getDraggableElement()).css('position', 'relative').css('width', 'inherit');
     });
-    //add 20% padding and a static minimum size: 20px:
-    widest = widest + (widest/5);
+    //add 10px padding and a static minimum size: 20px:
+    widest = widest + 10;
     if (widest < 20) {
       widest = 20;
     }
     //set value for use when resizing window.
     this.widest = widest;
     //Adjust all droppable to widest size.
-    this.droppablesArray.forEach( function (droppable) {
-      droppable.getDropzone().width(widest);
+    this.droppablesArray.forEach(function (droppable) {
+      droppable.getDropzone().width(self.widest);
     });
   };
 

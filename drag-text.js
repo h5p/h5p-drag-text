@@ -70,9 +70,9 @@ H5P.DragText = (function ($) {
       score: "Score : @score of @total.",
       showSolution : "Show Solution"
     }, params);
-    
+
     this.on('resize', this.resize, this);
-    
+
     /**
      * Adds the draggables on the right side of the screen if widescreen is detected.
      * @private
@@ -393,7 +393,7 @@ H5P.DragText = (function ($) {
       dropStart = textField.indexOf('*', dropEnd);
     }
     //Appends the remaining part of the text.
-    self.$wordContainer.append(textField.slice(currentIndex, textField.length-1));
+    self.$wordContainer.append(textField.slice(currentIndex, textField.length));
   };
 
   /**
@@ -451,7 +451,7 @@ H5P.DragText = (function ($) {
 
     //Make the draggable
     var $draggable = $('<div/>', {
-      text: answer,
+      html: answer,
       'class': DRAGGABLE
     }).draggable({
       revert: function (isValidDrop) {

@@ -166,9 +166,9 @@ H5P.DragText = (function ($) {
 
     // Checking answer button
     self.$checkAnswerButton = $('<button/>', {
-      'class': BUTTONS+' '+CHECK_BUTTON,
+      'class': BUTTONS + ' ' + CHECK_BUTTON,
       type: 'button',
-      text: this.params.checkAnswer
+      html: this.params.checkAnswer
     }).appendTo(self.$buttonContainer).click(function () {
       if (!self.showEvaluation()) {
         if (self.params.behaviour.enableRetry) {
@@ -179,8 +179,7 @@ H5P.DragText = (function ($) {
         }
         self.$checkAnswerButton.hide();
         self.disableDraggables();
-      }
-      else {
+      } else {
         self.$showAnswersButton.hide();
         self.$retryButton.hide();
         self.$checkAnswerButton.hide();
@@ -190,16 +189,15 @@ H5P.DragText = (function ($) {
 
     if (self.params.behaviour.instantFeedback) {
       self.$checkAnswerButton.hide();
-    }
-    else {
+    } else {
       self.$checkAnswerButton.show();
     }
 
     //Retry button
     self.$retryButton =  $('<button/>', {
-      'class': BUTTONS+' '+RETRY_BUTTON,
+      'class': BUTTONS + ' ' + RETRY_BUTTON,
       type: 'button',
-      text: this.params.tryAgain
+      html: this.params.tryAgain
     }).appendTo(self.$buttonContainer).click(function () {
       self.resetDraggables();
       self.hideEvaluation();
@@ -218,9 +216,9 @@ H5P.DragText = (function ($) {
 
     //Show Solution button
     self.$showAnswersButton = $('<button/>', {
-      'class': BUTTONS+' '+SHOW_SOLUTION_BUTTON,
+      'class': BUTTONS + ' ' + SHOW_SOLUTION_BUTTON,
       type: 'button',
-      text: this.params.showSolution
+      html: this.params.showSolution
     }).appendTo(self.$buttonContainer).click(function () {
       self.droppablesArray.forEach( function (droppable) {
         droppable.showSolution();

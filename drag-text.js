@@ -46,10 +46,11 @@ H5P.DragText = (function ($) {
    * Initialize module.
    * @param {Object} params Behavior settings
    * @param {Number} id Content identification
+   * @param {Object} additionalData Object containing extra data
    *
    * @returns {Object} C Drag Text instance
    */
-  function C(params, contentId) {
+  function C(params, contentId, additionalData) {
     this.$ = $(this);
     this.contentId = contentId;
     H5P.EventDispatcher.call(this);
@@ -70,6 +71,11 @@ H5P.DragText = (function ($) {
       score: "Score : @score of @total.",
       showSolution : "Show Solution"
     }, params);
+
+    this.additionalData = additionalData;
+    if (this.additionalData !== undefined && this.additionalData.userState !== undefined) {
+      this.userState = this.additionalData.userState;
+    }
 
     this.on('resize', this.resize, this);
 
@@ -127,6 +133,9 @@ H5P.DragText = (function ($) {
     $(container).append(this.$inner);
 
     this.addTaskTo(this.$inner);
+
+    // Set stored user state
+    this.setH5PUserState();
 
     // Add score and button containers.
     this.addFooter();
@@ -692,6 +701,55 @@ H5P.DragText = (function ($) {
   };
 
   /**
+   * Returns a json object containing the dropped words
+   * @returns {JSON} JSON string containing indexes of dropped words
+   */
+  C.prototype.getH5PUserState = function () {
+    var self = this;
+    var draggedDraggablesIndexes = [];
+    // Find draggables that has been dropped
+    this.draggablesArray.forEach(function (draggable, draggableIndex) {
+      if (draggable.getInsideDropzone() !== null) {
+        draggedDraggablesIndexes.push({draggable: draggableIndex, droppable: self.droppablesArray.indexOf(draggable.getInsideDropzone())});
+      }
+    });
+    var jsonSelectedWordsIndexes = JSON.stringify(draggedDraggablesIndexes);
+
+    return jsonSelectedWordsIndexes;
+  };
+
+  /**
+   * Sets answers to current user state
+   */
+  C.prototype.setH5PUserState = function () {
+    var self = this;
+
+    // Do nothing if user state is undefined
+    if (this.userState === undefined || this.userState.answers === undefined) {
+      return;
+    }
+
+    // Select words from user state
+    this.userState.answers.forEach(function (draggedDraggableIndexes) {
+      var draggableIndexIsInvalid = isNaN(draggedDraggableIndexes.draggable)
+        || draggedDraggableIndexes.draggable >= self.draggablesArray.length
+        || draggedDraggableIndexes.draggable < 0;
+
+      var droppableIndexIsInvalid = isNaN(draggedDraggableIndexes.droppable)
+        || draggedDraggableIndexes.droppable >= self.droppablesArray.length
+        || draggedDraggableIndexes.droppable < 0;
+
+      if (draggableIndexIsInvalid || droppableIndexIsInvalid) {
+        throw new Error('Stored user state is invalid');
+      }
+
+      var moveDraggable = self.draggablesArray[draggedDraggableIndexes.draggable];
+      var moveToDroppable = self.droppablesArray[draggedDraggableIndexes.droppable];
+      self.moveDraggableToDroppable(moveDraggable, moveToDroppable);
+    })
+  };
+
+  /**
    * Private class for keeping track of draggable text.
    * @private
    * @param {String} text String that will be turned into a selectable word.
@@ -834,6 +892,14 @@ H5P.DragText = (function ($) {
    */
   Draggable.prototype.removeShortFormat = function () {
     this.$draggable.html(this.text);
+  };
+
+  /**
+   * Get the droppable this draggable is inside
+   * @returns {Droppable} Droppable
+   */
+  Draggable.prototype.getInsideDropzone = function () {
+    return this.insideDropzone;
   };
 
   /**

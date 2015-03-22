@@ -318,7 +318,6 @@ H5P.DragText = (function ($) {
         self.correctAnswers += 1;
       }
     });
-    self.getH5PUserState();
   };
 
   /**
@@ -710,10 +709,8 @@ H5P.DragText = (function ($) {
         draggedDraggablesIndexes.push({draggable: draggableIndex, droppable: self.droppablesArray.indexOf(draggable.getInsideDropzone())});
       }
     });
-    console.log(draggedDraggablesIndexes);
     var jsonSelectedWordsIndexes = JSON.stringify(draggedDraggablesIndexes);
 
-    console.log(jsonSelectedWordsIndexes);
     return jsonSelectedWordsIndexes;
   };
 

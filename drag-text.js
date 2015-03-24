@@ -46,11 +46,11 @@ H5P.DragText = (function ($) {
    * Initialize module.
    * @param {Object} params Behavior settings
    * @param {Number} id Content identification
-   * @param {Object} additionalData Object containing extra data
+   * @param {Object} contentData Object containing task specific content data
    *
    * @returns {Object} C Drag Text instance
    */
-  function C(params, contentId, additionalData) {
+  function C(params, contentId, contentData) {
     this.$ = $(this);
     this.contentId = contentId;
     H5P.EventDispatcher.call(this);
@@ -72,9 +72,9 @@ H5P.DragText = (function ($) {
       showSolution : "Show Solution"
     }, params);
 
-    this.additionalData = additionalData;
-    if (this.additionalData !== undefined && this.additionalData.userState !== undefined) {
-      this.userState = this.additionalData.userState;
+    this.contentData = contentData;
+    if (this.contentData !== undefined && this.contentData.previousState !== undefined) {
+      this.previousState = JSON.parse(this.contentData.previousState);
     }
 
     this.on('resize', this.resize, this);
@@ -346,7 +346,6 @@ H5P.DragText = (function ($) {
   C.prototype.addTaskTo = function ($container) {
     var self = this;
     self.widest = 0;
-    self.clozesArray = [];
     self.droppablesArray = [];
     self.draggablesArray = [];
 
@@ -700,7 +699,7 @@ H5P.DragText = (function ($) {
    * Returns a json object containing the dropped words
    * @returns {JSON} JSON string containing indexes of dropped words
    */
-  C.prototype.getH5PUserState = function () {
+  C.prototype.getCurrentState = function () {
     var self = this;
     var draggedDraggablesIndexes = [];
     // Find draggables that has been dropped
@@ -721,12 +720,12 @@ H5P.DragText = (function ($) {
     var self = this;
 
     // Do nothing if user state is undefined
-    if (this.userState === undefined || this.userState.answers === undefined) {
+    if (this.previousState === undefined) {
       return;
     }
 
     // Select words from user state
-    this.userState.answers.forEach(function (draggedDraggableIndexes) {
+    this.previousState.forEach(function (draggedDraggableIndexes) {
       var draggableIndexIsInvalid = isNaN(draggedDraggableIndexes.draggable)
         || draggedDraggableIndexes.draggable >= self.draggablesArray.length
         || draggedDraggableIndexes.draggable < 0;

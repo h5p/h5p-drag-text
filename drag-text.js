@@ -134,11 +134,11 @@ H5P.DragText = (function ($) {
 
     this.addTaskTo(this.$inner);
 
-    // Set stored user state
-    this.setH5PUserState();
-
     // Add score and button containers.
     this.addFooter();
+
+    // Set stored user state
+    this.setH5PUserState();
   };
 
   /**
@@ -745,7 +745,24 @@ H5P.DragText = (function ($) {
       var moveDraggable = self.draggablesArray[draggedDraggableIndexes.draggable];
       var moveToDroppable = self.droppablesArray[draggedDraggableIndexes.droppable];
       self.moveDraggableToDroppable(moveDraggable, moveToDroppable);
-    })
+
+      if (self.params.behaviour.instantFeedback) {
+        // Add feedback to dropzone
+        if (moveToDroppable !== null) {
+          moveToDroppable.addFeedback();
+        }
+
+        // Add feedback to draggable
+        if (moveToDroppable.isCorrect()) {
+          moveToDroppable.disableDropzoneAndContainedDraggable();
+        }
+      }
+    });
+
+    // Show evaluation if task is finished
+    if (self.params.behaviour.instantFeedback) {
+      self.instantFeedbackEvaluation();
+    }
   };
 
   /**

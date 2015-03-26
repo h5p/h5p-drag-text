@@ -74,7 +74,7 @@ H5P.DragText = (function ($) {
 
     this.contentData = contentData;
     if (this.contentData !== undefined && this.contentData.previousState !== undefined) {
-      this.previousState = JSON.parse(this.contentData.previousState);
+      this.previousState = this.contentData.previousState;
     }
 
     this.on('resize', this.resize, this);
@@ -700,8 +700,8 @@ H5P.DragText = (function ($) {
   };
 
   /**
-   * Returns a json object containing the dropped words
-   * @returns {JSON} JSON string containing indexes of dropped words
+   * Returns an object containing the dropped words
+   * @returns {object} containing indexes of dropped words
    */
   C.prototype.getCurrentState = function () {
     var self = this;
@@ -712,9 +712,7 @@ H5P.DragText = (function ($) {
         draggedDraggablesIndexes.push({draggable: draggableIndex, droppable: self.droppablesArray.indexOf(draggable.getInsideDropzone())});
       }
     });
-    var jsonSelectedWordsIndexes = JSON.stringify(draggedDraggablesIndexes);
-
-    return jsonSelectedWordsIndexes;
+    return draggedDraggablesIndexes;
   };
 
   /**

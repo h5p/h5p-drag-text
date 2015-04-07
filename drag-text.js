@@ -644,8 +644,8 @@ H5P.DragText = (function ($) {
     return this.droppablesArray.length;
   };
   
-  C.prototype.getH5PTitle = function() {
-    return H5P.createH5PTitle(this.params.taskDescription);
+  C.prototype.getTitle = function() {
+    return H5P.createTitle(this.params.taskDescription);
   };
 
   /**

@@ -2,11 +2,11 @@
   "title": "Drag and drop text",
   "description": "Drag words to their correct position in the text in order to complete this task.",
   "majorVersion": 1,
-  "minorVersion": 2,
+  "minorVersion": 3,
   "patchVersion": 0,
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 4
+    "minorVersion": 5
   },
   "runnable": 1,
   "author": "Joubel AS",

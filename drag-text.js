@@ -409,6 +409,8 @@ H5P.DragText = (function ($) {
   C.prototype.addDropzoneWidth = function () {
     var self = this;
     var widest = 0;
+    var staticMinimumWidth = 20;
+
     //Find widest draggable
     this.draggablesArray.forEach(function (draggable) {
       //Find the initial natural width of the draggable.
@@ -427,12 +429,13 @@ H5P.DragText = (function ($) {
       //Return the draggable width to inherited, so that it will expand to fill dropzones.
       $(draggable.getDraggableElement()).css('position', 'relative').css('width', 'inherit');
     });
-    //add 10px padding and a static minimum size: 20px:
-    if (widest < 20) {
-      widest = 20;
+
+    // Set min size
+    if (widest < staticMinimumWidth) {
+      widest = staticMinimumWidth;
     }
-    //set value for use when resizing window.
     this.widest = widest;
+
     //Adjust all droppable to widest size.
     this.droppablesArray.forEach(function (droppable) {
       droppable.getDropzone().width(self.widest);

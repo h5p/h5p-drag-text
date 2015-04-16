@@ -409,25 +409,40 @@ H5P.DragText = (function ($) {
   C.prototype.addDropzoneWidth = function () {
     var self = this;
     var widest = 0;
-    var staticMinimumWidth = 20;
+    var fontSize = parseInt(this.$inner.css('font-size'), 10);
+    var staticMinimumWidth = 3 * fontSize;
+    var staticPadding = fontSize; // Needed to make room for feedback icons
 
     //Find widest draggable
     this.draggablesArray.forEach(function (draggable) {
-      //Find the initial natural width of the draggable.
-      var naturalDraggableWidth = $(draggable.getDraggableElement()).css('position', 'absolute').css('width', 'initial').width();
+      var $draggableElement = draggable.getDraggableElement();
 
-      if (naturalDraggableWidth > widest) {
-        if (draggable.getDraggableElement().html().length >= 20) {
+      //Find the initial natural width of the draggable.
+      var tmp = $('<div>', {
+        'html': $draggableElement.html()
+      });
+      tmp.css({
+        'position': 'absolute',
+        'white-space': 'nowrap',
+        'font-size': $draggableElement.css('font-size'),
+        'font-family': $draggableElement.css('font-family'),
+        'padding': 0,
+        'width': 'initial'
+      });
+      $draggableElement.parent().append(tmp);
+      var width = tmp.width();
+      tmp.remove();
+
+      if (width + staticPadding > widest) {
+        if ($draggableElement.html().length >= 20) {
           draggable.setShortFormat();
           $(draggable.getDraggableElement()).addClass('truncate');
-          widest = $(draggable.getDraggableElement()).width();
+          widest = $draggableElement.width();
           draggable.removeShortFormat();
         } else {
-          widest = naturalDraggableWidth;
+          widest = width + staticPadding;
         }
       }
-      //Return the draggable width to inherited, so that it will expand to fill dropzones.
-      $(draggable.getDraggableElement()).css('position', 'relative').css('width', 'inherit');
     });
 
     // Set min size

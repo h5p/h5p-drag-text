@@ -155,7 +155,7 @@ H5P.DragText = (function ($) {
    */
   C.prototype.addFooter = function () {
     this.$footer = $('<div/>', {
-      'class':FOOTER_CONTAINER
+      'class': FOOTER_CONTAINER
     }).appendTo(this.$inner);
 
     this.$evaluation = $('<div/>', {
@@ -417,6 +417,7 @@ H5P.DragText = (function ($) {
       if (naturalDraggableWidth > widest) {
         if (draggable.getDraggableElement().html().length >= 20) {
           draggable.setShortFormat();
+          $(draggable.getDraggableElement()).addClass('truncate');
           widest = $(draggable.getDraggableElement()).width();
           draggable.removeShortFormat();
         } else {
@@ -427,7 +428,6 @@ H5P.DragText = (function ($) {
       $(draggable.getDraggableElement()).css('position', 'relative').css('width', 'inherit');
     });
     //add 10px padding and a static minimum size: 20px:
-    widest = widest + 10;
     if (widest < 20) {
       widest = 20;
     }
@@ -643,7 +643,7 @@ H5P.DragText = (function ($) {
   C.prototype.getMaxScore = function () {
     return this.droppablesArray.length;
   };
-  
+
   C.prototype.getTitle = function() {
     return H5P.createTitle(this.params.taskDescription);
   };

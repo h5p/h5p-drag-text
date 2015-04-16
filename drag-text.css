@@ -340,3 +340,8 @@
 .h5p-drag-dropzone.ui-droppable.ui-droppable-disabled.ui-state-disabled{
   opacity: 1;
 }
+
+/* Use ellipsis for long draggables */
+.h5p-drag .h5p-drag-draggable.h5p-drag-dropped.truncate {
+  text-overflow: ellipsis;
+}

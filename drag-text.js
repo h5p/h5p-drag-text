@@ -46,10 +46,11 @@ H5P.DragText = (function ($) {
    * Initialize module.
    * @param {Object} params Behavior settings
    * @param {Number} id Content identification
+   * @param {Object} contentData Object containing task specific content data
    *
    * @returns {Object} C Drag Text instance
    */
-  function C(params, contentId) {
+  function C(params, contentId, contentData) {
     this.$ = $(this);
     this.contentId = contentId;
     H5P.EventDispatcher.call(this);
@@ -70,9 +71,14 @@ H5P.DragText = (function ($) {
       score: "Score : @score of @total.",
       showSolution : "Show Solution"
     }, params);
-    
+
+    this.contentData = contentData;
+    if (this.contentData !== undefined && this.contentData.previousState !== undefined) {
+      this.previousState = this.contentData.previousState;
+    }
+
     this.on('resize', this.resize, this);
-    
+
     /**
      * Adds the draggables on the right side of the screen if widescreen is detected.
      * @private
@@ -130,6 +136,9 @@ H5P.DragText = (function ($) {
 
     // Add score and button containers.
     this.addFooter();
+
+    // Set stored user state
+    this.setH5PUserState();
   };
 
   /**
@@ -146,7 +155,7 @@ H5P.DragText = (function ($) {
    */
   C.prototype.addFooter = function () {
     this.$footer = $('<div/>', {
-      'class':FOOTER_CONTAINER
+      'class': FOOTER_CONTAINER
     }).appendTo(this.$inner);
 
     this.$evaluation = $('<div/>', {
@@ -166,9 +175,9 @@ H5P.DragText = (function ($) {
 
     // Checking answer button
     self.$checkAnswerButton = $('<button/>', {
-      'class': BUTTONS+' '+CHECK_BUTTON,
+      'class': BUTTONS + ' ' + CHECK_BUTTON,
       type: 'button',
-      text: this.params.checkAnswer
+      html: this.params.checkAnswer
     }).appendTo(self.$buttonContainer).click(function () {
       if (!self.showEvaluation()) {
         if (self.params.behaviour.enableRetry) {
@@ -179,8 +188,7 @@ H5P.DragText = (function ($) {
         }
         self.$checkAnswerButton.hide();
         self.disableDraggables();
-      }
-      else {
+      } else {
         self.$showAnswersButton.hide();
         self.$retryButton.hide();
         self.$checkAnswerButton.hide();
@@ -190,16 +198,15 @@ H5P.DragText = (function ($) {
 
     if (self.params.behaviour.instantFeedback) {
       self.$checkAnswerButton.hide();
-    }
-    else {
+    } else {
       self.$checkAnswerButton.show();
     }
 
     //Retry button
     self.$retryButton =  $('<button/>', {
-      'class': BUTTONS+' '+RETRY_BUTTON,
+      'class': BUTTONS + ' ' + RETRY_BUTTON,
       type: 'button',
-      text: this.params.tryAgain
+      html: this.params.tryAgain
     }).appendTo(self.$buttonContainer).click(function () {
       self.resetDraggables();
       self.hideEvaluation();
@@ -218,9 +225,9 @@ H5P.DragText = (function ($) {
 
     //Show Solution button
     self.$showAnswersButton = $('<button/>', {
-      'class': BUTTONS+' '+SHOW_SOLUTION_BUTTON,
+      'class': BUTTONS + ' ' + SHOW_SOLUTION_BUTTON,
       type: 'button',
-      text: this.params.showSolution
+      html: this.params.showSolution
     }).appendTo(self.$buttonContainer).click(function () {
       self.droppablesArray.forEach( function (droppable) {
         droppable.showSolution();
@@ -339,7 +346,6 @@ H5P.DragText = (function ($) {
   C.prototype.addTaskTo = function ($container) {
     var self = this;
     self.widest = 0;
-    self.clozesArray = [];
     self.droppablesArray = [];
     self.draggablesArray = [];
 
@@ -393,7 +399,7 @@ H5P.DragText = (function ($) {
       dropStart = textField.indexOf('*', dropEnd);
     }
     //Appends the remaining part of the text.
-    self.$wordContainer.append(textField.slice(currentIndex, textField.length-1));
+    self.$wordContainer.append(textField.slice(currentIndex, textField.length));
   };
 
   /**
@@ -403,30 +409,48 @@ H5P.DragText = (function ($) {
   C.prototype.addDropzoneWidth = function () {
     var self = this;
     var widest = 0;
+    var fontSize = parseInt(this.$inner.css('font-size'), 10);
+    var staticMinimumWidth = 3 * fontSize;
+    var staticPadding = fontSize; // Needed to make room for feedback icons
+
     //Find widest draggable
     this.draggablesArray.forEach(function (draggable) {
-      //Find the initial natural width of the draggable.
-      var naturalDraggableWidth = $(draggable.getDraggableElement()).css('position', 'absolute').css('width', 'initial').width();
+      var $draggableElement = draggable.getDraggableElement();
 
-      if (naturalDraggableWidth > widest) {
-        if (draggable.getDraggableElement().html().length >= 20) {
+      //Find the initial natural width of the draggable.
+      var tmp = $('<div>', {
+        'html': $draggableElement.html()
+      });
+      tmp.css({
+        'position': 'absolute',
+        'white-space': 'nowrap',
+        'font-size': $draggableElement.css('font-size'),
+        'font-family': $draggableElement.css('font-family'),
+        'padding': 0,
+        'width': 'initial'
+      });
+      $draggableElement.parent().append(tmp);
+      var width = tmp.width();
+      tmp.remove();
+
+      if (width + staticPadding > widest) {
+        if ($draggableElement.html().length >= 20) {
           draggable.setShortFormat();
-          widest = $(draggable.getDraggableElement()).width();
+          $(draggable.getDraggableElement()).addClass('truncate');
+          widest = $draggableElement.width();
           draggable.removeShortFormat();
         } else {
-          widest = naturalDraggableWidth;
+          widest = width + staticPadding;
         }
       }
-      //Return the draggable width to inherited, so that it will expand to fill dropzones.
-      $(draggable.getDraggableElement()).css('position', 'relative').css('width', 'inherit');
     });
-    //add 10px padding and a static minimum size: 20px:
-    widest = widest + 10;
-    if (widest < 20) {
-      widest = 20;
+
+    // Set min size
+    if (widest < staticMinimumWidth) {
+      widest = staticMinimumWidth;
     }
-    //set value for use when resizing window.
     this.widest = widest;
+
     //Adjust all droppable to widest size.
     this.droppablesArray.forEach(function (droppable) {
       droppable.getDropzone().width(self.widest);
@@ -451,7 +475,7 @@ H5P.DragText = (function ($) {
 
     //Make the draggable
     var $draggable = $('<div/>', {
-      text: answer,
+      html: answer,
       'class': DRAGGABLE
     }).draggable({
       revert: function (isValidDrop) {
@@ -638,6 +662,10 @@ H5P.DragText = (function ($) {
     return this.droppablesArray.length;
   };
 
+  C.prototype.getTitle = function() {
+    return H5P.createTitle(this.params.taskDescription);
+  };
+
   /**
    * Used for contracts.
    * Sets feedback on the dropzones.
@@ -687,6 +715,70 @@ H5P.DragText = (function ($) {
       self.moveDraggableToDroppable(entry, null);
     });
     this.trigger('resize');
+  };
+
+  /**
+   * Returns an object containing the dropped words
+   * @returns {object} containing indexes of dropped words
+   */
+  C.prototype.getCurrentState = function () {
+    var self = this;
+    var draggedDraggablesIndexes = [];
+    // Find draggables that has been dropped
+    this.draggablesArray.forEach(function (draggable, draggableIndex) {
+      if (draggable.getInsideDropzone() !== null) {
+        draggedDraggablesIndexes.push({draggable: draggableIndex, droppable: self.droppablesArray.indexOf(draggable.getInsideDropzone())});
+      }
+    });
+    return draggedDraggablesIndexes;
+  };
+
+  /**
+   * Sets answers to current user state
+   */
+  C.prototype.setH5PUserState = function () {
+    var self = this;
+
+    // Do nothing if user state is undefined
+    if (this.previousState === undefined) {
+      return;
+    }
+
+    // Select words from user state
+    this.previousState.forEach(function (draggedDraggableIndexes) {
+      var draggableIndexIsInvalid = isNaN(draggedDraggableIndexes.draggable)
+        || draggedDraggableIndexes.draggable >= self.draggablesArray.length
+        || draggedDraggableIndexes.draggable < 0;
+
+      var droppableIndexIsInvalid = isNaN(draggedDraggableIndexes.droppable)
+        || draggedDraggableIndexes.droppable >= self.droppablesArray.length
+        || draggedDraggableIndexes.droppable < 0;
+
+      if (draggableIndexIsInvalid || droppableIndexIsInvalid) {
+        throw new Error('Stored user state is invalid');
+      }
+
+      var moveDraggable = self.draggablesArray[draggedDraggableIndexes.draggable];
+      var moveToDroppable = self.droppablesArray[draggedDraggableIndexes.droppable];
+      self.moveDraggableToDroppable(moveDraggable, moveToDroppable);
+
+      if (self.params.behaviour.instantFeedback) {
+        // Add feedback to dropzone
+        if (moveToDroppable !== null) {
+          moveToDroppable.addFeedback();
+        }
+
+        // Add feedback to draggable
+        if (moveToDroppable.isCorrect()) {
+          moveToDroppable.disableDropzoneAndContainedDraggable();
+        }
+      }
+    });
+
+    // Show evaluation if task is finished
+    if (self.params.behaviour.instantFeedback) {
+      self.instantFeedbackEvaluation();
+    }
   };
 
   /**
@@ -832,6 +924,14 @@ H5P.DragText = (function ($) {
    */
   Draggable.prototype.removeShortFormat = function () {
     this.$draggable.html(this.text);
+  };
+
+  /**
+   * Get the droppable this draggable is inside
+   * @returns {Droppable} Droppable
+   */
+  Draggable.prototype.getInsideDropzone = function () {
+    return this.insideDropzone;
   };
 
   /**

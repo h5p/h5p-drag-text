@@ -377,23 +377,25 @@ H5P.DragText = (function ($) {
     var self = this;
 
     //Replace newlines with break line tag
-    var textField = self.params.textField.replace(/(\r\n|\n|\r)/gm,"<br/>");
+    var textField = self.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
 
     // Go through the text and replace all the asterisks with input fields
     var dropStart = textField.indexOf('*');
+    var dropEnd = -1;
     var currentIndex = 0;
     //While the start of a dropbox is found
     while (dropStart !== -1) {
-      dropStart++;
-      var dropEnd = textField.indexOf('*', dropStart);
+      dropStart += 1;
+      dropEnd = textField.indexOf('*', dropStart);
       if (dropEnd === -1) {
+        dropStart = -1;
         continue; // No end
       }
       //Appends the text between each dropzone
       self.$wordContainer.append(textField.slice(currentIndex, dropStart - 1));
       //Adds the drag n drop functionality when an answer is found
       self.addDragNDrop(textField.substring(dropStart, dropEnd));
-      dropEnd++;
+      dropEnd += 1;
       currentIndex = dropEnd;
       //Attempts to find the beginning of the next answer.
       dropStart = textField.indexOf('*', dropEnd);

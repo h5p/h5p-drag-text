@@ -45,7 +45,7 @@ H5P.DragText = (function ($) {
   /**
    * Initialize module.
    * @param {Object} params Behavior settings
-   * @param {Number} id Content identification
+   * @param {Number} contentId Content identification
    * @param {Object} contentData Object containing task specific content data
    *
    * @returns {Object} C Drag Text instance
@@ -54,12 +54,11 @@ H5P.DragText = (function ($) {
     this.$ = $(this);
     this.contentId = contentId;
     H5P.EventDispatcher.call(this);
-    var self = this;
 
     // Set default behavior.
     this.params = $.extend({}, {
       taskDescription: "Set in adjectives in the following sentence",
-      textField: "This is a *nice*, *flexible* content type, which allows you to highlight all the *wonderful* words in this *exciting* sentence.\n"+
+      textField: "This is a *nice*, *flexible* content type, which allows you to highlight all the *wonderful* words in this *exciting* sentence.\n" +
         "This is another line of *fantastic* text.",
       checkAnswer: "Check",
       tryAgain: "Retry",
@@ -78,36 +77,6 @@ H5P.DragText = (function ($) {
     }
 
     this.on('resize', this.resize, this);
-
-    /**
-     * Adds the draggables on the right side of the screen if widescreen is detected.
-     * @private
-     */
-    this.changeLayoutToFitWidth = function () {
-      self.addDropzoneWidth();
-
-      //Find ratio of width to em, and make sure it is less than the predefined ratio.
-      if ((self.$inner.width() / parseFloat(self.$inner.css("font-size")) > 43) && (self.widest < 200)) {
-        // Adds a class that floats the draggables to the right.
-        self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
-        // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
-        self.$wordContainer.detach().appendTo(self.$taskContainer);
-        // Set margin so the wordContainer does not expand when there are no more draggables left.
-        self.$wordContainer.css({'margin-right': this.widest});
-        // Set all draggables to be blocks
-        self.draggablesArray.forEach(function (draggable) {
-          draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
-        });
-      } else {
-        // Remove the specific wide screen settings.
-        self.$wordContainer.css({'margin-right': 0});
-        self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
-        self.$draggables.detach().appendTo(self.$taskContainer);
-        self.draggablesArray.forEach(function (draggable) {
-          draggable.getDraggableElement().removeClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
-        });
-      }
-    };
   }
 
   C.prototype = Object.create(H5P.EventDispatcher.prototype);
@@ -166,6 +135,37 @@ H5P.DragText = (function ($) {
   };
 
   /**
+  * Adds the draggables on the right side of the screen if widescreen is detected.
+  * @public
+  */
+  C.prototype.changeLayoutToFitWidth = function () {
+    var self = this;
+    self.addDropzoneWidth();
+
+    //Find ratio of width to em, and make sure it is less than the predefined ratio.
+    if ((self.$inner.width() / parseFloat(self.$inner.css("font-size")) > 43) && (self.widest < 200)) {
+      // Adds a class that floats the draggables to the right.
+      self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
+      // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
+      self.$wordContainer.detach().appendTo(self.$taskContainer);
+      // Set margin so the wordContainer does not expand when there are no more draggables left.
+      self.$wordContainer.css({'margin-right': this.widest});
+      // Set all draggables to be blocks
+      self.draggables.forEach(function (draggable) {
+        draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
+      });
+    } else {
+      // Remove the specific wide screen settings.
+      self.$wordContainer.css({'margin-right': 0});
+      self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
+      self.$draggables.detach().appendTo(self.$taskContainer);
+      self.draggables.forEach(function (draggable) {
+        draggable.getDraggableElement().removeClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
+      });
+    }
+  };
+
+  /**
    * Add check solution, show solution and retry buttons, and their functionality.
    * @public
    */
@@ -215,8 +215,7 @@ H5P.DragText = (function ($) {
       self.$showAnswersButton.hide();
       if (self.params.behaviour.instantFeedback) {
         self.enableAllDropzonesAndDraggables();
-      }
-      else{
+      } else {
         self.$checkAnswerButton.show();
         self.enableDraggables();
       }
@@ -229,7 +228,7 @@ H5P.DragText = (function ($) {
       type: 'button',
       html: this.params.showSolution
     }).appendTo(self.$buttonContainer).click(function () {
-      self.droppablesArray.forEach( function (droppable) {
+      self.droppables.forEach(function (droppable) {
         droppable.showSolution();
       });
       self.disableDraggables();
@@ -244,18 +243,8 @@ H5P.DragText = (function ($) {
    * @public
    */
   C.prototype.showDropzoneFeedback = function () {
-    this.droppablesArray.forEach( function (droppable) {
+    this.droppables.forEach(function (droppable) {
       droppable.addFeedback();
-    });
-  };
-
-  /**
-   * Shows feedback for draggables.
-   * @public
-   */
-  C.prototype.showDraggableFeedback = function () {
-    this.draggablesArray.forEach( function (draggable) {
-      draggable.addFeedback();
     });
   };
 
@@ -271,7 +260,7 @@ H5P.DragText = (function ($) {
     this.showDropzoneFeedback();
 
     var score = this.correctAnswers;
-    var maxScore = this.droppablesArray.length;
+    var maxScore = this.droppables.length;
 
     this.triggerXAPICompleted(score, maxScore);
 
@@ -298,8 +287,7 @@ H5P.DragText = (function ($) {
       this.$showAnswersButton.hide();
       this.$retryButton.hide();
       this.disableDraggables();
-    }
-    else {
+    } else {
       this.$evaluation.removeClass(EVALUATION_MAX_SCORE);
     }
     this.trigger('resize');
@@ -313,8 +301,8 @@ H5P.DragText = (function ($) {
   C.prototype.calculateScore = function () {
     var self = this;
     self.correctAnswers = 0;
-    self.droppablesArray.forEach(function (entry) {
-      if(entry.isCorrect()) {
+    self.droppables.forEach(function (entry) {
+      if (entry.isCorrect()) {
         self.correctAnswers += 1;
       }
     });
@@ -332,7 +320,7 @@ H5P.DragText = (function ($) {
    * Hides solution text for all dropzones.
    */
   C.prototype.hideAllSolutions = function () {
-    this.droppablesArray.forEach(function (droppable) {
+    this.droppables.forEach(function (droppable) {
       droppable.hideSolution();
     });
     this.trigger('resize');
@@ -346,8 +334,8 @@ H5P.DragText = (function ($) {
   C.prototype.addTaskTo = function ($container) {
     var self = this;
     self.widest = 0;
-    self.droppablesArray = [];
-    self.draggablesArray = [];
+    self.droppables = [];
+    self.draggables = [];
 
     self.$taskContainer = $('<div/>', {
       'class': TASK_CONTAINER
@@ -389,16 +377,18 @@ H5P.DragText = (function ($) {
       dropEnd = textField.indexOf('*', dropStart);
       if (dropEnd === -1) {
         dropStart = -1;
-        continue; // No end
+      } else {
+        //Appends the text between each dropzone
+        self.$wordContainer.append(textField.slice(currentIndex, dropStart - 1));
+
+        //Adds the drag n drop functionality when an answer is found
+        self.addDragNDrop(textField.substring(dropStart, dropEnd));
+        dropEnd += 1;
+        currentIndex = dropEnd;
+
+        //Attempts to find the beginning of the next answer.
+        dropStart = textField.indexOf('*', dropEnd);
       }
-      //Appends the text between each dropzone
-      self.$wordContainer.append(textField.slice(currentIndex, dropStart - 1));
-      //Adds the drag n drop functionality when an answer is found
-      self.addDragNDrop(textField.substring(dropStart, dropEnd));
-      dropEnd += 1;
-      currentIndex = dropEnd;
-      //Attempts to find the beginning of the next answer.
-      dropStart = textField.indexOf('*', dropEnd);
     }
     //Appends the remaining part of the text.
     self.$wordContainer.append(textField.slice(currentIndex, textField.length));
@@ -416,7 +406,7 @@ H5P.DragText = (function ($) {
     var staticPadding = fontSize; // Needed to make room for feedback icons
 
     //Find widest draggable
-    this.draggablesArray.forEach(function (draggable) {
+    this.draggables.forEach(function (draggable) {
       var $draggableElement = draggable.getDraggableElement();
 
       //Find the initial natural width of the draggable.
@@ -454,7 +444,7 @@ H5P.DragText = (function ($) {
     this.widest = widest;
 
     //Adjust all droppable to widest size.
-    this.droppablesArray.forEach(function (droppable) {
+    this.droppables.forEach(function (droppable) {
       droppable.getDropzone().width(self.widest);
     });
   };
@@ -470,7 +460,7 @@ H5P.DragText = (function ($) {
     var answer = text;
     var answersAndTip = answer.split(':');
 
-    if(answersAndTip.length > 0) {
+    if (answersAndTip.length > 0) {
       answer = answersAndTip[0];
       tip = answersAndTip[1];
     }
@@ -497,7 +487,7 @@ H5P.DragText = (function ($) {
     });
 
     var draggable = new Draggable(answer, $draggable);
-    draggable.on('xAPI', function(event) {
+    draggable.on('xAPI', function (event) {
       if (event.getVerb() === 'attempted') {
         self.triggerXAPI('attempted');
       }
@@ -510,32 +500,32 @@ H5P.DragText = (function ($) {
     var $dropzone = $('<div/>', {
       'class': DROPZONE
     }).appendTo($dropzoneContainer)
-        .droppable({
-      drop: function( event, ui) {
-        self.draggablesArray.forEach( function (draggable) {
-          if (draggable.getDraggableElement().is(ui.draggable)) {
-            self.moveDraggableToDroppable(draggable, droppable);
+      .droppable({
+        drop: function (event, ui) {
+          self.draggables.forEach(function (draggable) {
+            if (draggable.getDraggableElement().is(ui.draggable)) {
+              self.moveDraggableToDroppable(draggable, droppable);
 
-          }
-        });
-        if (self.params.behaviour.instantFeedback) {
-          droppable.addFeedback();
-          self.instantFeedbackEvaluation();
-          if (!self.params.behaviour.enableRetry) {
-            droppable.disableDropzoneAndContainedDraggable();
-          }
-          if (droppable.isCorrect()) {
-            droppable.disableDropzoneAndContainedDraggable();
+            }
+          });
+          if (self.params.behaviour.instantFeedback) {
+            droppable.addFeedback();
+            self.instantFeedbackEvaluation();
+            if (!self.params.behaviour.enableRetry) {
+              droppable.disableDropzoneAndContainedDraggable();
+            }
+            if (droppable.isCorrect()) {
+              droppable.disableDropzoneAndContainedDraggable();
+            }
           }
         }
-      }
-    });
+      });
 
     var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer);
     droppable.appendDroppableTo(self.$wordContainer);
 
-    self.draggablesArray.push(draggable);
-    self.droppablesArray.push(droppable);
+    self.draggables.push(draggable);
+    self.droppables.push(droppable);
   };
 
   /**
@@ -550,8 +540,7 @@ H5P.DragText = (function ($) {
       droppable.appendInsideDroppableTo(this.$draggables);
       droppable.setDraggable(draggable);
       draggable.appendDraggableTo(droppable.getDropzone());
-    }
-    else {
+    } else {
       draggable.revertDraggableTo(this.$draggables);
     }
     this.trigger('resize');
@@ -563,9 +552,10 @@ H5P.DragText = (function ($) {
    * @param {jQuery} $container Container the draggables will be added to.
    */
   C.prototype.addDraggablesRandomly = function ($container) {
-    var tempArray = this.draggablesArray.slice();
+    var tempArray = this.draggables.slice();
+    var randIndex = 0;
     while (tempArray.length >= 1) {
-      var randIndex = parseInt(Math.random()*tempArray.length);
+      randIndex = parseInt(Math.random() * tempArray.length, 10);
       tempArray[randIndex].appendDraggableTo($container);
       tempArray.splice(randIndex, 1);
     }
@@ -578,7 +568,7 @@ H5P.DragText = (function ($) {
   C.prototype.instantFeedbackEvaluation = function () {
     var self = this;
     var allFilled = true;
-    self.draggablesArray.forEach(function (entry) {
+    self.draggables.forEach(function (entry) {
       if (entry.insideDropzone === null) {
         allFilled = false;
         //Hides "retry" and "show solution" buttons.
@@ -589,7 +579,7 @@ H5P.DragText = (function ($) {
         self.hideEvaluation();
       }
     });
-    if (allFilled){
+    if (allFilled) {
       //Shows "retry" and "show solution" buttons.
       if (self.params.behaviour.enableSolutionsButton) {
         self.$showAnswersButton.show();
@@ -608,7 +598,7 @@ H5P.DragText = (function ($) {
    */
   C.prototype.enableAllDropzonesAndDraggables = function () {
     this.enableDraggables();
-    this.droppablesArray.forEach( function (droppable) {
+    this.droppables.forEach(function (droppable) {
       droppable.enableDropzone();
     });
   };
@@ -618,7 +608,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   C.prototype.disableDraggables = function () {
-    this.draggablesArray.forEach( function (entry) {
+    this.draggables.forEach(function (entry) {
       entry.disableDraggable();
     });
   };
@@ -628,7 +618,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   C.prototype.enableDraggables = function () {
-    this.draggablesArray.forEach( function (entry) {
+    this.draggables.forEach(function (entry) {
       entry.enableDraggable();
     });
   };
@@ -661,10 +651,10 @@ H5P.DragText = (function ($) {
    * @returns {Number} The maximum score.
    */
   C.prototype.getMaxScore = function () {
-    return this.droppablesArray.length;
+    return this.droppables.length;
   };
 
-  C.prototype.getTitle = function() {
+  C.prototype.getTitle = function () {
     return H5P.createTitle(this.params.taskDescription);
   };
 
@@ -674,7 +664,7 @@ H5P.DragText = (function ($) {
    * @public
    */
   C.prototype.showSolutions = function () {
-    this.droppablesArray.forEach( function (droppable) {
+    this.droppables.forEach(function (droppable) {
       droppable.addFeedback();
       droppable.showSolution();
     });
@@ -713,7 +703,7 @@ H5P.DragText = (function ($) {
    */
   C.prototype.resetDraggables = function () {
     var self = this;
-    self.draggablesArray.forEach(function (entry) {
+    self.draggables.forEach(function (entry) {
       self.moveDraggableToDroppable(entry, null);
     });
     this.trigger('resize');
@@ -726,10 +716,16 @@ H5P.DragText = (function ($) {
   C.prototype.getCurrentState = function () {
     var self = this;
     var draggedDraggablesIndexes = [];
+
+    // Return undefined if task is not initialized
+    if (this.draggables === undefined) {
+      return undefined;
+    }
+
     // Find draggables that has been dropped
-    this.draggablesArray.forEach(function (draggable, draggableIndex) {
+    this.draggables.forEach(function (draggable, draggableIndex) {
       if (draggable.getInsideDropzone() !== null) {
-        draggedDraggablesIndexes.push({draggable: draggableIndex, droppable: self.droppablesArray.indexOf(draggable.getInsideDropzone())});
+        draggedDraggablesIndexes.push({draggable: draggableIndex, droppable: self.droppables.indexOf(draggable.getInsideDropzone())});
       }
     });
     return draggedDraggablesIndexes;
@@ -749,19 +745,19 @@ H5P.DragText = (function ($) {
     // Select words from user state
     this.previousState.forEach(function (draggedDraggableIndexes) {
       var draggableIndexIsInvalid = isNaN(draggedDraggableIndexes.draggable)
-        || draggedDraggableIndexes.draggable >= self.draggablesArray.length
+        || draggedDraggableIndexes.draggable >= self.draggables.length
         || draggedDraggableIndexes.draggable < 0;
 
       var droppableIndexIsInvalid = isNaN(draggedDraggableIndexes.droppable)
-        || draggedDraggableIndexes.droppable >= self.droppablesArray.length
+        || draggedDraggableIndexes.droppable >= self.droppables.length
         || draggedDraggableIndexes.droppable < 0;
 
       if (draggableIndexIsInvalid || droppableIndexIsInvalid) {
         throw new Error('Stored user state is invalid');
       }
 
-      var moveDraggable = self.draggablesArray[draggedDraggableIndexes.draggable];
-      var moveToDroppable = self.droppablesArray[draggedDraggableIndexes.droppable];
+      var moveDraggable = self.draggables[draggedDraggableIndexes.draggable];
+      var moveToDroppable = self.droppables[draggedDraggableIndexes.droppable];
       self.moveDraggableToDroppable(moveDraggable, moveToDroppable);
 
       if (self.params.behaviour.instantFeedback) {
@@ -799,7 +795,7 @@ H5P.DragText = (function ($) {
     self.shortFormat = self.text;
     //Shortens the draggable string if inside a dropbox.
     if (self.shortFormat.length > 20) {
-      self.shortFormat = self.shortFormat.slice(0,17)+'...';
+      self.shortFormat = self.shortFormat.slice(0, 17) + '...';
     }
   }
 
@@ -830,7 +826,7 @@ H5P.DragText = (function ($) {
     this.$draggable.detach()
       .prependTo($container)
       .css({left: offLeft, top: offTop})
-      .animate({left:0, top:0});
+      .animate({left: 0, top: 0});
   };
 
   /**
@@ -841,8 +837,7 @@ H5P.DragText = (function ($) {
   Draggable.prototype.toggleDroppedFeedback = function (isDropped) {
     if (isDropped) {
       this.$draggable.addClass(DRAGGABLE_DROPPED);
-    }
-    else {
+    } else {
       this.$draggable.removeClass(DRAGGABLE_DROPPED);
     }
   };
@@ -943,7 +938,7 @@ H5P.DragText = (function ($) {
    * @param {String} text Correct text string for this drop box.
    * @param {undefined/String} tip Tip for this container, optional.
    * @param {jQuery} dropzone Dropzone object.
-   * @param {jQuery} dropzone Container Container for the dropzone.
+   * @param {jQuery} dropzoneContainer Container Container for the dropzone.
    */
   function Droppable(text, tip, dropzone, dropzoneContainer) {
     var self = this;
@@ -953,7 +948,7 @@ H5P.DragText = (function ($) {
     self.$dropzone = $(dropzone);
     self.$dropzoneContainer = $(dropzoneContainer);
 
-    if(self.tip !== undefined) {
+    if (self.tip !== undefined) {
       self.$dropzone.append(H5P.JoubelUI.createTip(self.tip, self.$dropzone));
     }
 
@@ -1006,7 +1001,7 @@ H5P.DragText = (function ($) {
    * @public
    * @param {Draggable} droppedDraggable A draggable that has been dropped on this box.
    */
-  Droppable.prototype.setDraggable = function(droppedDraggable) {
+  Droppable.prototype.setDraggable = function (droppedDraggable) {
     var self = this;
     if (self.containedDraggable === droppedDraggable) {
       return;
@@ -1052,13 +1047,11 @@ H5P.DragText = (function ($) {
 
       //Draggable feedback
       this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).addClass(DRAGGABLE_FEEDBACK_CORRECT);
-    }
-    //Does not contain a draggable
-    else if (this.containedDraggable === null) {
+    } else if (this.containedDraggable === null) {
+      //Does not contain a draggable
       this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
-    }
-    //Draggable is wrong
-    else {
+    } else {
+      //Draggable is wrong
       this.$dropzone.removeClass(CORRECT_FEEDBACK).addClass(WRONG_FEEDBACK);
 
       //Draggable feedback
@@ -1096,7 +1089,7 @@ H5P.DragText = (function ($) {
    */
   Droppable.prototype.disableDropzoneAndContainedDraggable = function () {
     if (this.containedDraggable !== null) {
-      this.containedDraggable.disableDraggable()
+      this.containedDraggable.disableDraggable();
     }
     this.$dropzone.droppable({ disabled: true});
   };
@@ -1128,5 +1121,6 @@ H5P.DragText = (function ($) {
     return this.$dropzone;
   };
 
-    return C;
-})(H5P.jQuery);
+  return C;
+
+}(H5P.jQuery));

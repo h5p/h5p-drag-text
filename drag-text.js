@@ -209,6 +209,7 @@ H5P.DragText = (function ($) {
       html: this.params.tryAgain
     }).appendTo(self.$buttonContainer).click(function () {
       self.resetDraggables();
+      self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
 
       self.$retryButton.hide();

@@ -48,9 +48,9 @@ H5P.DragText = (function ($) {
    * @param {Number} contentId Content identification
    * @param {Object} contentData Object containing task specific content data
    *
-   * @returns {Object} C Drag Text instance
+   * @returns {Object} DragText Drag Text instance
    */
-  function C(params, contentId, contentData) {
+  function DragText(params, contentId, contentData) {
     this.$ = $(this);
     this.contentId = contentId;
     H5P.EventDispatcher.call(this);
@@ -76,20 +76,28 @@ H5P.DragText = (function ($) {
       this.previousState = this.contentData.previousState;
     }
 
+    // Init drag text task
+    this.initDragText();
+
     this.on('resize', this.resize, this);
   }
 
-  C.prototype = Object.create(H5P.EventDispatcher.prototype);
-  C.prototype.constructor = C;
+  DragText.prototype = Object.create(H5P.EventDispatcher.prototype);
+  DragText.prototype.constructor = DragText;
 
   /**
    * Append field to wrapper.
    * @public
    * @param {jQuery} container the jQuery object which this module will attach itself to.
    */
-  C.prototype.attach = function (container) {
-    $(container).addClass(MAIN_CONTAINER);
+  DragText.prototype.attach = function (container) {
+    $(container).addClass(MAIN_CONTAINER).append(this.$inner);
+  };
 
+  /**
+   * Initialize drag text task
+   */
+  DragText.prototype.initDragText = function () {
     this.$inner = $('<div/>', {
       class: INNER_CONTAINER
     });
@@ -99,7 +107,6 @@ H5P.DragText = (function ($) {
       class: TITLE_CONTAINER
     }).appendTo(this.$inner);
 
-    $(container).append(this.$inner);
 
     this.addTaskTo(this.$inner);
 
@@ -114,7 +121,7 @@ H5P.DragText = (function ($) {
    * Changes layout responsively when resized.
    * @public
    */
-  C.prototype.resize = function () {
+  DragText.prototype.resize = function () {
     this.changeLayoutToFitWidth();
   };
 
@@ -122,7 +129,7 @@ H5P.DragText = (function ($) {
    * Append footer to inner block.
    * @public
    */
-  C.prototype.addFooter = function () {
+  DragText.prototype.addFooter = function () {
     this.$footer = $('<div/>', {
       'class': FOOTER_CONTAINER
     }).appendTo(this.$inner);
@@ -138,7 +145,7 @@ H5P.DragText = (function ($) {
   * Adds the draggables on the right side of the screen if widescreen is detected.
   * @public
   */
-  C.prototype.changeLayoutToFitWidth = function () {
+  DragText.prototype.changeLayoutToFitWidth = function () {
     var self = this;
     self.addDropzoneWidth();
 
@@ -169,7 +176,7 @@ H5P.DragText = (function ($) {
    * Add check solution, show solution and retry buttons, and their functionality.
    * @public
    */
-  C.prototype.addButtons = function () {
+  DragText.prototype.addButtons = function () {
     var self = this;
     self.$buttonContainer = $('<div/>', {'class': BUTTON_CONTAINER});
 
@@ -242,7 +249,7 @@ H5P.DragText = (function ($) {
    * Shows feedback for dropzones.
    * @public
    */
-  C.prototype.showDropzoneFeedback = function () {
+  DragText.prototype.showDropzoneFeedback = function () {
     this.droppables.forEach(function (droppable) {
       droppable.addFeedback();
     });
@@ -254,7 +261,7 @@ H5P.DragText = (function ($) {
    *
    * @return {Boolean} Returns true if maxScore was achieved.
    */
-  C.prototype.showEvaluation = function () {
+  DragText.prototype.showEvaluation = function () {
     this.hideEvaluation();
     this.calculateScore();
     this.showDropzoneFeedback();
@@ -262,7 +269,7 @@ H5P.DragText = (function ($) {
     var score = this.correctAnswers;
     var maxScore = this.droppables.length;
 
-    this.triggerXAPICompleted(score, maxScore);
+    this.triggerXAPIScored(score, maxScore, 'completed');
 
     var scoreText = this.params.score.replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());
@@ -298,7 +305,7 @@ H5P.DragText = (function ($) {
    * Calculate score and store them in class variables.
    * @public
    */
-  C.prototype.calculateScore = function () {
+  DragText.prototype.calculateScore = function () {
     var self = this;
     self.correctAnswers = 0;
     self.droppables.forEach(function (entry) {
@@ -311,7 +318,7 @@ H5P.DragText = (function ($) {
   /**
    * Clear the evaluation text.
    */
-  C.prototype.hideEvaluation = function () {
+  DragText.prototype.hideEvaluation = function () {
     this.$evaluation.html('');
     this.trigger('resize');
   };
@@ -319,7 +326,7 @@ H5P.DragText = (function ($) {
   /**
    * Hides solution text for all dropzones.
    */
-  C.prototype.hideAllSolutions = function () {
+  DragText.prototype.hideAllSolutions = function () {
     this.droppables.forEach(function (droppable) {
       droppable.hideSolution();
     });
@@ -331,7 +338,7 @@ H5P.DragText = (function ($) {
    * @public
    * @param {jQuery} $container The object which our task will attach to.
    */
-  C.prototype.addTaskTo = function ($container) {
+  DragText.prototype.addTaskTo = function ($container) {
     var self = this;
     self.widest = 0;
     self.droppables = [];
@@ -361,7 +368,7 @@ H5P.DragText = (function ($) {
    * Appends the parsed text to wordContainer.
    * @public
    */
-  C.prototype.handleText = function () {
+  DragText.prototype.handleText = function () {
     var self = this;
 
     //Replace newlines with break line tag
@@ -398,7 +405,7 @@ H5P.DragText = (function ($) {
    * Matches the width of all dropzones to the widest draggable, and sets widest class variable.
    * @public
    */
-  C.prototype.addDropzoneWidth = function () {
+  DragText.prototype.addDropzoneWidth = function () {
     var self = this;
     var widest = 0;
     var fontSize = parseInt(this.$inner.css('font-size'), 10);
@@ -454,7 +461,7 @@ H5P.DragText = (function ($) {
    * @public
    * @param {String} text Text for the drag n drop.
    */
-  C.prototype.addDragNDrop = function (text) {
+  DragText.prototype.addDragNDrop = function (text) {
     var self = this;
     var tip;
     var answer = text;
@@ -534,7 +541,7 @@ H5P.DragText = (function ($) {
    * @param {Draggable} draggable Draggable instance.
    * @param {Droppable} droppable The droppable instance the draggable is put on.
    */
-  C.prototype.moveDraggableToDroppable = function (draggable, droppable) {
+  DragText.prototype.moveDraggableToDroppable = function (draggable, droppable) {
     draggable.removeFromZone();
     if (droppable !== null) {
       droppable.appendInsideDroppableTo(this.$draggables);
@@ -551,7 +558,7 @@ H5P.DragText = (function ($) {
    * @public
    * @param {jQuery} $container Container the draggables will be added to.
    */
-  C.prototype.addDraggablesRandomly = function ($container) {
+  DragText.prototype.addDraggablesRandomly = function ($container) {
     var tempArray = this.draggables.slice();
     var randIndex = 0;
     while (tempArray.length >= 1) {
@@ -565,7 +572,7 @@ H5P.DragText = (function ($) {
    * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
    * @public
    */
-  C.prototype.instantFeedbackEvaluation = function () {
+  DragText.prototype.instantFeedbackEvaluation = function () {
     var self = this;
     var allFilled = true;
     self.draggables.forEach(function (entry) {
@@ -596,7 +603,7 @@ H5P.DragText = (function ($) {
   /**
    * Enables all dropzones and all draggables.
    */
-  C.prototype.enableAllDropzonesAndDraggables = function () {
+  DragText.prototype.enableAllDropzonesAndDraggables = function () {
     this.enableDraggables();
     this.droppables.forEach(function (droppable) {
       droppable.enableDropzone();
@@ -607,7 +614,7 @@ H5P.DragText = (function ($) {
    * Disables all draggables, user will not be able to interact with them any more.
    * @public
    */
-  C.prototype.disableDraggables = function () {
+  DragText.prototype.disableDraggables = function () {
     this.draggables.forEach(function (entry) {
       entry.disableDraggable();
     });
@@ -617,7 +624,7 @@ H5P.DragText = (function ($) {
    * Enables all draggables, user will be able to interact with them again.
    * @public
    */
-  C.prototype.enableDraggables = function () {
+  DragText.prototype.enableDraggables = function () {
     this.draggables.forEach(function (entry) {
       entry.enableDraggable();
     });
@@ -629,7 +636,7 @@ H5P.DragText = (function ($) {
    * @public
    * @returns {Boolean} true
    */
-  C.prototype.getAnswerGiven = function () {
+  DragText.prototype.getAnswerGiven = function () {
     return true;
   };
 
@@ -639,7 +646,7 @@ H5P.DragText = (function ($) {
    * @public
    * @returns {Number} The current score.
    */
-  C.prototype.getScore = function () {
+  DragText.prototype.getScore = function () {
     this.calculateScore();
     return this.correctAnswers;
   };
@@ -650,11 +657,15 @@ H5P.DragText = (function ($) {
    * @public
    * @returns {Number} The maximum score.
    */
-  C.prototype.getMaxScore = function () {
+  DragText.prototype.getMaxScore = function () {
     return this.droppables.length;
   };
 
-  C.prototype.getTitle = function () {
+  /**
+   * Get title of task
+   * @returns {string} title
+   */
+  DragText.prototype.getTitle = function () {
     return H5P.createTitle(this.params.taskDescription);
   };
 
@@ -663,7 +674,7 @@ H5P.DragText = (function ($) {
    * Sets feedback on the dropzones.
    * @public
    */
-  C.prototype.showSolutions = function () {
+  DragText.prototype.showSolutions = function () {
     this.droppables.forEach(function (droppable) {
       droppable.addFeedback();
       droppable.showSolution();
@@ -681,7 +692,7 @@ H5P.DragText = (function ($) {
    * Resets the complete task back to its' initial state.
    * @public
    */
-  C.prototype.resetTask = function () {
+  DragText.prototype.resetTask = function () {
     var self = this;
     //Reset draggables parameters and position
     self.resetDraggables();
@@ -701,7 +712,7 @@ H5P.DragText = (function ($) {
   /**
    * Resets the position of all draggables.
    */
-  C.prototype.resetDraggables = function () {
+  DragText.prototype.resetDraggables = function () {
     var self = this;
     self.draggables.forEach(function (entry) {
       self.moveDraggableToDroppable(entry, null);
@@ -713,7 +724,7 @@ H5P.DragText = (function ($) {
    * Returns an object containing the dropped words
    * @returns {object} containing indexes of dropped words
    */
-  C.prototype.getCurrentState = function () {
+  DragText.prototype.getCurrentState = function () {
     var self = this;
     var draggedDraggablesIndexes = [];
 
@@ -734,7 +745,7 @@ H5P.DragText = (function ($) {
   /**
    * Sets answers to current user state
    */
-  C.prototype.setH5PUserState = function () {
+  DragText.prototype.setH5PUserState = function () {
     var self = this;
 
     // Do nothing if user state is undefined
@@ -1121,6 +1132,6 @@ H5P.DragText = (function ($) {
     return this.$dropzone;
   };
 
-  return C;
+  return DragText;
 
 }(H5P.jQuery));

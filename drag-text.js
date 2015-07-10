@@ -270,7 +270,7 @@ H5P.DragText = (function ($) {
     var score = this.correctAnswers;
     var maxScore = this.droppables.length;
 
-    this.triggerXAPIScored(score, maxScore, 'completed');
+    this.triggerXAPIScored(score, maxScore, 'answered');
 
     var scoreText = this.params.score.replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());

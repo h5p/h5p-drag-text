@@ -149,14 +149,14 @@ H5P.DragText = (function ($) {
     var self = this;
     self.addDropzoneWidth();
 
-    //Find ratio of width to em, and make sure it is less than the predefined ratio.
-    if ((self.$inner.width() / parseFloat(self.$inner.css("font-size")) > 43) && (self.widest < 200)) {
+    //Find ratio of width to em, and make sure it is less than the predefined ratio, make sure widest draggable is less than a third of parent width.
+    if ((self.$inner.width() / parseFloat(self.$inner.css("font-size"), 10) > 43) && (self.widestDraggable <= (self.$inner.width() / 3))) {
       // Adds a class that floats the draggables to the right.
       self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
       // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
       self.$wordContainer.detach().appendTo(self.$taskContainer);
       // Set margin so the wordContainer does not expand when there are no more draggables left.
-      self.$wordContainer.css({'margin-right': this.widest});
+      self.$wordContainer.css({'margin-right': self.widestDraggable});
       // Set all draggables to be blocks
       self.draggables.forEach(function (draggable) {
         draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
@@ -342,6 +342,7 @@ H5P.DragText = (function ($) {
   DragText.prototype.addTaskTo = function ($container) {
     var self = this;
     self.widest = 0;
+    self.widestDraggable = 0;
     self.droppables = [];
     self.draggables = [];
 
@@ -361,7 +362,6 @@ H5P.DragText = (function ($) {
     self.$draggables.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
-
   };
 
   /**
@@ -409,6 +409,7 @@ H5P.DragText = (function ($) {
   DragText.prototype.addDropzoneWidth = function () {
     var self = this;
     var widest = 0;
+    var widestDragagble = 0;
     var fontSize = parseInt(this.$inner.css('font-size'), 10);
     var staticMinimumWidth = 3 * fontSize;
     var staticPadding = fontSize; // Needed to make room for feedback icons
@@ -418,37 +419,33 @@ H5P.DragText = (function ($) {
       var $draggableElement = draggable.getDraggableElement();
 
       //Find the initial natural width of the draggable.
-      var tmp = $('<div>', {
-        'html': $draggableElement.html()
-      });
-      tmp.css({
+      var $tmp = $draggableElement.clone().css({
         'position': 'absolute',
         'white-space': 'nowrap',
-        'font-size': $draggableElement.css('font-size'),
-        'font-family': $draggableElement.css('font-family'),
+        'width': 'initial',
         'padding': 0,
-        'width': 'initial'
-      });
-      $draggableElement.parent().append(tmp);
-      var width = tmp.width();
-      tmp.remove();
+        'margin': 0
+      }).html(draggable.getAnswerText()).appendTo($draggableElement.parent());
+      var width = $tmp.width();
+
+      widestDragagble = width > widestDragagble ? width : widestDragagble;
+
+      // Measure how big truncated draggable should be
+      if ($draggableElement.html().length >= 20) {
+        $tmp.html(draggable.getShortFormat());
+        width = $tmp.width();
+      }
 
       if (width + staticPadding > widest) {
-        if ($draggableElement.html().length >= 20) {
-          draggable.setShortFormat();
-          $(draggable.getDraggableElement()).addClass('truncate');
-          widest = $draggableElement.width();
-          draggable.removeShortFormat();
-        } else {
-          widest = width + staticPadding;
-        }
+        widest = width + staticPadding;
       }
+      $tmp.remove();
     });
-
     // Set min size
     if (widest < staticMinimumWidth) {
       widest = staticMinimumWidth;
     }
+    this.widestDraggable = widestDragagble;
     this.widest = widest;
 
     //Adjust all droppable to widest size.
@@ -509,6 +506,7 @@ H5P.DragText = (function ($) {
       'class': DROPZONE
     }).appendTo($dropzoneContainer)
       .droppable({
+        tolerance: 'pointer',
         drop: function (event, ui) {
           self.draggables.forEach(function (draggable) {
             if (draggable.getDraggableElement().is(ui.draggable)) {
@@ -925,6 +923,14 @@ H5P.DragText = (function ($) {
    */
   Draggable.prototype.setShortFormat = function () {
     this.$draggable.html(this.shortFormat);
+  };
+
+  /**
+   * Get short format of draggable when inside a dropbox.
+   * @returns {String|*}
+   */
+  Draggable.prototype.getShortFormat = function () {
+    return this.shortFormat;
   };
 
   /**

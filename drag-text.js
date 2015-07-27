@@ -1,10 +1,8 @@
-var H5P = H5P || {};
-
 /**
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($) {
+H5P.DragText = (function ($, Question) {
   //CSS Main Containers:
   var MAIN_CONTAINER = "h5p-drag";
   var INNER_CONTAINER = "h5p-drag-inner";
@@ -13,7 +11,6 @@ H5P.DragText = (function ($) {
   var WORDS_CONTAINER = "h5p-drag-droppable-words";
   var FOOTER_CONTAINER = "h5p-drag-footer";
   var EVALUATION_CONTAINER = "h5p-drag-evaluation-container";
-  var BUTTON_CONTAINER = "h5p-drag-button-bar";
   var DROPZONE_CONTAINER = "h5p-drag-dropzone-container";
   var DRAGGABLES_CONTAINER = "h5p-drag-draggables-container";
 
@@ -27,12 +24,6 @@ H5P.DragText = (function ($) {
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
 
-  //CSS Buttons:
-  var BUTTONS = "h5p-drag-button";
-  var CHECK_BUTTON = "h5p-drag-check-button";
-  var RETRY_BUTTON = "h5p-drag-retry-button";
-  var SHOW_SOLUTION_BUTTON = 'h5p-drag-show-solution-button';
-
   //CSS Dropzone feedback:
   var CORRECT_FEEDBACK = 'h5p-drag-correct-feedback';
   var WRONG_FEEDBACK = 'h5p-drag-wrong-feedback';
@@ -44,6 +35,9 @@ H5P.DragText = (function ($) {
 
   /**
    * Initialize module.
+   *
+   * @class H5P.DragText
+   * @extends H5P.Question
    * @param {Object} params Behavior settings
    * @param {Number} contentId Content identification
    * @param {Object} contentData Object containing task specific content data
@@ -53,7 +47,7 @@ H5P.DragText = (function ($) {
   function DragText(params, contentId, contentData) {
     this.$ = $(this);
     this.contentId = contentId;
-    H5P.EventDispatcher.call(this);
+    Question.call(this, 'drag-text');
 
     // Set default behavior.
     this.params = $.extend({}, {
@@ -82,8 +76,23 @@ H5P.DragText = (function ($) {
     this.on('resize', this.resize, this);
   }
 
-  DragText.prototype = Object.create(H5P.EventDispatcher.prototype);
+  DragText.prototype = Object.create(Question.prototype);
   DragText.prototype.constructor = DragText;
+
+  /**
+   * Registers this question type's DOM elements before they are attached.
+   * Called from H5P.Question.
+   */
+  DragText.prototype.registerDomElements = function () {
+    // Register task introduction text
+    this.setIntroduction(this.params.taskDescription);
+
+    // Register task content area
+    this.setContent(this.initDragText());
+
+    // Register buttons
+    this.addButtons();
+  };
 
   /**
    * Append field to wrapper.
@@ -103,19 +112,16 @@ H5P.DragText = (function ($) {
       class: INNER_CONTAINER
     });
 
-    $('<div/>', {
-      html: this.params.taskDescription,
-      class: TITLE_CONTAINER
-    }).appendTo(this.$inner);
-
-
+    // Create task
     this.addTaskTo(this.$inner);
-
-    // Add score and button containers.
-    this.addFooter();
 
     // Set stored user state
     this.setH5PUserState();
+
+    // Notify that activity has been started
+    this.setActivityStarted();
+
+    return this.$inner;
   };
 
   /**
@@ -124,22 +130,6 @@ H5P.DragText = (function ($) {
    */
   DragText.prototype.resize = function () {
     this.changeLayoutToFitWidth();
-  };
-
-  /**
-   * Append footer to inner block.
-   * @public
-   */
-  DragText.prototype.addFooter = function () {
-    this.$footer = $('<div/>', {
-      'class': FOOTER_CONTAINER
-    }).appendTo(this.$inner);
-
-    this.$evaluation = $('<div/>', {
-      'class': EVALUATION_CONTAINER
-    }).appendTo(this.$footer);
-
-    this.addButtons();
   };
 
   /**
@@ -179,72 +169,57 @@ H5P.DragText = (function ($) {
    */
   DragText.prototype.addButtons = function () {
     var self = this;
-    self.$buttonContainer = $('<div/>', {'class': BUTTON_CONTAINER});
 
     // Checking answer button
-    self.$checkAnswerButton = $('<button/>', {
-      'class': BUTTONS + ' ' + CHECK_BUTTON,
-      type: 'button',
-      html: this.params.checkAnswer
-    }).appendTo(self.$buttonContainer).click(function () {
+    self.addButton('check-answer', self.params.checkAnswer, function () {
       if (!self.showEvaluation()) {
         if (self.params.behaviour.enableRetry) {
-          self.$retryButton.show();
+          self.showButton('try-again');
         }
         if (self.params.behaviour.enableSolutionsButton) {
-          self.$showAnswersButton.show();
+          self.showButton('show-solution');
         }
-        self.$checkAnswerButton.hide();
+        self.hideButton('check-answer');
         self.disableDraggables();
       } else {
-        self.$showAnswersButton.hide();
-        self.$retryButton.hide();
-        self.$checkAnswerButton.hide();
+        self.hideButton('show-solution');
+        self.hideButton('try-again');
+        self.hideButton('check-answer');
       }
-
     });
 
     if (self.params.behaviour.instantFeedback) {
-      self.$checkAnswerButton.hide();
+      self.hideButton('check-answer');
     } else {
-      self.$checkAnswerButton.show();
+      self.showButton('check-answer');
     }
 
     //Retry button
-    self.$retryButton =  $('<button/>', {
-      'class': BUTTONS + ' ' + RETRY_BUTTON,
-      type: 'button',
-      html: this.params.tryAgain
-    }).appendTo(self.$buttonContainer).click(function () {
+    self.addButton('try-again', self.params.tryAgain, function () {
       self.resetDraggables();
       self.addDraggablesRandomly(self.$draggables);
       self.hideEvaluation();
 
-      self.$retryButton.hide();
-      self.$showAnswersButton.hide();
+      self.hideButton('try-again');
+      self.hideButton('show-solution');
+
       if (self.params.behaviour.instantFeedback) {
         self.enableAllDropzonesAndDraggables();
       } else {
-        self.$checkAnswerButton.show();
+        self.showButton('check-answer');
         self.enableDraggables();
       }
       self.hideAllSolutions();
-    });
+    }, false);
 
     //Show Solution button
-    self.$showAnswersButton = $('<button/>', {
-      'class': BUTTONS + ' ' + SHOW_SOLUTION_BUTTON,
-      type: 'button',
-      html: this.params.showSolution
-    }).appendTo(self.$buttonContainer).click(function () {
+    self.addButton('show-solution', self.params.showSolution, function () {
       self.droppables.forEach(function (droppable) {
         droppable.showSolution();
       });
       self.disableDraggables();
-      self.$showAnswersButton.hide();
-    });
-
-    self.$buttonContainer.appendTo(self.$footer);
+      self.hideButton('show-solution');
+    }, false);
   };
 
   /**
@@ -276,30 +251,18 @@ H5P.DragText = (function ($) {
     var scoreText = this.params.score.replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());
 
-    //Append emoticon to evaluation container.
-    $('<div/>', {
-      'class': EVALUATION_EMOTICON
-    }).appendTo(this.$evaluation);
-
-    //Append score to evaluation container.
-    $('<div/>', {
-      'class': EVALUATION_SCORE,
-      html: scoreText
-    }).appendTo(this.$evaluation);
-
     if (score === maxScore) {
-      //Add happy emoticon
-      this.$evaluation.addClass(EVALUATION_MAX_SCORE);
-
       //Hide buttons and disable task
-      this.$checkAnswerButton.hide();
-      this.$showAnswersButton.hide();
-      this.$retryButton.hide();
+      this.hideButton('check-answer');
+      this.hideButton('show-solution');
+      this.hideButton('try-again');
       this.disableDraggables();
-    } else {
-      this.$evaluation.removeClass(EVALUATION_MAX_SCORE);
     }
     this.trigger('resize');
+
+    // Set feedback score
+    this.setFeedback(scoreText, score, maxScore);
+
     return score === maxScore;
   };
 
@@ -321,7 +284,7 @@ H5P.DragText = (function ($) {
    * Clear the evaluation text.
    */
   DragText.prototype.hideEvaluation = function () {
-    this.$evaluation.html('');
+    this.setFeedback();
     this.trigger('resize');
   };
 
@@ -581,8 +544,8 @@ H5P.DragText = (function ($) {
       if (entry.insideDropzone === null) {
         allFilled = false;
         //Hides "retry" and "show solution" buttons.
-        self.$retryButton.hide();
-        self.$showAnswersButton.hide();
+        self.hideButton('try-again');
+        self.hideButton('show-solution');
 
         //Hides evaluation text.
         self.hideEvaluation();
@@ -591,13 +554,13 @@ H5P.DragText = (function ($) {
     if (allFilled) {
       //Shows "retry" and "show solution" buttons.
       if (self.params.behaviour.enableSolutionsButton) {
-        self.$showAnswersButton.show();
+        self.showButton('show-solution');
       }
       if (self.params.behaviour.enableRetry) {
-        self.$retryButton.show();
+        self.showButton('try-again');
       }
 
-      //Shows evaluation text
+      // Shows evaluation text
       self.showEvaluation();
     }
   };
@@ -683,9 +646,9 @@ H5P.DragText = (function ($) {
     });
     this.disableDraggables();
     //Remove all buttons in "show solution" mode.
-    this.$retryButton.hide();
-    this.$showAnswersButton.hide();
-    this.$checkAnswerButton.hide();
+    this.hideButton('try-again');
+    this.hideButton('show-solution');
+    this.hideButton('check-answer');
     this.trigger('resize');
   };
 
@@ -702,10 +665,11 @@ H5P.DragText = (function ($) {
     self.hideEvaluation();
     self.enableAllDropzonesAndDraggables();
     //Show and hide buttons
-    self.$retryButton.hide();
-    self.$showAnswersButton.hide();
+    self.hideButton('try-again');
+    self.hideButton('show-solution');
+
     if (!self.params.behaviour.instantFeedback) {
-      self.$checkAnswerButton.show();
+      self.showButton('check-answer');
     }
     self.hideAllSolutions();
     this.trigger('resize');
@@ -1136,4 +1100,4 @@ H5P.DragText = (function ($) {
 
   return DragText;
 
-}(H5P.jQuery));
+}(H5P.jQuery, H5P.Question));

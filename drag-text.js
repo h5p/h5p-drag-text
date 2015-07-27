@@ -422,16 +422,17 @@ H5P.DragText = (function ($) {
       var $tmp = $draggableElement.clone().css({
         'position': 'absolute',
         'white-space': 'nowrap',
-        'width': 'initial',
+        'width': 'auto',
         'padding': 0,
         'margin': 0
-      }).html(draggable.getAnswerText()).appendTo($draggableElement.parent());
+      }).html(draggable.getAnswerText())
+        .appendTo($draggableElement.parent());
       var width = $tmp.width();
 
       widestDragagble = width > widestDragagble ? width : widestDragagble;
 
       // Measure how big truncated draggable should be
-      if ($draggableElement.html().length >= 20) {
+      if ($draggableElement.text().length >= 20) {
         $tmp.html(draggable.getShortFormat());
         width = $tmp.width();
       }

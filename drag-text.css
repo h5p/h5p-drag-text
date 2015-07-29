@@ -16,9 +16,6 @@
   background: rgba(255, 255, 255, 0.9);
   overflow: hidden;
 }
-.h5p-drag-text .h5p-drag-inner {
-  overflow: hidden;
-}
 
 .h5p-drag-text .h5p-drag-inner p {
   font-size: 1em;

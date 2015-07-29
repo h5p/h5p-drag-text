@@ -7,17 +7,11 @@ H5P.DragText = (function ($, Question) {
   var MAIN_CONTAINER = "h5p-drag";
   var INNER_CONTAINER = "h5p-drag-inner";
   var TASK_CONTAINER = "h5p-drag-task";
-  var TITLE_CONTAINER = "h5p-drag-title";
   var WORDS_CONTAINER = "h5p-drag-droppable-words";
-  var FOOTER_CONTAINER = "h5p-drag-footer";
-  var EVALUATION_CONTAINER = "h5p-drag-evaluation-container";
   var DROPZONE_CONTAINER = "h5p-drag-dropzone-container";
   var DRAGGABLES_CONTAINER = "h5p-drag-draggables-container";
 
   //Special Sub-containers:
-  var EVALUATION_SCORE = "h5p-drag-evaluation-score";
-  var EVALUATION_EMOTICON = "h5p-drag-evaluation-emoticon";
-  var EVALUATION_MAX_SCORE = "h5p-drag-evaluation-max-score";
   var DROPZONE = "h5p-drag-dropzone";
   var DRAGGABLE = "h5p-drag-draggable";
   var SHOW_SOLUTION_CONTAINER = "h5p-drag-show-solution-container";

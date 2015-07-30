@@ -250,6 +250,7 @@
   background: linear-gradient(to bottom, rgb(234,224,236) 0%, rgb(212,190,216) 100%);
 }
 .h5p-drag-draggable.h5p-drag-dropped {
+  display: block;
   padding-right: 0.55em;
   padding-left: 0.55em;
   line-height: 1;
@@ -347,4 +348,10 @@
 /* Use ellipsis for long draggables */
 .h5p-drag .h5p-drag-draggable.h5p-drag-dropped.truncate {
   text-overflow: ellipsis;
+}
+
+/* Make sure joubel tip icon is on top of other elements */
+.joubel-tip-icon {
+  position: relative;
+  z-index: 3;
 }

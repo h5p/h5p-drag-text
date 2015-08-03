@@ -180,13 +180,7 @@ H5P.DragText = (function ($, Question) {
         self.hideButton('try-again');
         self.hideButton('check-answer');
       }
-    });
-
-    if (self.params.behaviour.instantFeedback) {
-      self.hideButton('check-answer');
-    } else {
-      self.showButton('check-answer');
-    }
+    }, !self.params.behaviour.instantFeedback);
 
     //Retry button
     self.addButton('try-again', self.params.tryAgain, function () {

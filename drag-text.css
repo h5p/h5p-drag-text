@@ -65,7 +65,7 @@
   right: 0.3em;
   font-family: 'H5PFontAwesome4';
   content: "\f00c";
-  color: #39692e;
+  color: #255c41;
 }
 
 .h5p-drag-text .h5p-drag-wrong-feedback:before {
@@ -73,7 +73,7 @@
   right: 0.3em;
   font-family: 'H5PFontAwesome4';
   content: "\f00d";
-  color: #c33f62;
+  color: #b71c1c;
 }
 
 /* Dropzone styling */
@@ -194,7 +194,7 @@
 /* Show solution container */
 .h5p-drag-text .h5p-drag-show-solution-container {
   position: relative;
-  color: #39692e;
+  color: #255c41;
   font-weight: bold;
   display: inline;
   padding-left: 0.5em;

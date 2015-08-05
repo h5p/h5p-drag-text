@@ -79,7 +79,7 @@ H5P.DragText = (function ($, Question) {
    */
   DragText.prototype.registerDomElements = function () {
     // Register task introduction text
-    this.setIntroduction(this.params.taskDescription);
+    this.setIntroduction('<p>' + this.params.taskDescription + '</p>');
 
     // Register task content area
     this.setContent(this.initDragText());

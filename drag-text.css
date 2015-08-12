@@ -125,7 +125,7 @@
   border: 0.1em solid #c6c6c6;
   overflow: hidden;
 
-  background: rgba(237,237,237,0.9);
+  background: #ddd;
 
   box-shadow: 0 0 0.3em rgba(0,0,0,0.2);
   z-index: 3;
@@ -138,16 +138,16 @@
 .h5p-drag-text .h5p-drag-draggable:not(.ui-state-disabled):hover {
   border: 0.1em solid rgb(212,190,216);
   color: #663366;
-  background: rgb(238,228,239);
+  background: #e4d2e4;
 }
 .h5p-drag-text .h5p-drag-draggable.h5p-drag-dropped {
   width: 100%;
   margin: -0.1em 0 0 0;
   padding: 0.1em 0.825em;
   white-space: nowrap;
-  color: #235e7c;
+  color: #1c4b62;
   border: 0.1em solid #a9c3d0;
-  background: #e3eaee;
+  background: #bcced5;
 }
 
 .h5p-drag-text .h5p-drag-draggable.ui-draggable-dragging {

@@ -115,7 +115,7 @@
 }
 
 .h5p-drag-text .h5p-drag-draggable {
-  line-height: 1.25em;
+  line-height: 1.25;
   cursor: pointer;
   border-radius: 0.25em;
   padding: 0.1em 0.6em;
@@ -161,19 +161,19 @@
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
   padding: 0;
   color: #255c41;
-  border: 0.1em solid #9dd8bb;
+  border: none;
   box-shadow: none;
-  line-height: 1.25em;
-  background: #9dd8bb
+  line-height: 1.5;
+  background: none;
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong {
   padding: 0;
-  border: 0.1em solid #f7d0d0;
+  border: none;
   color: #b71c1c;
   box-shadow: none;
-  line-height: 1.25em;
-  background: #f7d0d0
+  line-height: 1.5;
+  background: none;
 }
 
 /* Show solution container */

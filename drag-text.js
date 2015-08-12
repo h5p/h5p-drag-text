@@ -135,7 +135,7 @@ H5P.DragText = (function ($, Question) {
     self.addDropzoneWidth();
 
     //Find ratio of width to em, and make sure it is less than the predefined ratio, make sure widest draggable is less than a third of parent width.
-    if ((self.$inner.width() / parseFloat(self.$inner.css("font-size"), 10) > 23) && (self.widestDraggable <= (self.$inner.width() / 3))) {
+    if ((self.$inner.width() / parseFloat(self.$inner.css("font-size"), 10) > 43) && (self.widestDraggable <= (self.$inner.width() / 3))) {
       // Adds a class that floats the draggables to the right.
       self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
       // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.

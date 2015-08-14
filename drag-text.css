@@ -148,9 +148,6 @@
   color: #1a4473;
   border: 0.1em solid #a9c3d0;
   background: #cee0f4;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
 }
 
 .h5p-drag-text .h5p-drag-draggable.ui-draggable-dragging {

@@ -136,7 +136,7 @@
 
 .h5p-drag-text .h5p-drag-draggable.h5p-drag-dropped:not(.ui-state-disabled):hover,
 .h5p-drag-text .h5p-drag-draggable:not(.ui-state-disabled):hover {
-  border: 0.1em solid #edd6e9;
+  border: 0.1em solid rgb(212,190,216);
   color: #663366;
   background: #edd6e9;
 }
@@ -146,7 +146,7 @@
   padding: 0.1em 0.825em;
   white-space: nowrap;
   color: #1a4473;
-  border: 0.1em solid #cee0f4;
+  border: 0.1em solid #a9c3d0;
   background: #cee0f4;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;

@@ -89,16 +89,6 @@ H5P.DragText = (function ($, Question) {
   };
 
   /**
-   * Append field to wrapper.
-   * @public
-   * @param {jQuery} container the jQuery object which this module will attach itself to.
-   */
-  DragText.prototype.attach = function (container) {
-    this.setActivityStarted();
-    $(container).addClass(MAIN_CONTAINER).append(this.$inner);
-  };
-
-  /**
    * Initialize drag text task
    */
   DragText.prototype.initDragText = function () {

@@ -64,6 +64,9 @@ H5P.DragText = (function ($, Question) {
       this.previousState = this.contentData.previousState;
     }
 
+    // Keeps track of if Question has been answered
+    this.answered = false;
+
     // Init drag text task
     this.initDragText();
 
@@ -174,8 +177,13 @@ H5P.DragText = (function ($, Question) {
 
     //Retry button
     self.addButton('try-again', self.params.tryAgain, function () {
-      self.resetDraggables();
-      self.addDraggablesRandomly(self.$draggables);
+      // Reset and shuffle draggables if Question is answered
+      if (self.answered) {
+        self.resetDraggables();
+        self.addDraggablesRandomly(self.$draggables);
+      }
+      self.answered = false;
+
       self.hideEvaluation();
 
       self.hideButton('try-again');
@@ -486,6 +494,7 @@ H5P.DragText = (function ($, Question) {
   DragText.prototype.moveDraggableToDroppable = function (draggable, droppable) {
     draggable.removeFromZone();
     if (droppable !== null) {
+      this.answered = true;
       droppable.appendInsideDroppableTo(this.$draggables);
       droppable.setDraggable(draggable);
       draggable.appendDraggableTo(droppable.getDropzone());
@@ -579,7 +588,7 @@ H5P.DragText = (function ($, Question) {
    * @returns {Boolean} true
    */
   DragText.prototype.getAnswerGiven = function () {
-    return true;
+    return this.answered;
   };
 
   /**
@@ -636,6 +645,8 @@ H5P.DragText = (function ($, Question) {
    */
   DragText.prototype.resetTask = function () {
     var self = this;
+    // Reset task answer
+    self.answered = false;
     //Reset draggables parameters and position
     self.resetDraggables();
     //Hides solution text and re-enable draggables

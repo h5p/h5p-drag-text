@@ -3,7 +3,7 @@
   "description": "Drag words to their correct position in the text in order to complete this task.",
   "majorVersion": 1,
   "minorVersion": 3,
-  "patchVersion": 1,
+  "patchVersion": 4,
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 5

@@ -429,6 +429,11 @@ H5P.DragText = (function ($, Question) {
       revert: function (isValidDrop) {
         var dropzone = droppable;
         if (!isValidDrop) {
+          if (!self.$draggables.children().length) {
+            // Show draggables container
+            self.$draggables.css('display', '');
+          }
+
           self.moveDraggableToDroppable(draggable, null);
           return true;
         }
@@ -474,6 +479,10 @@ H5P.DragText = (function ($, Question) {
             if (droppable.isCorrect()) {
               droppable.disableDropzoneAndContainedDraggable();
             }
+          }
+          if (!self.$draggables.children().length) {
+            // Hide draggables container
+            self.$draggables.css('display', 'none');
           }
         }
       });
@@ -668,6 +677,8 @@ H5P.DragText = (function ($, Question) {
    */
   DragText.prototype.resetDraggables = function () {
     var self = this;
+    // Show draggables container
+    self.$draggables.css('display', '');
     self.draggables.forEach(function (entry) {
       self.moveDraggableToDroppable(entry, null);
     });

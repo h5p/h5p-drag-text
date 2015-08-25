@@ -720,13 +720,13 @@ H5P.DragText = (function ($, Question) {
 
     // Select words from user state
     this.previousState.forEach(function (draggedDraggableIndexes) {
-      var draggableIndexIsInvalid = isNaN(draggedDraggableIndexes.draggable)
-        || draggedDraggableIndexes.draggable >= self.draggables.length
-        || draggedDraggableIndexes.draggable < 0;
+      var draggableIndexIsInvalid = isNaN(draggedDraggableIndexes.draggable) ||
+        draggedDraggableIndexes.draggable >= self.draggables.length ||
+        draggedDraggableIndexes.draggable < 0;
 
-      var droppableIndexIsInvalid = isNaN(draggedDraggableIndexes.droppable)
-        || draggedDraggableIndexes.droppable >= self.droppables.length
-        || draggedDraggableIndexes.droppable < 0;
+      var droppableIndexIsInvalid = isNaN(draggedDraggableIndexes.droppable) ||
+        draggedDraggableIndexes.droppable >= self.droppables.length ||
+        draggedDraggableIndexes.droppable < 0;
 
       if (draggableIndexIsInvalid || droppableIndexIsInvalid) {
         throw new Error('Stored user state is invalid');

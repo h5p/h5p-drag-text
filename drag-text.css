@@ -11,337 +11,209 @@
 }
 
 /* The main containers for the module, specific to this module. */
-.h5p-drag {
+.h5p-drag-text {
   position: relative;
   background: rgba(255, 255, 255, 0.9);
   overflow: hidden;
-  font-family: Verdana, Arial, sans-serif;
-}
-.h5p-drag .h5p-drag-inner {
-  overflow: hidden;
-  padding: 1em;
 }
 
-.h5p-drag .h5p-drag-inner p {
+.h5p-drag-text .h5p-drag-inner p {
   font-size: 1em;
   font-weight: normal;
-  line-height: 1.75em;
   padding: 0;
   margin: 0 0 1em;
 }
-/* Header and footer blocks */
-.h5p-drag .h5p-drag-title {
-  margin: 0 0 0.4em;
-  border-bottom: 0.1em solid #ddd;
-}
-.h5p-drag .h5p-drag-title p {
-  margin: 0;
-}
-.h5p-drag .h5p-drag-footer {
-  margin-top: 0.4em;
-  border-top: 0.1em solid #ddd;
-}
 
-/* Evaluation container and evaluation emoticons */
-.h5p-drag .h5p-drag-evaluation-container {
-  float: left;
-  padding: 1em 0 0 0;
-  max-width: 30em;
-}
-.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score {
-  position: relative;
-  display: block;
-  background: #ffffff;
-  padding: 0.7em 0.5em;
-  border-radius: 0.6em;
-  margin-left: 5.5em;
-  z-index: 1;
-  border: 1px solid #ccc;
-  -webkit-filter: drop-shadow(0 0 0.2em #999999);
-  filter: drop-shadow(0 0 0.2em #999999);
-  line-height: 1.3em;
-}
-
-.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-emoticon:before {
-  display: block;
-  float: left;
-
-  font-family: icomoon-blanks;
-  font-size: 4em;
-  line-height: 1em; /* inherits 4em */
-  content: "\e605";
-}
-
-.h5p-drag .h5p-drag-evaluation-container.h5p-drag-evaluation-max-score .h5p-drag-evaluation-emoticon:before {
-  content: "\e606";
-}
-
-.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score:before,
-.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score:after {
-  right: 100%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-
-.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score:before {
-  margin-top: -11px;
-  top: 50%;
-  border-width: 11px;
-  border-color: transparent;
-  border-right-color: #ccc;
-}
-.h5p-drag .h5p-drag-evaluation-container .h5p-drag-evaluation-score:after {
-  margin-top: -10px;
-  top: 50%;
-  border-width: 10px;
-  border-color: transparent;
-  border-right-color: #ffffff;
-}
-
-/* Button bar and buttons */
-.h5p-drag .h5p-drag-button-bar {
-  margin-top: .8em;
-  min-height: 2.134em;
-}
-.h5p-drag button.h5p-drag-button {
-  float: right;
-  display: none;
-  font-size: 1em;
-  line-height: 1.2em;
-  padding: 0.2em 1em;
-  border: 0.2em solid #fff;
-  border-radius: 0.4em;
-  margin-left: 0.8em;
-  margin-bottom: 0.1em;
-  cursor: pointer;
-  color: #fff;
-  box-shadow: 0 0 0.5em #999;
-
-  background: rgb(100,152,254); /* Old browsers */
-  background: -moz-linear-gradient(top,  rgba(100,152,254,1) 0%, rgba(4,104,206,1) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(100,152,254,1)), color-stop(100%,rgba(4,104,206,1))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  rgba(100,152,254,1) 0%,rgba(4,104,206,1) 100%); /* IE10+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6498fe', endColorstr='#0468ce',GradientType=0 );
-}
-.h5p-drag button.h5p-drag-button:hover {
-  background: rgb(4,104,206); /* Old browsers */
-  background: -moz-linear-gradient(top,  rgba(4,104,206,1) 0%, rgba(100,152,254,1) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(4,104,206,1)), color-stop(100%,rgba(100,152,254,1))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  rgba(4,104,206,1) 0%,rgba(100,152,254,1) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  rgba(4,104,206,1) 0%,rgba(100,152,254,1) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  rgba(4,104,206,1) 0%,rgba(100,152,254,1) 100%); /* IE10+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0468ce', endColorstr='#6498fe',GradientType=0 ); /* IE6-9 */
-}
-
-.h5p-drag button.h5p-drag-button:before {
+.h5p-drag-text button.h5p-drag-button:before {
   font-family: 'H5PFontAwesome4';
   padding-right: 0.5em;
 }
 
 /* Button icons */
-.h5p-drag .h5p-drag-check-button:before {
+.h5p-drag-text .h5p-drag-check-button:before {
   content: "\f058";
 }
-.h5p-drag .h5p-drag-retry-button:before {
+.h5p-drag-text .h5p-drag-retry-button:before {
   content: "\f021";
 }
-.h5p-drag .h5p-drag-show-solution-button:before {
+.h5p-drag-text .h5p-drag-show-solution-button:before {
   content: "\f06e";
 }
 
 /* Buttons starting state: */
-.h5p-drag .h5p-drag-check-button {
+.h5p-drag-text .h5p-drag-check-button {
   display: inline-block;
 }
-.h5p-drag .h5p-drag-retry-button {
+.h5p-drag-text .h5p-drag-retry-button {
   display: none;
 }
-.h5p-drag .h5p-drag-show-solution-button {
+.h5p-drag-text .h5p-drag-show-solution-button {
   display: none;
 }
 
 /* Tooltip styling */
-.h5p-drag .joubel-tip-container {
+.h5p-drag-text .joubel-tip-container {
   top: -1.2em;
   right: -1.2em;
   position: absolute;
+  z-index: 4;
 }
 
 /* Feedback for dropzones */
-.h5p-drag-correct-feedback:before {
+.h5p-drag-text .h5p-drag-correct-feedback:before {
   position: absolute;
   right: 0.3em;
   font-family: 'H5PFontAwesome4';
   content: "\f00c";
-  color: #39692e;
+  color: #255c41;
 }
 
-.h5p-drag-wrong-feedback:before {
+.h5p-drag-text .h5p-drag-wrong-feedback:before {
   position: absolute;
   right: 0.3em;
   font-family: 'H5PFontAwesome4';
   content: "\f00d";
-  color: #c33f62;
+  color: #b71c1c;
 }
 
 /* Dropzone styling */
-.h5p-drag-dropzone-container {
+.h5p-drag-text .h5p-drag-dropzone-container {
   position: relative;
-  white-space: nowrap;
-  display: inline-block;
+  display: inline;
   padding-right: 0.1em;
-  padding-top: 0.3em;
 }
-.h5p-drag-dropzone {
+.h5p-drag-text .h5p-drag-dropzone {
   position:relative;
   top: -0.1em;
-  padding-right: 1.65em;
   width: 10em;
   height: 1.25em;
   background-color: #cee0f4;
-  border-radius: 0.6em;
+  border-radius: 0.25em;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  padding-top: 0.1em;
-  padding-bottom: 0.1em;
+  padding: 0.1em 1.65em 0.1em 0;
+}
+
+.h5p-drag-text .h5p-drag-dropzone.h5p-drag-correct-feedback {
+  background: #9dd8bb;
+}
+
+.h5p-drag-text .h5p-drag-dropzone.h5p-drag-wrong-feedback {
+  background: #f7d0d0;
+}
+
+.h5p-drag-text .h5p-drag-dropzone:before {
+  line-height: 1.25;
 }
 
 /* Draggable styling */
-.h5p-drag-draggables-container {
+.h5p-drag-text .h5p-drag-draggables-container {
   position: relative;
   padding-top: 0.5em;
   display: inline-block;
 }
 
-.h5p-drag-draggable {
+.h5p-drag-text .h5p-drag-draggable {
+  line-height: 1.25;
   cursor: pointer;
-  border-radius: 0.6em;
-  padding: 0.15em 0.2em;
+  border-radius: 0.25em;
+  padding: 0.1em 0.6em;
   margin: 0.3em;
   text-align: center;
   display: inline-block;
   border: 0.1em solid #c6c6c6;
   overflow: hidden;
 
-  background: rgb(255,255,255);
-  background: -webkit-linear-gradient(to bottom, rgb(255,255,255) 0%, rgb(224,224,224) 100%);
-  background: linear-gradient(to bottom, rgb(255,255,255) 0%, rgb(224,224,224) 100%);
+  background: #ddd;
 
-  box-shadow: 0em 0em 0.4em rgba(0,0,0,0.5);
+  box-shadow: 0 0 0.3em rgba(0,0,0,0.2);
   z-index: 3;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
 }
-.h5p-drag-draggable:hover {
-  border: 0.1em solid #ceb8d2;
+
+.h5p-drag-text .h5p-drag-draggable.h5p-drag-dropped:not(.ui-state-disabled):hover,
+.h5p-drag-text .h5p-drag-draggable:not(.ui-state-disabled):hover {
+  border: 0.1em solid rgb(212,190,216);
   color: #663366;
-  background: rgb(234,224,236);
-  background: -webkit-linear-gradient(to bottom, rgb(234,224,236) 0%, rgb(212,190,216) 100%);
-  background: linear-gradient(to bottom, rgb(234,224,236) 0%, rgb(212,190,216) 100%);
+  background: #edd6e9;
 }
-.h5p-drag-draggable.h5p-drag-dropped {
-  padding-right: 0.55em;
-  padding-left: 0.55em;
+.h5p-drag-text .h5p-drag-draggable.h5p-drag-dropped {
   width: 100%;
+  margin: -0.1em 0 0 0;
+  padding: 0.1em 0.825em;
   white-space: nowrap;
-  color: #235e7c;
+  color: #1a4473;
   border: 0.1em solid #a9c3d0;
-  background: rgb(227,234,238);
-  background: -webkit-linear-gradient(to bottom, rgb(227,234,238) 0%, rgb(203,222,231) 100%);
-  background: linear-gradient(to bottom, rgb(227,234,238) 0%, rgb(203,222,231) 100%);
+  background: #cee0f4;
 }
 
-.h5p-drag-draggable.ui-draggable-dragging {
+.h5p-drag-text .h5p-drag-draggable.ui-draggable-dragging {
   opacity: 0.5;
   box-shadow: 0em 0em 0.8em rgba(0,0,0,0.5);
 }
-.h5p-drag-draggable.ui-state-disabled {
+.h5p-drag-text .h5p-drag-draggable.ui-state-disabled {
   opacity: 1;
 }
-/* Reset to no hover effect when disabled */
-.h5p-drag-draggables-container .h5p-drag-draggable.ui-state-disabled:hover {
-  opacity: 1;
-  border: 0.1em solid #c6c6c6;
-  overflow: hidden;
-  color: #3b3b3b;
 
-  background: rgb(255,255,255);
-  background: -webkit-linear-gradient(to bottom, rgb(255,255,255) 0%, rgb(224,224,224) 100%);
-  background: linear-gradient(to bottom, rgb(255,255,255) 0%, rgb(224,224,224) 100%);
-}
-
-.h5p-drag-dropped.h5p-drag-draggable-correct {
-  padding-right: 0em;
-  padding-left: 0em;
-  color: #39692e;
-  border: 0.1em solid #afcdaa;
+.h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
+  padding: 0;
+  color: #255c41;
+  border: none;
   box-shadow: none;
-  background: rgb(209,226,206);
-  background: -webkit-linear-gradient(to bottom, rgb(209,226,206) 0%, rgb(209,226,206) 100%);
-  background: linear-gradient(to bottom, rgb(209,226,206) 0%, rgb(209,226,206) 100%);
+  line-height: 1.5;
+  background: none;
 }
 
-.h5p-drag-dropped.h5p-drag-draggable-wrong {
-  padding-right: 0em;
-  padding-left: 0em;
-  border: 0.1em solid #ce9b9b;
-  color: #c33f62;
-  background: rgb(230,206,209);
-  background: -webkit-linear-gradient(to bottom, rgb(230,206,209) 0%, rgb(230,206,209) 100%);
-  background: linear-gradient(to bottom, rgb(230,206,209) 0%, rgb(230,206,209) 100%);
+.h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong {
+  padding: 0;
+  border: none;
+  color: #b71c1c;
+  box-shadow: none;
+  line-height: 1.5;
+  background: none;
 }
 
 /* Show solution container */
-.h5p-drag-show-solution-container {
+.h5p-drag-text .h5p-drag-show-solution-container {
   position: relative;
-  color: #39692e;
+  color: #255c41;
   font-weight: bold;
-  display: inline-block;
+  display: inline;
   padding-left: 0.5em;
 }
 
-.h5p-drag-droppable-words {
-  line-height: 1em;
+.h5p-drag-text .h5p-drag-droppable-words {
+  line-height: 1.75;
 }
 
-.ui-draggable-dragging {
+.h5p-drag-text .ui-draggable-dragging {
   z-index: 2;
 }
 
-.h5p-drag-task {
+.h5p-drag-text .h5p-drag-task {
   width: 100%;
   position: relative;
   display: inline-block;
 }
 
 /* Wide Screen css : */
-.h5p-drag-wide-screen {
+.h5p-drag-text .h5p-drag-wide-screen {
   float: right;
   padding-top: 0em;
 }
 
-.h5p-drag-draggable-wide-screen {
+.h5p-drag-text .h5p-drag-draggable-wide-screen {
   display: block;
 }
-.h5p-drag .h5p-drag-draggable.h5p-drag-dropped {
-  margin: 0em 0.175em;
-  padding-top: 0em;
-  padding-bottom: 0.15em;
-}
 
-.h5p-drag-dropzone.ui-droppable.ui-droppable-disabled.ui-state-disabled{
+.h5p-drag-text .h5p-drag-dropzone.ui-droppable.ui-droppable-disabled.ui-state-disabled{
   opacity: 1;
 }
 
 /* Use ellipsis for long draggables */
-.h5p-drag .h5p-drag-draggable.h5p-drag-dropped.truncate {
+.h5p-drag-text .h5p-drag-draggable.h5p-drag-dropped.truncate {
   text-overflow: ellipsis;
 }

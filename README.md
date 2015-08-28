@@ -1,7 +1,7 @@
-H5P Drag And Drop Text
+H5P Drag Text
 ==========
 
-Drag words to their correct position in the text in order to complete this task.
+Drag and drop pieces of text to create complete sentences.
 
 ## License
 

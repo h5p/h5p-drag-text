@@ -120,6 +120,7 @@
   border-radius: 0.25em;
   padding: 0.1em 0.6em;
   margin: 0.3em;
+  vertical-align: top;
   text-align: center;
   display: inline-block;
   border: 0.1em solid #c6c6c6;

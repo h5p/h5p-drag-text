@@ -1,12 +1,12 @@
 {
-  "title": "Drag and drop text",
-  "description": "Drag words to their correct position in the text in order to complete this task.",
+  "title": "Drag Text",
+  "description": "Drag and drop pieces of text to create complete sentences.",
   "majorVersion": 1,
   "minorVersion": 3,
-  "patchVersion": 4,
+  "patchVersion": 2,
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 5
+    "minorVersion": 6
   },
   "runnable": 1,
   "author": "Joubel AS",
@@ -37,6 +37,11 @@
       "machineName": "H5P.JoubelUI",
       "majorVersion": 1,
       "minorVersion": 1
+    },
+    {
+      "machineName": "H5P.Question",
+      "majorVersion": 1,
+      "minorVersion": 0
     }
   ]
 }

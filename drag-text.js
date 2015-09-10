@@ -60,7 +60,7 @@ H5P.DragText = (function ($, Question) {
     }, params);
 
     this.contentData = contentData;
-    if (this.contentData !== undefined && this.contentData.previousState !== undefined) {
+    if (this.contentData !== undefined && this.contentData.previousState !== undefined && this.contentData.previousState.length !== undefined) {
       this.previousState = this.contentData.previousState;
     }
 

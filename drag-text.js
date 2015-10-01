@@ -441,7 +441,7 @@ H5P.DragText = (function ($, Question) {
           if (dropzone !== null) {
             dropzone.addFeedback();
           }
-          self.instantFeedbackEvaluation();
+          self.instantFeedbackEvaluation(true);
         }
         return !isValidDrop;
       }
@@ -532,7 +532,7 @@ H5P.DragText = (function ($, Question) {
    * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
    * @public
    */
-  DragText.prototype.instantFeedbackEvaluation = function () {
+  DragText.prototype.instantFeedbackEvaluation = function (revert) {
     var self = this;
     var allFilled = true;
     self.draggables.forEach(function (entry) {
@@ -556,7 +556,9 @@ H5P.DragText = (function ($, Question) {
       }
 
       // Shows evaluation text
-      self.showEvaluation();
+      if (!revert) {
+        self.showEvaluation();
+      }
     }
   };
 

@@ -1,37 +1,22 @@
-var H5P = H5P || {};
-
 /**
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($) {
+H5P.DragText = (function ($, Question) {
   //CSS Main Containers:
   var MAIN_CONTAINER = "h5p-drag";
   var INNER_CONTAINER = "h5p-drag-inner";
   var TASK_CONTAINER = "h5p-drag-task";
-  var TITLE_CONTAINER = "h5p-drag-title";
   var WORDS_CONTAINER = "h5p-drag-droppable-words";
-  var FOOTER_CONTAINER = "h5p-drag-footer";
-  var EVALUATION_CONTAINER = "h5p-drag-evaluation-container";
-  var BUTTON_CONTAINER = "h5p-drag-button-bar";
   var DROPZONE_CONTAINER = "h5p-drag-dropzone-container";
   var DRAGGABLES_CONTAINER = "h5p-drag-draggables-container";
 
   //Special Sub-containers:
-  var EVALUATION_SCORE = "h5p-drag-evaluation-score";
-  var EVALUATION_EMOTICON = "h5p-drag-evaluation-emoticon";
-  var EVALUATION_MAX_SCORE = "h5p-drag-evaluation-max-score";
   var DROPZONE = "h5p-drag-dropzone";
   var DRAGGABLE = "h5p-drag-draggable";
   var SHOW_SOLUTION_CONTAINER = "h5p-drag-show-solution-container";
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
-
-  //CSS Buttons:
-  var BUTTONS = "h5p-drag-button";
-  var CHECK_BUTTON = "h5p-drag-check-button";
-  var RETRY_BUTTON = "h5p-drag-retry-button";
-  var SHOW_SOLUTION_BUTTON = 'h5p-drag-show-solution-button';
 
   //CSS Dropzone feedback:
   var CORRECT_FEEDBACK = 'h5p-drag-correct-feedback';
@@ -44,6 +29,9 @@ H5P.DragText = (function ($) {
 
   /**
    * Initialize module.
+   *
+   * @class H5P.DragText
+   * @extends H5P.Question
    * @param {Object} params Behavior settings
    * @param {Number} contentId Content identification
    * @param {Object} contentData Object containing task specific content data
@@ -53,7 +41,7 @@ H5P.DragText = (function ($) {
   function DragText(params, contentId, contentData) {
     this.$ = $(this);
     this.contentId = contentId;
-    H5P.EventDispatcher.call(this);
+    Question.call(this, 'drag-text');
 
     // Set default behavior.
     this.params = $.extend({}, {
@@ -76,22 +64,31 @@ H5P.DragText = (function ($) {
       this.previousState = this.contentData.previousState;
     }
 
+    // Keeps track of if Question has been answered
+    this.answered = false;
+
     // Init drag text task
     this.initDragText();
 
     this.on('resize', this.resize, this);
   }
 
-  DragText.prototype = Object.create(H5P.EventDispatcher.prototype);
+  DragText.prototype = Object.create(Question.prototype);
   DragText.prototype.constructor = DragText;
 
   /**
-   * Append field to wrapper.
-   * @public
-   * @param {jQuery} container the jQuery object which this module will attach itself to.
+   * Registers this question type's DOM elements before they are attached.
+   * Called from H5P.Question.
    */
-  DragText.prototype.attach = function (container) {
-    $(container).addClass(MAIN_CONTAINER).append(this.$inner);
+  DragText.prototype.registerDomElements = function () {
+    // Register task introduction text
+    this.setIntroduction('<p>' + this.params.taskDescription + '</p>');
+
+    // Register task content area
+    this.setContent(this.initDragText());
+
+    // Register buttons
+    this.addButtons();
   };
 
   /**
@@ -102,19 +99,16 @@ H5P.DragText = (function ($) {
       class: INNER_CONTAINER
     });
 
-    $('<div/>', {
-      html: this.params.taskDescription,
-      class: TITLE_CONTAINER
-    }).appendTo(this.$inner);
-
-
+    // Create task
     this.addTaskTo(this.$inner);
-
-    // Add score and button containers.
-    this.addFooter();
 
     // Set stored user state
     this.setH5PUserState();
+
+    // Notify that activity has been started
+    this.setActivityStarted();
+
+    return this.$inner;
   };
 
   /**
@@ -123,22 +117,6 @@ H5P.DragText = (function ($) {
    */
   DragText.prototype.resize = function () {
     this.changeLayoutToFitWidth();
-  };
-
-  /**
-   * Append footer to inner block.
-   * @public
-   */
-  DragText.prototype.addFooter = function () {
-    this.$footer = $('<div/>', {
-      'class': FOOTER_CONTAINER
-    }).appendTo(this.$inner);
-
-    this.$evaluation = $('<div/>', {
-      'class': EVALUATION_CONTAINER
-    }).appendTo(this.$footer);
-
-    this.addButtons();
   };
 
   /**
@@ -178,72 +156,56 @@ H5P.DragText = (function ($) {
    */
   DragText.prototype.addButtons = function () {
     var self = this;
-    self.$buttonContainer = $('<div/>', {'class': BUTTON_CONTAINER});
 
     // Checking answer button
-    self.$checkAnswerButton = $('<button/>', {
-      'class': BUTTONS + ' ' + CHECK_BUTTON,
-      type: 'button',
-      html: this.params.checkAnswer
-    }).appendTo(self.$buttonContainer).click(function () {
+    self.addButton('check-answer', self.params.checkAnswer, function () {
       if (!self.showEvaluation()) {
         if (self.params.behaviour.enableRetry) {
-          self.$retryButton.show();
+          self.showButton('try-again');
         }
         if (self.params.behaviour.enableSolutionsButton) {
-          self.$showAnswersButton.show();
+          self.showButton('show-solution');
         }
-        self.$checkAnswerButton.hide();
+        self.hideButton('check-answer');
         self.disableDraggables();
       } else {
-        self.$showAnswersButton.hide();
-        self.$retryButton.hide();
-        self.$checkAnswerButton.hide();
+        self.hideButton('show-solution');
+        self.hideButton('try-again');
+        self.hideButton('check-answer');
       }
-
-    });
-
-    if (self.params.behaviour.instantFeedback) {
-      self.$checkAnswerButton.hide();
-    } else {
-      self.$checkAnswerButton.show();
-    }
+    }, !self.params.behaviour.instantFeedback);
 
     //Retry button
-    self.$retryButton =  $('<button/>', {
-      'class': BUTTONS + ' ' + RETRY_BUTTON,
-      type: 'button',
-      html: this.params.tryAgain
-    }).appendTo(self.$buttonContainer).click(function () {
-      self.resetDraggables();
-      self.addDraggablesRandomly(self.$draggables);
+    self.addButton('try-again', self.params.tryAgain, function () {
+      // Reset and shuffle draggables if Question is answered
+      if (self.answered) {
+        self.resetDraggables();
+        self.addDraggablesRandomly(self.$draggables);
+      }
+      self.answered = false;
+
       self.hideEvaluation();
 
-      self.$retryButton.hide();
-      self.$showAnswersButton.hide();
+      self.hideButton('try-again');
+      self.hideButton('show-solution');
+
       if (self.params.behaviour.instantFeedback) {
         self.enableAllDropzonesAndDraggables();
       } else {
-        self.$checkAnswerButton.show();
+        self.showButton('check-answer');
         self.enableDraggables();
       }
       self.hideAllSolutions();
-    });
+    }, false);
 
     //Show Solution button
-    self.$showAnswersButton = $('<button/>', {
-      'class': BUTTONS + ' ' + SHOW_SOLUTION_BUTTON,
-      type: 'button',
-      html: this.params.showSolution
-    }).appendTo(self.$buttonContainer).click(function () {
+    self.addButton('show-solution', self.params.showSolution, function () {
       self.droppables.forEach(function (droppable) {
         droppable.showSolution();
       });
       self.disableDraggables();
-      self.$showAnswersButton.hide();
-    });
-
-    self.$buttonContainer.appendTo(self.$footer);
+      self.hideButton('show-solution');
+    }, false);
   };
 
   /**
@@ -270,35 +232,23 @@ H5P.DragText = (function ($) {
     var score = this.correctAnswers;
     var maxScore = this.droppables.length;
 
-    this.triggerXAPIScored(score, maxScore, 'completed');
+    this.triggerXAPIScored(score, maxScore, 'answered');
 
     var scoreText = this.params.score.replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());
 
-    //Append emoticon to evaluation container.
-    $('<div/>', {
-      'class': EVALUATION_EMOTICON
-    }).appendTo(this.$evaluation);
-
-    //Append score to evaluation container.
-    $('<div/>', {
-      'class': EVALUATION_SCORE,
-      html: scoreText
-    }).appendTo(this.$evaluation);
-
     if (score === maxScore) {
-      //Add happy emoticon
-      this.$evaluation.addClass(EVALUATION_MAX_SCORE);
-
       //Hide buttons and disable task
-      this.$checkAnswerButton.hide();
-      this.$showAnswersButton.hide();
-      this.$retryButton.hide();
+      this.hideButton('check-answer');
+      this.hideButton('show-solution');
+      this.hideButton('try-again');
       this.disableDraggables();
-    } else {
-      this.$evaluation.removeClass(EVALUATION_MAX_SCORE);
     }
     this.trigger('resize');
+
+    // Set feedback score
+    this.setFeedback(scoreText, score, maxScore);
+
     return score === maxScore;
   };
 
@@ -320,7 +270,7 @@ H5P.DragText = (function ($) {
    * Clear the evaluation text.
    */
   DragText.prototype.hideEvaluation = function () {
-    this.$evaluation.html('');
+    this.setFeedback();
     this.trigger('resize');
   };
 
@@ -479,6 +429,11 @@ H5P.DragText = (function ($) {
       revert: function (isValidDrop) {
         var dropzone = droppable;
         if (!isValidDrop) {
+          if (!self.$draggables.children().length) {
+            // Show draggables container
+            self.$draggables.css('display', '');
+          }
+
           self.moveDraggableToDroppable(draggable, null);
           return true;
         }
@@ -486,7 +441,7 @@ H5P.DragText = (function ($) {
           if (dropzone !== null) {
             dropzone.addFeedback();
           }
-          self.instantFeedbackEvaluation();
+          self.instantFeedbackEvaluation(true);
         }
         return !isValidDrop;
       }
@@ -494,8 +449,8 @@ H5P.DragText = (function ($) {
 
     var draggable = new Draggable(answer, $draggable);
     draggable.on('xAPI', function (event) {
-      if (event.getVerb() === 'attempted') {
-        self.triggerXAPI('attempted');
+      if (event.getVerb() === 'interacted') {
+        self.triggerXAPI('interacted');
       }
     });
 
@@ -525,6 +480,10 @@ H5P.DragText = (function ($) {
               droppable.disableDropzoneAndContainedDraggable();
             }
           }
+          if (!self.$draggables.children().length) {
+            // Hide draggables container
+            self.$draggables.css('display', 'none');
+          }
         }
       });
 
@@ -544,6 +503,7 @@ H5P.DragText = (function ($) {
   DragText.prototype.moveDraggableToDroppable = function (draggable, droppable) {
     draggable.removeFromZone();
     if (droppable !== null) {
+      this.answered = true;
       droppable.appendInsideDroppableTo(this.$draggables);
       droppable.setDraggable(draggable);
       draggable.appendDraggableTo(droppable.getDropzone());
@@ -572,15 +532,15 @@ H5P.DragText = (function ($) {
    * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
    * @public
    */
-  DragText.prototype.instantFeedbackEvaluation = function () {
+  DragText.prototype.instantFeedbackEvaluation = function (revert) {
     var self = this;
     var allFilled = true;
     self.draggables.forEach(function (entry) {
       if (entry.insideDropzone === null) {
         allFilled = false;
         //Hides "retry" and "show solution" buttons.
-        self.$retryButton.hide();
-        self.$showAnswersButton.hide();
+        self.hideButton('try-again');
+        self.hideButton('show-solution');
 
         //Hides evaluation text.
         self.hideEvaluation();
@@ -589,14 +549,16 @@ H5P.DragText = (function ($) {
     if (allFilled) {
       //Shows "retry" and "show solution" buttons.
       if (self.params.behaviour.enableSolutionsButton) {
-        self.$showAnswersButton.show();
+        self.showButton('show-solution');
       }
       if (self.params.behaviour.enableRetry) {
-        self.$retryButton.show();
+        self.showButton('try-again');
       }
 
-      //Shows evaluation text
-      self.showEvaluation();
+      // Shows evaluation text
+      if (!revert) {
+        self.showEvaluation();
+      }
     }
   };
 
@@ -637,7 +599,7 @@ H5P.DragText = (function ($) {
    * @returns {Boolean} true
    */
   DragText.prototype.getAnswerGiven = function () {
-    return true;
+    return this.answered;
   };
 
   /**
@@ -681,9 +643,9 @@ H5P.DragText = (function ($) {
     });
     this.disableDraggables();
     //Remove all buttons in "show solution" mode.
-    this.$retryButton.hide();
-    this.$showAnswersButton.hide();
-    this.$checkAnswerButton.hide();
+    this.hideButton('try-again');
+    this.hideButton('show-solution');
+    this.hideButton('check-answer');
     this.trigger('resize');
   };
 
@@ -694,16 +656,19 @@ H5P.DragText = (function ($) {
    */
   DragText.prototype.resetTask = function () {
     var self = this;
+    // Reset task answer
+    self.answered = false;
     //Reset draggables parameters and position
     self.resetDraggables();
     //Hides solution text and re-enable draggables
     self.hideEvaluation();
     self.enableAllDropzonesAndDraggables();
     //Show and hide buttons
-    self.$retryButton.hide();
-    self.$showAnswersButton.hide();
+    self.hideButton('try-again');
+    self.hideButton('show-solution');
+
     if (!self.params.behaviour.instantFeedback) {
-      self.$checkAnswerButton.show();
+      self.showButton('check-answer');
     }
     self.hideAllSolutions();
     this.trigger('resize');
@@ -714,6 +679,8 @@ H5P.DragText = (function ($) {
    */
   DragText.prototype.resetDraggables = function () {
     var self = this;
+    // Show draggables container
+    self.$draggables.css('display', '');
     self.draggables.forEach(function (entry) {
       self.moveDraggableToDroppable(entry, null);
     });
@@ -755,13 +722,13 @@ H5P.DragText = (function ($) {
 
     // Select words from user state
     this.previousState.forEach(function (draggedDraggableIndexes) {
-      var draggableIndexIsInvalid = isNaN(draggedDraggableIndexes.draggable)
-        || draggedDraggableIndexes.draggable >= self.draggables.length
-        || draggedDraggableIndexes.draggable < 0;
+      var draggableIndexIsInvalid = isNaN(draggedDraggableIndexes.draggable) ||
+        draggedDraggableIndexes.draggable >= self.draggables.length ||
+        draggedDraggableIndexes.draggable < 0;
 
-      var droppableIndexIsInvalid = isNaN(draggedDraggableIndexes.droppable)
-        || draggedDraggableIndexes.droppable >= self.droppables.length
-        || draggedDraggableIndexes.droppable < 0;
+      var droppableIndexIsInvalid = isNaN(draggedDraggableIndexes.droppable) ||
+        draggedDraggableIndexes.droppable >= self.droppables.length ||
+        draggedDraggableIndexes.droppable < 0;
 
       if (draggableIndexIsInvalid || droppableIndexIsInvalid) {
         throw new Error('Stored user state is invalid');
@@ -899,7 +866,7 @@ H5P.DragText = (function ($) {
    * @param {Droppable} droppable The droppable this draggable will be added to.
    */
   Draggable.prototype.addToZone = function (droppable) {
-    this.triggerXAPI('attempted');
+    this.triggerXAPI('interacted');
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }
@@ -1142,4 +1109,4 @@ H5P.DragText = (function ($) {
 
   return DragText;
 
-}(H5P.jQuery));
+}(H5P.jQuery, H5P.Question));

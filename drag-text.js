@@ -447,10 +447,8 @@ H5P.DragText = (function ($, Question) {
     });
 
     var draggable = new Draggable(answer, $draggable);
-    draggable.on('xAPI', function (event) {
-      if (event.getVerb() === 'interacted') {
-        self.triggerXAPI('interacted');
-      }
+    draggable.on('addedToZone', function (event) {
+      self.triggerXAPI('interacted');
     });
 
     //Make the dropzone
@@ -859,7 +857,7 @@ H5P.DragText = (function ($, Question) {
    * @param {Droppable} droppable The droppable this draggable will be added to.
    */
   Draggable.prototype.addToZone = function (droppable) {
-    this.triggerXAPI('interacted');
+    this.trigger('addedToZone');
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }

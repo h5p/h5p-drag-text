@@ -443,7 +443,8 @@ H5P.DragText = (function ($, Question) {
           self.instantFeedbackEvaluation();
         }
         return !isValidDrop;
-      }
+      },
+      containment: self.$taskContainer
     });
 
     var draggable = new Draggable(answer, $draggable);

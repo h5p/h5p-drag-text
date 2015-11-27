@@ -105,9 +105,6 @@ H5P.DragText = (function ($, Question) {
     // Set stored user state
     this.setH5PUserState();
 
-    // Notify that activity has been started
-    this.setActivityStarted();
-
     return this.$inner;
   };
 

@@ -105,9 +105,6 @@ H5P.DragText = (function ($, Question) {
     // Set stored user state
     this.setH5PUserState();
 
-    // Notify that activity has been started
-    this.setActivityStarted();
-
     return this.$inner;
   };
 
@@ -220,7 +217,6 @@ H5P.DragText = (function ($, Question) {
 
   /**
    * Evaluate task and display score text for word markings.
-   * @public
    *
    * @return {Boolean} Returns true if maxScore was achieved.
    */
@@ -431,7 +427,7 @@ H5P.DragText = (function ($, Question) {
         if (!isValidDrop) {
           if (!self.$draggables.children().length) {
             // Show draggables container
-            self.$draggables.css('display', '');
+            self.$draggables.removeClass('hide');
           }
 
           self.moveDraggableToDroppable(draggable, null);
@@ -441,17 +437,16 @@ H5P.DragText = (function ($, Question) {
           if (dropzone !== null) {
             dropzone.addFeedback();
           }
-          self.instantFeedbackEvaluation(true);
+          self.instantFeedbackEvaluation();
         }
         return !isValidDrop;
-      }
+      },
+      containment: self.$taskContainer
     });
 
     var draggable = new Draggable(answer, $draggable);
-    draggable.on('xAPI', function (event) {
-      if (event.getVerb() === 'interacted') {
-        self.triggerXAPI('interacted');
-      }
+    draggable.on('addedToZone', function (event) {
+      self.triggerXAPI('interacted');
     });
 
     //Make the dropzone
@@ -467,12 +462,10 @@ H5P.DragText = (function ($, Question) {
           self.draggables.forEach(function (draggable) {
             if (draggable.getDraggableElement().is(ui.draggable)) {
               self.moveDraggableToDroppable(draggable, droppable);
-
             }
           });
           if (self.params.behaviour.instantFeedback) {
             droppable.addFeedback();
-            self.instantFeedbackEvaluation();
             if (!self.params.behaviour.enableRetry) {
               droppable.disableDropzoneAndContainedDraggable();
             }
@@ -480,10 +473,9 @@ H5P.DragText = (function ($, Question) {
               droppable.disableDropzoneAndContainedDraggable();
             }
           }
-          if (!self.$draggables.children().length) {
-            // Hide draggables container
-            self.$draggables.css('display', 'none');
-          }
+
+          // Hide draggables container if it is empty
+          self.$draggables.toggleClass('hide', !self.$draggables.children().length);
         }
       });
 
@@ -530,9 +522,8 @@ H5P.DragText = (function ($, Question) {
 
   /**
    * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
-   * @public
    */
-  DragText.prototype.instantFeedbackEvaluation = function (revert) {
+  DragText.prototype.instantFeedbackEvaluation = function () {
     var self = this;
     var allFilled = true;
     self.draggables.forEach(function (entry) {
@@ -556,9 +547,7 @@ H5P.DragText = (function ($, Question) {
       }
 
       // Shows evaluation text
-      if (!revert) {
-        self.showEvaluation();
-      }
+      self.showEvaluation();
     }
   };
 
@@ -680,7 +669,7 @@ H5P.DragText = (function ($, Question) {
   DragText.prototype.resetDraggables = function () {
     var self = this;
     // Show draggables container
-    self.$draggables.css('display', '');
+    self.$draggables.removeClass('hide');
     self.draggables.forEach(function (entry) {
       self.moveDraggableToDroppable(entry, null);
     });
@@ -866,7 +855,7 @@ H5P.DragText = (function ($, Question) {
    * @param {Droppable} droppable The droppable this draggable will be added to.
    */
   Draggable.prototype.addToZone = function (droppable) {
-    this.triggerXAPI('interacted');
+    this.trigger('addedToZone');
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }

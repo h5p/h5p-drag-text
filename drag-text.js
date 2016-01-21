@@ -85,7 +85,7 @@ H5P.DragText = (function ($, Question) {
     this.setIntroduction('<p>' + this.params.taskDescription + '</p>');
 
     // Register task content area
-    this.setContent(this.initDragText());
+    this.setContent(this.$inner);
 
     // Register buttons
     this.addButtons();
@@ -193,7 +193,7 @@ H5P.DragText = (function ($, Question) {
         self.enableDraggables();
       }
       self.hideAllSolutions();
-    }, false);
+    }, self.initShowTryAgainButton || false);
 
     //Show Solution button
     self.addButton('show-solution', self.params.showSolution, function () {
@@ -202,7 +202,7 @@ H5P.DragText = (function ($, Question) {
       });
       self.disableDraggables();
       self.hideButton('show-solution');
-    }, false);
+    }, self.initShowShowSolutionButton || false);
   };
 
   /**
@@ -525,18 +525,8 @@ H5P.DragText = (function ($, Question) {
    */
   DragText.prototype.instantFeedbackEvaluation = function () {
     var self = this;
-    var allFilled = true;
-    self.draggables.forEach(function (entry) {
-      if (entry.insideDropzone === null) {
-        allFilled = false;
-        //Hides "retry" and "show solution" buttons.
-        self.hideButton('try-again');
-        self.hideButton('show-solution');
+    var allFilled = self.isAllAnswersFilled();
 
-        //Hides evaluation text.
-        self.hideEvaluation();
-      }
-    });
     if (allFilled) {
       //Shows "retry" and "show solution" buttons.
       if (self.params.behaviour.enableSolutionsButton) {
@@ -548,7 +538,30 @@ H5P.DragText = (function ($, Question) {
 
       // Shows evaluation text
       self.showEvaluation();
+    } else {
+      //Hides "retry" and "show solution" buttons.
+      self.hideButton('try-again');
+      self.hideButton('show-solution');
+
+      //Hides evaluation text.
+      self.hideEvaluation();
     }
+  };
+
+  /**
+   * Check if all answers are filled
+   * @returns {boolean} allFilled Returns true if all answers are answered
+   */
+  DragText.prototype.isAllAnswersFilled = function () {
+    var self = this;
+    var allFilled = true;
+    self.draggables.forEach(function (entry) {
+      if (entry.insideDropzone === null) {
+        allFilled = false;
+      }
+    });
+
+    return allFilled;
   };
 
   /**
@@ -742,7 +755,18 @@ H5P.DragText = (function ($, Question) {
 
     // Show evaluation if task is finished
     if (self.params.behaviour.instantFeedback) {
-      self.instantFeedbackEvaluation();
+
+      // Show buttons if not max score and all answers filled
+      if (self.isAllAnswersFilled() && !self.showEvaluation()) {
+
+        //Shows "retry" and "show solution" buttons.
+        if (self.params.behaviour.enableSolutionsButton) {
+          self.initShowShowSolutionButton = true;
+        }
+        if (self.params.behaviour.enableRetry) {
+          self.initShowTryAgainButton = true;
+        }
+      }
     }
   };
 

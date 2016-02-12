@@ -431,7 +431,7 @@ H5P.DragText = (function ($, Question) {
           }
 
           self.moveDraggableToDroppable(draggable, null);
-          return true;
+          return false;
         }
         if (self.params.behaviour.instantFeedback) {
           if (dropzone !== null) {
@@ -439,7 +439,7 @@ H5P.DragText = (function ($, Question) {
           }
           self.instantFeedbackEvaluation();
         }
-        return !isValidDrop;
+        return false;
       },
       containment: self.$taskContainer
     });

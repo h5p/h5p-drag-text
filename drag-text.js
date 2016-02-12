@@ -378,7 +378,7 @@ H5P.DragText = (function ($, Question) {
       widestDragagble = width > widestDragagble ? width : widestDragagble;
 
       // Measure how big truncated draggable should be
-      if ($draggableElement.text().length >= 20) {
+      if ($tmp.text().length >= 20) {
         $tmp.html(draggable.getShortFormat());
         width = $tmp.width();
       }

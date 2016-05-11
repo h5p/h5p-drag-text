@@ -45,15 +45,15 @@
     "label": "Text for \"Show Solution\" button",
     "name": "showSolution",
     "type": "text",
-    "default": "Show Solution",
+    "default": "Solution",
     "common": true
   },
   {
     "label": "Feedback text",
     "name": "score",
     "type": "text",
-    "default": "Score : @score of @total.",
-    "description": "Feedback text, variables available: @score @total. Example: 'You got @score of @total possible points'",
+    "default": "@score of @total points",
+    "description": "Feedback text, variables available: @score and @total. Example: 'You got @score of @total possible points'",
     "common": true
   },
   {

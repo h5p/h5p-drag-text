@@ -156,6 +156,7 @@ H5P.DragText = (function ($, Question) {
 
     // Checking answer button
     self.addButton('check-answer', self.params.checkAnswer, function () {
+      self.answered = true;
       if (!self.showEvaluation()) {
         if (self.params.behaviour.enableRetry) {
           self.showButton('try-again');

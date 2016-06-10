@@ -55,8 +55,8 @@ H5P.DragText = (function ($, Question) {
         enableSolutionsButton: true,
         instantFeedback: false
       },
-      score: "@score of @total points",
-      showSolution : "Solution"
+      score: "You got @score of @total points",
+      showSolution : "Show solution"
     }, params);
 
     this.contentData = contentData;

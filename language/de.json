@@ -1,0 +1,49 @@
+{
+  "semantics":
+  [
+    {
+      "label": "Aufgabenbeschreibung",
+      "description": "Beschreibung, wie der Benutzer die Aufgabe lösen muss.",
+      "default": "Die Wörter in die korrekten Boxen ziehen.",
+      "tags": [
+
+      ]
+    },
+    {
+      "label": "Textfeld",
+      "placeholder": "Oslo ist die Hauptstadt von *Norwegen*",
+      "description": "Absetzbare Worte werden mit einem Asterisk (*) am Anfang und Ende des korrekten Wortes/der korreten Phrase gekennzeichnet. Es kann ein textlicher Tipp hinzugefügt werden, indem ein Doppelpunkt (:) vor dem Tipp verwendet wird. Beispiel: H5P kann durch das Verwenden von einem *Browser:Etwas das jeden Tag verwendet wird* bearbeitet werden."
+    },
+    {
+      "label": "Text des \"Überprüfen\" Buttons",
+      "default": "Überprüfen",
+    },
+    {
+      "label": "Text des \"Wiederholen\" Buttons",
+      "default": "Wiederholen",
+    },
+    {
+      "label": "Text des \"Lösung anzeigen\" Buttons",
+      "default": "Lösung anzeigen",
+    },
+    {
+      "label": "Feedbacktext",
+      "default": "Spielstand : @score von @total.",
+      "description": "Feedbacktext, verfügbare Variablen: @score @total. Beispiel: '@score von @total Gesamtpunkten erreicht'",
+    },
+    {
+      "label": "Verhaltenseinstellungen.",
+      "description": "Diese Optionen kontrollieren, wie sich eine Aufgabe verhält.",
+      "fields": [
+        {
+          "label": "\"Wiederholen\" aktivieren",
+        },
+        {
+          "label": "\"Lösung anzeigen\" Button aktivieren",
+        },
+        {
+          "label": "Unverzügliches Feedback",
+        }
+      ]
+    }
+  ]

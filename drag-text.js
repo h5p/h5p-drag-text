@@ -55,8 +55,8 @@ H5P.DragText = (function ($, Question) {
         enableSolutionsButton: true,
         instantFeedback: false
       },
-      score: "Score : @score of @total.",
-      showSolution : "Show Solution"
+      score: "You got @score of @total points",
+      showSolution : "Show solution"
     }, params);
 
     this.contentData = contentData;
@@ -156,6 +156,7 @@ H5P.DragText = (function ($, Question) {
 
     // Checking answer button
     self.addButton('check-answer', self.params.checkAnswer, function () {
+      self.answered = true;
       if (!self.showEvaluation()) {
         if (self.params.behaviour.enableRetry) {
           self.showButton('try-again');
@@ -218,9 +219,10 @@ H5P.DragText = (function ($, Question) {
   /**
    * Evaluate task and display score text for word markings.
    *
+   * @param {boolean} [skipXapi] Skip sending xAPI event answered
    * @return {Boolean} Returns true if maxScore was achieved.
    */
-  DragText.prototype.showEvaluation = function () {
+  DragText.prototype.showEvaluation = function (skipXapi) {
     this.hideEvaluation();
     this.calculateScore();
     this.showDropzoneFeedback();
@@ -228,7 +230,9 @@ H5P.DragText = (function ($, Question) {
     var score = this.correctAnswers;
     var maxScore = this.droppables.length;
 
-    this.triggerXAPIScored(score, maxScore, 'answered');
+    if (!skipXapi) {
+      this.triggerXAPIScored(score, maxScore, 'answered');
+    }
 
     var scoreText = this.params.score.replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());
@@ -639,6 +643,7 @@ H5P.DragText = (function ($, Question) {
    * @public
    */
   DragText.prototype.showSolutions = function () {
+    this.showEvaluation(true);
     this.droppables.forEach(function (droppable) {
       droppable.addFeedback();
       droppable.showSolution();

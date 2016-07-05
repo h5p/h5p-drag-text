@@ -8,7 +8,7 @@
     {
       "label": "Champ de texte",
       "placeholder": "Paris est la capitale de la *France*",
-      "description": "Les mots à placer sont identifiés par un astérisque (*) avant et après le mot/l'expression. Vous pouvez ajouter un indice à l'aide des deux points (:) placés devant le message d'aide. (Exemple: On peut créer des exercices h5p en utilisant un *navigateur:Quelque chose que vous utilisez tous les jours*."
+      "description": "Les mots à placer sont identifiés par un astérisque (*) avant et après le mot/l'expression. Vous pouvez ajouter un indice à l'aide des deux points (:) placés devant l'indice. (Exemple: On peut créer des exercices h5p en utilisant un *navigateur:Quelque chose que vous utilisez tous les jours*."
     },
     {
       "label": "Texte pour le bouton \"Vérifier\"",

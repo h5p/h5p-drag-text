@@ -3,7 +3,7 @@
     {
       "label": "Consigne",
       "description": "Expliquez ce que doit faire l'utilisateur.",
-      "default": "Glissez les étiquettes dans les bonnes cases.",
+      "default": "Glissez les étiquettes dans les bonnes cases."
     },
     {
       "label": "Champ de texte",

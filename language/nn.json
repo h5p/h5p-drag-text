@@ -5,9 +5,9 @@
       "description": "Forklar hvordan brukeren skal løyse oppgåva."
     },
     {
-      "label": "Tekstliner",
-      "placeholder": "Oslo er hovudstaden i *Noreg*",
-      "description": "Opne felt må merkast med ei stjerne * foran og bak det korrekte ordet/uttrykket. Tips får et kolon (:) foran seg: H5P innhald kan lages i ein *nettlesar:noko du bruker til å navigere internett med*."
+      "label": "Tekst",
+      "placeholder": "*Oslo* er hovudstaden i Noreg, *Stockholm* er hovudstaden i Sverige og *København* er hovudstaden i Danmark. Alle byane er lokalisert i *Skandinavia:Nordlege delen av europa* -halvøya.",
+      "description": "Opne felt må merkast med ei stjerne * foran og bak det korrekte ordet/uttrykket. Tips får et kolon (:) foran seg: H5P innhald kan lages i ein *nettlesar:noko du bruker til å navigere internett med*. For kvart opne felt er det bare eit rett ord."
     },
     {
       "label": "Tekst for \"Sjekk svar\" knapp",

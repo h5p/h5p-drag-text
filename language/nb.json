@@ -6,9 +6,9 @@
       "description": "Forklar hvordan brukeren skal løse oppgaven."
     },
     {
-      "label": "Tekstlinjer",
-      "placeholder": "Oslo er hovedstaden i *Norge*",
-      "description": "Åpne felter merkes med en stjerne * foran og bak det korrekte ordet/uttrykket. Tips angis med et kolon (:) før tipset: H5P innhold kan lages i en *nettleser:Noe du bruker til å navigere internett med*."
+      "label": "Tekst",
+      "placeholder": "*Oslo* er hovedstaden i Norge, *Stockholm* er hovedstaden i Sverige og *København* er hovedstaden i Danmark. Alle byene er lokalisert i *Skandinavia:Nordlige delen av europa* -halvøya.",
+      "description": "Åpne felter merkes med en stjerne * foran og bak det korrekte ordet/uttrykket. Tips angis med et kolon (:) før tipset: H5P innhold kan lages i en *nettleser:Noe du bruker til å navigere internett med*. For hvert åpne felt er det bare ett rett ord."
     },
     {
       "label": "Tekst for \"Sjekk svar\" knapp",

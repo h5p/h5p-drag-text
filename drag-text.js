@@ -785,10 +785,21 @@ H5P.DragText = (function ($, Question) {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
    */
   DragText.prototype.getXAPIData = function () {
-    var xAPIData = this.getxAPIDefinition();
-    xAPIData.response = this.getXAPIResponse();
-    return xAPIData;
+    var xAPIEvent = this.createXAPIEventTemplate('answered');
+    this.addQuestionToXAPI(xAPIEvent);
+    this.addResponseToXAPI(xAPIEvent);
+    return {
+      statement: xAPIEvent.data.statement
+    }
   };
+
+  /**
+   * Add the question itself to the definition part of an xAPIEvent
+   */
+  DragText.prototype.addQuestionToXAPI = function (xAPIEvent) {
+    var definition = xAPIEvent.getVerifiedStatementValue(['object','definition']);
+    $.extend(definition, this.getxAPIDefinition());  
+  }
 
   /**
    * Generate xAPI object definition used in xAPI statements.
@@ -813,23 +824,30 @@ H5P.DragText = (function ($, Question) {
   };
 
   /**
-   * Add the question itself to the definition part of an xAPIEvent
-   */
-  DragText.prototype.addQuestionToXAPI = function (xAPIEvent) {
-    var definition = xAPIEvent.getVerifiedStatementValue(['object','definition']);
-    $.extend(definition, this.getxAPIDefinition());  
-  }
-
-  /**
    * Add the response part to an xAPI event
    *
    * @param {H5P.XAPIEvent} xAPIEvent
    *  The xAPI event we will add a response to
    */
   DragText.prototype.addResponseToXAPI = function (xAPIEvent) {
-    self = this;
-    xAPIEvent.setScoredResult(self.correctAnswers, self.droppables.length, self);
-    xAPIEvent.data.statement.result.response = self.getXAPIResponse();
+    var self = this;
+    var currentScore = self.getScore();
+    var maxScore = self.droppables.length;
+
+    xAPIEvent.setScoredResult(currentScore, maxScore, self);
+   
+    var score = {
+      mini:0,
+      raw:currentScore,
+      max:maxScore,
+      scaled:Math.round(currentScore/maxScore*100)
+    };
+
+    var result = {
+      response:self.getXAPIResponse(),
+      score:score
+    };
+    xAPIEvent.data.statement.result = result;  
   };
 
   /**

@@ -67,6 +67,9 @@ H5P.DragText = (function ($, Question) {
     // Keeps track of if Question has been answered
     this.answered = false;
 
+    // Convert line breaks to HTML
+    this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
+
     // Init drag text task
     this.initDragText();
 
@@ -326,7 +329,7 @@ H5P.DragText = (function ($, Question) {
     var self = this;
 
     //Replace newlines with break line tag
-    var textField = self.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
+    var textField = self.textFieldHtml;
 
     // Go through the text and replace all the asterisks with input fields
     var dropStart = textField.indexOf('*');
@@ -790,7 +793,7 @@ H5P.DragText = (function ($, Question) {
     this.addResponseToXAPI(xAPIEvent);
     return {
       statement: xAPIEvent.data.statement
-    }
+    };
   };
 
   /**
@@ -798,8 +801,8 @@ H5P.DragText = (function ($, Question) {
    */
   DragText.prototype.addQuestionToXAPI = function (xAPIEvent) {
     var definition = xAPIEvent.getVerifiedStatementValue(['object','definition']);
-    $.extend(definition, this.getxAPIDefinition());  
-  }
+    $.extend(definition, this.getxAPIDefinition());
+  };
 
   /**
    * Generate xAPI object definition used in xAPI statements.
@@ -810,15 +813,15 @@ H5P.DragText = (function ($, Question) {
     definition.interactionType = 'fill-in';
     definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
 
-    var question = this.params.textField; 
-    
+    var question = this.textFieldHtml;
+
     // Create the description
     definition.description = {
       'en-US': this.replaceSolutionsWithBlanks(question)
     };
 
     //Create the correct responses pattern
-    definition.correctResponsesPattern = this.getSolutionsFromQuestion(question); 
+    definition.correctResponsesPattern = [this.getSolutionsFromQuestion(question)];
 
     return definition;
   };
@@ -835,9 +838,9 @@ H5P.DragText = (function ($, Question) {
     var maxScore = self.droppables.length;
 
     xAPIEvent.setScoredResult(currentScore, maxScore, self);
-   
+
     var score = {
-      mini:0,
+      min:0,
       raw:currentScore,
       max:maxScore,
       scaled:Math.round(currentScore/maxScore*100)
@@ -847,7 +850,7 @@ H5P.DragText = (function ($, Question) {
       response:self.getXAPIResponse(),
       score:score
     };
-    xAPIEvent.data.statement.result = result;  
+    xAPIEvent.data.statement.result = result;
   };
 
   /**
@@ -856,8 +859,8 @@ H5P.DragText = (function ($, Question) {
    */
   DragText.prototype.getXAPIResponse = function () {
     var self = this;
-    
-    // Create an array to hold the answers  
+
+    // Create an array to hold the answers
     var answers = Array(self.droppables.length).fill("");
 
     // Add answers to the answer array
@@ -869,22 +872,22 @@ H5P.DragText = (function ($, Question) {
     });
 
     return answers.join('[,]');
-  }
+  };
 
   DragText.prototype.replaceSolutionsWithBlanks = function (question) {
     return this.handleBlanks(question, function() {
       return '__________';
     });
-  }
+  };
 
   DragText.prototype.getSolutionsFromQuestion = function (question) {
     var solutions = [];
     this.handleBlanks(question, function(solution) {
-      solutions.push(solution.solutions[0]); 
+      solutions.push(solution.solutions[0]);
       return '__________';
     });
     return solutions.join('[,]');
-  }
+  };
 
   /**
    * Find blanks in a string and run a handler on those blanks
@@ -923,8 +926,8 @@ H5P.DragText = (function ($, Question) {
     }
     return question;
   };
- 
-  
+
+
   /**
    * Parse the solution text (text between the asterisks)
    *

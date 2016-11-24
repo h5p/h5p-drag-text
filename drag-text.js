@@ -67,6 +67,9 @@ H5P.DragText = (function ($, Question) {
     // Keeps track of if Question has been answered
     this.answered = false;
 
+    // Convert line breaks to HTML
+    this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
+
     // Init drag text task
     this.initDragText();
 
@@ -231,7 +234,10 @@ H5P.DragText = (function ($, Question) {
     var maxScore = this.droppables.length;
 
     if (!skipXapi) {
-      this.triggerXAPIScored(score, maxScore, 'answered');
+      var xAPIEvent = this.createXAPIEventTemplate('answered');
+      this.addQuestionToXAPI(xAPIEvent);
+      this.addResponseToXAPI(xAPIEvent);
+      this.trigger(xAPIEvent);
     }
 
     var scoreText = this.params.score.replace(/@score/g, score.toString())
@@ -323,7 +329,7 @@ H5P.DragText = (function ($, Question) {
     var self = this;
 
     //Replace newlines with break line tag
-    var textField = self.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
+    var textField = self.textFieldHtml;
 
     // Go through the text and replace all the asterisks with input fields
     var dropStart = textField.indexOf('*');
@@ -776,7 +782,211 @@ H5P.DragText = (function ($, Question) {
   };
 
   /**
-   * Private class for keeping track of draggable text.
+   * getXAPIData
+   * Contract used by report rendering engine.
+   *
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+	 *
+   * @returns {Object} xAPI data 
+   */
+  DragText.prototype.getXAPIData = function () {
+    var xAPIEvent = this.createXAPIEventTemplate('answered');
+    this.addQuestionToXAPI(xAPIEvent);
+    this.addResponseToXAPI(xAPIEvent);
+    return {
+      statement: xAPIEvent.data.statement
+    };
+  };
+
+  /**
+   * addQuestionToXAPI
+   * Add the question itself to the definition part of an xAPIEvent
+   *
+   * @param xAPIEvent
+   */
+  DragText.prototype.addQuestionToXAPI = function (xAPIEvent) {
+    var definition = xAPIEvent.getVerifiedStatementValue(['object','definition']);
+    $.extend(definition, this.getxAPIDefinition());
+  };
+
+  /**
+   * Generate xAPI object definition used in xAPI statements.
+   * @return {Object}
+   */
+  DragText.prototype.getxAPIDefinition = function () {
+    var definition = {};
+    definition.interactionType = 'fill-in';
+    definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
+
+    var question = this.textFieldHtml;
+
+    // Create the description
+    definition.description = {
+      'en-US': this.replaceSolutionsWithBlanks(question)
+    };
+
+    //Create the correct responses pattern
+    definition.correctResponsesPattern = [this.getSolutionsFromQuestion(question)];
+
+    return definition;
+  };
+
+  /**
+   * Add the response part to an xAPI event
+   *
+   * @param {H5P.XAPIEvent} xAPIEvent
+   *  The xAPI event we will add a response to
+   */
+  DragText.prototype.addResponseToXAPI = function (xAPIEvent) {
+    var self = this;
+    var currentScore = self.getScore();
+    var maxScore = self.droppables.length;
+
+    xAPIEvent.setScoredResult(currentScore, maxScore, self);
+
+    var score = {
+      min:0,
+      raw:currentScore,
+      max:maxScore,
+      scaled:Math.round(currentScore/maxScore*100)
+    };
+
+    var result = {
+      response:self.getXAPIResponse(),
+      score:score
+    };
+    xAPIEvent.data.statement.result = result;
+  };
+
+  /**
+   * Generate xAPI user response, used in xAPI statements.
+   * @return {string} User answers separated by the "[,]" pattern
+   */
+  DragText.prototype.getXAPIResponse = function () {
+    var self = this;
+
+    // Create an array to hold the answers
+    var answers = Array(self.droppables.length).fill("");
+
+    // Add answers to the answer array
+    var droppable;
+    var draggable;
+    self.getCurrentState().forEach(function (stateObject) {
+        draggable = self.draggables[stateObject.draggable].text;
+        answers[stateObject.droppable] = draggable;
+    });
+
+    return answers.join('[,]');
+  };
+
+	/**
+	 * replaceSolutionsWithBlanks
+	 *
+	 * @param question
+	 * @returns {string} 
+	 */
+  DragText.prototype.replaceSolutionsWithBlanks = function (question) {
+    return this.handleBlanks(question, function() {
+      return '__________';
+    });
+  };
+
+	/**
+	 * getSolutionsFromQuestion
+	 *
+	 * @param question
+	 * @returns {array} Array with a string containing solutions of a question
+	 */
+  DragText.prototype.getSolutionsFromQuestion = function (question) {
+    var solutions = [];
+    this.handleBlanks(question, function(solution) {
+      solutions.push(solution.solutions[0]);
+      return '__________';
+    });
+    return solutions.join('[,]');
+  };
+
+  /**
+   * Find blanks in a string and run a handler on those blanks
+   *
+   * @param {string} question
+   *   Question text containing blanks enclosed in asterisks.
+   * @param {function} handler
+   *   Replaces the blanks text with an input field.
+   * @returns {string}
+   *   The question with blanks replaced by the given handler.
+   */
+   DragText.prototype.handleBlanks = function (question, handler) {
+    // Go through the text and run handler on all asterisk
+    var clozeEnd, clozeStart = question.indexOf('*');
+    var self = this;
+    while (clozeStart !== -1 && clozeEnd !== -1) {
+      clozeStart++;
+      clozeEnd = question.indexOf('*', clozeStart);
+      if (clozeEnd === -1) {
+        continue; // No end
+      }
+      var clozeContent = question.substring(clozeStart, clozeEnd);
+      var replacer = '';
+      if (clozeContent.length) {
+        replacer = handler(self.parseSolution(clozeContent));
+        clozeEnd++;
+      }
+      else {
+        clozeStart += 1;
+      }
+      question = question.slice(0, clozeStart - 1) + replacer + question.slice(clozeEnd);
+      clozeEnd -= clozeEnd - clozeStart - replacer.length;
+
+      // Find the next cloze
+      clozeStart = question.indexOf('*', clozeEnd);
+    }
+    return question;
+  };
+
+
+  /**
+   * Parse the solution text (text between the asterisks)
+   *
+   * @param {string} solutionText
+   * @returns {object} with the following properties
+   *  - tip: the tip text for this solution, undefined if no tip
+   *  - solutions: array of solution words
+   */
+  DragText.prototype.parseSolution = function (solutionText) {
+    var tip, solution;
+
+    var tipStart = solutionText.indexOf(':');
+    if (tipStart !== -1) {
+      // Found tip, now extract
+      tip = solutionText.slice(tipStart + 1);
+      solution = solutionText.slice(0, tipStart);
+    }
+    else {
+      solution = solutionText;
+    }
+
+    // Split up alternatives
+    var solutions = solution.split('/');
+
+    // Trim solutions
+    for (var i = 0; i < solutions.length; i++) {
+      solutions[i] = H5P.trim(solutions[i]);
+
+      //decodes html entities
+      var elem = document.createElement('textarea');
+      elem.innerHTML = solutions[i];
+      solutions[i] = elem.value;
+    }
+
+    return {
+      tip: tip,
+      solutions: solutions
+    };
+  };
+
+  /**
+   * Private class for keeping track of 0e text.
    * @private
    * @param {String} text String that will be turned into a selectable word.
    * @param {jQuery} draggable Draggable object.

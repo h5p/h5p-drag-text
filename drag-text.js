@@ -779,10 +779,12 @@ H5P.DragText = (function ($, Question) {
   };
 
   /**
-   * Get xAPI data.
+   * getXAPIData
    * Contract used by report rendering engine.
    *
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+	 *
+   * @returns {Object} xAPI data 
    */
   DragText.prototype.getXAPIData = function () {
     var xAPIEvent = this.createXAPIEventTemplate('answered');
@@ -794,7 +796,10 @@ H5P.DragText = (function ($, Question) {
   };
 
   /**
+   * addQuestionToXAPI
    * Add the question itself to the definition part of an xAPIEvent
+   *
+   * @param xAPIEvent
    */
   DragText.prototype.addQuestionToXAPI = function (xAPIEvent) {
     var definition = xAPIEvent.getVerifiedStatementValue(['object','definition']);
@@ -871,12 +876,24 @@ H5P.DragText = (function ($, Question) {
     return answers.join('[,]');
   }
 
+	/**
+	 * replaceSolutionsWithBlanks
+	 *
+	 * @param question
+	 * @returns {string} 
+	 */
   DragText.prototype.replaceSolutionsWithBlanks = function (question) {
     return this.handleBlanks(question, function() {
       return '__________';
     });
   }
 
+	/**
+	 * getSolutionsFromQuestion
+	 *
+	 * @param question
+	 * @returns {array} Array with a string containing solutions of a question
+	 */
   DragText.prototype.getSolutionsFromQuestion = function (question) {
     var solutions = [];
     this.handleBlanks(question, function(solution) {

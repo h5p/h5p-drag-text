@@ -819,10 +819,11 @@ H5P.DragText = (function ($, Question) {
     definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
 
     var question = this.textFieldHtml;
+    var taskDescription = this.params.taskDescription + '<br/>';
 
     // Create the description
     definition.description = {
-      'en-US': this.params.taskDescription + this.replaceSolutionsWithBlanks(question)
+      'en-US': taskDescription + this.replaceSolutionsWithBlanks(question)
     };
 
     //Create the correct responses pattern

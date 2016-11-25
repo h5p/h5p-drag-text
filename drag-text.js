@@ -787,7 +787,7 @@ H5P.DragText = (function ($, Question) {
    *
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
 	 *
-   * @returns {Object} xAPI data 
+   * @returns {Object} xAPI data
    */
   DragText.prototype.getXAPIData = function () {
     var xAPIEvent = this.createXAPIEventTemplate('answered');
@@ -822,7 +822,7 @@ H5P.DragText = (function ($, Question) {
 
     // Create the description
     definition.description = {
-      'en-US': this.replaceSolutionsWithBlanks(question)
+      'en-US': this.params.taskDescription + this.replaceSolutionsWithBlanks(question)
     };
 
     //Create the correct responses pattern
@@ -883,7 +883,7 @@ H5P.DragText = (function ($, Question) {
 	 * replaceSolutionsWithBlanks
 	 *
 	 * @param question
-	 * @returns {string} 
+	 * @returns {string}
 	 */
   DragText.prototype.replaceSolutionsWithBlanks = function (question) {
     return this.handleBlanks(question, function() {

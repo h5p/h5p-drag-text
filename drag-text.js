@@ -846,17 +846,16 @@ H5P.DragText = (function ($, Question) {
     xAPIEvent.setScoredResult(currentScore, maxScore, self);
 
     var score = {
-      min:0,
-      raw:currentScore,
-      max:maxScore,
-      scaled:Math.round(currentScore/maxScore*100)
+      min: 0,
+      raw: currentScore,
+      max: maxScore,
+      scaled: Math.round(currentScore / maxScore * 10000) / 10000
     };
 
-    var result = {
-      response:self.getXAPIResponse(),
-      score:score
+    xAPIEvent.data.statement.result = {
+      response: self.getXAPIResponse(),
+      score: score
     };
-    xAPIEvent.data.statement.result = result;
   };
 
   /**

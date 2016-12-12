@@ -1,6 +1,7 @@
 [
   {
     "label": "Task description",
+    "importance": "high",
     "name": "taskDescription",
     "type": "text",
     "widget": "html",
@@ -21,6 +22,7 @@
   },
   {
     "label": "Text",
+    "importance": "high",
     "name": "textField",
     "type": "text",
     "widget": "textarea",
@@ -29,6 +31,7 @@
   },
   {
     "label": "Text for \"Check\" button",
+    "importance": "low",
     "name": "checkAnswer",
     "type": "text",
     "default": "Check",
@@ -36,6 +39,7 @@
   },
   {
     "label": "Text for \"Retry\" button",
+    "importance": "low",
     "name": "tryAgain",
     "type": "text",
     "default": "Retry",
@@ -43,6 +47,7 @@
   },
   {
     "label": "Text for \"Show Solution\" button",
+    "importance": "low",
     "name": "showSolution",
     "type": "text",
     "default": "Show solution",
@@ -50,6 +55,7 @@
   },
   {
     "label": "Feedback text",
+    "importance": "low",
     "name": "score",
     "type": "text",
     "default": "You got @score of @total points",
@@ -60,23 +66,27 @@
     "name": "behaviour",
     "type": "group",
     "label": "Behavioural settings.",
+    "importance": "low",
     "description": "These options will let you control how the task behaves.",
     "optional": true,
     "fields": [
       {
         "label": "Enable \"Retry\"",
+        "importance": "low",
         "name": "enableRetry",
         "type": "boolean",
         "default": true
       },
       {
         "label": "Enable \"Show Solution\" button",
+        "importance": "low",
         "name": "enableSolutionsButton",
         "type": "boolean",
         "default": true
       },
       {
         "label": "Instant feedback",
+        "importance": "low",
         "name": "instantFeedback",
         "type": "boolean",
         "default": false,

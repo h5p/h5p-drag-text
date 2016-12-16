@@ -1,6 +1,5 @@
 {
-  "semantics":
-  [
+  "semantics": [
     {
       "label": "Oppgavebeskrivelse",
       "description": "Forklar hvordan brukeren skal løse oppgaven."

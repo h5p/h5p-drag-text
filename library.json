@@ -22,7 +22,13 @@
   ],
   "preloadedJs": [
     {
-      "path": "drag-text.js"
+      "path": "scripts/draggable.js"
+    },
+    {
+      "path": "scripts/droppable.js"
+    },
+    {
+      "path": "scripts/drag-text.js"
     }
   ],
   "preloadedDependencies": [

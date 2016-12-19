@@ -82,7 +82,7 @@
   display: inline;
   padding-right: 0.1em;
 }
-.h5p-drag-text .h5p-drag-dropzone {
+.h5p-drag-text [aria-dropeffect] {
   position:relative;
   top: -0.1em;
   width: 10em;
@@ -95,15 +95,19 @@
   padding: 0.1em 1.65em 0.1em 0;
 }
 
-.h5p-drag-text .h5p-drag-dropzone.h5p-drag-correct-feedback {
+.h5p-drag-text [aria-dropeffect='move'] {
+  background: dodgerblue;
+}
+
+.h5p-drag-text [aria-dropeffect].h5p-drag-correct-feedback {
   background: #9dd8bb;
 }
 
-.h5p-drag-text .h5p-drag-dropzone.h5p-drag-wrong-feedback {
+.h5p-drag-text [aria-dropeffect].h5p-drag-wrong-feedback {
   background: #f7d0d0;
 }
 
-.h5p-drag-text .h5p-drag-dropzone:before {
+.h5p-drag-text [aria-dropeffect]:before {
   line-height: 1.25;
 }
 
@@ -118,7 +122,7 @@
   display: none;
 }
 
-.h5p-drag-text .h5p-drag-draggable {
+.h5p-drag-text [aria-grabbed] {
   line-height: 1.25;
   cursor: pointer;
   border-radius: 0.25em;
@@ -139,13 +143,14 @@
   -ms-user-select: none;
 }
 
-.h5p-drag-text .h5p-drag-draggable.h5p-drag-dropped:not(.ui-state-disabled):hover,
-.h5p-drag-text .h5p-drag-draggable:not(.ui-state-disabled):hover {
+.h5p-drag-text [aria-grabbed='true'],
+.h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-state-disabled):hover,
+.h5p-drag-text [aria-grabbed]:not(.ui-state-disabled):hover {
   border: 0.1em solid rgb(212,190,216);
   color: #663366;
   background: #edd6e9;
 }
-.h5p-drag-text .h5p-drag-draggable.h5p-drag-dropped {
+.h5p-drag-text [aria-grabbed].h5p-drag-dropped {
   width: 100%;
   margin: -0.1em 0 0 0;
   padding: 0.1em 0.825em;
@@ -155,11 +160,11 @@
   background: #cee0f4;
 }
 
-.h5p-drag-text .h5p-drag-draggable.ui-draggable-dragging {
+.h5p-drag-text [aria-grabbed='true'] {
   opacity: 0.5;
   box-shadow: 0em 0em 0.8em rgba(0,0,0,0.5);
 }
-.h5p-drag-text .h5p-drag-draggable.ui-state-disabled {
+.h5p-drag-text [aria-grabbed].ui-state-disabled {
   opacity: 1;
 }
 
@@ -191,10 +196,11 @@
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {
+  float: left;
   line-height: 1.75;
 }
 
-.h5p-drag-text .ui-draggable-dragging {
+.h5p-drag-text [aria-grabbed='true'] {
   z-index: 2;
 }
 
@@ -214,11 +220,11 @@
   display: block;
 }
 
-.h5p-drag-text .h5p-drag-dropzone.ui-droppable.ui-droppable-disabled.ui-state-disabled{
+.h5p-drag-text [aria-dropeffect]ui-droppable.ui-droppable-disabled.ui-state-disabled{
   opacity: 1;
 }
 
 /* Use ellipsis for long draggables */
-.h5p-drag-text .h5p-drag-draggable.h5p-drag-dropped.truncate {
+.h5p-drag-text [aria-grabbed].h5p-drag-dropped.truncate {
   text-overflow: ellipsis;
 }

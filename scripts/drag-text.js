@@ -2,7 +2,7 @@
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($, Question, Draggable, Droppable) {
+H5P.DragText = (function ($, Question, Draggable, Droppable,Controls) {
   //CSS Main Containers:
   var MAIN_CONTAINER = "h5p-drag";
   var INNER_CONTAINER = "h5p-drag-inner";
@@ -13,19 +13,9 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
 
   //Special Sub-containers:
   var DROPZONE = "h5p-drag-dropzone";
-  var DRAGGABLE = "h5p-drag-draggable";
   var SHOW_SOLUTION_CONTAINER = "h5p-drag-show-solution-container";
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
-
-  //CSS Dropzone feedback:
-  var CORRECT_FEEDBACK = 'h5p-drag-correct-feedback';
-  var WRONG_FEEDBACK = 'h5p-drag-wrong-feedback';
-
-  //CSS Draggable feedback:
-  var DRAGGABLE_DROPPED = 'h5p-drag-dropped';
-  var DRAGGABLE_FEEDBACK_CORRECT = 'h5p-drag-draggable-correct';
-  var DRAGGABLE_FEEDBACK_WRONG = 'h5p-drag-draggable-wrong';
 
   /**
    * Initialize module.
@@ -69,6 +59,10 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
 
     // Convert line breaks to HTML
     this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
+
+    // Init keyboard navigation
+    this.dragControls = new Controls([new Controls.UIKeyboard(), new Controls.AriaDrag()]);
+    this.dropControls = new Controls([new Controls.UIKeyboard(), new Controls.AriaDrop()]);
 
     // Init drag text task
     this.initDragText();
@@ -132,7 +126,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
       // Adds a class that floats the draggables to the right.
       self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
       // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
-      self.$wordContainer.detach().appendTo(self.$taskContainer);
+      self.$wordContainer.detach().prependTo(self.$taskContainer);
       // Set margin so the wordContainer does not expand when there are no more draggables left.
       self.$wordContainer.css({'margin-right': self.widestDraggable});
       // Set all draggables to be blocks
@@ -314,7 +308,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
     self.handleText();
 
     self.addDraggablesRandomly(self.$draggables);
-    self.$wordContainer.appendTo(self.$taskContainer);
+    self.$wordContainer.prependTo(self.$taskContainer);
     self.$draggables.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
@@ -430,7 +424,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
     //Make the draggable
     var $draggable = $('<div/>', {
       html: answer,
-      'class': DRAGGABLE
+      'aria-grabbed': 'false'
     }).draggable({
       revert: function (isValidDrop) {
         var dropzone = droppable;
@@ -454,6 +448,10 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
       containment: self.$taskContainer
     });
 
+    // add keyboard navigation to draggable
+    var draggableEl = $draggable.get(0);
+    self.dragControls.addElement(draggableEl);
+
     var draggable = new Draggable(answer, $draggable);
     draggable.on('addedToZone', function (event) {
       self.triggerXAPI('interacted');
@@ -464,7 +462,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
       'class': DROPZONE_CONTAINER
     });
     var $dropzone = $('<div/>', {
-      'class': DROPZONE
+      'aria-dropeffect': "none" // TODO Remove, also set by controls
     }).appendTo($dropzoneContainer)
       .droppable({
         tolerance: 'pointer',
@@ -488,6 +486,9 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
           self.$draggables.toggleClass('hide', !self.$draggables.children().length);
         }
       });
+
+    var droppableEl = $dropzone.get(0);
+    self.dropControls.addElement(droppableEl);
 
     var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer);
     droppable.appendDroppableTo(self.$wordContainer);
@@ -987,4 +988,4 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
 
   return DragText;
 
-}(H5P.jQuery, H5P.Question, H5P.TextDraggable, H5P.TextDroppable));
+}(H5P.jQuery, H5P.Question, H5P.TextDraggable, H5P.TextDroppable, H5P.Controls));

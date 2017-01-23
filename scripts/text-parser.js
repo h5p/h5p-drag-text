@@ -30,7 +30,7 @@ H5P.DragTextTextParser = (function(){
    * @param {string} text
    * @return {string|null}
    */
-  TextParser.prototype.findNextDraggable = function(text){
+  TextParser.prototype.findNextDraggable = function(text) {
     var draggable = this.nextDraggableRegex.exec(text);
     return draggable ? draggable[0] : null;
   };

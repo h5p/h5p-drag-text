@@ -308,8 +308,8 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
 
     self.textParser.parse(self.textFieldHtml)
-      .forEach(function(part){
-        if(self.startsWith('*', part) && self.endsWith('*', part)){
+      .forEach(function(part) {
+        if(self.startsWith('*', part) && self.endsWith('*', part)) {
           self.addDragNDrop(self.cleanAsterisk(part));
         }
         else {
@@ -332,7 +332,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
    * @private
    * @return {boolean}
    */
-  DragText.prototype.startsWith = function(symbol, str){
+  DragText.prototype.startsWith = function(symbol, str) {
     return str.substr(0,1) === symbol;
   };
 
@@ -344,7 +344,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
    * @private
    * @return {boolean}
    */
-  DragText.prototype.endsWith = function(symbol, str){
+  DragText.prototype.endsWith = function(symbol, str) {
     return str.substr(-1) === symbol;
   };
 
@@ -355,7 +355,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
    * @private
    * @return {string}
    */
-  DragText.prototype.cleanAsterisk = function(str){
+  DragText.prototype.cleanAsterisk = function(str) {
     if(this.startsWith('*', str)) {
       str = str.slice(1);
     }

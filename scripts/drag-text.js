@@ -2,7 +2,7 @@
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($, Question, Draggable, Droppable,Controls) {
+H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Controls) {
   //CSS Main Containers:
   var MAIN_CONTAINER = "h5p-drag";
   var INNER_CONTAINER = "h5p-drag-inner";
@@ -63,6 +63,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable,Controls) {
     // Init keyboard navigation
     this.dragControls = new Controls([new Controls.UIKeyboard(), new Controls.AriaDrag()]);
     this.dropControls = new Controls([new Controls.UIKeyboard(), new Controls.AriaDrop()]);
+    this.textParser = new TextParser(this);
 
     // Init drag text task
     this.initDragText();
@@ -305,51 +306,14 @@ H5P.DragText = (function ($, Question, Draggable, Droppable,Controls) {
     });
 
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
-    self.handleText();
+
+    self.textParser.parse(self.textFieldHtml);
 
     self.addDraggablesRandomly(self.$draggables);
     self.$wordContainer.prependTo(self.$taskContainer);
     self.$draggables.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
-  };
-
-  /**
-   * Parses the text and sends identified dropzones to the addDragNDrop method for further handling.
-   * Appends the parsed text to wordContainer.
-   * @public
-   */
-  DragText.prototype.handleText = function () {
-    var self = this;
-
-    //Replace newlines with break line tag
-    var textField = self.textFieldHtml;
-
-    // Go through the text and replace all the asterisks with input fields
-    var dropStart = textField.indexOf('*');
-    var dropEnd = -1;
-    var currentIndex = 0;
-    //While the start of a dropbox is found
-    while (dropStart !== -1) {
-      dropStart += 1;
-      dropEnd = textField.indexOf('*', dropStart);
-      if (dropEnd === -1) {
-        dropStart = -1;
-      } else {
-        //Appends the text between each dropzone
-        self.$wordContainer.append(textField.slice(currentIndex, dropStart - 1));
-
-        //Adds the drag n drop functionality when an answer is found
-        self.addDragNDrop(textField.substring(dropStart, dropEnd));
-        dropEnd += 1;
-        currentIndex = dropEnd;
-
-        //Attempts to find the beginning of the next answer.
-        dropStart = textField.indexOf('*', dropEnd);
-      }
-    }
-    //Appends the remaining part of the text.
-    self.$wordContainer.append(textField.slice(currentIndex, textField.length));
   };
 
   /**
@@ -988,4 +952,4 @@ H5P.DragText = (function ($, Question, Draggable, Droppable,Controls) {
 
   return DragText;
 
-}(H5P.jQuery, H5P.Question, H5P.TextDraggable, H5P.TextDroppable, H5P.Controls));
+}(H5P.jQuery, H5P.Question, H5P.TextDraggable, H5P.TextDroppable, H5P.DragTextTextParser, H5P.Controls));

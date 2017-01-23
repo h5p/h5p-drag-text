@@ -25,6 +25,9 @@
       "path": "scripts/controls.js"
     },
     {
+      "path": "scripts/text-parser.js"
+    },
+    {
       "path": "scripts/draggable.js"
     },
     {

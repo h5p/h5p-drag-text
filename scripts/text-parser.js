@@ -1,40 +1,38 @@
 H5P.DragTextTextParser = (function(){
-  var TextParser = function(parent){
-    this.parent = parent;
+  var TextParser = function(){
+    this.nextDraggableRegex = /\*(.*?)\*/;
   };
 
   /**
-   * Parses text, and populates Drag Text
+   * Parses a text into an array where words starting and ending
+   * with an asterisk are separated from other text.
+   * e.g ["this", "*is*", " an ", "*example*"]
    *
-   * @param {string} textField
+   * @param {string} text
+   *
+   * @return {string[]}
    */
-  TextParser.prototype.parse = function (textField) {
-    var self = this;
-    // Go through the text and replace all the asterisks with input fields
-    var dropStart = textField.indexOf('*');
-    var dropEnd = -1;
-    var currentIndex = 0;
-    //While the start of a dropbox is found
-    while (dropStart !== -1) {
-      dropStart += 1;
-      dropEnd = textField.indexOf('*', dropStart);
-      if (dropEnd === -1) {
-        dropStart = -1;
-      } else {
-        //Appends the text between each dropzone
-        self.parent.$wordContainer.append(textField.slice(currentIndex, dropStart - 1));
+  TextParser.prototype.parse = function (text) {
+    var next = this.findNextDraggable(text);
 
-        //Adds the drag n drop functionality when an answer is found
-        self.parent.addDragNDrop(textField.substring(dropStart, dropEnd));
-        dropEnd += 1;
-        currentIndex = dropEnd;
-
-        //Attempts to find the beginning of the next answer.
-        dropStart = textField.indexOf('*', dropEnd);
-      }
+    if(next) {
+      var parts = text.split(next);
+      return [parts[0], next].concat(this.parse(parts[1]))
     }
-    //Appends the remaining part of the text.
-    self.parent.$wordContainer.append(textField.slice(currentIndex, textField.length));
+    else {
+      return [text];
+    }
+  };
+
+  /**
+   * Finds the next draggable in a string
+   *
+   * @param {string} text
+   * @return {string|null}
+   */
+  TextParser.prototype.findNextDraggable = function(text){
+    var draggable = this.nextDraggableRegex.exec(text);
+    return draggable ? draggable[0] : null;
   };
 
   return TextParser;

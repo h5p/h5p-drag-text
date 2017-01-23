@@ -63,7 +63,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     // Init keyboard navigation
     this.dragControls = new Controls([new Controls.UIKeyboard(), new Controls.AriaDrag()]);
     this.dropControls = new Controls([new Controls.UIKeyboard(), new Controls.AriaDrop()]);
-    this.textParser = new TextParser(this);
+    this.textParser = new TextParser();
 
     // Init drag text task
     this.initDragText();
@@ -307,13 +307,64 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
 
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
 
-    self.textParser.parse(self.textFieldHtml);
+    self.textParser.parse(self.textFieldHtml)
+      .forEach(function(part){
+        if(self.startsWith('*', part) && self.endsWith('*', part)){
+          self.addDragNDrop(self.cleanAsterisk(part));
+        }
+        else {
+          self.$wordContainer.append(part);
+        }
+      });
 
     self.addDraggablesRandomly(self.$draggables);
     self.$wordContainer.prependTo(self.$taskContainer);
     self.$draggables.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
+  };
+
+  /**
+   * Checks if a string starts with a symbol
+   *
+   * @param {string} symbol
+   * @param {string} str
+   * @private
+   * @return {boolean}
+   */
+  DragText.prototype.startsWith = function(symbol, str){
+    return str.substr(0,1) === symbol;
+  };
+
+  /**
+   * Checks if a ends with a symbol
+   *
+   * @param {string} symbol
+   * @param {string} str
+   * @private
+   * @return {boolean}
+   */
+  DragText.prototype.endsWith = function(symbol, str){
+    return str.substr(-1) === symbol;
+  };
+
+  /**
+   * Removes asterisk in the beginning and end of a string
+   *
+   * @param {string} str
+   * @private
+   * @return {string}
+   */
+  DragText.prototype.cleanAsterisk = function(str){
+    if(this.startsWith('*', str)) {
+      str = str.slice(1);
+    }
+
+    if(this.endsWith('*', str)) {
+      str = str.slice(0, -1);
+    }
+
+    return str;
   };
 
   /**

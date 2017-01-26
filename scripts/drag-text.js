@@ -327,37 +327,89 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
    */
   DragText.prototype.handleText = function () {
     var self = this;
+    
+    // If given text doesn't look like HTML, create a single text node, otherwise create DOM elements from given HTML.
+    var $content = this.params.textField.indexOf('<') == -1 ? $(document.createTextNode(this.params.textField)) : $(this.params.textField);
+    
+    self.$wordContainer.append($content);
+    
+    // Replace specified input fields with drop zone elements. 
+    self.handleTextElements($content);
+  };
+  
+  /**
+   * Helper for handleText(). Recursively processes the given DOM Nodes, 
+   * identifying specified dropzones in the text nodes and replacing them 
+   * with dropzones created with the addDragNDrop method.
+   * @public
+   * @param {NodeList} elements The list of elements to process.
+   */
+  DragText.prototype.handleTextElements = function (elements) {
+    var self = this;
+    
+    // For each element..
+    for (var i = 0; i < elements.length; i++) {
+      
+      // If it's a text node then process any specified input fields (text enclosed in asterisks).
+      if (elements[i].nodeType == Node.TEXT_NODE) {
+        
+        var text = elements[i].textContent;
+        
+        // Below loop breaks up the text into plain text nodes and droppable 
+        // zones for input fields, replacing the original text node with these.  
+        var dropStart = text.indexOf('*');
+        var dropEnd = -1;
+        var currentIndex = 0;
+        var $currentElement = $(elements[i]); // The last new element added.
+        // While the start of a dropbox is found.
+        while (dropStart !== -1) {
+          dropStart += 1;
+          dropEnd = text.indexOf('*', dropStart);
+          if (dropEnd === -1) {
+            dropStart = -1;
+          } else {
+            // Create a new text node for the text before/inbetween the input field.
+            var $textSegmentBetweenZones = $(document.createTextNode(text.slice(currentIndex, dropStart - 1)));
+            
+            // Replace the original text node the first time around.
+            if (currentIndex == 0) {
+              $currentElement.replaceWith($textSegmentBetweenZones);
+            }
+            else {
+              // Then insert the text node after the last droppable/input field added. 
+              $textSegmentBetweenZones.insertAfter($currentElement);
+            }
+            $currentElement = $textSegmentBetweenZones;
+            
+            // Adds the drag 'n' drop functionality when an answer is found.
+            var droppable = self.addDragNDrop(text.substring(dropStart, dropEnd));
+            
+            // Insert the droppable/input field after the last text node added.
+            droppable.insertDroppableAfter($currentElement);
+            
+            $currentElement = droppable.$dropzoneContainer;
 
-    //Replace newlines with break line tag
-    var textField = self.textFieldHtml;
+            dropEnd += 1;
+            currentIndex = dropEnd;
 
-    // Go through the text and replace all the asterisks with input fields
-    var dropStart = textField.indexOf('*');
-    var dropEnd = -1;
-    var currentIndex = 0;
-    //While the start of a dropbox is found
-    while (dropStart !== -1) {
-      dropStart += 1;
-      dropEnd = textField.indexOf('*', dropStart);
-      if (dropEnd === -1) {
-        dropStart = -1;
-      } else {
-        //Appends the text between each dropzone
-        self.$wordContainer.append(textField.slice(currentIndex, dropStart - 1));
-
-        //Adds the drag n drop functionality when an answer is found
-        self.addDragNDrop(textField.substring(dropStart, dropEnd));
-        dropEnd += 1;
-        currentIndex = dropEnd;
-
-        //Attempts to find the beginning of the next answer.
-        dropStart = textField.indexOf('*', dropEnd);
+            // Attempts to find the beginning of the next answer.
+            dropStart = text.indexOf('*', dropEnd);
+          }
+        }
+        // If we found any asterisk pairs (thus replacing the original text node).
+        if (currentIndex > 0) {
+          //Appends the remaining part of the text.
+          var $lastTextSegment = $(document.createTextNode(text.slice(currentIndex, text.length)));
+          $lastTextSegment.insertAfter($currentElement);
+        }
+      }
+      else {
+        // Recursively process child nodes.
+        self.handleTextElements(elements[i].childNodes);
       }
     }
-    //Appends the remaining part of the text.
-    self.$wordContainer.append(textField.slice(currentIndex, textField.length));
   };
-
+  
   /**
    * Matches the width of all dropzones to the widest draggable, and sets widest class variable.
    * @public
@@ -488,12 +540,13 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
           self.$draggables.toggleClass('hide', !self.$draggables.children().length);
         }
       });
-
+    
     var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer);
-    droppable.appendDroppableTo(self.$wordContainer);
-
+    
     self.draggables.push(draggable);
     self.droppables.push(droppable);
+    
+    return droppable;
   };
 
   /**

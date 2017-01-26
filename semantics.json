@@ -25,9 +25,21 @@
     "importance": "high",
     "name": "textField",
     "type": "text",
-    "widget": "textarea",
+    "widget": "html",
     "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
-    "description": "Droppable words are added with an asterisk (*) in front and behind the correct word/phrase. You may add a textual tip, using a colon (:) in front of the tip. Example: H5P content may be edited using a *browser:Something you use every day*.<br>For every empty spot there is only one correct word."
+    "description": "Droppable words are added with an asterisk (*) in front and behind the correct word/phrase. You may add a textual tip, using a colon (:) in front of the tip. Example: H5P content may be edited using a *browser:Something you use every day*.<br>For every empty spot there is only one correct word.<br><strong>Be careful to not apply formatting or styling to text within a droppable word/phrase.</strong>",
+    "enterMode": "p",
+    "tags": [
+      "strong",
+      "em",
+      "u",
+      "a",
+      "ul",
+      "ol",
+      "h2",
+      "h3",
+      "hr"
+    ]
   },
   {
     "label": "Text for \"Check\" button",

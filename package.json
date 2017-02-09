@@ -1,0 +1,18 @@
+{
+  "name": "h5p-drag-text",
+  "version": "1.0.0",
+  "description": "Drag the Words allows content designers to create textual expressions with missing pieces of text. The end user drags a missing piece of text to its correct place, to form a complete expression.",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h5p/h5p-drag-text.git"
+  },
+  "author": "Tom A. Jakobsen <tom.arild.jakobsen@joubel.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/h5p/h5p-drag-text",
+  "dependencies": {
+    "h5p-lib-controls": "../../h5p-lib-controls"
+  }
+}

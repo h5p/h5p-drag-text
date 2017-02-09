@@ -24,6 +24,9 @@ H5P.TextDroppable = (function ($) {
     var self = this;
     self.text = text;
     self.tip = tip;
+    /**
+     * @type {H5P.TextDraggable}
+     */
     self.containedDraggable = null;
     self.$dropzone = $(dropzone);
     self.$dropzoneContainer = $(dropzoneContainer);

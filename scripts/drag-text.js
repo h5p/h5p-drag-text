@@ -61,8 +61,19 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
 
     // Init keyboard navigation
-    this.dragControls = new Controls([new Controls.UIKeyboard(), new Controls.AriaDrag()]);
-    this.dropControls = new Controls([new Controls.UIKeyboard(), new Controls.AriaDrop()]);
+    this.ariaDragControls = new Controls.AriaDrag();
+    this.ariaDropControls = new Controls.AriaDrop();
+    this.dragControls = new Controls([new Controls.UIKeyboard(), this.ariaDragControls]);
+    this.dropControls = new Controls([new Controls.UIKeyboard(), this.ariaDropControls]);
+    this.dragControls.on('select', this.dragableSelected, this);
+    this.dropControls.on('select', this.droppableSelected, this);
+
+    /**
+     * @type {HTMLElement} selectedElement
+     */
+    this.selectedElement = undefined;
+
+    // add text parser
     this.textParser = new TextParser();
 
     // Init drag text task
@@ -73,6 +84,36 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
 
   DragText.prototype = Object.create(Question.prototype);
   DragText.prototype.constructor = DragText;
+
+  /**
+   * Handle selected dragable
+   *
+   * @param {ControlsEvent} event
+   */
+  DragText.prototype.dragableSelected = function (event) {
+    this.selectedElement = event.element;
+    this.ariaDropControls.setAllToMove();
+  };
+
+  /**
+   * Handle selected droppable
+   *
+   * @param {ControlsEvent} event
+   */
+  DragText.prototype.droppableSelected = function (event) {
+    // if something selected
+    if(this.selectedElement){
+      var draggable = this.getDraggableByElement(this.selectedElement);
+      var droppable = this.getDroppableByElement(event.element);
+
+      // initiate drop
+      this.moveDraggableToDroppable(draggable, droppable);
+      this.ariaDropControls.setAllToNone();
+      this.ariaDragControls.setAllGrabbedToFalse();
+
+      this.selectedElement = undefined;
+    }
+  };
 
   /**
    * Registers this question type's DOM elements before they are attached.
@@ -310,10 +351,33 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     self.textParser.parse(self.textFieldHtml)
       .forEach(function(part) {
         if(self.startsWith('*', part) && self.endsWith('*', part)) {
-          self.addDragNDrop(self.cleanAsterisk(part));
+          var tip;
+          var answer = self.cleanAsterisk(part);
+          var answersAndTip = answer.split(':');
+
+          if (answersAndTip.length > 0) {
+            answer = answersAndTip[0];
+            tip = answersAndTip[1];
+          }
+
+          var draggable = self.createDraggable(answer);
+          var droppable = self.createDroppable(answer, tip);
+
+          // trigger instant feedback
+          if (self.params.behaviour.instantFeedback) {
+            draggable.getDraggableElement().on('dragstop', function() {
+              if (droppable !== null) {
+                droppable.addFeedback();
+              }
+
+              self.instantFeedbackEvaluation();
+            });
+          }
         }
         else {
-          self.$wordContainer.append(part);
+          var el = self.createElementWithTextPart(part);
+          self.$wordContainer.append(el);
+          self.dropControls.addElement(el);
         }
       });
 
@@ -322,6 +386,19 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     self.$draggables.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
+  };
+
+  /**
+   * Creates a span HTMLElement containing a text part
+   *
+   * @param {string} part
+   * @private
+   * @return {HTMLElement}
+   */
+  DragText.prototype.createElementWithTextPart = function(part) {
+    var el = document.createElement('span');
+    el.innerHTML = part;
+    return  el;
   };
 
   /**
@@ -423,18 +500,12 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   /**
    * Makes a drag n drop from the specified text.
    * @public
-   * @param {String} text Text for the drag n drop.
+   * @param {String} answer Text for the drag n drop.
+   *
+   * @return {H5P.TextDraggable}
    */
-  DragText.prototype.addDragNDrop = function (text) {
+  DragText.prototype.createDraggable = function(answer){
     var self = this;
-    var tip;
-    var answer = text;
-    var answersAndTip = answer.split(':');
-
-    if (answersAndTip.length > 0) {
-      answer = answersAndTip[0];
-      tip = answersAndTip[1];
-    }
 
     //Make the draggable
     var $draggable = $('<div/>', {
@@ -442,7 +513,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
       'aria-grabbed': 'false'
     }).draggable({
       revert: function (isValidDrop) {
-        var dropzone = droppable;
+        // If not valid drop
         if (!isValidDrop) {
           if (!self.$draggables.children().length) {
             // Show draggables container
@@ -450,14 +521,8 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
           }
 
           self.moveDraggableToDroppable(draggable, null);
-          return false;
         }
-        if (self.params.behaviour.instantFeedback) {
-          if (dropzone !== null) {
-            dropzone.addFeedback();
-          }
-          self.instantFeedbackEvaluation();
-        }
+
         return false;
       },
       containment: self.$taskContainer
@@ -472,12 +537,28 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
       self.triggerXAPI('interacted');
     });
 
+    self.draggables.push(draggable);
+
+    return draggable;
+  };
+
+  /**
+   *
+   * @param {string} answer
+   * @param {string} [tip]
+   *
+   * @return {H5P.TextDroppable}
+   */
+  DragText.prototype.createDroppable = function(answer, tip){
+    var self = this;
+
     //Make the dropzone
     var $dropzoneContainer = $('<div/>', {
       'class': DROPZONE_CONTAINER
     });
     var $dropzone = $('<div/>', {
-      'aria-dropeffect': "none" // TODO Remove, also set by controls
+      'aria-dropeffect': "none",
+      'aria-label': 'blank' // TODO another aria word?
     }).appendTo($dropzoneContainer)
       .droppable({
         tolerance: 'pointer',
@@ -487,6 +568,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
               self.moveDraggableToDroppable(draggable, droppable);
             }
           });
+
           if (self.params.behaviour.instantFeedback) {
             droppable.addFeedback();
             if (!self.params.behaviour.enableRetry) {
@@ -508,15 +590,16 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer);
     droppable.appendDroppableTo(self.$wordContainer);
 
-    self.draggables.push(draggable);
     self.droppables.push(droppable);
+
+    return droppable;
   };
 
   /**
    * Moves a draggable onto a droppable, and updates all parameters in the objects.
    * @public
-   * @param {Draggable} draggable Draggable instance.
-   * @param {Droppable} droppable The droppable instance the draggable is put on.
+   * @param {H5P.TextDraggable} draggable Draggable instance.
+   * @param {H5P.TextDroppable} droppable The droppable instance the draggable is put on.
    */
   DragText.prototype.moveDraggableToDroppable = function (draggable, droppable) {
     draggable.removeFromZone();
@@ -653,10 +736,36 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
 
   /**
    * Get title of task
-   * @returns {string} title
+   * @return {string} title
    */
   DragText.prototype.getTitle = function () {
     return H5P.createTitle(this.params.taskDescription);
+  };
+
+  /**
+   * Returns the Draggable by element
+   *
+   * @param {HTMLElement} el
+   *
+   * @return {H5P.TextDraggable}
+   */
+  DragText.prototype.getDraggableByElement = function (el) {
+    return this.draggables.filter(function(draggable){
+      return draggable.$draggable.get(0) === el;
+    }, this)[0];
+  };
+
+  /**
+   * Returns the Droppable by element
+   *
+   * @param {HTMLElement} el
+   *
+   * @return {H5P.TextDraggable}
+   */
+  DragText.prototype.getDroppableByElement = function (el) {
+    return this.droppables.filter(function(droppable){
+      return droppable.$dropzone.get(0) === el;
+    }, this)[0];
   };
 
   /**

@@ -2,7 +2,7 @@
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($, Question) {
+H5P.DragText = (function ($, Question, Draggable, Droppable) {
   //CSS Main Containers:
   var MAIN_CONTAINER = "h5p-drag";
   var INNER_CONTAINER = "h5p-drag-inner";
@@ -66,6 +66,9 @@ H5P.DragText = (function ($, Question) {
 
     // Keeps track of if Question has been answered
     this.answered = false;
+
+    // Convert line breaks to HTML
+    this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
 
     // Init drag text task
     this.initDragText();
@@ -231,7 +234,10 @@ H5P.DragText = (function ($, Question) {
     var maxScore = this.droppables.length;
 
     if (!skipXapi) {
-      this.triggerXAPIScored(score, maxScore, 'answered');
+      var xAPIEvent = this.createXAPIEventTemplate('answered');
+      this.addQuestionToXAPI(xAPIEvent);
+      this.addResponseToXAPI(xAPIEvent);
+      this.trigger(xAPIEvent);
     }
 
     var scoreText = this.params.score.replace(/@score/g, score.toString())
@@ -323,7 +329,7 @@ H5P.DragText = (function ($, Question) {
     var self = this;
 
     //Replace newlines with break line tag
-    var textField = self.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
+    var textField = self.textFieldHtml;
 
     // Go through the text and replace all the asterisks with input fields
     var dropStart = textField.indexOf('*');
@@ -776,355 +782,209 @@ H5P.DragText = (function ($, Question) {
   };
 
   /**
-   * Private class for keeping track of draggable text.
-   * @private
-   * @param {String} text String that will be turned into a selectable word.
-   * @param {jQuery} draggable Draggable object.
+   * getXAPIData
+   * Contract used by report rendering engine.
+   *
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+	 *
+   * @returns {Object} xAPI data
    */
-  function Draggable(text, draggable) {
-    H5P.EventDispatcher.call(this);
+  DragText.prototype.getXAPIData = function () {
+    var xAPIEvent = this.createXAPIEventTemplate('answered');
+    this.addQuestionToXAPI(xAPIEvent);
+    this.addResponseToXAPI(xAPIEvent);
+    return {
+      statement: xAPIEvent.data.statement
+    };
+  };
+
+  /**
+   * addQuestionToXAPI
+   * Add the question itself to the definition part of an xAPIEvent
+   *
+   * @param xAPIEvent
+   */
+  DragText.prototype.addQuestionToXAPI = function (xAPIEvent) {
+    var definition = xAPIEvent.getVerifiedStatementValue(['object','definition']);
+    $.extend(definition, this.getxAPIDefinition());
+  };
+
+  /**
+   * Generate xAPI object definition used in xAPI statements.
+   * @return {Object}
+   */
+  DragText.prototype.getxAPIDefinition = function () {
+    var definition = {};
+    definition.interactionType = 'fill-in';
+    definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
+
+    var question = this.textFieldHtml;
+    var taskDescription = this.params.taskDescription + '<br/>';
+
+    // Create the description
+    definition.description = {
+      'en-US': taskDescription + this.replaceSolutionsWithBlanks(question)
+    };
+
+    //Create the correct responses pattern
+    definition.correctResponsesPattern = [this.getSolutionsFromQuestion(question)];
+
+    return definition;
+  };
+
+  /**
+   * Add the response part to an xAPI event
+   *
+   * @param {H5P.XAPIEvent} xAPIEvent
+   *  The xAPI event we will add a response to
+   */
+  DragText.prototype.addResponseToXAPI = function (xAPIEvent) {
     var self = this;
-    self.text = text;
-    self.insideDropzone = null;
-    self.$draggable = $(draggable);
+    var currentScore = self.getScore();
+    var maxScore = self.droppables.length;
 
-    self.shortFormat = self.text;
-    //Shortens the draggable string if inside a dropbox.
-    if (self.shortFormat.length > 20) {
-      self.shortFormat = self.shortFormat.slice(0, 17) + '...';
-    }
-  }
+    xAPIEvent.setScoredResult(currentScore, maxScore, self);
 
-  Draggable.prototype = Object.create(H5P.EventDispatcher.prototype);
-  Draggable.prototype.constructor = Draggable;
+    var score = {
+      min: 0,
+      raw: currentScore,
+      max: maxScore,
+      scaled: Math.round(currentScore / maxScore * 10000) / 10000
+    };
 
-  /**
-   * Moves the draggable to the provided container.
-   * @public
-   * @param {jQuery} $container Container the draggable will append to.
-   */
-  Draggable.prototype.appendDraggableTo = function ($container) {
-    this.$draggable.detach().css({left: 0, top: 0}).appendTo($container);
+    xAPIEvent.data.statement.result = {
+      response: self.getXAPIResponse(),
+      score: score
+    };
   };
 
   /**
-   * Reverts the draggable to its' provided container.
-   * @public
-   * @params {jQuery} $container The parent which the draggable will revert to.
+   * Generate xAPI user response, used in xAPI statements.
+   * @return {string} User answers separated by the "[,]" pattern
    */
-  Draggable.prototype.revertDraggableTo = function ($container) {
-    // get the relative distance between draggable and container.
-    var offLeft = this.$draggable.offset().left - $container.offset().left;
-    var offTop = this.$draggable.offset().top - $container.offset().top;
-
-    // Prepend draggable to new container, but keep the offset,
-    // then animate to new container's top:0, left:0
-    this.$draggable.detach()
-      .prependTo($container)
-      .css({left: offLeft, top: offTop})
-      .animate({left: 0, top: 0});
-  };
-
-  /**
-   * Sets dropped feedback if the on the draggable if parameter is true.
-   * @public
-   * @params {Boolean} isDropped Decides whether the draggable has been dropped.
-   */
-  Draggable.prototype.toggleDroppedFeedback = function (isDropped) {
-    if (isDropped) {
-      this.$draggable.addClass(DRAGGABLE_DROPPED);
-    } else {
-      this.$draggable.removeClass(DRAGGABLE_DROPPED);
-    }
-  };
-
-  /**
-   * Disables the draggable, making it immovable.
-   * @public
-   */
-  Draggable.prototype.disableDraggable = function () {
-    this.$draggable.draggable({ disabled: true});
-  };
-
-  /**
-   * Enables the draggable, making it movable.
-   * @public
-   */
-  Draggable.prototype.enableDraggable = function () {
-    this.$draggable.draggable({ disabled: false});
-  };
-
-  /**
-   * Gets the draggable jQuery object for this class.
-   * @public
-   *
-   * @returns {jQuery} Draggable item.
-   */
-  Draggable.prototype.getDraggableElement = function () {
-    return this.$draggable;
-  };
-
-  /**
-   * Removes this draggable from its dropzone, if it is contained in one.
-   * @public
-   */
-  Draggable.prototype.removeFromZone = function () {
-    if (this.insideDropzone !== null) {
-      this.insideDropzone.removeFeedback();
-      this.insideDropzone.removeDraggable();
-    }
-    this.toggleDroppedFeedback(false);
-    this.removeShortFormat();
-    this.insideDropzone = null;
-  };
-
-  /**
-   * Adds this draggable to the given dropzone.
-   * @public
-   * @param {Droppable} droppable The droppable this draggable will be added to.
-   */
-  Draggable.prototype.addToZone = function (droppable) {
-    this.trigger('addedToZone');
-    if (this.insideDropzone !== null) {
-      this.insideDropzone.removeDraggable();
-    }
-    this.toggleDroppedFeedback(true);
-    this.insideDropzone = droppable;
-    this.setShortFormat();
-  };
-
-  /**
-   * Gets the answer text for this draggable.
-   * @public
-   *
-   * @returns {String} The answer text in this draggable.
-   */
-  Draggable.prototype.getAnswerText = function () {
-    return this.text;
-  };
-
-  /**
-   * Sets short format of draggable when inside a dropbox.
-   * @public
-   */
-  Draggable.prototype.setShortFormat = function () {
-    this.$draggable.html(this.shortFormat);
-  };
-
-  /**
-   * Get short format of draggable when inside a dropbox.
-   * @returns {String|*}
-   */
-  Draggable.prototype.getShortFormat = function () {
-    return this.shortFormat;
-  };
-
-  /**
-   * Removes the short format of draggable when it is outside a dropbox.
-   * @public
-   */
-  Draggable.prototype.removeShortFormat = function () {
-    this.$draggable.html(this.text);
-  };
-
-  /**
-   * Get the droppable this draggable is inside
-   * @returns {Droppable} Droppable
-   */
-  Draggable.prototype.getInsideDropzone = function () {
-    return this.insideDropzone;
-  };
-
-  /**
-   * Private class for keeping track of droppable zones.
-   * @private
-   *
-   * @param {String} text Correct text string for this drop box.
-   * @param {undefined/String} tip Tip for this container, optional.
-   * @param {jQuery} dropzone Dropzone object.
-   * @param {jQuery} dropzoneContainer Container Container for the dropzone.
-   */
-  function Droppable(text, tip, dropzone, dropzoneContainer) {
+  DragText.prototype.getXAPIResponse = function () {
     var self = this;
-    self.text = text;
-    self.tip = tip;
-    self.containedDraggable = null;
-    self.$dropzone = $(dropzone);
-    self.$dropzoneContainer = $(dropzoneContainer);
 
-    if (self.tip !== undefined) {
-      self.$dropzone.append(H5P.JoubelUI.createTip(self.tip, self.$dropzone));
-    }
+    // Create an array to hold the answers
+    var answers = Array(self.droppables.length).fill("");
 
-    self.$showSolution = $('<div/>', {
-      'class': SHOW_SOLUTION_CONTAINER
-    }).appendTo(self.$dropzoneContainer).hide();
-  }
+    // Add answers to the answer array
+    var droppable;
+    var draggable;
+    self.getCurrentState().forEach(function (stateObject) {
+        draggable = self.draggables[stateObject.draggable].text;
+        answers[stateObject.droppable] = draggable;
+    });
 
-  /**
-   * Displays the solution next to the drop box if it is not correct.
-   * @public
-   */
-  Droppable.prototype.showSolution = function () {
-    if (!((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text))) {
-      this.$showSolution.html(this.text);
-      this.$showSolution.show();
-    }
+    return answers.join('[,]');
+  };
+
+	/**
+	 * replaceSolutionsWithBlanks
+	 *
+	 * @param question
+	 * @returns {string}
+	 */
+  DragText.prototype.replaceSolutionsWithBlanks = function (question) {
+    return this.handleBlanks(question, function() {
+      return '__________';
+    });
+  };
+
+	/**
+	 * getSolutionsFromQuestion
+	 *
+	 * @param question
+	 * @returns {array} Array with a string containing solutions of a question
+	 */
+  DragText.prototype.getSolutionsFromQuestion = function (question) {
+    var solutions = [];
+    this.handleBlanks(question, function(solution) {
+      solutions.push(solution.solutions[0]);
+      return '__________';
+    });
+    return solutions.join('[,]');
   };
 
   /**
-   * Hides the solution.
-   * @public
-   */
-  Droppable.prototype.hideSolution = function () {
-    this.$showSolution.html('');
-    this.$showSolution.hide();
-  };
-
-  /**
-   * Appends the droppable to the provided container.
-   * @public
-   * @param {jQuery} $container Container which the dropzone will be appended to.
-   */
-  Droppable.prototype.appendDroppableTo = function ($container) {
-    this.$dropzoneContainer.appendTo($container);
-  };
-  /**
-   * Appends the draggable contained within this dropzone to the argument.
-   * @public
-   * @param {jQuery} $container Container which the draggable will append to.
-   */
-  Droppable.prototype.appendInsideDroppableTo = function ($container) {
-    if (this.containedDraggable !== null) {
-      this.containedDraggable.revertDraggableTo($container);
-    }
-  };
-
-  /**
-   * Sets the contained draggable in this drop box to the provided argument.
-   * @public
-   * @param {Draggable} droppedDraggable A draggable that has been dropped on this box.
-   */
-  Droppable.prototype.setDraggable = function (droppedDraggable) {
-    var self = this;
-    if (self.containedDraggable === droppedDraggable) {
-      return;
-    }
-    if (self.containedDraggable !== null) {
-      self.containedDraggable.removeFromZone();
-    }
-    self.containedDraggable = droppedDraggable;
-    droppedDraggable.addToZone(self);
-  };
-
-  /**
-   * Removes the contained draggable in this box.
-   * @public
-   */
-  Droppable.prototype.removeDraggable = function () {
-    if (this.containedDraggable !== null) {
-      this.containedDraggable = null;
-    }
-  };
-
-  /**
-   * Checks if this drop box contains the correct draggable.
-   * @public
+   * Find blanks in a string and run a handler on those blanks
    *
-   * @returns {Boolean} True if this box has the correct answer.
+   * @param {string} question
+   *   Question text containing blanks enclosed in asterisks.
+   * @param {function} handler
+   *   Replaces the blanks text with an input field.
+   * @returns {string}
+   *   The question with blanks replaced by the given handler.
    */
-  Droppable.prototype.isCorrect = function () {
-    if (this.containedDraggable === null) {
-      return false;
-    }
-    return this.containedDraggable.getAnswerText() === this.text;
-  };
-
-  /**
-   * Sets CSS styling feedback for this drop box.
-   * @public
-   */
-  Droppable.prototype.addFeedback = function () {
-    //Draggable is correct
-    if (this.isCorrect()) {
-      this.$dropzone.removeClass(WRONG_FEEDBACK).addClass(CORRECT_FEEDBACK);
-
-      //Draggable feedback
-      this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).addClass(DRAGGABLE_FEEDBACK_CORRECT);
-    } else if (this.containedDraggable === null) {
-      //Does not contain a draggable
-      this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
-    } else {
-      //Draggable is wrong
-      this.$dropzone.removeClass(CORRECT_FEEDBACK).addClass(WRONG_FEEDBACK);
-
-      //Draggable feedback
-      if (this.containedDraggable !== null) {
-        this.containedDraggable.getDraggableElement().addClass(DRAGGABLE_FEEDBACK_WRONG).removeClass(DRAGGABLE_FEEDBACK_CORRECT);
+   DragText.prototype.handleBlanks = function (question, handler) {
+    // Go through the text and run handler on all asterisk
+    var clozeEnd, clozeStart = question.indexOf('*');
+    var self = this;
+    while (clozeStart !== -1 && clozeEnd !== -1) {
+      clozeStart++;
+      clozeEnd = question.indexOf('*', clozeStart);
+      if (clozeEnd === -1) {
+        continue; // No end
       }
+      var clozeContent = question.substring(clozeStart, clozeEnd);
+      var replacer = '';
+      if (clozeContent.length) {
+        replacer = handler(self.parseSolution(clozeContent));
+        clozeEnd++;
+      }
+      else {
+        clozeStart += 1;
+      }
+      question = question.slice(0, clozeStart - 1) + replacer + question.slice(clozeEnd);
+      clozeEnd -= clozeEnd - clozeStart - replacer.length;
+
+      // Find the next cloze
+      clozeStart = question.indexOf('*', clozeEnd);
     }
+    return question;
   };
 
-  /**
-   * Removes all CSS styling feedback for this drop box.
-   * @public
-   */
-  Droppable.prototype.removeFeedback = function () {
-    this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
-
-    //Draggable feedback
-    if (this.containedDraggable !== null) {
-      this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).removeClass(DRAGGABLE_FEEDBACK_CORRECT);
-    }
-  };
 
   /**
-   * Sets short format of draggable when inside a dropbox.
-   * @public
-   */
-  Droppable.prototype.setShortFormat = function () {
-    if (this.containedDraggable !== null) {
-      this.containedDraggable.setShortFormat();
-    }
-  };
-
-  /**
-   * Disables dropzone and the contained draggable.
-   */
-  Droppable.prototype.disableDropzoneAndContainedDraggable = function () {
-    if (this.containedDraggable !== null) {
-      this.containedDraggable.disableDraggable();
-    }
-    this.$dropzone.droppable({ disabled: true});
-  };
-
-  /**
-   * Enable dropzone.
-   */
-  Droppable.prototype.enableDropzone = function () {
-    this.$dropzone.droppable({ disabled: false});
-  };
-
-  /**
-   * Removes the short format of draggable when it is outside a dropbox.
-   * @public
-   */
-  Droppable.prototype.removeShortFormat = function () {
-    if (this.containedDraggable !== null) {
-      this.containedDraggable.removeShortFormat();
-    }
-  };
-
-  /**
-   * Gets this object's dropzone jQuery object.
-   * @public
+   * Parse the solution text (text between the asterisks)
    *
-   * @returns {jQuery} This object's dropzone.
+   * @param {string} solutionText
+   * @returns {object} with the following properties
+   *  - tip: the tip text for this solution, undefined if no tip
+   *  - solutions: array of solution words
    */
-  Droppable.prototype.getDropzone = function () {
-    return this.$dropzone;
+  DragText.prototype.parseSolution = function (solutionText) {
+    var tip, solution;
+
+    var tipStart = solutionText.indexOf(':');
+    if (tipStart !== -1) {
+      // Found tip, now extract
+      tip = solutionText.slice(tipStart + 1);
+      solution = solutionText.slice(0, tipStart);
+    }
+    else {
+      solution = solutionText;
+    }
+
+    // Split up alternatives
+    var solutions = solution.split('/');
+
+    // Trim solutions
+    for (var i = 0; i < solutions.length; i++) {
+      solutions[i] = H5P.trim(solutions[i]);
+
+      //decodes html entities
+      var elem = document.createElement('textarea');
+      elem.innerHTML = solutions[i];
+      solutions[i] = elem.value;
+    }
+
+    return {
+      tip: tip,
+      solutions: solutions
+    };
   };
 
   return DragText;
 
-}(H5P.jQuery, H5P.Question));
+}(H5P.jQuery, H5P.Question, H5P.TextDraggable, H5P.TextDroppable));

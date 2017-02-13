@@ -66,6 +66,14 @@ H5P.TextDroppable = (function ($) {
     this.$dropzoneContainer.appendTo($container);
   };
   /**
+   * Inserts the droppable after the provided element.
+   * @public
+   * @param {jQuery} $element Element after which the dropzone will be inserted.
+   */
+  Droppable.prototype.insertDroppableAfter = function ($element) {
+    this.$dropzoneContainer.insertAfter($element);
+  };
+  /**
    * Appends the draggable contained within this dropzone to the argument.
    * @public
    * @param {jQuery} $container Container which the draggable will append to.

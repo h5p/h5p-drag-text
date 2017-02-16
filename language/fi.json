@@ -1,0 +1,46 @@
+{
+  "semantics": [
+    {
+      "label": "Tehtävän kuvaus",
+      "description": "Kuvaile kuinka käyttäjän pitää ratkaista tehtävä.",
+      "default": "Raahaa sanat oikeisiin laatikoihin."
+    },
+    {
+      "label": "Tekstikenttä",
+      "placeholder": "*Helsinki* on Suomessa, *Tukholma* on Ruotsissa. Molemmat ovat maidensa *pääkaupunki:hallinnollinen keskus*.",
+      "description": "Pudotettavat sanat merkitään tähdillä edessä ja jälkeen. Vihje voidaan lisätä kaksoispisteellä kohteesta erotettuna tähtien väliin. Jokaiseen kohtaan on yksi oikea sana."
+    },
+    {
+      "label": "Nimike painikkeelle \"Tarkista\"",
+      "default": "Tarkista"
+    },
+    {
+      "label": "Nimike painikkeelle \"Yritä uudelleen\"",
+      "default": "Yritä uudelleen"
+    },
+    {
+      "label": "Nimike painikkeelle \"Katso vastaus\"",
+      "default": "Katso vastaus"
+    },
+    {
+      "label": "Palauteteksti",
+      "default": "Sait @score \/ @total pistettä",
+      "description": "Palauteteksti, käytettävissä olevat muuttujat: @score ja @total. Esimerkki: 'Sait @score \/ @total pistettä'"
+    },
+    {
+      "label": "Yleisasetukset",
+      "description": "Näillä valinnoilla voit hallita tehtävän toimintaa.",
+      "fields": [
+        {
+          "label": "Salli nappi  \"Yritä uudelleen\""
+        },
+        {
+          "label": "Salli nappi \"Katso vastaus\""
+        },
+        {
+          "label": "Pikapalaute"
+        }
+      ]
+    }
+  ]
+}

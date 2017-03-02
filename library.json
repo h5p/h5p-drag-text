@@ -12,7 +12,7 @@
   "embedTypes": [
     "iframe"
   ],
-  "author": "Joubel AS",
+  "author": "Joubel",
   "license": "MIT",
   "machineName": "H5P.DragText",
   "preloadedCss": [

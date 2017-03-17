@@ -7,7 +7,11 @@
     {
       "label": "Tekst",
       "placeholder": "*Oslo* er hovudstaden i Noreg, *Stockholm* er hovudstaden i Sverige og *København* er hovudstaden i Danmark. Alle byane er lokalisert i *Skandinavia:Nordlege delen av europa*.",
-      "description": "Opne felt må merkast med ei stjerne * foran og bak det korrekte ordet/uttrykket. Tips får et kolon (:) foran seg: H5P innhald kan lages i ein *nettlesar:noko du bruker til å navigere internett med*.<br>For kvart opne felt er det bare eit rett ord."
+      "description": "",
+      "important": {
+        "description": "<ul><li>Opne felt merkast med ei stjerne * foran og bak det korrekte ordet/uttrykket.</li><li>Tips angis med eit kolon (:) før tipset.</li><li>For kvart opne felt er det bare eit rett ord.</li></ul>",
+        "example": "H5P innhold kan lages i ein *nettleser:Noe du bruker til å navigere internett med*."
+      }
     },
     {
       "label": "Tekst for \"Sjekk svar\" knapp",

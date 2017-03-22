@@ -53,17 +53,17 @@
 
 /* Tooltip styling */
 .h5p-drag-text .joubel-tip-container {
-  top: 0;
-  right: 0.5em;
+  top: -1.1em;
+  right: -0.6em;
   position: absolute;
   z-index: 4;
-  font-size: 0.7em;
+  font-size: 0.9em;
 }
 
 /* Feedback for dropzones */
 .h5p-drag-text .h5p-drag-correct-feedback:before {
   position: absolute;
-  right: 0.3em;
+  right: 0.5em;
   font-family: 'H5PFontAwesome4';
   content: "\f00c";
   color: #255c41;
@@ -71,7 +71,7 @@
 
 .h5p-drag-text .h5p-drag-wrong-feedback:before {
   position: absolute;
-  right: 0.3em;
+  right: 0.5em;
   font-family: 'H5PFontAwesome4';
   content: "\f00d";
   color: #b71c1c;

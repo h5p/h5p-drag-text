@@ -22,6 +22,9 @@
   ],
   "preloadedJs": [
     {
+      "path": "scripts/stop-watch.js"
+    },
+    {
       "path": "scripts/draggable.js"
     },
     {

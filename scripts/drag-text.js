@@ -2,7 +2,7 @@
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($, Question, Draggable, Droppable) {
+H5P.DragText = (function ($, Question, StopWatch, Draggable, Droppable) {
   //CSS Main Containers:
   var MAIN_CONTAINER = "h5p-drag";
   var INNER_CONTAINER = "h5p-drag-inner";
@@ -72,6 +72,10 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
 
     // Init drag text task
     this.initDragText();
+
+    // Start stop watch
+    this.stopWatch = new StopWatch();
+    this.stopWatch.start();
 
     this.on('resize', this.resize, this);
   }
@@ -197,6 +201,8 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
         self.enableDraggables();
       }
       self.hideAllSolutions();
+
+      self.stopWatch.reset();
     }, self.initShowTryAgainButton || false);
 
     //Show Solution button
@@ -854,7 +860,9 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
 
     xAPIEvent.data.statement.result = {
       response: self.getXAPIResponse(),
-      score: score
+      score: score,
+      duration: 'PT' + self.stopWatch.stop() + 'S',
+      completion: true
     };
   };
 
@@ -987,4 +995,4 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
 
   return DragText;
 
-}(H5P.jQuery, H5P.Question, H5P.TextDraggable, H5P.TextDroppable));
+}(H5P.jQuery, H5P.Question, H5P.DragText.StopWatch, H5P.TextDraggable, H5P.TextDroppable));

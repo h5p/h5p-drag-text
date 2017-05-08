@@ -866,7 +866,10 @@ H5P.DragText = (function ($, Question, Draggable, Droppable) {
     var self = this;
 
     // Create an array to hold the answers
-    var answers = Array(self.droppables.length).fill("");
+    var answers = new Array(self.droppables.length);
+    for (var i = 0; i < self.droppables.length; i++) {
+      answers[i] = '';
+    }
 
     // Add answers to the answer array
     var droppable;

@@ -180,6 +180,15 @@ H5P.DragText = (function ($, Question, StopWatch, Draggable, Droppable) {
       }
     }, !self.params.behaviour.instantFeedback);
 
+    //Show Solution button
+    self.addButton('show-solution', self.params.showSolution, function () {
+      self.droppables.forEach(function (droppable) {
+        droppable.showSolution();
+      });
+      self.disableDraggables();
+      self.hideButton('show-solution');
+    }, self.initShowShowSolutionButton || false);
+
     //Retry button
     self.addButton('try-again', self.params.tryAgain, function () {
       // Reset and shuffle draggables if Question is answered
@@ -204,15 +213,6 @@ H5P.DragText = (function ($, Question, StopWatch, Draggable, Droppable) {
 
       self.stopWatch.reset();
     }, self.initShowTryAgainButton || false);
-
-    //Show Solution button
-    self.addButton('show-solution', self.params.showSolution, function () {
-      self.droppables.forEach(function (droppable) {
-        droppable.showSolution();
-      });
-      self.disableDraggables();
-      self.hideButton('show-solution');
-    }, self.initShowShowSolutionButton || false);
   };
 
   /**

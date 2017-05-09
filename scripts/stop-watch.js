@@ -3,7 +3,7 @@ H5P.DragText = H5P.DragText || {};
 
 H5P.DragText.StopWatch = (function () {
   /**
-   * @class {H5P.SingleChoiceSet.StopWatch}
+   * @class {H5P.DragText.StopWatch}
    * @constructor
    */
   function StopWatch() {
@@ -17,7 +17,7 @@ H5P.DragText.StopWatch = (function () {
    * Starts the stop watch
    *
    * @public
-   * @return {H5P.SingleChoiceSet.StopWatch}
+   * @return {H5P.DragText.StopWatch}
    */
   StopWatch.prototype.start = function(){
     /**

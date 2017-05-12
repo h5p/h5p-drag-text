@@ -118,13 +118,13 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
    * @param {Droppable} droppable The droppable this draggable will be added to.
    */
   Draggable.prototype.addToZone = function (droppable) {
-    this.trigger('addedToZone');
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }
     this.toggleDroppedFeedback(true);
     this.insideDropzone = droppable;
     this.setShortFormat();
+    this.trigger('addedToZone');
   };
 
   /**

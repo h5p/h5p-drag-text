@@ -32,7 +32,7 @@
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($, Question, ConfirmationDialog, Util, Draggable, Droppable, TextParser, Controls) {
+H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Draggable, Droppable, TextParser, Controls) {
   //CSS Main Containers:
   var INNER_CONTAINER = "h5p-drag-inner";
   var TASK_CONTAINER = "h5p-drag-task";
@@ -132,6 +132,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog, Util, Draggable, Drop
 
     // Init drag text task
     this.initDragText();
+
+    // Start stop watch
+    this.stopWatch = new StopWatch();
+    this.stopWatch.start();
 
     this.on('resize', this.resize, this);
 
@@ -240,6 +244,15 @@ H5P.DragText = (function ($, Question, ConfirmationDialog, Util, Draggable, Drop
       }
     }, !self.params.behaviour.instantFeedback);
 
+    //Show Solution button
+    self.addButton('show-solution', self.params.showSolution, function () {
+      self.droppables.forEach(function (droppable) {
+        droppable.showSolution();
+      });
+      self.disableDraggables();
+      self.hideButton('show-solution');
+    }, self.initShowShowSolutionButton || false);
+
     //Retry button
     self.addButton('try-again', self.params.tryAgain, function () {
       // Reset and shuffle draggables if Question is answered
@@ -261,16 +274,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog, Util, Draggable, Drop
         self.enableDraggables();
       }
       self.hideAllSolutions();
-    }, self.initShowTryAgainButton || false);
 
-    //Show Solution button
-    self.addButton('show-solution', self.params.showSolution, function () {
-      self.droppables.forEach(function (droppable) {
-        droppable.showSolution();
-      });
-      self.disableDraggables();
-      self.hideButton('show-solution');
-    }, self.initShowShowSolutionButton || false);
+      self.stopWatch.reset();
+    }, self.initShowTryAgainButton || false);
   };
 
   /**
@@ -1133,7 +1139,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog, Util, Draggable, Drop
 
     xAPIEvent.data.statement.result = {
       response: self.getXAPIResponse(),
-      score: score
+      score: score,
+      duration: 'PT' + self.stopWatch.stop() + 'S',
+      completion: true
     };
   };
 
@@ -1145,7 +1153,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog, Util, Draggable, Drop
     var self = this;
 
     // Create an array to hold the answers
-    var answers = Array(self.droppables.length).fill("");
+    var answers = new Array(self.droppables.length);
+    for (var i = 0; i < self.droppables.length; i++) {
+      answers[i] = '';
+    }
 
     // Add answers to the answer array
     var draggable;
@@ -1188,5 +1199,4 @@ H5P.DragText = (function ($, Question, ConfirmationDialog, Util, Draggable, Drop
   };
 
   return DragText;
-
-}(H5P.jQuery, H5P.Question, H5P.ConfirmationDialog, H5P.DragTextUtil, H5P.TextDraggable, H5P.TextDroppable, H5P.DragTextTextParser, H5P.Controls));
+}(H5P.jQuery, H5P.Question, H5P.DragText.StopWatch, H5P.ConfirmationDialog, H5P.DragTextUtil, H5P.TextDraggable, H5P.TextDroppable, H5P.DragTextTextParser, H5P.Controls));

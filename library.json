@@ -3,7 +3,7 @@
   "description": "Drag and drop pieces of text to create complete sentences.",
   "majorVersion": 1,
   "minorVersion": 5,
-  "patchVersion": 3,
+  "patchVersion": 7,
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 6
@@ -12,7 +12,7 @@
   "embedTypes": [
     "iframe"
   ],
-  "author": "Joubel AS",
+  "author": "Joubel",
   "license": "MIT",
   "machineName": "H5P.DragText",
   "preloadedCss": [
@@ -29,6 +29,9 @@
     },
     {
       "path": "scripts/text-parser.js"
+    },
+    {
+      "path": "scripts/stop-watch.js"
     },
     {
       "path": "scripts/draggable.js"

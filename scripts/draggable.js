@@ -83,11 +83,19 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
   /**
    * Gets the draggable jQuery object for this class.
    * @public
-   *
    * @returns {jQuery} Draggable item.
    */
   Draggable.prototype.getDraggableElement = function () {
     return this.$draggable;
+  };
+
+  /**
+   * Gets the draggable element for this class.
+   * @public
+   * @returns {HTMLElement}
+   */
+  Draggable.prototype.getElement = function () {
+    return this.$draggable.get(0);
   };
 
   /**
@@ -160,5 +168,14 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
   Draggable.prototype.getInsideDropzone = function () {
     return this.insideDropzone;
   };
+
+  /**
+   * Returns true if inside dropzone
+   * @returns {boolean}
+   */
+  Draggable.prototype.isInsideDropZone = function () {
+    return !!this.insideDropzone;
+  };
+
   return Draggable;
 })(H5P.jQuery, H5P.EventDispatcher);

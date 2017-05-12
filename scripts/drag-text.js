@@ -1,10 +1,39 @@
 /**
+ * @typedef {object} H5P.DragTextEvent
+ * @property {HTMLElement} element The element being dragged
+ * @property {HTMLElement} [target] The target element
+ */
+/**
+ * Drag event
+ * @event H5P.DragText#drag
+ * @type {H5P.DragTextEvent}
+ */
+/**
+ * Drop event
+ * @event H5P.DragText#drop
+ * @type {H5P.DragTextEvent}
+ */
+/**
+ * Revert event
+ * @event H5P.DragText#revert
+ * @type {H5P.DragTextEvent}
+ */
+/**
+ * Start event
+ * @event H5P.DragText#start
+ * @type {H5P.DragTextEvent}
+ */
+/**
+ * Stop event
+ * @event H5P.DragText#stop
+ * @type {H5P.DragTextEvent}
+ */
+/**
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Controls) {
+H5P.DragText = (function ($, Question, ConfirmationDialog, Util, Draggable, Droppable, TextParser, Controls) {
   //CSS Main Containers:
-  var MAIN_CONTAINER = "h5p-drag";
   var INNER_CONTAINER = "h5p-drag-inner";
   var TASK_CONTAINER = "h5p-drag-task";
   var WORDS_CONTAINER = "h5p-drag-droppable-words";
@@ -12,8 +41,6 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   var DRAGGABLES_CONTAINER = "h5p-drag-draggables-container";
 
   //Special Sub-containers:
-  var DROPZONE = "h5p-drag-dropzone";
-  var SHOW_SOLUTION_CONTAINER = "h5p-drag-show-solution-container";
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
 
@@ -65,8 +92,35 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     this.ariaDropControls = new Controls.AriaDrop();
     this.dragControls = new Controls([new Controls.UIKeyboard(), this.ariaDragControls]);
     this.dropControls = new Controls([new Controls.UIKeyboard(), this.ariaDropControls]);
-    this.dragControls.on('select', this.dragableSelected, this);
-    this.dropControls.on('select', this.droppableSelected, this);
+
+
+    this.dragControls.on('select', this.keyboardDraggableSelected, this);
+    this.dropControls.on('select', this.keyboardDroppableSelected, this);
+
+    // on drag and drop, toggle aria-dropeffect between 'move', and 'none'
+    this.on('start', this.toggleDropEffect, this);
+    this.on('stop', this.toggleDropEffect, this);
+
+    // toggles grabbed on mouse
+    this.on('start', function(event) {
+      event.data.element.setAttribute('aria-grabbed', 'true');
+    }, this);
+    this.on('stop', function(event) {
+      event.data.element.setAttribute('aria-grabbed', 'false');
+    }, this);
+
+    // on drop, remove all dragging
+    this.on('drop', this.ariaDropControls.setAllToNone, this.ariaDropControls);
+
+    // on drop remove element from drag controls
+    this.on('drop', function(event) {
+      this.dragControls.removeElement(event.data.element);
+    }, this);
+
+    // on revert, re add element to drag controls
+    this.on('revert', function(event) {
+      this.dragControls.addElement(event.data.element);
+    }, this);
 
     /**
      * @type {HTMLElement} selectedElement
@@ -80,40 +134,14 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     this.initDragText();
 
     this.on('resize', this.resize, this);
+
+    // toggle the draggable container
+    this.on('revert', this.toggleDraggablesContainer, this);
+    this.on('drop', this.toggleDraggablesContainer, this);
   }
 
   DragText.prototype = Object.create(Question.prototype);
   DragText.prototype.constructor = DragText;
-
-  /**
-   * Handle selected dragable
-   *
-   * @param {ControlsEvent} event
-   */
-  DragText.prototype.dragableSelected = function (event) {
-    this.selectedElement = event.element;
-    this.ariaDropControls.setAllToMove();
-  };
-
-  /**
-   * Handle selected droppable
-   *
-   * @param {ControlsEvent} event
-   */
-  DragText.prototype.droppableSelected = function (event) {
-    // if something selected
-    if(this.selectedElement){
-      var draggable = this.getDraggableByElement(this.selectedElement);
-      var droppable = this.getDroppableByElement(event.element);
-
-      // initiate drop
-      this.moveDraggableToDroppable(draggable, droppable);
-      this.ariaDropControls.setAllToNone();
-      this.ariaDragControls.setAllGrabbedToFalse();
-
-      this.selectedElement = undefined;
-    }
-  };
 
   /**
    * Registers this question type's DOM elements before they are attached.
@@ -216,8 +244,8 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     self.addButton('try-again', self.params.tryAgain, function () {
       // Reset and shuffle draggables if Question is answered
       if (self.answered) {
+        // move draggables to original container
         self.resetDraggables();
-        self.addDraggablesRandomly(self.$draggables);
       }
       self.answered = false;
 
@@ -246,6 +274,104 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   };
 
   /**
+   * Removes all the draggables from the container
+   *
+   * @param {jQuery} $container
+   */
+  DragText.prototype.removeDraggables = function ($container) {
+    var self = this;
+    $container.forEach(function($draggable){
+      self.dragControls.removeElement($draggable.get(0));
+      $draggable.detach();
+    }, this);
+  };
+
+  /**
+   * Handle selected draggable
+   *
+   * @param {ControlsEvent} event
+   *
+   * @fires H5P.DragText#start
+   */
+  DragText.prototype.keyboardDraggableSelected = function (event) {
+    var tmp = this.selectedElement;
+    var hasSelectedElement = this.selectedElement !== undefined;
+    var isSelectedElement = this.selectedElement ===  event.element;
+
+    // un select the selected
+    if(hasSelectedElement){
+      this.selectedElement = undefined;
+      this.trigger('stop', { element: tmp });
+    }
+
+    // no previous selected or not the selected one
+    if(!hasSelectedElement || !isSelectedElement) {
+      this.selectedElement = event.element;
+      this.trigger('start', { element: event.element });
+    }
+  };
+
+  /**
+   * Handle selected droppable
+   *
+   * @param {ControlsEvent} event
+   */
+  DragText.prototype.keyboardDroppableSelected = function (event) {
+    var self = this;
+
+    var droppableElement = event.element;
+    var droppable = self.getDroppableByElement(droppableElement);
+    var draggable = self.getDraggableByElement(this.selectedElement);
+
+    // if something selected
+    if(draggable && droppable) {
+      var tmp = self.selectedElement;
+      // initiate drop
+      self.drop(draggable, droppable);
+
+      self.selectedElement = undefined;
+
+      // update selected
+      this.trigger('stop', { element: tmp });
+    }
+    else if(droppable.hasDraggable()) {
+      var containsDropped = droppableElement.querySelector('[aria-grabbed]');
+
+      this.createConfirmResetDialog(function() {
+        self.revert(self.getDraggableByElement(containsDropped));
+      }).show();
+    }
+  };
+
+  /**
+   * Initialize drag text task
+   */
+  DragText.prototype.toggleDraggablesContainer = function () {
+    var isEmpty = this.$draggables.children().length === 0;
+    this.$draggables.toggleClass('hide', isEmpty);
+  };
+
+  /**
+   * Opens a confirm dialog, where the user has to confirm that they want to reset a droppable
+   *
+   * @param {function} callback
+   * @param {object} [scope]
+   *
+   * @return {ConfirmationDialog}
+   */
+  DragText.prototype.createConfirmResetDialog = function (callback, scope) {
+    var dialog = new ConfirmationDialog({
+      headerText: 'Reset drop',
+      dialogText: 'Are you sure you want to reset this drop?'
+    });
+
+    dialog.appendTo(document.body);
+    dialog.on('confirmed', callback, scope || this);
+
+    return dialog;
+  };
+
+  /**
    * Shows feedback for dropzones.
    * @public
    */
@@ -263,10 +389,9 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
    */
   DragText.prototype.showEvaluation = function (skipXapi) {
     this.hideEvaluation();
-    this.calculateScore();
     this.showDropzoneFeedback();
 
-    var score = this.correctAnswers;
+    var score = this.calculateScore();
     var maxScore = this.droppables.length;
 
     if (!skipXapi) {
@@ -295,17 +420,15 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   };
 
   /**
-   * Calculate score and store them in class variables.
+   * Returns the number of correct entries
+   *
    * @public
+   * @return {number}
    */
   DragText.prototype.calculateScore = function () {
-    var self = this;
-    self.correctAnswers = 0;
-    self.droppables.forEach(function (entry) {
-      if (entry.isCorrect()) {
-        self.correctAnswers += 1;
-      }
-    });
+    return this.droppables.reduce(function (sum, entry) {
+      return sum + (entry.isCorrect() ? 1 : 0);
+    }, 0);
   };
 
   /**
@@ -348,40 +471,35 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
 
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
 
+    // parse text
     self.textParser.parse(self.textFieldHtml)
       .forEach(function(part) {
-        if(self.startsWith('*', part) && self.endsWith('*', part)) {
-          var tip;
-          var answer = self.cleanAsterisk(part);
-          var answersAndTip = answer.split(':');
-
-          if (answersAndTip.length > 0) {
-            answer = answersAndTip[0];
-            tip = answersAndTip[1];
-          }
+        if(self.isAnswerPart(part)) {
+          // is draggable/droppable
+          var answer = self.parseAnswer(part);
+          var tip = self.parseAnswerTip(part);
 
           var draggable = self.createDraggable(answer);
           var droppable = self.createDroppable(answer, tip);
 
+          self.dropControls.addElement(droppable.getElement());
+
           // trigger instant feedback
           if (self.params.behaviour.instantFeedback) {
             draggable.getDraggableElement().on('dragstop', function() {
-              if (droppable !== null) {
-                droppable.addFeedback();
-              }
-
+              droppable.addFeedback();
               self.instantFeedbackEvaluation();
             });
           }
         }
         else {
-          var el = self.createElementWithTextPart(part);
+          // is normal text
+          var el = Util.createElementWithTextPart(part);
           self.$wordContainer.append(el);
-          self.dropControls.addElement(el);
         }
       });
 
-    self.addDraggablesRandomly(self.$draggables);
+    self.shuffleAndAddDraggables(self.$draggables);
     self.$wordContainer.prependTo(self.$taskContainer);
     self.$draggables.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
@@ -389,59 +507,36 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   };
 
   /**
-   * Creates a span HTMLElement containing a text part
+   * Returns the "answer" of a part, without the tip
    *
    * @param {string} part
-   * @private
-   * @return {HTMLElement}
-   */
-  DragText.prototype.createElementWithTextPart = function(part) {
-    var el = document.createElement('span');
-    el.innerHTML = part;
-    return  el;
-  };
-
-  /**
-   * Checks if a string starts with a symbol
    *
-   * @param {string} symbol
-   * @param {string} str
-   * @private
-   * @return {boolean}
-   */
-  DragText.prototype.startsWith = function(symbol, str) {
-    return str.substr(0,1) === symbol;
-  };
-
-  /**
-   * Checks if a ends with a symbol
-   *
-   * @param {string} symbol
-   * @param {string} str
-   * @private
-   * @return {boolean}
-   */
-  DragText.prototype.endsWith = function(symbol, str) {
-    return str.substr(-1) === symbol;
-  };
-
-  /**
-   * Removes asterisk in the beginning and end of a string
-   *
-   * @param {string} str
-   * @private
    * @return {string}
    */
-  DragText.prototype.cleanAsterisk = function(str) {
-    if(this.startsWith('*', str)) {
-      str = str.slice(1);
-    }
+  DragText.prototype.parseAnswer = function(part) {
+    return Util.cleanCharacter('*', part).split(':')[0];
+  };
 
-    if(this.endsWith('*', str)) {
-      str = str.slice(0, -1);
-    }
+  /**
+   * Returns the "tip" of a part, without the answer
+   *
+   * @param {string} part
+   *
+   * @return {string}
+   */
+  DragText.prototype.parseAnswerTip = function(part) {
+    return Util.cleanCharacter('*', part).split(':')[1];
+  };
 
-    return str;
+  /**
+   * Returns true if part starts and ends with an asterisk
+   *
+   * @param {string} part
+   *
+   * @return {boolean}
+   */
+  DragText.prototype.isAnswerPart = function(part) {
+    return Util.startsWith('*', part) && Util.endsWith('*', part);
   };
 
   /**
@@ -512,25 +607,17 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
       html: answer,
       'aria-grabbed': 'false'
     }).draggable({
-      revert: function (isValidDrop) {
-        // If not valid drop
+      revert: function(isValidDrop) {
         if (!isValidDrop) {
-          if (!self.$draggables.children().length) {
-            // Show draggables container
-            self.$draggables.removeClass('hide');
-          }
-
-          self.moveDraggableToDroppable(draggable, null);
+          self.revert(draggable);
         }
-
         return false;
       },
+      drag: self.propagateDragEvent('drag', self),
+      start: self.propagateDragEvent('start', self),
+      stop: self.propagateDragEvent('stop', self),
       containment: self.$taskContainer
     });
-
-    // add keyboard navigation to draggable
-    var draggableEl = $draggable.get(0);
-    self.dragControls.addElement(draggableEl);
 
     var draggable = new Draggable(answer, $draggable);
     draggable.on('addedToZone', function (event) {
@@ -543,6 +630,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   };
 
   /**
+   * Creates a Droppable
    *
    * @param {string} answer
    * @param {string} [tip]
@@ -552,40 +640,24 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   DragText.prototype.createDroppable = function(answer, tip){
     var self = this;
 
+    var draggableIndex = this.draggables.length;
+
     //Make the dropzone
     var $dropzoneContainer = $('<div/>', {
       'class': DROPZONE_CONTAINER
     });
     var $dropzone = $('<div/>', {
       'aria-dropeffect': "none",
-      'aria-label': 'blank' // TODO another aria word?
+      'aria-label': 'blank ' + draggableIndex
     }).appendTo($dropzoneContainer)
       .droppable({
         tolerance: 'pointer',
         drop: function (event, ui) {
-          self.draggables.forEach(function (draggable) {
-            if (draggable.getDraggableElement().is(ui.draggable)) {
-              self.moveDraggableToDroppable(draggable, droppable);
-            }
-          });
-
-          if (self.params.behaviour.instantFeedback) {
-            droppable.addFeedback();
-            if (!self.params.behaviour.enableRetry) {
-              droppable.disableDropzoneAndContainedDraggable();
-            }
-            if (droppable.isCorrect()) {
-              droppable.disableDropzoneAndContainedDraggable();
-            }
-          }
-
-          // Hide draggables container if it is empty
-          self.$draggables.toggleClass('hide', !self.$draggables.children().length);
+          var draggable = self.getDraggableByElement(ui.draggable[0]);
+          var droppable = self.getDroppableByElement(event.target);
+          self.drop(draggable, droppable)
         }
       });
-
-    var droppableEl = $dropzone.get(0);
-    self.dropControls.addElement(droppableEl);
 
     var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer);
     droppable.appendDroppableTo(self.$wordContainer);
@@ -596,38 +668,124 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   };
 
   /**
-   * Moves a draggable onto a droppable, and updates all parameters in the objects.
-   * @public
-   * @param {H5P.TextDraggable} draggable Draggable instance.
-   * @param {H5P.TextDroppable} droppable The droppable instance the draggable is put on.
+   * Propagates a jQuery UI event
+   *
+   * @param {string} part
+   * @param {string} object
+   * @param {object} event
+   *
+   * @function
+   * @return {boolean}
    */
-  DragText.prototype.moveDraggableToDroppable = function (draggable, droppable) {
+  DragText.prototype.propagateDragEvent = Util.curry(function(eventName, self, event) {
+    self.trigger(eventName, {
+      element: event.target
+    });
+  });
+
+  /**
+   * Resets a draggable
+   *
+   * @param {H5P.TextDraggable} draggable
+   *
+   * @fires H5P.DragText#revert
+   * @fires Question#resize
+   */
+  DragText.prototype.revert = function (draggable) {
     draggable.removeFromZone();
-    if (droppable !== null) {
-      this.answered = true;
-      droppable.appendInsideDroppableTo(this.$draggables);
-      droppable.setDraggable(draggable);
-      draggable.appendDraggableTo(droppable.getDropzone());
-    } else {
-      draggable.revertDraggableTo(this.$draggables);
-    }
+    draggable.revertDraggableTo(this.$draggables);
+
+    this.trigger('revert', { element: draggable.getElement() });
     this.trigger('resize');
   };
 
   /**
-   * Adds the draggable words to the provided container in random order.
-   * @public
-   * @param {jQuery} $container Container the draggables will be added to.
+   * Handles dropping an element
+   *
+   * @param {H5P.TextDraggable} draggable
+   * @param {H5P.TextDroppable} droppable
+   *
+   * @fires H5P.DragText#revert
+   * @fires H5P.DragText#drop
+   * @fires Question#resize
    */
-  DragText.prototype.addDraggablesRandomly = function ($container) {
-    var tempArray = this.draggables.slice();
-    var randIndex = 0;
-    while (tempArray.length >= 1) {
-      randIndex = parseInt(Math.random() * tempArray.length, 10);
-      tempArray[randIndex].appendDraggableTo($container);
-      tempArray.splice(randIndex, 1);
+  DragText.prototype.drop = function (draggable, droppable) {
+    var self = this;
+    self.answered = true;
+
+    draggable.removeFromZone();
+
+    // if already contains draggable
+    var revertedDraggable = droppable.appendInsideDroppableTo(this.$draggables);
+
+    // trigger revert, if revert was performed
+    if(revertedDraggable){
+      self.trigger('revert', {
+        element: revertedDraggable.getElement()
+      });
     }
+
+    droppable.setDraggable(draggable);
+    draggable.appendDraggableTo(droppable.getDropzone());
+
+    if (self.params.behaviour.instantFeedback) {
+      droppable.addFeedback();
+
+      if (!self.params.behaviour.enableRetry || droppable.isCorrect()) {
+        droppable.disableDropzoneAndContainedDraggable();
+      }
+    }
+
+    this.trigger('drop', {
+      element: draggable.getElement(),
+      target: droppable.getElement()
+    });
+
+    this.trigger('resize');
+
+    // Resize seems to set focus to the iframe
+    droppable.getElement().focus();
   };
+
+  /**
+   * Adds the draggable words to the provided container in random order.
+   *
+   * @param {jQuery} $container Container the draggables will be added to.
+   * @public
+   *
+   * @return {H5P.TextDraggable[]}
+   */
+  DragText.prototype.shuffleAndAddDraggables = function ($container) {
+    return Util.shuffle(this.draggables)
+      .map(this.addDraggableToContainer($container))
+      .map(this.addDraggableToControls(this.dragControls))
+  };
+
+  /**
+   * Adds the draggable to the container
+   *
+   * @param {jQuery} $container
+   * @param {H5P.TextDraggable} draggable
+   *
+   * @return {H5P.TextDraggable}
+   */
+  DragText.prototype.addDraggableToContainer = Util.curry(function ($container, draggable) {
+    draggable.appendDraggableTo($container);
+    return draggable;
+  });
+
+  /**
+   * Adds the element of Draggables to (keyboard) controls
+   *
+   * @param {H5P.Controls} controls
+   * @param {H5P.TextDraggable} draggable
+   *
+   * @return {H5P.TextDraggable}
+   */
+  DragText.prototype.addDraggableToControls = Util.curry(function (controls, draggable) {
+    controls.addElement(draggable.getElement());
+    return draggable;
+  });
 
   /**
    * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
@@ -659,18 +817,13 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
 
   /**
    * Check if all answers are filled
+   *
    * @returns {boolean} allFilled Returns true if all answers are answered
    */
   DragText.prototype.isAllAnswersFilled = function () {
-    var self = this;
-    var allFilled = true;
-    self.draggables.forEach(function (entry) {
-      if (entry.insideDropzone === null) {
-        allFilled = false;
-      }
+    return this.draggables.every(function(draggable){
+      return draggable.isInsideDropZone();
     });
-
-    return allFilled;
   };
 
   /**
@@ -720,8 +873,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
    * @returns {Number} The current score.
    */
   DragText.prototype.getScore = function () {
-    this.calculateScore();
-    return this.correctAnswers;
+    return this.calculateScore();
   };
 
   /**
@@ -743,6 +895,14 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   };
 
   /**
+   * Toogles the drop effect based on if an element is selected
+   */
+  DragText.prototype.toggleDropEffect = function () {
+    var hasSelectedElement = this.selectedElement !== undefined;
+    this.ariaDropControls[hasSelectedElement ? 'setAllToMove' : 'setAllToNone']();
+  };
+
+  /**
    * Returns the Draggable by element
    *
    * @param {HTMLElement} el
@@ -760,7 +920,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
    *
    * @param {HTMLElement} el
    *
-   * @return {H5P.TextDraggable}
+   * @return {H5P.TextDroppable}
    */
   DragText.prototype.getDroppableByElement = function (el) {
     return this.droppables.filter(function(droppable){
@@ -813,16 +973,10 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
   };
 
   /**
-   * Resets the position of all draggables.
+   * Resets the position of all draggables shuffled.
    */
   DragText.prototype.resetDraggables = function () {
-    var self = this;
-    // Show draggables container
-    self.$draggables.removeClass('hide');
-    self.draggables.forEach(function (entry) {
-      self.moveDraggableToDroppable(entry, null);
-    });
-    this.trigger('resize');
+    Util.shuffle(this.draggables).forEach(this.revert, this);
   };
 
   /**
@@ -874,7 +1028,7 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
 
       var moveDraggable = self.draggables[draggedDraggableIndexes.draggable];
       var moveToDroppable = self.droppables[draggedDraggableIndexes.droppable];
-      self.moveDraggableToDroppable(moveDraggable, moveToDroppable);
+      self.drop(moveDraggable, moveToDroppable);
 
       if (self.params.behaviour.instantFeedback) {
         // Add feedback to dropzone
@@ -994,7 +1148,6 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
     var answers = Array(self.droppables.length).fill("");
 
     // Add answers to the answer array
-    var droppable;
     var draggable;
     self.getCurrentState().forEach(function (stateObject) {
         draggable = self.draggables[stateObject.draggable].text;
@@ -1007,109 +1160,33 @@ H5P.DragText = (function ($, Question, Draggable, Droppable, TextParser, Control
 	/**
 	 * replaceSolutionsWithBlanks
 	 *
-	 * @param question
+	 * @param {string} question
 	 * @returns {string}
 	 */
   DragText.prototype.replaceSolutionsWithBlanks = function (question) {
-    return this.handleBlanks(question, function() {
-      return '__________';
-    });
+    var self = this;
+
+    return this.textParser
+      .parse(question)
+      .map(function(part){
+        return self.isAnswerPart(part) ? '__________' : part;
+      }).join('');
   };
 
 	/**
-	 * getSolutionsFromQuestion
+	 * Get solutions from question
 	 *
-	 * @param question
-	 * @returns {array} Array with a string containing solutions of a question
+	 * @param {string} question
+	 * @returns {string} Array with a string containing solutions of a question
 	 */
   DragText.prototype.getSolutionsFromQuestion = function (question) {
-    var solutions = [];
-    this.handleBlanks(question, function(solution) {
-      solutions.push(solution.solutions[0]);
-      return '__________';
-    });
-    return solutions.join('[,]');
-  };
-
-  /**
-   * Find blanks in a string and run a handler on those blanks
-   *
-   * @param {string} question
-   *   Question text containing blanks enclosed in asterisks.
-   * @param {function} handler
-   *   Replaces the blanks text with an input field.
-   * @returns {string}
-   *   The question with blanks replaced by the given handler.
-   */
-   DragText.prototype.handleBlanks = function (question, handler) {
-    // Go through the text and run handler on all asterisk
-    var clozeEnd, clozeStart = question.indexOf('*');
-    var self = this;
-    while (clozeStart !== -1 && clozeEnd !== -1) {
-      clozeStart++;
-      clozeEnd = question.indexOf('*', clozeStart);
-      if (clozeEnd === -1) {
-        continue; // No end
-      }
-      var clozeContent = question.substring(clozeStart, clozeEnd);
-      var replacer = '';
-      if (clozeContent.length) {
-        replacer = handler(self.parseSolution(clozeContent));
-        clozeEnd++;
-      }
-      else {
-        clozeStart += 1;
-      }
-      question = question.slice(0, clozeStart - 1) + replacer + question.slice(clozeEnd);
-      clozeEnd -= clozeEnd - clozeStart - replacer.length;
-
-      // Find the next cloze
-      clozeStart = question.indexOf('*', clozeEnd);
-    }
-    return question;
-  };
-
-
-  /**
-   * Parse the solution text (text between the asterisks)
-   *
-   * @param {string} solutionText
-   * @returns {object} with the following properties
-   *  - tip: the tip text for this solution, undefined if no tip
-   *  - solutions: array of solution words
-   */
-  DragText.prototype.parseSolution = function (solutionText) {
-    var tip, solution;
-
-    var tipStart = solutionText.indexOf(':');
-    if (tipStart !== -1) {
-      // Found tip, now extract
-      tip = solutionText.slice(tipStart + 1);
-      solution = solutionText.slice(0, tipStart);
-    }
-    else {
-      solution = solutionText;
-    }
-
-    // Split up alternatives
-    var solutions = solution.split('/');
-
-    // Trim solutions
-    for (var i = 0; i < solutions.length; i++) {
-      solutions[i] = H5P.trim(solutions[i]);
-
-      //decodes html entities
-      var elem = document.createElement('textarea');
-      elem.innerHTML = solutions[i];
-      solutions[i] = elem.value;
-    }
-
-    return {
-      tip: tip,
-      solutions: solutions
-    };
+    return this.textParser
+      .parse(question)
+      .filter(this.isAnswerPart)
+      .map(Util.cleanCharacter('*'))
+      .join('[,]');
   };
 
   return DragText;
 
-}(H5P.jQuery, H5P.Question, H5P.TextDraggable, H5P.TextDroppable, H5P.DragTextTextParser, H5P.Controls));
+}(H5P.jQuery, H5P.Question, H5P.ConfirmationDialog, H5P.DragTextUtil, H5P.TextDraggable, H5P.TextDroppable, H5P.DragTextTextParser, H5P.Controls));

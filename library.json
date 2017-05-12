@@ -25,6 +25,9 @@
       "path": "node_modules/h5p-lib-controls/dist/controls.js"
     },
     {
+      "path": "scripts/util.js"
+    },
+    {
       "path": "scripts/text-parser.js"
     },
     {

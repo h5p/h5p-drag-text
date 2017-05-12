@@ -32,7 +32,7 @@ H5P.TextDroppable = (function ($) {
     self.$dropzoneContainer = $(dropzoneContainer);
 
     if (self.tip !== undefined) {
-      self.$dropzone.append(H5P.JoubelUI.createTip(self.tip, self.$dropzone));
+      self.$dropzoneContainer.append(H5P.JoubelUI.createTip(self.tip, self.$dropzoneContainer));
     }
 
     self.$showSolution = $('<div/>', {
@@ -61,6 +61,16 @@ H5P.TextDroppable = (function ($) {
   };
 
   /**
+   * Returns the html element
+   *
+   * @public
+   * @return {HTMLElement}
+   */
+  Droppable.prototype.getElement = function () {
+    return this.$dropzone.get(0);
+  };
+
+  /**
    * Appends the droppable to the provided container.
    * @public
    * @param {jQuery} $container Container which the dropzone will be appended to.
@@ -70,12 +80,17 @@ H5P.TextDroppable = (function ($) {
   };
   /**
    * Appends the draggable contained within this dropzone to the argument.
-   * @public
+   * Returns the Draggable that was reverted, if any exists
+   *
    * @param {jQuery} $container Container which the draggable will append to.
+   *
+   * @public
+   * @return {Draggable}
    */
   Droppable.prototype.appendInsideDroppableTo = function ($container) {
     if (this.containedDraggable !== null) {
       this.containedDraggable.revertDraggableTo($container);
+      return this.containedDraggable;
     }
   };
 
@@ -94,6 +109,15 @@ H5P.TextDroppable = (function ($) {
     }
     self.containedDraggable = droppedDraggable;
     droppedDraggable.addToZone(self);
+  };
+
+  /**
+   * Returns true if this dropzone currently has a draggable
+   * @public
+   * @return {boolean}
+   */
+  Droppable.prototype.hasDraggable = function () {
+    return !!this.containedDraggable;
   };
 
   /**

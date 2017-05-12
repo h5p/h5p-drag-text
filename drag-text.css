@@ -95,10 +95,6 @@
   padding: 0.1em 1.65em 0.1em 0;
 }
 
-.h5p-drag-text [aria-dropeffect='move'] {
-  background: dodgerblue;
-}
-
 .h5p-drag-text [aria-dropeffect].h5p-drag-correct-feedback {
   background: #9dd8bb;
 }

@@ -73,7 +73,10 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
         instantFeedback: false
       },
       score: "You got @score of @total points",
-      showSolution : "Show solution"
+      showSolution : "Show solution",
+      dropZoneIndex: "Drop Zone @index.",
+      empty: "Empty",
+      draggable: "Draggable"
     }, params);
 
     this.contentData = contentData;
@@ -122,6 +125,9 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
       this.dragControls.addElement(event.data.element);
     }, this);
 
+    this.on('drop', this.setDroppableLabel, this);
+    this.on('revert', this.setDroppableLabel, this);
+
     /**
      * @type {HTMLElement} selectedElement
      */
@@ -146,6 +152,19 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
 
   DragText.prototype = Object.create(Question.prototype);
   DragText.prototype.constructor = DragText;
+
+  DragText.prototype.setDroppableLabel = function(event) {
+    var target = event.data.target, draggable = event.data.element;
+    var index = target.dataset.dropzoneIndex;
+
+    // if has children
+    if(target.childNodes.length > 0) {
+      target.setAttribute('aria-label', draggable.textContent + ' - ' + this.params.dropZoneIndex.replace('@index', index));
+    }
+    else {
+      target.setAttribute('aria-label', this.params.dropZoneIndex.replace('@index', index) + '. ' + this.params.empty);
+    }
+  };
 
   /**
    * Registers this question type's DOM elements before they are attached.
@@ -462,6 +481,7 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
    */
   DragText.prototype.addTaskTo = function ($container) {
     var self = this;
+    var draggableDescriptionId = 'drag-text-' + this.contentId + '-draggable';
     self.widest = 0;
     self.widestDraggable = 0;
     self.droppables = [];
@@ -472,7 +492,16 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
     });
 
     self.$draggables = $('<div/>', {
-      'class': DRAGGABLES_CONTAINER
+      'class': DRAGGABLES_CONTAINER,
+      'aria-describedby': draggableDescriptionId
+    });
+
+    var $draggablesDescription = $('<div/>', {
+      id: draggableDescriptionId,
+      text: 'Draggable',
+      css: {
+        display: 'none'
+      }
     });
 
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
@@ -508,6 +537,7 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
     self.shuffleAndAddDraggables(self.$draggables);
     self.$wordContainer.prependTo(self.$taskContainer);
     self.$draggables.appendTo(self.$taskContainer);
+    $draggablesDescription.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
   };
@@ -654,7 +684,8 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
     });
     var $dropzone = $('<div/>', {
       'aria-dropeffect': "none",
-      'aria-label': 'blank ' + draggableIndex
+      'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + '. ' + this.params.empty,
+      'data-dropzone-index': draggableIndex.toString()
     }).appendTo($dropzoneContainer)
       .droppable({
         tolerance: 'pointer',
@@ -698,10 +729,10 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
    * @fires Question#resize
    */
   DragText.prototype.revert = function (draggable) {
-    draggable.removeFromZone();
+    var droppable = draggable.removeFromZone();
     draggable.revertDraggableTo(this.$draggables);
 
-    this.trigger('revert', { element: draggable.getElement() });
+    this.trigger('revert', { element: draggable.getElement(), target: droppable.getElement() });
     this.trigger('resize');
   };
 
@@ -719,7 +750,7 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
     var self = this;
     self.answered = true;
 
-    draggable.removeFromZone();
+    var oldDroppable = draggable.removeFromZone();
 
     // if already contains draggable
     var revertedDraggable = droppable.appendInsideDroppableTo(this.$draggables);
@@ -727,7 +758,8 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
     // trigger revert, if revert was performed
     if(revertedDraggable){
       self.trigger('revert', {
-        element: revertedDraggable.getElement()
+        element: revertedDraggable.getElement(),
+        target: oldDroppable.getElement()
       });
     }
 

@@ -99,10 +99,14 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
   };
 
   /**
-   * Removes this draggable from its dropzone, if it is contained in one.
+   * Removes this draggable from its dropzone, if it is contained in one,
+   * and returns a reference to it
    * @public
+   * @returns {Droppable}
    */
   Draggable.prototype.removeFromZone = function () {
+    var dropZone = this.insideDropzone;
+
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeFeedback();
       this.insideDropzone.removeDraggable();
@@ -110,6 +114,8 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
     this.toggleDroppedFeedback(false);
     this.removeShortFormat();
     this.insideDropzone = null;
+
+    return dropZone;
   };
 
   /**

@@ -67,6 +67,33 @@
     "common": true
   },
   {
+    "label": "Numbered Drop zone label",
+    "importance": "low",
+    "name": "dropZoneIndex",
+    "type": "text",
+    "default": "Drop Zone @index.",
+    "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index",
+    "common": true
+  },
+  {
+    "label": "Empty Drop Zone label",
+    "importance": "low",
+    "name": "empty",
+    "type": "text",
+    "default": "Empty",
+    "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty",
+    "common": true
+  },
+  {
+    "label": "Draggable elements label",
+    "importance": "low",
+    "name": "draggable",
+    "type": "text",
+    "default": "Draggable",
+    "description": "Label used for accessibility, where the Read speaker this is a draggable element",
+    "common": true
+  },
+  {
     "name": "behaviour",
     "type": "group",
     "label": "Behavioural settings.",

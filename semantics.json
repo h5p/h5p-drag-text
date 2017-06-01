@@ -90,8 +90,22 @@
     "name": "draggable",
     "type": "text",
     "default": "Draggable",
-    "description": "Label used for accessibility, where the Read speaker this is a draggable element",
+    "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element",
     "common": true
+  },
+  {
+    "name": "correctText",
+    "type": "text",
+    "label": "Readspeaker text for correct answer",
+    "importance": "low",
+    "default": "Correct!"
+  },
+  {
+    "name": "incorrectText",
+    "type": "text",
+    "label": "Readspeaker text for incorrect answer",
+    "importance": "low",
+    "default": "Incorrect!"
   },
   {
     "name": "behaviour",

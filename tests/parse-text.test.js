@@ -36,3 +36,8 @@ test('Parser should allow reserved characters', t => {
   const arr = parseText('*first/1st* *second:tip* *third/3rd:tip*');
   t.deepEqual(arr, ['*first/1st*', ' ', '*second:tip*', ' ', '*third/3rd:tip*']);
 });
+
+test('Parser should allow empty string', t => {
+  const arr = parseText('');
+  t.deepEqual(arr, []);
+});

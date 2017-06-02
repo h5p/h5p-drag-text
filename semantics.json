@@ -98,14 +98,16 @@
     "type": "text",
     "label": "Readspeaker text for correct answer",
     "importance": "low",
-    "default": "Correct!"
+    "default": "Correct!",
+    "common": true
   },
   {
     "name": "incorrectText",
     "type": "text",
     "label": "Readspeaker text for incorrect answer",
     "importance": "low",
-    "default": "Incorrect!"
+    "default": "Incorrect!",
+    "common": true
   },
   {
     "name": "behaviour",

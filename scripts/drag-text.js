@@ -51,6 +51,7 @@ H5P.DragText = (function ($, Question, StopWatch, Draggable, Droppable) {
       checkAnswer: "Check",
       tryAgain: "Retry",
       behaviour: {
+        enableCheck: true,
         enableRetry: true,
         enableSolutionsButton: true,
         instantFeedback: false
@@ -162,23 +163,25 @@ H5P.DragText = (function ($, Question, StopWatch, Draggable, Droppable) {
     var self = this;
 
     // Checking answer button
-    self.addButton('check-answer', self.params.checkAnswer, function () {
-      self.answered = true;
-      if (!self.showEvaluation()) {
-        if (self.params.behaviour.enableRetry) {
-          self.showButton('try-again');
+    if (self.params.behaviour.enableCheck) {
+      self.addButton('check-answer', self.params.checkAnswer, function () {
+        self.answered = true;
+        if (!self.showEvaluation()) {
+          if (self.params.behaviour.enableRetry) {
+            self.showButton('try-again');
+          }
+          if (self.params.behaviour.enableSolutionsButton) {
+            self.showButton('show-solution');
+          }
+          self.hideButton('check-answer');
+          self.disableDraggables();
+        } else {
+          self.hideButton('show-solution');
+          self.hideButton('try-again');
+          self.hideButton('check-answer');
         }
-        if (self.params.behaviour.enableSolutionsButton) {
-          self.showButton('show-solution');
-        }
-        self.hideButton('check-answer');
-        self.disableDraggables();
-      } else {
-        self.hideButton('show-solution');
-        self.hideButton('try-again');
-        self.hideButton('check-answer');
-      }
-    }, !self.params.behaviour.instantFeedback);
+      }, !self.params.behaviour.instantFeedback);
+    }
 
     //Show Solution button
     self.addButton('show-solution', self.params.showSolution, function () {

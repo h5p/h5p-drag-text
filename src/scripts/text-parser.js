@@ -1,7 +1,10 @@
-H5P.DragTextTextParser = (function(){
-  var TextParser = function(){
+/**
+ * String parser for drag text
+ */
+export default class TextParser {
+  constructor() {
     this.nextDraggableRegex = /\*(.*?)\*/;
-  };
+  }
 
   /**
    * Parses a text into an array where words starting and ending
@@ -12,17 +15,17 @@ H5P.DragTextTextParser = (function(){
    *
    * @return {string[]}
    */
-  TextParser.prototype.parse = function (text) {
-    var next = this.findNextDraggable(text);
+  parse(text) {
+    const draggable = this.findNextDraggable(text);
 
-    if(next) {
-      var parts = text.split(next);
-      return [parts[0], next].concat(this.parse(parts[1]))
+    if(draggable) {
+      const [before, after] = text.split(draggable);
+      return [before, draggable, ...(this.parse(after))].filter(this.notEmpty)
     }
     else {
       return [text];
     }
-  };
+  }
 
   /**
    * Finds the next draggable in a string
@@ -30,12 +33,19 @@ H5P.DragTextTextParser = (function(){
    * @param {string} text
    * @return {string|null}
    */
-  TextParser.prototype.findNextDraggable = function(text) {
-    var draggable = this.nextDraggableRegex.exec(text);
+  findNextDraggable(text) {
+    const draggable = this.nextDraggableRegex.exec(text);
     return draggable ? draggable[0] : null;
-  };
+  }
 
-  return TextParser;
-})();
-
-export default H5P.DragTextTextParser;
+  /**
+   * Returns true if the string is non-empty
+   *
+   * @param {string} str
+   *
+   * @return {boolean}
+   */
+  notEmpty(str) {
+    return str && str.length > 0;
+  }
+}

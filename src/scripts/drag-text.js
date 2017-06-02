@@ -4,6 +4,11 @@ import Util from './util';
 import Draggable from './draggable';
 import Droppable from './droppable';
 
+import Controls from 'controls';
+import AriaDrag from 'aria/drag';
+import AriaDrop from 'aria/drop';
+import UIKeyboard from 'aria/drop';
+
 /**
  * @typedef {object} H5P.DragTextEvent
  * @property {HTMLElement} element The element being dragged
@@ -38,7 +43,7 @@ import Droppable from './droppable';
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($, Question, ConfirmationDialog, Controls) {
+H5P.DragText = (function ($, Question, ConfirmationDialog) {
   //CSS Main Containers:
   var INNER_CONTAINER = "h5p-drag-inner";
   var TASK_CONTAINER = "h5p-drag-task";
@@ -102,10 +107,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog, Controls) {
     this.introductionId = 'h5p-drag-text-' + contentId + '-introduction';
 
     // Init keyboard navigation
-    this.ariaDragControls = new Controls.AriaDrag();
-    this.ariaDropControls = new Controls.AriaDrop();
-    this.dragControls = new Controls([new Controls.UIKeyboard(), this.ariaDragControls]);
-    this.dropControls = new Controls([new Controls.UIKeyboard(), this.ariaDropControls]);
+    this.ariaDragControls = new AriaDrag();
+    this.ariaDropControls = new AriaDrop();
+    this.dragControls = new Controls([new UIKeyboard(), this.ariaDragControls]);
+    this.dropControls = new Controls([new UIKeyboard(), this.ariaDropControls]);
 
     this.dragControls.on('select', this.keyboardDraggableSelected, this);
     this.dropControls.on('select', this.keyboardDroppableSelected, this);
@@ -1256,6 +1261,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog, Controls) {
   };
 
   return DragText;
-}(H5P.jQuery, H5P.Question, H5P.ConfirmationDialog, H5P.Controls));
+}(H5P.jQuery, H5P.Question, H5P.ConfirmationDialog));
 
 export default H5P.DragText;

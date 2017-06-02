@@ -22,9 +22,6 @@
   ],
   "preloadedJs": [
     {
-      "path": "node_modules/h5p-lib-controls/dist/h5p-sdk-controls.js"
-    },
-    {
       "path": "dist/h5p-drag-text.js"
     }
   ],

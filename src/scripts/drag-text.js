@@ -1,13 +1,13 @@
-import TextParser from './text-parser';
+import parseText from './parse-text';
 import StopWatch from './stop-watch';
 import Util from './util';
 import Draggable from './draggable';
 import Droppable from './droppable';
 
-import Controls from 'controls';
-import AriaDrag from 'aria/drag';
-import AriaDrop from 'aria/drop';
-import UIKeyboard from 'aria/drop';
+import Controls from 'h5p-lib-controls/src/scripts/controls';
+import AriaDrag from 'h5p-lib-controls/src/scripts/aria/drag';
+import AriaDrop from 'h5p-lib-controls/src/scripts/aria/drop';
+import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
 
 /**
  * @typedef {object} H5P.DragTextEvent
@@ -147,9 +147,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
      * @type {HTMLElement} selectedElement
      */
     this.selectedElement = undefined;
-
-    // add text parser
-    this.textParser = new TextParser();
 
     // Init drag text task
     this.initDragText();
@@ -536,7 +533,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
 
     // parse text
-    self.textParser.parse(self.textFieldHtml)
+    parseText(self.textFieldHtml)
       .forEach(function(part) {
         if(self.isAnswerPart(part)) {
           // is draggable/droppable
@@ -1239,8 +1236,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.replaceSolutionsWithBlanks = function (question) {
     var self = this;
 
-    return this.textParser
-      .parse(question)
+    return parseText(question)
       .map(function(part){
         return self.isAnswerPart(part) ? '__________' : part;
       }).join('');
@@ -1253,8 +1249,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 	 * @returns {string} Array with a string containing solutions of a question
 	 */
   DragText.prototype.getSolutionsFromQuestion = function (question) {
-    return this.textParser
-      .parse(question)
+    return parseText(question)
       .filter(this.isAnswerPart)
       .map(Util.cleanCharacter('*'))
       .join('[,]');

@@ -19,7 +19,6 @@ const config = {
       path.resolve('./src'),
       path.resolve('./node_modules'),
       path.resolve('./node_modules/h5p-sdk/src/scripts'),
-      path.resolve('./node_modules/h5p-lib-controls/src/scripts')
     ]
   },
   module: {

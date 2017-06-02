@@ -1,18 +1,41 @@
 {
   "name": "h5p-drag-text",
-  "version": "1.0.0",
+  "version": "1.5.7",
+  "private": true,
   "description": "Drag the Words allows content designers to create textual expressions with missing pieces of text. The end user drags a missing piece of text to its correct place, to form a complete expression.",
   "scripts": {
-    "test": "npm run test"
+    "test": "ava",
+    "build": "cross-env NODE_ENV='production' webpack -p",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/h5p/h5p-drag-text.git"
   },
-  "author": "Tom A. Jakobsen <tom.arild.jakobsen@joubel.com>",
+  "author": "Tom Arild Jakobsen <tom.arild.jakobsen@joubel.com>",
   "license": "MIT",
   "homepage": "https://github.com/h5p/h5p-drag-text",
-  "dependencies": {
-    "h5p-lib-controls": "../../h5p-lib-controls"
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "browser-env": "^2.0.30",
+    "cross-env": "^4.0.0",
+    "css-loader": "^0.26.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "inject-loader": "^3.0.0",
+    "raw-loader": "^0.5.1",
+    "require-extension-hooks": "^0.2.0",
+    "require-extension-hooks-babel": "^0.1.0",
+    "style-loader": "^0.13.2",
+    "timer-machine": "^1.1.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "h5p-lib-controls": "0.0.1"
   }
 }

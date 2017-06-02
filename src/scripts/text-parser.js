@@ -37,3 +37,5 @@ H5P.DragTextTextParser = (function(){
 
   return TextParser;
 })();
+
+export default H5P.DragTextTextParser;

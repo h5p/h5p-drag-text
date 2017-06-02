@@ -230,3 +230,5 @@ H5P.TextDroppable = (function ($) {
 
   return Droppable;
 })(H5P.jQuery);
+
+export default H5P.TextDroppable;

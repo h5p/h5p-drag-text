@@ -60,3 +60,5 @@ H5P.DragText.StopWatch = (function () {
 
   return StopWatch;
 })();
+
+export default H5P.DragText.StopWatch;

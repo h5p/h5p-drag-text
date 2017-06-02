@@ -116,3 +116,5 @@ H5P.DragTextUtil = (function(){
     createElementWithTextPart: createElementWithTextPart
   }
 })();
+
+export default H5P.DragTextUtil;

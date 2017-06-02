@@ -17,30 +17,15 @@
   "machineName": "H5P.DragText",
   "preloadedCss": [
     {
-      "path": "drag-text.css"
+      "path": "dist/h5p-drag-text.css"
     }
   ],
   "preloadedJs": [
     {
-      "path": "node_modules/h5p-lib-controls/dist/controls.js"
+      "path": "node_modules/h5p-lib-controls/dist/h5p-sdk-controls.js"
     },
     {
-      "path": "scripts/util.js"
-    },
-    {
-      "path": "scripts/text-parser.js"
-    },
-    {
-      "path": "scripts/stop-watch.js"
-    },
-    {
-      "path": "scripts/draggable.js"
-    },
-    {
-      "path": "scripts/droppable.js"
-    },
-    {
-      "path": "scripts/drag-text.js"
+      "path": "dist/h5p-drag-text.js"
     }
   ],
   "preloadedDependencies": [

@@ -1,3 +1,9 @@
+import TextParser from './text-parser';
+import StopWatch from './stop-watch';
+import Util from './util';
+import Draggable from './draggable';
+import Droppable from './droppable';
+
 /**
  * @typedef {object} H5P.DragTextEvent
  * @property {HTMLElement} element The element being dragged
@@ -32,7 +38,7 @@
  * Drag Text module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Draggable, Droppable, TextParser, Controls) {
+H5P.DragText = (function ($, Question, ConfirmationDialog, Controls) {
   //CSS Main Containers:
   var INNER_CONTAINER = "h5p-drag-inner";
   var TASK_CONTAINER = "h5p-drag-task";
@@ -1250,4 +1256,6 @@ H5P.DragText = (function ($, Question, StopWatch, ConfirmationDialog, Util, Drag
   };
 
   return DragText;
-}(H5P.jQuery, H5P.Question, H5P.DragText.StopWatch, H5P.ConfirmationDialog, H5P.DragTextUtil, H5P.TextDraggable, H5P.TextDroppable, H5P.DragTextTextParser, H5P.Controls));
+}(H5P.jQuery, H5P.Question, H5P.ConfirmationDialog, H5P.Controls));
+
+export default H5P.DragText;

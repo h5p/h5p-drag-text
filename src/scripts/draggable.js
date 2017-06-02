@@ -185,3 +185,5 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   return Draggable;
 })(H5P.jQuery, H5P.EventDispatcher);
+
+export default H5P.TextDraggable;

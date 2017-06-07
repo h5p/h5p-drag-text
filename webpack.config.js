@@ -14,13 +14,6 @@ const config = {
     filename: "h5p-drag-text.js",
     sourceMapFilename: '[file].map'
   },
-  resolve: {
-    modules: [
-      path.resolve('./src'),
-      path.resolve('./node_modules'),
-      path.resolve('./node_modules/h5p-sdk/src/scripts'),
-    ]
-  },
   module: {
     rules: [
       {

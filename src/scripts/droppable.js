@@ -42,7 +42,6 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Displays the solution next to the drop box if it is not correct.
-   * @public
    */
   Droppable.prototype.showSolution = function () {
     if (!((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text))) {
@@ -53,7 +52,6 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Hides the solution.
-   * @public
    */
   Droppable.prototype.hideSolution = function () {
     this.$showSolution.html('');
@@ -63,7 +61,6 @@ H5P.TextDroppable = (function ($) {
   /**
    * Returns the html element
    *
-   * @public
    * @return {HTMLElement}
    */
   Droppable.prototype.getElement = function () {
@@ -72,7 +69,7 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Appends the droppable to the provided container.
-   * @public
+   *
    * @param {jQuery} $container Container which the dropzone will be appended to.
    */
   Droppable.prototype.appendDroppableTo = function ($container) {
@@ -84,7 +81,6 @@ H5P.TextDroppable = (function ($) {
    *
    * @param {jQuery} $container Container which the draggable will append to.
    *
-   * @public
    * @return {Draggable}
    */
   Droppable.prototype.appendInsideDroppableTo = function ($container) {
@@ -96,7 +92,7 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Sets the contained draggable in this drop box to the provided argument.
-   * @public
+   *
    * @param {Draggable} droppedDraggable A draggable that has been dropped on this box.
    */
   Droppable.prototype.setDraggable = function (droppedDraggable) {
@@ -113,7 +109,7 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Returns true if this dropzone currently has a draggable
-   * @public
+   *
    * @return {boolean}
    */
   Droppable.prototype.hasDraggable = function () {
@@ -122,7 +118,6 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Removes the contained draggable in this box.
-   * @public
    */
   Droppable.prototype.removeDraggable = function () {
     if (this.containedDraggable !== null) {
@@ -132,7 +127,6 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Checks if this drop box contains the correct draggable.
-   * @public
    *
    * @returns {Boolean} True if this box has the correct answer.
    */
@@ -145,7 +139,6 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Sets CSS styling feedback for this drop box.
-   * @public
    */
   Droppable.prototype.addFeedback = function () {
     //Draggable is correct
@@ -170,7 +163,6 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Removes all CSS styling feedback for this drop box.
-   * @public
    */
   Droppable.prototype.removeFeedback = function () {
     this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
@@ -183,7 +175,6 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Sets short format of draggable when inside a dropbox.
-   * @public
    */
   Droppable.prototype.setShortFormat = function () {
     if (this.containedDraggable !== null) {
@@ -210,7 +201,6 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Removes the short format of draggable when it is outside a dropbox.
-   * @public
    */
   Droppable.prototype.removeShortFormat = function () {
     if (this.containedDraggable !== null) {
@@ -220,7 +210,6 @@ H5P.TextDroppable = (function ($) {
 
   /**
    * Gets this object's dropzone jQuery object.
-   * @public
    *
    * @returns {jQuery} This object's dropzone.
    */

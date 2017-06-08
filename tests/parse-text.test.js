@@ -22,11 +22,6 @@ test('Parser should allow black space in draggables', t => {
   t.deepEqual(arr, ['*first second*', ' third']);
 });
 
-test('Parser should allow black space in draggables', t => {
-  const arr = parseText('*first second* third');
-  t.deepEqual(arr, ['*first second*', ' third']);
-});
-
 test('Parser should allow draggables next to each other', t => {
   const arr = parseText('*first**second**third*');
   t.deepEqual(arr, ['*first*', '*second*', '*third*']);

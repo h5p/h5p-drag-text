@@ -4,7 +4,6 @@ H5P.DragTextUtil = (function(){
    *
    * @param {function} fn
    *
-   * @public
    * @return {function}
    */
   var curry =function(fn) {
@@ -72,6 +71,7 @@ H5P.DragTextUtil = (function(){
    * Implements "Fisher-Yates Shuffle" algorithm for arrays
    *
    * @param {Array} array
+   *
    * @return {Array}
    */
   var shuffle = function (array) {

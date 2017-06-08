@@ -5,6 +5,10 @@
   overflow: hidden;
 }
 
+.h5p-drag-text .hidden {
+  display: none;
+}
+
 .h5p-drag-text .h5p-drag-inner p {
   font-size: 1em;
   font-weight: normal;

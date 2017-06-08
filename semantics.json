@@ -67,6 +67,15 @@
     "common": true
   },
   {
+    "label": "Draggable label",
+    "importance": "low",
+    "name": "draggable",
+    "type": "text",
+    "default": "Draggable.",
+    "description": "Label used for accessibility, where the Read speaker will that it is a draggable",
+    "common": true
+  },
+  {
     "label": "Numbered Drop zone label",
     "importance": "low",
     "name": "dropZoneIndex",
@@ -107,6 +116,22 @@
     "label": "Readspeaker text for incorrect answer",
     "importance": "low",
     "default": "Incorrect!",
+    "common": true
+  },
+  {
+    "name": "resetDropTitle",
+    "type": "text",
+    "label": "Confirmation dialog title that user wants to reset a droppable",
+    "importance": "low",
+    "default": "Reset drop",
+    "common": true
+  },
+  {
+    "name": "resetDropDescription",
+    "type": "text",
+    "label": "Confirmation dialog description that user wants to reset a droppable",
+    "importance": "low",
+    "default": "Are you sure you want to reset this drop?",
     "common": true
   },
   {

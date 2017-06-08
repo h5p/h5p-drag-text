@@ -165,10 +165,16 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype = Object.create(Question.prototype);
   DragText.prototype.constructor = DragText;
 
+  /**
+   * Sets the aria-label of a dropzone based on whether it has a droppable inside it
+   *
+   * @param event
+   */
   DragText.prototype.setDroppableLabel = function(event) {
-    var target = event.data.target, draggable = event.data.element;
+    var target = event.data.target,
+      draggable = event.data.element;
 
-    if(target) {
+    if (target) {
       var index = target.dataset.dropzoneIndex;
 
       // if has children
@@ -216,7 +222,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Changes layout responsively when resized.
-   * @public
    */
   DragText.prototype.resize = function () {
     this.changeLayoutToFitWidth();
@@ -224,7 +229,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
   * Adds the draggables on the right side of the screen if widescreen is detected.
-  * @public
   */
   DragText.prototype.changeLayoutToFitWidth = function () {
     var self = this;
@@ -255,7 +259,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Add check solution, show solution and retry buttons, and their functionality.
-   * @public
    */
   DragText.prototype.addButtons = function () {
     var self = this;
@@ -398,12 +401,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @param {function} callback
    * @param {object} [scope]
    *
-   * @return {ConfirmationDialog}
+   * @returns {ConfirmationDialog}
    */
   DragText.prototype.createConfirmResetDialog = function (callback, scope) {
+    var self = this;
     var dialog = new ConfirmationDialog({
-      headerText: 'Reset drop',
-      dialogText: 'Are you sure you want to reset this drop?'
+      headerText: self.params.resetDropTitle,
+      dialogText: self.params.resetDropDescription
     });
 
     dialog.appendTo(document.body);
@@ -414,7 +418,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Shows feedback for dropzones.
-   * @public
    */
   DragText.prototype.showDropzoneFeedback = function () {
     var self = this;
@@ -425,7 +428,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       if(draggable){
         var index = droppable.$dropzone.data('dropzoneIndex');
-        var resultString = droppable.isCorrect() ? 'Correct.' : 'Incorrect.';
+        var resultString = self.params[droppable.isCorrect() ? 'correctText' : 'incorrectText'];
 
         droppable.$dropzone.attr('aria-label', draggable.getElement().textContent + ' - ' + self.params.dropZoneIndex.replace('@index', index) + '. ' + resultString + '.');
       }
@@ -436,7 +439,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Evaluate task and display score text for word markings.
    *
    * @param {boolean} [skipXapi] Skip sending xAPI event answered
-   * @return {Boolean} Returns true if maxScore was achieved.
+   *
+   * @returns {Boolean} Returns true if maxScore was achieved.
    */
   DragText.prototype.showEvaluation = function (skipXapi) {
     this.hideEvaluation();
@@ -473,8 +477,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   /**
    * Returns the number of correct entries
    *
-   * @public
-   * @return {number}
+   * @returns {number}
    */
   DragText.prototype.calculateScore = function () {
     return this.droppables.reduce(function (sum, entry) {
@@ -502,7 +505,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Handle task and add it to container.
-   * @public
+   *
    * @param {jQuery} $container The object which our task will attach to.
    */
   DragText.prototype.addTaskTo = function ($container) {
@@ -523,11 +526,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
 
     var $draggablesDescription = $('<div/>', {
-      id: draggableDescriptionId,
-      text: 'Draggable',
-      css: {
-        display: 'none'
-      }
+      'class': 'hidden',
+      'id': draggableDescriptionId,
+      'text': self.params.draggable
     });
 
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
@@ -573,7 +574,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    *
    * @param {string} part
    *
-   * @return {string}
+   * @returns {string}
    */
   DragText.prototype.parseAnswer = function(part) {
     return Util.cleanCharacter('*', part).split(':')[0];
@@ -584,7 +585,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    *
    * @param {string} part
    *
-   * @return {string}
+   * @returns {string}
    */
   DragText.prototype.parseAnswerTip = function(part) {
     return Util.cleanCharacter('*', part).split(':')[1];
@@ -595,7 +596,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    *
    * @param {string} part
    *
-   * @return {boolean}
+   * @returns {boolean}
    */
   DragText.prototype.isAnswerPart = function(part) {
     return Util.startsWith('*', part) && Util.endsWith('*', part);
@@ -603,7 +604,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Matches the width of all dropzones to the widest draggable, and sets widest class variable.
-   * @public
    */
   DragText.prototype.addDropzoneWidth = function () {
     var self = this;
@@ -656,12 +656,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Makes a drag n drop from the specified text.
-   * @public
+   *
    * @param {String} answer Text for the drag n drop.
    *
-   * @return {H5P.TextDraggable}
+   * @returns {H5P.TextDraggable}
    */
-  DragText.prototype.createDraggable = function(answer){
+  DragText.prototype.createDraggable = function (answer) {
     var self = this;
 
     //Make the draggable
@@ -697,9 +697,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @param {string} answer
    * @param {string} [tip]
    *
-   * @return {H5P.TextDroppable}
+   * @returns {H5P.TextDroppable}
    */
-  DragText.prototype.createDroppable = function(answer, tip){
+  DragText.prototype.createDroppable = function (answer, tip) {
     var self = this;
 
     var draggableIndex = this.draggables.length;
@@ -738,7 +738,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @param {object} event
    *
    * @function
-   * @return {boolean}
+   * @returns {boolean}
    */
   DragText.prototype.propagateDragEvent = Util.curry(function(eventName, self, event) {
     self.trigger(eventName, {
@@ -816,14 +816,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Adds the draggable words to the provided container in random order.
    *
    * @param {jQuery} $container Container the draggables will be added to.
-   * @public
    *
-   * @return {H5P.TextDraggable[]}
+   * @returns {H5P.TextDraggable[]}
    */
   DragText.prototype.shuffleAndAddDraggables = function ($container) {
     return Util.shuffle(this.draggables)
-      .map(this.addDraggableToContainer($container))
-      .map(this.addDraggableToControls(this.dragControls))
+      .map(draggable => this.addDraggableToContainer($container, draggable))
+      .map(draggable => this.addDraggableToControls(this.dragControls, draggable))
   };
 
   /**
@@ -832,12 +831,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @param {jQuery} $container
    * @param {H5P.TextDraggable} draggable
    *
-   * @return {H5P.TextDraggable}
+   * @returns {H5P.TextDraggable}
    */
-  DragText.prototype.addDraggableToContainer = Util.curry(function ($container, draggable) {
+  DragText.prototype.addDraggableToContainer = function ($container, draggable) {
     draggable.appendDraggableTo($container);
     return draggable;
-  });
+  };
 
   /**
    * Adds the element of Draggables to (keyboard) controls
@@ -845,12 +844,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @param {H5P.Controls} controls
    * @param {H5P.TextDraggable} draggable
    *
-   * @return {H5P.TextDraggable}
+   * @returns {H5P.TextDraggable}
    */
-  DragText.prototype.addDraggableToControls = Util.curry(function (controls, draggable) {
+  DragText.prototype.addDraggableToControls = function (controls, draggable) {
     controls.addElement(draggable.getElement());
     return draggable;
-  });
+  };
 
   /**
    * Feedback function for checking if all fields are filled, and show evaluation if that is the case.
@@ -903,7 +902,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Disables all draggables, user will not be able to interact with them any more.
-   * @public
    */
   DragText.prototype.disableDraggables = function () {
     this.draggables.forEach(function (entry) {
@@ -913,7 +911,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Enables all draggables, user will be able to interact with them again.
-   * @public
    */
   DragText.prototype.enableDraggables = function () {
     this.draggables.forEach(function (entry) {
@@ -924,7 +921,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   /**
    * Used for contracts.
    * Checks if the parent program can proceed. Always true.
-   * @public
+   *
    * @returns {Boolean} true
    */
   DragText.prototype.getAnswerGiven = function () {
@@ -934,7 +931,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   /**
    * Used for contracts.
    * Checks the current score for this task.
-   * @public
+   *
    * @returns {Number} The current score.
    */
   DragText.prototype.getScore = function () {
@@ -944,7 +941,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   /**
    * Used for contracts.
    * Checks the maximum score for this task.
-   * @public
+   *
    * @returns {Number} The maximum score.
    */
   DragText.prototype.getMaxScore = function () {
@@ -953,7 +950,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Get title of task
-   * @return {string} title
+   *
+   * @returns {string} title
    */
   DragText.prototype.getTitle = function () {
     return H5P.createTitle(this.params.taskDescription);
@@ -972,7 +970,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    *
    * @param {HTMLElement} el
    *
-   * @return {H5P.TextDraggable}
+   * @returns {H5P.TextDraggable}
    */
   DragText.prototype.getDraggableByElement = function (el) {
     return this.draggables.filter(function(draggable){
@@ -985,7 +983,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    *
    * @param {HTMLElement} el
    *
-   * @return {H5P.TextDroppable}
+   * @returns {H5P.TextDroppable}
    */
   DragText.prototype.getDroppableByElement = function (el) {
     return this.droppables.filter(function(droppable){
@@ -996,7 +994,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   /**
    * Used for contracts.
    * Sets feedback on the dropzones.
-   * @public
    */
   DragText.prototype.showSolutions = function () {
     this.showEvaluation(true);
@@ -1015,7 +1012,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   /**
    * Used for contracts.
    * Resets the complete task back to its' initial state.
-   * @public
    */
   DragText.prototype.resetTask = function () {
     var self = this;
@@ -1046,6 +1042,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Returns an object containing the dropped words
+   *
    * @returns {object} containing indexes of dropped words
    */
   DragText.prototype.getCurrentState = function () {
@@ -1155,7 +1152,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Generate xAPI object definition used in xAPI statements.
-   * @return {Object}
+   *
+   * @returns {Object}
    */
   DragText.prototype.getxAPIDefinition = function () {
     var definition = {};
@@ -1206,7 +1204,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   /**
    * Generate xAPI user response, used in xAPI statements.
-   * @return {string} User answers separated by the "[,]" pattern
+   *
+   * @returns {string} User answers separated by the "[,]" pattern
    */
   DragText.prototype.getXAPIResponse = function () {
     var self = this;

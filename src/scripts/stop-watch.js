@@ -16,7 +16,6 @@ H5P.DragText.StopWatch = (function () {
   /**
    * Starts the stop watch
    *
-   * @public
    * @return {H5P.DragText.StopWatch}
    */
   StopWatch.prototype.start = function(){
@@ -30,7 +29,6 @@ H5P.DragText.StopWatch = (function () {
   /**
    * Stops the stopwatch, and returns the duration in seconds.
    *
-   * @public
    * @return {number}
    */
   StopWatch.prototype.stop = function(){
@@ -40,8 +38,6 @@ H5P.DragText.StopWatch = (function () {
 
   /**
    * Sets the duration to 0
-   *
-   * @public
    */
   StopWatch.prototype.reset = function(){
     this.duration = 0;
@@ -51,7 +47,6 @@ H5P.DragText.StopWatch = (function () {
   /**
    * Returns the passed time in seconds
    *
-   * @public
    * @return {number}
    */
   StopWatch.prototype.passedTime = function(){

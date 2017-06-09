@@ -112,6 +112,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.dragControls = new Controls([new UIKeyboard(), this.ariaDragControls]);
     this.dropControls = new Controls([new UIKeyboard(), this.ariaDropControls]);
 
+    // return false to prevent select from happening when draggable is disabled
+    this.dragControls.on('before-select', event => !this.isElementDisabled(event.element));
+
     this.dragControls.on('select', this.keyboardDraggableSelected, this);
     this.dropControls.on('select', this.keyboardDroppableSelected, this);
 
@@ -349,10 +352,21 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     }
 
     // no previous selected or not the selected one
-    if(!hasSelectedElement || !isSelectedElement) {
+    if((!hasSelectedElement || !isSelectedElement) && !this.isElementDisabled(event.element)) {
       this.selectedElement = event.element;
       this.trigger('start', { element: event.element });
     }
+  };
+
+  /**
+   * Returns true if aria-disabled="true" on the element
+   *
+   * @param {HTMLElement} element
+   *
+   * @return {boolean}
+   */
+  DragText.prototype.isElementDisabled = function (element) {
+    return element.getAttribute('aria-disabled') === 'true';
   };
 
   /**
@@ -783,7 +797,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var revertedDraggable = droppable.appendInsideDroppableTo(this.$draggables);
 
     // trigger revert, if revert was performed
-    if(revertedDraggable){
+    if(oldDroppable && revertedDraggable){
       self.trigger('revert', {
         element: revertedDraggable.getElement(),
         target: oldDroppable.getElement()
@@ -795,6 +809,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     if (self.params.behaviour.instantFeedback) {
       droppable.addFeedback();
+      self.instantFeedbackEvaluation();
 
       if (!self.params.behaviour.enableRetry || droppable.isCorrect()) {
         droppable.disableDropzoneAndContainedDraggable();

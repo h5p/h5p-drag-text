@@ -19,11 +19,13 @@ H5P.TextDroppable = (function ($) {
    * @param {undefined/String} tip Tip for this container, optional.
    * @param {jQuery} dropzone Dropzone object.
    * @param {jQuery} dropzoneContainer Container Container for the dropzone.
+   * @param {Object} params Behavior settings
    */
-  function Droppable(text, tip, dropzone, dropzoneContainer) {
+  function Droppable(text, tip, dropzone, dropzoneContainer, params) {
     var self = this;
     self.text = text;
     self.tip = tip;
+    self.params = params;
     /**
      * @type {H5P.TextDraggable}
      */
@@ -34,6 +36,11 @@ H5P.TextDroppable = (function ($) {
     if (self.tip !== undefined) {
       self.$dropzoneContainer.append(H5P.JoubelUI.createTip(self.tip, self.$dropzoneContainer));
     }
+
+    self.$correctAnswer = $('<div/>', {
+      html: self.params.correctAnswer,
+      'class': 'correct-answer'
+    });
 
     self.$showSolution = $('<div/>', {
       'class': SHOW_SOLUTION_CONTAINER
@@ -46,6 +53,7 @@ H5P.TextDroppable = (function ($) {
   Droppable.prototype.showSolution = function () {
     if (!((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text))) {
       this.$showSolution.html(this.text);
+      this.$showSolution.prepend(this.$correctAnswer);
       this.$showSolution.show();
     }
   };

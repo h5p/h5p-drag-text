@@ -93,7 +93,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       resetDropTitle: "Reset drop",
       resetDropDescription: "Are you sure you want to reset this drop?",
       startDragging: "Start dragging.",
-      cancelledDragging: "Cancelled dragging."
+      cancelledDragging: "Cancelled dragging.",
+      correctAnswer: "Correct answer:"
     }, params);
 
     this.contentData = contentData;
@@ -753,7 +754,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         }
       });
 
-    var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer);
+    var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer, self.params);
     droppable.appendDroppableTo(self.$wordContainer);
 
     self.droppables.push(droppable);

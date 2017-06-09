@@ -217,3 +217,11 @@
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped.truncate {
   text-overflow: ellipsis;
 }
+
+.h5p-drag-text .correct-answer {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  display: inline-block;
+  color: transparent;
+}

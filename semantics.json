@@ -67,15 +67,6 @@
     "common": true
   },
   {
-    "label": "Draggable label",
-    "importance": "low",
-    "name": "draggable",
-    "type": "text",
-    "default": "Draggable.",
-    "description": "Label used for accessibility, where the Read speaker will that it is a draggable",
-    "common": true
-  },
-  {
     "label": "Numbered Drop zone label",
     "importance": "low",
     "name": "dropZoneIndex",
@@ -89,7 +80,7 @@
     "importance": "low",
     "name": "empty",
     "type": "text",
-    "default": "Empty",
+    "default": "Empty.",
     "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty",
     "common": true
   },
@@ -98,7 +89,7 @@
     "importance": "low",
     "name": "draggable",
     "type": "text",
-    "default": "Draggable",
+    "default": "Draggable.",
     "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element",
     "common": true
   },

@@ -86,10 +86,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       score: "You got @score of @total points",
       showSolution : "Show solution",
       dropZoneIndex: "Drop Zone @index.",
-      empty: "Empty",
-      draggable: "Draggable",
-      correctText: 'Correct!',
-      incorrectText: 'Incorrect!'
+      empty: "Empty.",
+      draggableIndex: "Draggable. @index of @count.",
+      correctText: "Correct!",
+      incorrectText: "Incorrect!",
+      resetDropTitle: "Reset drop",
+      resetDropDescription: "Are you sure you want to reset this drop?",
+      startDragging: "Start dragging.",
+      cancelledDragging: "Cancelled dragging."
     }, params);
 
     this.contentData = contentData;
@@ -105,6 +109,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // introduction field id
     this.introductionId = 'h5p-drag-text-' + contentId + '-introduction';
+
+    /**
+     * @type {HTMLElement} selectedElement
+     */
+    this.selectedElement = undefined;
 
     // Init keyboard navigation
     this.ariaDragControls = new AriaDrag();
@@ -123,12 +132,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.on('stop', this.toggleDropEffect, this);
 
     // toggles grabbed on mouse
-    this.on('start', function(event) {
-      event.data.element.setAttribute('aria-grabbed', 'true');
-    }, this);
-    this.on('stop', function(event) {
-      event.data.element.setAttribute('aria-grabbed', 'false');
-    }, this);
+    this.on('start', event => event.data.element.setAttribute('aria-grabbed', 'true'));
+    this.on('stop', event => event.data.element.setAttribute('aria-grabbed', 'false'));
 
     // on drop, remove all dragging
     this.on('drop', this.ariaDropControls.setAllToNone, this.ariaDropControls);
@@ -143,13 +148,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       this.dragControls.addElement(event.data.element);
     }, this);
 
-    this.on('drop', this.setDroppableLabel, this);
-    this.on('revert', this.setDroppableLabel, this);
-
-    /**
-     * @type {HTMLElement} selectedElement
-     */
-    this.selectedElement = undefined;
+    this.on('drop', this.updateDroppableElement, this);
+    this.on('revert', this.updateDroppableElement, this);
 
     // Init drag text task
     this.initDragText();
@@ -163,29 +163,56 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     // toggle the draggable container
     this.on('revert', this.toggleDraggablesContainer, this);
     this.on('drop', this.toggleDraggablesContainer, this);
+
+    // Indicate operations trough read speaker
+    this.on('start', event => this.read(this.params.startDragging));
+    this.on('stop', event => {
+      if(!event.data.target) {
+        this.read(this.params.cancelledDragging);
+      }
+    });
   }
 
   DragText.prototype = Object.create(Question.prototype);
   DragText.prototype.constructor = DragText;
 
   /**
-   * Sets the aria-label of a dropzone based on whether it has a droppable inside it
+   * Updates the state of a droppable element
    *
    * @param event
    */
-  DragText.prototype.setDroppableLabel = function(event) {
-    var target = event.data.target,
+  DragText.prototype.updateDroppableElement = function(event) {
+    const dropZone = event.data.target,
       draggable = event.data.element;
 
-    if (target) {
-      var index = target.dataset.dropzoneIndex;
+    if (dropZone) {
+      this.setDroppableLabel(dropZone, draggable.textContent);
+    }
+  };
 
-      // if has children
-      if (target.childNodes.length > 0) {
-        target.setAttribute('aria-label', draggable.textContent + ' - ' + this.params.dropZoneIndex.replace('@index', index));
+  /**
+   * Sets the aria-label of a dropzone based on whether it has a droppable inside it
+   *
+   * @param {HTMLElement} dropZone
+   * @param {string} text
+   */
+  DragText.prototype.setDroppableLabel = function(dropZone, text) {
+    const index = dropZone.dataset.dropzoneIndex,
+      indexText = this.params.dropZoneIndex.replace('@index', index),
+      correctFeedback = dropZone.classList.contains('h5p-drag-correct-feedback'),
+      inCorrectFeedback = dropZone.classList.contains('h5p-drag-wrong-feedback'),
+      hasChildren = (dropZone.childNodes.length > 0);
+
+    if (dropZone) {
+      if (correctFeedback || inCorrectFeedback) {
+        const resultString = this.params[correctFeedback ? 'correctText' : 'incorrectText'];
+        dropZone.setAttribute('aria-label', `${text} - ${indexText}. ${resultString}.`);
+      }
+      else if (hasChildren) {
+        dropZone.setAttribute('aria-label', `${text}  - ${indexText}`);
       }
       else {
-        target.setAttribute('aria-label', this.params.dropZoneIndex.replace('@index', index) + '. ' + this.params.empty);
+        dropZone.setAttribute('aria-label',  `${indexText}  - ${this.params.empty}`);
       }
     }
   };
@@ -390,7 +417,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.selectedElement = undefined;
 
       // update selected
-      this.trigger('stop', { element: tmp });
+      this.trigger('stop', {
+        element: tmp,
+        target: droppable.getElement()
+      });
     }
     else if(droppable.hasDraggable()) {
       var containsDropped = droppableElement.querySelector('[aria-grabbed]');
@@ -434,17 +464,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Shows feedback for dropzones.
    */
   DragText.prototype.showDropzoneFeedback = function () {
-    var self = this;
-
-    this.droppables.forEach(function (droppable) {
+    this.droppables.forEach(droppable => {
       droppable.addFeedback();
-      var draggable = droppable.containedDraggable;
+      const draggable = droppable.containedDraggable;
 
-      if(draggable){
-        var index = droppable.$dropzone.data('dropzoneIndex');
-        var resultString = self.params[droppable.isCorrect() ? 'correctText' : 'incorrectText'];
-
-        droppable.$dropzone.attr('aria-label', draggable.getElement().textContent + ' - ' + self.params.dropZoneIndex.replace('@index', index) + '. ' + resultString + '.');
+      if (droppable && draggable) {
+        this.setDroppableLabel(droppable.getElement(), draggable.getElement().textContent);
       }
     });
   };
@@ -535,14 +560,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
 
     self.$draggables = $('<div/>', {
-      'class': DRAGGABLES_CONTAINER,
-      'aria-describedby': draggableDescriptionId
-    });
-
-    var $draggablesDescription = $('<div/>', {
-      'class': 'hidden',
-      'id': draggableDescriptionId,
-      'text': self.params.draggable
+      'class': DRAGGABLES_CONTAINER
     });
 
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
@@ -578,7 +596,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     self.shuffleAndAddDraggables(self.$draggables);
     self.$wordContainer.prependTo(self.$taskContainer);
     self.$draggables.appendTo(self.$taskContainer);
-    $draggablesDescription.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
   };
@@ -837,7 +854,28 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.shuffleAndAddDraggables = function ($container) {
     return Util.shuffle(this.draggables)
       .map(draggable => this.addDraggableToContainer($container, draggable))
+      .map((draggable, index, arr) => this.setDraggableAriaLabel(draggable, index, arr.length))
       .map(draggable => this.addDraggableToControls(this.dragControls, draggable))
+  };
+
+
+  /**
+   * Sets an aria label numbering the draggables
+   *
+   * @param {H5P.TextDraggable} draggable
+   * @param {number} index
+   * @param {number} count
+   *
+   * @return {H5P.TextDraggable}
+   */
+  DragText.prototype.setDraggableAriaLabel = function (draggable, index, count) {
+    const label = this.params.draggableIndex
+      .replace('@index', (index + 1).toString())
+      .replace('@count', count.toString());
+
+    draggable.$draggable.attr('aria-label', `${draggable.text}. ${label}`);
+
+    return draggable;
   };
 
   /**

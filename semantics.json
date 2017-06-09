@@ -87,10 +87,10 @@
   {
     "label": "Draggable elements label",
     "importance": "low",
-    "name": "draggable",
+    "name": "draggableIndex",
     "type": "text",
-    "default": "Draggable.",
-    "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element",
+    "default": "Draggable. @index of @count.",
+    "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count",
     "common": true
   },
   {
@@ -123,6 +123,22 @@
     "label": "Confirmation dialog description that user wants to reset a droppable",
     "importance": "low",
     "default": "Are you sure you want to reset this drop?",
+    "common": true
+  },
+  {
+    "name": "startDragging",
+    "type": "text",
+    "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
+    "importance": "low",
+    "default": "Start dragging.",
+    "common": true
+  },
+  {
+    "name": "cancelledDragging",
+    "type": "text",
+    "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
+    "importance": "low",
+    "default": "Cancelled dragging.",
     "common": true
   },
   {

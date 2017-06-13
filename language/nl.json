@@ -28,6 +28,46 @@
       "description": "Tekst voor Feedback (Antwoorden), toegestane variabelen: @score @total. Voorbeeld: 'Je hebt @score van @total mogelijke punten gescoord.'"
     },
     {
+      "label": "Numbered Drop zone label",
+      "default": "Drop Zone @index."
+    },
+    {
+      "label": "Empty Drop Zone label",
+      "default": "Empty."
+    },
+    {
+      "label": "Draggable elements label",
+      "default": "Draggable. @index of @count."
+    },
+    {
+      "label": "Readspeaker text for correct answer",
+      "default": "Correct!"
+    },
+    {
+      "label": "Readspeaker text for incorrect answer",
+      "default": "Incorrect!"
+    },
+    {
+      "label": "Confirmation dialog title that user wants to reset a droppable",
+      "default": "Reset drop"
+    },
+    {
+      "label": "Confirmation dialog description that user wants to reset a droppable",
+      "default": "Are you sure you want to reset this drop?"
+    },
+    {
+      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
+      "default": "Start dragging."
+    },
+    {
+      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
+      "default": "Cancelled dragging."
+    },
+    {
+      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
+      "default": "Correct answer:"
+    },
+    {
       "label": "Gedragsinstellingen",
       "description": "Met deze opties kun je instellen hoe de taak zich gedraagt.",
       "fields": [

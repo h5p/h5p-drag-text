@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const isProd = (process.env.NODE_ENV === 'production');
 
 const extractCss = new ExtractTextPlugin({
   filename: "h5p-drag-text.css"
@@ -8,7 +9,7 @@ const extractCss = new ExtractTextPlugin({
 
 const config = {
   entry: "./src/entries/dist.js",
-  devtool: 'inline-source-map',
+  devtool: isProd ? 'source-map' : 'inline-source-map',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: "h5p-drag-text.js",

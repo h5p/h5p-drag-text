@@ -19,12 +19,14 @@ H5P.TextDroppable = (function ($) {
    * @param {undefined/String} tip Tip for this container, optional.
    * @param {jQuery} dropzone Dropzone object.
    * @param {jQuery} dropzoneContainer Container Container for the dropzone.
+   * @param {number} index.
    * @param {Object} params Behavior settings
    */
-  function Droppable(text, tip, dropzone, dropzoneContainer, params) {
+  function Droppable(text, tip, dropzone, dropzoneContainer, index, params) {
     var self = this;
     self.text = text;
     self.tip = tip;
+    self.index = index;
     self.params = params;
     /**
      * @type {H5P.TextDraggable}
@@ -223,6 +225,15 @@ H5P.TextDroppable = (function ($) {
    */
   Droppable.prototype.getDropzone = function () {
     return this.$dropzone;
+  };
+
+  /**
+   * Return the unique index of the dropzone
+   *
+   * @returns {number}
+   */
+  Droppable.prototype.getIndex = function () {
+    return this.index;
   };
 
   return Droppable;

@@ -183,11 +183,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @param event
    */
   DragText.prototype.updateDroppableElement = function(event) {
-    const dropZone = event.data.target,
-      draggable = event.data.element;
+    const dropZone = event.data.target;
+    const draggable = event.data.element;
+    const droppable = this.getDroppableByElement(dropZone);
 
     if (dropZone) {
-      this.setDroppableLabel(dropZone, draggable.textContent);
+      this.setDroppableLabel(dropZone, draggable.textContent, droppable.getIndex());
     }
   };
 
@@ -196,13 +197,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    *
    * @param {HTMLElement} dropZone
    * @param {string} text
+   * @param {number} index
    */
-  DragText.prototype.setDroppableLabel = function(dropZone, text) {
-    const index = dropZone.dataset.dropzoneIndex,
-      indexText = this.params.dropZoneIndex.replace('@index', index),
-      correctFeedback = dropZone.classList.contains('h5p-drag-correct-feedback'),
-      inCorrectFeedback = dropZone.classList.contains('h5p-drag-wrong-feedback'),
-      hasChildren = (dropZone.childNodes.length > 0);
+  DragText.prototype.setDroppableLabel = function(dropZone, text, index) {
+    const indexText = this.params.dropZoneIndex.replace('@index', index.toString());
+    const correctFeedback = dropZone.classList.contains('h5p-drag-correct-feedback');
+    const inCorrectFeedback = dropZone.classList.contains('h5p-drag-wrong-feedback');
+    const hasChildren = (dropZone.childNodes.length > 0);
 
     if (dropZone) {
       if (correctFeedback || inCorrectFeedback) {
@@ -349,19 +350,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   };
 
   /**
-   * Removes all the draggables from the container
-   *
-   * @param {jQuery} $container
-   */
-  DragText.prototype.removeDraggables = function ($container) {
-    var self = this;
-    $container.forEach(function($draggable){
-      self.dragControls.removeElement($draggable.get(0));
-      $draggable.detach();
-    }, this);
-  };
-
-  /**
    * Handle selected draggable
    *
    * @param {ControlsEvent} event
@@ -470,7 +458,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       const draggable = droppable.containedDraggable;
 
       if (droppable && draggable) {
-        this.setDroppableLabel(droppable.getElement(), draggable.getElement().textContent);
+        this.setDroppableLabel(droppable.getElement(), draggable.getElement().textContent, droppable.getIndex());
       }
     });
   };
@@ -496,7 +484,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       this.trigger(xAPIEvent);
     }
 
-    var scoreText = this.params.score.replace(/@score/g, score.toString())
+    var scoreText = this.params.score
+      .replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());
 
     if (score === maxScore) {
@@ -550,7 +539,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    */
   DragText.prototype.addTaskTo = function ($container) {
     var self = this;
-    var draggableDescriptionId = 'drag-text-' + this.contentId + '-draggable';
     self.widest = 0;
     self.widestDraggable = 0;
     self.droppables = [];
@@ -742,8 +730,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
     var $dropzone = $('<div/>', {
       'aria-dropeffect': "none",
-      'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + '. ' + this.params.empty,
-      'data-dropzone-index': draggableIndex.toString()
+      'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + '. ' + this.params.empty
     }).appendTo($dropzoneContainer)
       .droppable({
         tolerance: 'pointer',
@@ -754,7 +741,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         }
       });
 
-    var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer, self.params);
+    var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer, draggableIndex, self.params);
     droppable.appendDroppableTo(self.$wordContainer);
 
     self.droppables.push(droppable);

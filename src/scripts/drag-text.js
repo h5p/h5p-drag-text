@@ -1225,6 +1225,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var self = this;
     var currentScore = self.getScore();
     var maxScore = self.droppables.length;
+    var duration;
 
     xAPIEvent.setScoredResult(currentScore, maxScore, self);
 
@@ -1235,10 +1236,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       scaled: Math.round(currentScore / maxScore * 10000) / 10000
     };
 
+    if(self.stopWatch) {
+      duration = 'PT' + self.stopWatch.stop() + 'S';
+    }
+
     xAPIEvent.data.statement.result = {
       response: self.getXAPIResponse(),
       score: score,
-      duration: 'PT' + self.stopWatch.stop() + 'S',
+      duration: duration,
       completion: true
     };
   };

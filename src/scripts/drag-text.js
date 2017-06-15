@@ -309,6 +309,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     // Checking answer button
     self.addButton('check-answer', self.params.checkAnswer, function () {
       self.answered = true;
+      self.removeAllElementsFromDragControl();
+
       if (!self.showEvaluation()) {
         if (self.params.behaviour.enableRetry) {
           self.showButton('try-again');
@@ -359,6 +361,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.stopWatch.reset();
       self.read(self.params.taskDescription);
     }, self.initShowTryAgainButton || false);
+  };
+
+  /**
+   * Removes keyboard support for all elements left in the draggables
+   * list.
+   */
+  DragText.prototype.removeAllElementsFromDragControl = function () {
+    this.dragControls.elements.forEach(element => this.dragControls.removeElement(element));
   };
 
   /**

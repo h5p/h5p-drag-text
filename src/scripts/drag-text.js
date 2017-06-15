@@ -128,6 +128,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.dragControls.on('select', this.keyboardDraggableSelected, this);
     this.dropControls.on('select', this.keyboardDroppableSelected, this);
 
+    // add and remove droppables on start/stop drag from controls
+    this.on('start', this.addAllDroppablesToControls, this);
+    this.on('stop', this.removeAllDroppablesFromControls, this);
+
     // on drag and drop, toggle aria-dropeffect between 'move', and 'none'
     this.on('start', this.toggleDropEffect, this);
     this.on('stop', this.toggleDropEffect, this);
@@ -201,6 +205,24 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     if (dropZone) {
       this.setDroppableLabel(dropZone, draggable.textContent, droppable.getIndex());
     }
+  };
+
+  /**
+   * Add all drop zones to drop keyboard controls
+   */
+  DragText.prototype.addAllDroppablesToControls = function(){
+    this.droppables
+      .map(droppable => droppable.getElement())
+      .forEach(el => this.dropControls.addElement(el));
+  };
+
+  /**
+   * Remove all drop zones from drop keyboard controls
+   */
+  DragText.prototype.removeAllDroppablesFromControls = function(){
+    this.droppables
+      .map(droppable => droppable.getElement())
+      .forEach(el => this.dropControls.removeElement(el));
   };
 
   /**
@@ -589,8 +611,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
           var draggable = self.createDraggable(answer);
           var droppable = self.createDroppable(answer, tip);
-
-          self.dropControls.addElement(droppable.getElement());
 
           // trigger instant feedback
           if (self.params.behaviour.instantFeedback) {

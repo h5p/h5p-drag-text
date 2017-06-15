@@ -411,10 +411,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         target: droppable.getElement()
       });
     }
-    else if(droppable.hasDraggable()) {
+    else if(droppable.hasDraggable() && !(this.params.behaviour.instantFeedback && droppable.isCorrect())) {
       var containsDropped = droppableElement.querySelector('[aria-grabbed]');
 
-      this.createConfirmResetDialog(function() {
+      this.createConfirmResetDialog(function () {
         self.revert(self.getDraggableByElement(containsDropped));
       }).show();
     }

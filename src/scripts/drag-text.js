@@ -91,8 +91,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       correctText: "Correct!",
       incorrectText: "Incorrect!",
       resetDropTitle: "Reset drop",
-      resetDropDescription: "Are you sure you want to reset this drop?",
-      startDragging: "Start dragging.",
+      resetDropDescription: "Are you sure you want to reset this drop zone?",
+      grabbed: "Grabbed.",
       cancelledDragging: "Cancelled dragging.",
       correctAnswer: "Correct answer:"
     }, params);
@@ -132,6 +132,17 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.on('start', this.toggleDropEffect, this);
     this.on('stop', this.toggleDropEffect, this);
 
+    // toggle label for draggable
+    this.on('start', event => {
+      const draggable = this.getDraggableByElement(event.data.element);
+      this.setDraggableAriaLabel(draggable);
+    });
+
+    this.on('stop', event => {
+      const draggable = this.getDraggableByElement(event.data.element);
+      this.setDraggableAriaLabel(draggable);
+    });
+
     // toggles grabbed on mouse
     this.on('start', event => event.data.element.setAttribute('aria-grabbed', 'true'));
     this.on('stop', event => event.data.element.setAttribute('aria-grabbed', 'false'));
@@ -166,7 +177,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.on('drop', this.toggleDraggablesContainer, this);
 
     // Indicate operations trough read speaker
-    this.on('start', event => this.read(this.params.startDragging));
+    this.on('start', event => this.read(this.params.grabbed));
     this.on('stop', event => {
       if(!event.data.target) {
         this.read(this.params.cancelledDragging);
@@ -346,6 +357,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.hideAllSolutions();
 
       self.stopWatch.reset();
+      self.read(self.params.taskDescription);
     }, self.initShowTryAgainButton || false);
   };
 
@@ -397,6 +409,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var droppable = self.getDroppableByElement(droppableElement);
     var draggable = self.getDraggableByElement(this.selectedElement);
 
+    var isCorrectInstantFeedback = this.params.behaviour.instantFeedback && droppable.isCorrect();
+    var isShowingFeedback = !this.params.behaviour.instantFeedback && droppable.hasFeedback();
+
     // if something selected
     if(draggable && droppable) {
       var tmp = self.selectedElement;
@@ -411,7 +426,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         target: droppable.getElement()
       });
     }
-    else if(droppable.hasDraggable() && !(this.params.behaviour.instantFeedback && droppable.isCorrect())) {
+    else if(droppable.hasDraggable() && !isShowingFeedback && !isCorrectInstantFeedback) {
       var containsDropped = droppableElement.querySelector('[aria-grabbed]');
 
       this.createConfirmResetDialog(function () {
@@ -701,7 +716,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       containment: self.$taskContainer
     });
 
-    var draggable = new Draggable(answer, $draggable);
+    var draggable = new Draggable(answer, $draggable, self.draggables.length);
     draggable.on('addedToZone', function (event) {
       self.triggerXAPI('interacted');
     });
@@ -796,16 +811,16 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var self = this;
     self.answered = true;
 
-    var oldDroppable = draggable.removeFromZone();
+    draggable.removeFromZone();
 
     // if already contains draggable
     var revertedDraggable = droppable.appendInsideDroppableTo(this.$draggables);
 
     // trigger revert, if revert was performed
-    if(oldDroppable && revertedDraggable){
+    if(revertedDraggable){
       self.trigger('revert', {
         element: revertedDraggable.getElement(),
-        target: oldDroppable.getElement()
+        target: droppable.getElement()
       });
     }
 
@@ -841,8 +856,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    */
   DragText.prototype.shuffleAndAddDraggables = function ($container) {
     return Util.shuffle(this.draggables)
+      .map((draggable, index) => draggable.setIndex(index))
       .map(draggable => this.addDraggableToContainer($container, draggable))
-      .map((draggable, index, arr) => this.setDraggableAriaLabel(draggable, index, arr.length))
+      .map(draggable => this.setDraggableAriaLabel(draggable))
       .map(draggable => this.addDraggableToControls(this.dragControls, draggable))
   };
 
@@ -851,19 +867,30 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Sets an aria label numbering the draggables
    *
    * @param {H5P.TextDraggable} draggable
-   * @param {number} index
-   * @param {number} count
    *
    * @return {H5P.TextDraggable}
    */
-  DragText.prototype.setDraggableAriaLabel = function (draggable, index, count) {
+  DragText.prototype.setDraggableAriaLabel = function (draggable) {
+    const count = this.draggables.length;
     const label = this.params.draggableIndex
-      .replace('@index', (index + 1).toString())
+      .replace('@index', (draggable.getIndex() + 1).toString())
       .replace('@count', count.toString());
 
-    draggable.$draggable.attr('aria-label', `${draggable.text}. ${label}`);
+    const grabbed = this.isGrabbed(draggable.getElement()) ? this.params.grabbed : '';
+
+    draggable.$draggable.attr('aria-label', `${draggable.text}. ${grabbed} ${label}`);
 
     return draggable;
+  };
+
+  /**
+   * Returns true if aria-grabbed="true" on an element
+   *
+   * @param {HTMLElement} element
+   * @returns {boolean}
+   */
+  DragText.prototype.isGrabbed = function (element) {
+    return element.getAttribute("aria-grabbed") === 'true';
   };
 
   /**

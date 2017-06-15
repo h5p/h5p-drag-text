@@ -7,13 +7,15 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
    * @private
    * @param {String} text String that will be turned into a selectable word.
    * @param {jQuery} draggable Draggable object.
+   * @param {number} index
    */
-  function Draggable(text, draggable) {
+  function Draggable(text, draggable, index) {
     H5P.EventDispatcher.call(this);
     var self = this;
     self.text = text;
     self.insideDropzone = null;
     self.$draggable = $(draggable);
+    self.index = index;
 
     self.shortFormat = self.text;
     //Shortens the draggable string if inside a dropbox.
@@ -24,6 +26,26 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   Draggable.prototype = Object.create(H5P.EventDispatcher.prototype);
   Draggable.prototype.constructor = Draggable;
+
+  /**
+   * Gets the index
+   *
+   * @return {number}
+   */
+  Draggable.prototype.getIndex = function () {
+    return this.index;
+  };
+
+  /**
+   * Sets the index
+   *
+   * @param {number} index
+   * @returns {H5P.TextDraggable}
+   */
+  Draggable.prototype.setIndex = function (index) {
+    this.index = index;
+    return this;
+  };
 
   /**
    * Moves the draggable to the provided container.

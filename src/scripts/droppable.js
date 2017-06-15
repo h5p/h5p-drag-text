@@ -184,6 +184,13 @@ H5P.TextDroppable = (function ($) {
   };
 
   /**
+   * Returns true if the dropzone has visible feedback
+   */
+  Droppable.prototype.hasFeedback = function () {
+    return this.$dropzone.hasClass(WRONG_FEEDBACK) || this.$dropzone.hasClass(CORRECT_FEEDBACK);
+  };
+
+  /**
    * Sets short format of draggable when inside a dropbox.
    */
   Droppable.prototype.setShortFormat = function () {

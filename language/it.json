@@ -51,7 +51,7 @@
     },
     {
       "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Start dragging."
+      "default": "Grabbed."
     },
     {
       "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",

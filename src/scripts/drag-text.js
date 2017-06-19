@@ -120,7 +120,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.ariaDragControls = new AriaDrag();
     this.ariaDropControls = new AriaDrop();
     this.dragControls = new Controls([new UIKeyboard(), this.ariaDragControls]);
+    this.dragControls.useNegativeTabIndex();
     this.dropControls = new Controls([new UIKeyboard(), this.ariaDropControls]);
+    this.dropControls.useNegativeTabIndex();
 
     // return false to prevent select from happening when draggable is disabled
     this.dragControls.on('before-select', event => !this.isElementDisabled(event.element));
@@ -130,7 +132,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // add and remove droppables on start/stop drag from controls
     this.on('start', this.addAllDroppablesToControls, this);
-    this.on('stop', this.removeAllDroppablesFromControls, this);
+    this.on('revert', this.removeControlsFromDropZonesIfAllEmpty, this);
+    this.on('stop', event => {
+      if(!event.data.target) {
+        this.removeControlsFromDropZonesIfAllEmpty();
+      }
+    }, this);
 
     // on drag and drop, toggle aria-dropeffect between 'move', and 'none'
     this.on('start', this.toggleDropEffect, this);
@@ -181,7 +188,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.on('drop', this.toggleDraggablesContainer, this);
 
     // Indicate operations trough read speaker
-    this.on('start', event => this.read(this.params.grabbed));
     this.on('stop', event => {
       if(!event.data.target) {
         this.read(this.params.cancelledDragging);
@@ -207,10 +213,16 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     }
   };
 
+  DragText.prototype.removeControlsFromDropZonesIfAllEmpty = function() {
+    if (!this.anyDropZoneHasDraggable()) {
+      this.removeAllDroppablesFromControls();
+    }
+  }
+
   /**
    * Add all drop zones to drop keyboard controls
    */
-  DragText.prototype.addAllDroppablesToControls = function(){
+  DragText.prototype.addAllDroppablesToControls = function() {
     this.droppables
       .map(droppable => droppable.getElement())
       .forEach(el => this.dropControls.addElement(el));
@@ -219,10 +231,17 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   /**
    * Remove all drop zones from drop keyboard controls
    */
-  DragText.prototype.removeAllDroppablesFromControls = function(){
+  DragText.prototype.removeAllDroppablesFromControls = function() {
     this.droppables
       .map(droppable => droppable.getElement())
       .forEach(el => this.dropControls.removeElement(el));
+  };
+
+  /**
+   * Remove all drop zones from drop keyboard controls
+   */
+  DragText.prototype.anyDropZoneHasDraggable = function() {
+    return this.droppables.some(droppable => droppable.hasDraggable())
   };
 
   /**
@@ -415,7 +434,18 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     if((!hasSelectedElement || !isSelectedElement) && !this.isElementDisabled(event.element)) {
       this.selectedElement = event.element;
       this.trigger('start', { element: event.element });
+      this.focusOnFirstEmptyDropZone();
     }
+  };
+
+  /**
+   * Focuses on the first empty drop zone
+   */
+  DragText.prototype.focusOnFirstEmptyDropZone = function() {
+    const dropZone = this.droppables
+      .filter(droppable => !droppable.hasDraggable())[0];
+
+    dropZone.getElement().focus();
   };
 
   /**
@@ -732,6 +762,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     //Make the draggable
     var $draggable = $('<div/>', {
       html: answer,
+      'role': 'button',
       'aria-grabbed': 'false'
     }).draggable({
       revert: function(isValidDrop) {

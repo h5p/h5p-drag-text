@@ -217,7 +217,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     if (!this.anyDropZoneHasDraggable()) {
       this.removeAllDroppablesFromControls();
     }
-  }
+  };
 
   /**
    * Add all drop zones to drop keyboard controls
@@ -444,8 +444,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.focusOnFirstEmptyDropZone = function() {
     const dropZone = this.droppables
       .filter(droppable => !droppable.hasDraggable())[0];
+    const element = dropZone.getElement();
 
-    dropZone.getElement().focus();
+    this.dropControls.setTabbable(element);
+    element.focus();
   };
 
   /**
@@ -763,7 +765,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var $draggable = $('<div/>', {
       html: answer,
       'role': 'button',
-      'aria-grabbed': 'false'
+      'aria-grabbed': 'false',
+      'tabindex': '-1'
     }).draggable({
       revert: function(isValidDrop) {
         if (!isValidDrop) {
@@ -773,7 +776,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       },
       drag: self.propagateDragEvent('drag', self),
       start: self.propagateDragEvent('start', self),
-      stop: self.propagateDragEvent('stop', self),
+      stop: function (event) {
+        self.trigger('stop', {
+          element: draggable.getElement(),
+          target: event.target
+        });
+      },
       containment: self.$taskContainer
     });
 
@@ -806,7 +814,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
     var $dropzone = $('<div/>', {
       'aria-dropeffect': "none",
-      'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + '. ' + this.params.empty
+      'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + '. ' + this.params.empty,
+      'tabindex': '-1'
     }).appendTo($dropzoneContainer)
       .droppable({
         tolerance: 'pointer',

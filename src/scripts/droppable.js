@@ -46,8 +46,13 @@ H5P.TextDroppable = (function ($) {
       self.$tip.blur(() => self.removeTipTabIndexIfNoFocus());
     }
 
-    self.$correctAnswer = $('<div/>', {
-      html: self.params.correctAnswer,
+    self.$incorrectText = $('<div/>', {
+      html: self.params.incorrectText + " " + self.params.correctAnswer,
+      'class': 'correct-answer'
+    });
+
+    self.$correctText = $('<div/>', {
+      html: self.params.correctText,
       'class': 'correct-answer'
     });
 
@@ -72,9 +77,13 @@ H5P.TextDroppable = (function ($) {
   Droppable.prototype.showSolution = function () {
     if (!((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text))) {
       this.$showSolution.html(this.text);
-      this.$showSolution.prepend(this.$correctAnswer);
-      this.$showSolution.show();
+      this.$showSolution.prepend(this.$incorrectText);
     }
+    else {
+      this.$showSolution.prepend(this.$correctText);
+    }
+
+    this.$showSolution.show();
   };
 
   /**
@@ -174,10 +183,12 @@ H5P.TextDroppable = (function ($) {
 
       //Draggable feedback
       this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).addClass(DRAGGABLE_FEEDBACK_CORRECT);
-    } else if (this.containedDraggable === null) {
+    }
+    else if (this.containedDraggable === null) {
       //Does not contain a draggable
       this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
-    } else {
+    }
+    else {
       //Draggable is wrong
       this.$dropzone.removeClass(CORRECT_FEEDBACK).addClass(WRONG_FEEDBACK);
 

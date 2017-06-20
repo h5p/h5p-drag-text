@@ -132,12 +132,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // add and remove droppables on start/stop drag from controls
     this.on('start', this.addAllDroppablesToControls, this);
-    this.on('revert', this.removeControlsFromDropZonesIfAllEmpty, this);
+    this.on('revert', this.removeControlsFromEmptyDropZones, this);
     this.on('stop', event => {
       if(!event.data.target) {
         this.removeControlsFromDropZonesIfAllEmpty();
       }
     }, this);
+    this.on('drop', this.removeControlsFromEmptyDropZones, this);
 
     // on drag and drop, toggle aria-dropeffect between 'move', and 'none'
     this.on('start', this.toggleDropEffect, this);
@@ -213,10 +214,25 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     }
   };
 
+  /**
+   * Remove controls from dropzones if all is empty
+   */
   DragText.prototype.removeControlsFromDropZonesIfAllEmpty = function() {
     if (!this.anyDropZoneHasDraggable()) {
       this.removeAllDroppablesFromControls();
     }
+  };
+
+  /**
+   * Remove controls from dropzones without draggables
+   */
+  DragText.prototype.removeControlsFromEmptyDropZones = function() {
+    this.droppables
+      .filter(droppable => !droppable.hasDraggable())
+      .map(droppable => droppable.getElement())
+      .forEach(el => {
+        this.dropControls.removeElement(el)
+      });
   };
 
   /**
@@ -373,7 +389,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.droppables.forEach(function (droppable) {
         droppable.showSolution();
       });
+      self.draggables.forEach(draggable => self.setDraggableAriaLabel(draggable));
       self.disableDraggables();
+      self.removeAllDroppablesFromControls();
       self.hideButton('show-solution');
     }, self.initShowShowSolutionButton || false);
 
@@ -473,11 +491,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var droppable = self.getDroppableByElement(droppableElement);
     var draggable = self.getDraggableByElement(this.selectedElement);
 
-    var isCorrectInstantFeedback = this.params.behaviour.instantFeedback && droppable.isCorrect();
+    var isCorrectInstantFeedback = this.params.behaviour.instantFeedback && droppable && droppable.isCorrect();
     var isShowingFeedback = !this.params.behaviour.instantFeedback && droppable.hasFeedback();
 
     // if something selected
-    if(draggable && droppable) {
+    if(draggable && droppable && !isCorrectInstantFeedback) {
       var tmp = self.selectedElement;
       // initiate drop
       self.drop(draggable, droppable);
@@ -490,7 +508,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         target: droppable.getElement()
       });
     }
-    else if(droppable.hasDraggable() && !isShowingFeedback && !isCorrectInstantFeedback) {
+    else if(droppable && droppable.hasDraggable() && !isShowingFeedback && !isCorrectInstantFeedback) {
       var containsDropped = droppableElement.querySelector('[aria-grabbed]');
 
       this.createConfirmResetDialog(function () {
@@ -862,6 +880,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var droppable = draggable.removeFromZone();
     var target = droppable ? droppable.getElement() : undefined;
     draggable.revertDraggableTo(this.$draggables);
+    this.setDraggableAriaLabel(draggable);
 
     this.trigger('revert', { element: draggable.getElement(), target: target });
     this.trigger('resize');
@@ -1139,6 +1158,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       droppable.addFeedback();
       droppable.showSolution();
     });
+
+    this.removeAllDroppablesFromControls();
     this.disableDraggables();
     //Remove all buttons in "show solution" mode.
     this.hideButton('try-again');
@@ -1176,6 +1197,21 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    */
   DragText.prototype.resetDraggables = function () {
     Util.shuffle(this.draggables).forEach(this.revert, this);
+
+    this.removeAllElementsFromDragControl();
+    this.arrayReverse(this.draggables)
+      .map(draggable => draggable.getElement())
+      .forEach(el => this.dragControls.addElement(el));
+  };
+
+  /**
+   * Returns a reverse array (without side effects)
+   *
+   * @param {array} arr
+   * @return {array}
+   */
+  DragText.prototype.arrayReverse = function(arr) {
+    return [...arr].reverse();
   };
 
   /**

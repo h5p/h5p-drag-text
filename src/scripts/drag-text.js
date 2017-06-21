@@ -662,11 +662,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       .forEach(function(part) {
         if(self.isAnswerPart(part)) {
           // is draggable/droppable
-          var answer = self.parseAnswer(part);
-          var tip = self.parseAnswerTip(part);
-
-          var draggable = self.createDraggable(answer);
-          var droppable = self.createDroppable(answer, tip);
+          const solution = self.parseSolution(part);
+          const draggable = self.createDraggable(solution.text);
+          const droppable = self.createDroppable(solution.text, solution.tip);
 
           // trigger instant feedback
           if (self.params.behaviour.instantFeedback) {
@@ -688,28 +686,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     self.$draggables.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
-  };
-
-  /**
-   * Returns the "answer" of a part, without the tip
-   *
-   * @param {string} part
-   *
-   * @returns {string}
-   */
-  DragText.prototype.parseAnswer = function(part) {
-    return Util.cleanCharacter('*', part).split(':')[0];
-  };
-
-  /**
-   * Returns the "tip" of a part, without the answer
-   *
-   * @param {string} part
-   *
-   * @returns {string}
-   */
-  DragText.prototype.parseAnswerTip = function(part) {
-    return Util.cleanCharacter('*', part).split(':')[1];
   };
 
   /**
@@ -1280,7 +1256,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Checks if a number is a valid index
    *
    * @param {number} index
-   * @param {number} size
    * @return {boolean}
    */
   DragText.prototype.isValidIndex = function(index) {
@@ -1388,22 +1363,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @returns {string} User answers separated by the "[,]" pattern
    */
   DragText.prototype.getXAPIResponse = function () {
-    var self = this;
-
-    // Create an array to hold the answers
-    var answers = new Array(self.droppables.length);
-    for (var i = 0; i < self.droppables.length; i++) {
-      answers[i] = '';
-    }
-
-    // Add answers to the answer array
-    var draggable;
-    self.getCurrentState().forEach(function (stateObject) {
-        draggable = self.draggables[stateObject.draggable].text;
-        answers[stateObject.droppable] = draggable;
-    });
-
-    return answers.join('[,]');
+     return this.droppables
+      .map(droppable => droppable.hasDraggable() ? droppable.containedDraggable.text : '')
+      .join('[,]');
   };
 
 	/**
@@ -1413,12 +1375,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 	 * @returns {string}
 	 */
   DragText.prototype.replaceSolutionsWithBlanks = function (question) {
-    var self = this;
-
     return parseText(question)
-      .map(function(part){
-        return self.isAnswerPart(part) ? '__________' : part;
-      }).join('');
+      .map(part => this.isAnswerPart(part) ? '__________' : part)
+      .join('');
   };
 
 	/**
@@ -1430,8 +1389,46 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.getSolutionsFromQuestion = function (question) {
     return parseText(question)
       .filter(this.isAnswerPart)
-      .map(Util.cleanCharacter('*'))
+      .map(part => this.parseSolution(part))
+      .map(solution => solution.text)
       .join('[,]');
+  };
+
+  /**
+   * @typedef {object} Solution
+   * @param {string} tip
+   * @param {string} correct
+   * @param {string} incorrect
+   * @param {string} text
+   */
+  /**
+   * Parse the solution text (text between the asterisks)
+   *
+   * @param {string} solutionText
+   * @returns {Solution}
+   */
+  DragText.prototype.parseSolution = function (solutionText) {
+    let tip = solutionText.match(/(:([\w\s]+))/g);
+    let correctFeedback = solutionText.match(/(\\\+([\w\s]+))/g);
+    let incorrectFeedback = solutionText.match(/(\\\-([\w\s]+))/g);
+
+    // Strip the tokens
+    const text = Util.cleanCharacter('*', solutionText)
+      .replace(tip, '')
+      .replace(correctFeedback, '')
+      .replace(incorrectFeedback, '');
+
+    if (tip) {
+      tip = tip[0].replace(':','');
+    }
+    if (correctFeedback) {
+      correctFeedback = correctFeedback[0].replace('\\+','');
+    }
+    if (incorrectFeedback) {
+      incorrectFeedback = incorrectFeedback[0].replace('\\-','');
+    }
+
+    return { tip, correctFeedback, incorrectFeedback, text };
   };
 
   return DragText;

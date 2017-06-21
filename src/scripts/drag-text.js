@@ -239,6 +239,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Add all drop zones to drop keyboard controls
    */
   DragText.prototype.addAllDroppablesToControls = function() {
+    console.log('add add droppables to controls');
+    // to have a clean start, remove all first
+    if(this.dropControls.count() > 0){
+      this.removeAllDroppablesFromControls();
+    }
+
+    // add droppables in correct order
     this.droppables
       .map(droppable => droppable.getElement())
       .forEach(el => this.dropControls.addElement(el));
@@ -1197,21 +1204,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    */
   DragText.prototype.resetDraggables = function () {
     Util.shuffle(this.draggables).forEach(this.revert, this);
-
-    this.removeAllElementsFromDragControl();
-    this.arrayReverse(this.draggables)
-      .map(draggable => draggable.getElement())
-      .forEach(el => this.dragControls.addElement(el));
-  };
-
-  /**
-   * Returns a reverse array (without side effects)
-   *
-   * @param {array} arr
-   * @return {array}
-   */
-  DragText.prototype.arrayReverse = function(arr) {
-    return [...arr].reverse();
   };
 
   /**

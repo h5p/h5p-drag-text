@@ -239,7 +239,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Add all drop zones to drop keyboard controls
    */
   DragText.prototype.addAllDroppablesToControls = function() {
-    console.log('add add droppables to controls');
     // to have a clean start, remove all first
     if(this.dropControls.count() > 0){
       this.removeAllDroppablesFromControls();

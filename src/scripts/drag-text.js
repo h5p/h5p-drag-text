@@ -169,7 +169,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // on revert, re add element to drag controls
     this.on('revert', function(event) {
-      this.dragControls.addElement(event.data.element);
+      this.dragControls.insertElementAt(event.data.element, 0);
     }, this);
 
     this.on('drop', this.updateDroppableElement, this);

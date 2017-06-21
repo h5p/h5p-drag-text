@@ -36,7 +36,7 @@
     "timer-machine": "^1.1.0",
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
-    "h5p-lib-controls": "0.0.7"
+    "h5p-lib-controls": "0.0.8"
   },
   "ava": {
     "babel": {

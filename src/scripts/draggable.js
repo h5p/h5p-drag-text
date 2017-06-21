@@ -16,6 +16,7 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
     self.insideDropzone = null;
     self.$draggable = $(draggable);
     self.index = index;
+    self.initialIndex = index;
 
     self.shortFormat = self.text;
     //Shortens the draggable string if inside a dropbox.
@@ -45,6 +46,26 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
   Draggable.prototype.setIndex = function (index) {
     this.index = index;
     return this;
+  };
+
+  /**
+   * Gets the initial index
+   *
+   * @return {number}
+   */
+  Draggable.prototype.getInitialIndex = function () {
+    return this.initialIndex;
+  };
+
+
+  /**
+   * Checks if a index is this droppables initial index
+   *
+   * @param {number} index
+   * @returns {boolean}
+   */
+  Draggable.prototype.hasInitialIndex = function (index) {
+    return this.initialIndex === index;
   };
 
   /**

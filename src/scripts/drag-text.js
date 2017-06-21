@@ -1211,28 +1211,24 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @returns {object} containing indexes of dropped words
    */
   DragText.prototype.getCurrentState = function () {
-    var self = this;
-    var draggedDraggablesIndexes = [];
-
     // Return undefined if task is not initialized
     if (this.draggables === undefined) {
       return undefined;
     }
 
-    // Find draggables that has been dropped
-    this.draggables.forEach(function (draggable, draggableIndex) {
-      if (draggable.getInsideDropzone() !== null) {
-        draggedDraggablesIndexes.push({draggable: draggableIndex, droppable: self.droppables.indexOf(draggable.getInsideDropzone())});
-      }
-    });
-    return draggedDraggablesIndexes;
+    return this.draggables
+      .filter(draggable => (draggable.getInsideDropzone() !== null))
+      .map(draggable => ({
+        draggable: draggable.getInitialIndex(),
+        droppable: this.droppables.indexOf(draggable.getInsideDropzone())
+      }));
   };
 
   /**
    * Sets answers to current user state
    */
   DragText.prototype.setH5PUserState = function () {
-    var self = this;
+    const self = this;
 
     // Do nothing if user state is undefined
     if (this.previousState === undefined) {
@@ -1240,21 +1236,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     }
 
     // Select words from user state
-    this.previousState.forEach(function (draggedDraggableIndexes) {
-      var draggableIndexIsInvalid = isNaN(draggedDraggableIndexes.draggable) ||
-        draggedDraggableIndexes.draggable >= self.draggables.length ||
-        draggedDraggableIndexes.draggable < 0;
-
-      var droppableIndexIsInvalid = isNaN(draggedDraggableIndexes.droppable) ||
-        draggedDraggableIndexes.droppable >= self.droppables.length ||
-        draggedDraggableIndexes.droppable < 0;
-
-      if (draggableIndexIsInvalid || droppableIndexIsInvalid) {
+    this.previousState.forEach(indexes => {
+      if (!self.isValidIndex(indexes.draggable) || !self.isValidIndex(indexes.droppable)) {
         throw new Error('Stored user state is invalid');
       }
 
-      var moveDraggable = self.draggables[draggedDraggableIndexes.draggable];
-      var moveToDroppable = self.droppables[draggedDraggableIndexes.droppable];
+      const moveDraggable = this.getDraggableByInitialIndex(indexes.draggable);
+      const moveToDroppable = self.droppables[indexes.droppable];
+
       self.drop(moveDraggable, moveToDroppable);
 
       if (self.params.behaviour.instantFeedback) {
@@ -1285,6 +1274,27 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         }
       }
     }
+  };
+
+  /**
+   * Checks if a number is a valid index
+   *
+   * @param {number} index
+   * @param {number} size
+   * @return {boolean}
+   */
+  DragText.prototype.isValidIndex = function(index) {
+    return !isNaN(index) && (index < this.draggables.length) && (index >= 0);
+  };
+
+  /**
+   * Returns the draggable that initially was at an index
+   *
+   * @param {number} initialIndex
+   * @return {Draggable}
+   */
+  DragText.prototype.getDraggableByInitialIndex = function(initialIndex) {
+    return this.draggables.filter(draggable => draggable.hasInitialIndex(initialIndex))[0];
   };
 
   /**

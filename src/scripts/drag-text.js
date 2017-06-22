@@ -194,6 +194,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         this.read(this.params.cancelledDragging);
       }
     });
+
+    // trigger instant feedback
+    if (this.params.behaviour.instantFeedback) {
+      this.on('revert', () => this.instantFeedbackEvaluation());
+    }
   }
 
   DragText.prototype = Object.create(Question.prototype);

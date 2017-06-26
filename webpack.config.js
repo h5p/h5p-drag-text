@@ -9,11 +9,9 @@ const extractCss = new ExtractTextPlugin({
 
 const config = {
   entry: "./src/entries/dist.js",
-  devtool: isProd ? 'source-map' : 'inline-source-map',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: "h5p-drag-text.js",
-    sourceMapFilename: '[file].map'
+    filename: "h5p-drag-text.js"
   },
   module: {
     rules: [
@@ -49,5 +47,9 @@ const config = {
     })
   ]
 };
+
+if(!isProd) {
+  config.devtool = 'inline-source-map';
+}
 
 module.exports = config;

@@ -1,84 +1,90 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "Consigne",
-      "description": "Expliquez ce que doit faire l'utilisateur.",
-      "default": "Glissez les étiquettes dans les bonnes cases."
+      "label":"Consigne",
+      "description":"Expliquez ce que doit faire l'utilisateur.",
+      "default":"Glissez les étiquettes dans les bonnes cases."
     },
     {
-      "label": "Champ de texte",
-      "placeholder": "Paris est la capitale de la *France*",
-      "description": "Les mots à placer sont identifiés par un astérisque (*) avant et après le mot/l'expression. Vous pouvez ajouter un indice à l'aide des deux points (:) placés devant l'indice. (Exemple: On peut créer des exercices h5p en utilisant un *navigateur:Quelque chose que vous utilisez tous les jours*."
+      "label":"Champ de texte",
+      "placeholder":"Paris est la capitale de la *France*",
+      "description":"",
+      "important":{
+        "description":"<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li></ul>"
+      }
     },
     {
-      "label": "Texte pour le bouton \"Vérifier\"",
-      "default": "Vérifier"
+      "label":"Texte pour le bouton \"Vérifier\"",
+      "default":"Vérifier"
     },
     {
-      "label": "Texte pour le bouton \"Recommencer\"",
-      "default": "Recommencer"
+      "label":"Texte pour le bouton \"Recommencer\"",
+      "default":"Recommencer"
     },
     {
-      "label": "Texte pour le bouton \"Voir la correction\"",
-      "default": "Voir la correction"
+      "label":"Texte pour le bouton \"Voir la correction\"",
+      "default":"Voir la correction"
     },
     {
-      "label": "Commentaire final",
-      "default": "Vous avez obtenu @score point(s) sur @total",
-      "description": "Texte du commentaire, variables possibles: @score et @total. Exemple: 'Vous avez @score sur un total possible de @total points'"
+      "label":"Commentaire final",
+      "default":"Vous avez obtenu @score point(s) sur @total",
+      "description":"Texte du commentaire, variables possibles: @score et @total. Exemple: 'Vous avez @score sur un total possible de @total points'"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop Zone @index."
+      "label":"Numbered Drop zone label",
+      "default":"Drop Zone @index.",
+      "description":"Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Empty."
+      "label":"Empty Drop Zone label",
+      "default":"Empty.",
+      "description":"Label used for accessibility, where the Read speaker will read that the drop zone is empty"
     },
     {
-      "label": "Draggable elements label",
-      "default": "Draggable. @index of @count."
+      "label":"Draggable elements label",
+      "default":"Draggable. @index of @count.",
+      "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct!"
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct!"
     },
     {
-      "label": "Readspeaker text for incorrect answer",
-      "default": "Incorrect!"
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect!"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label":"Confirmation dialog title that user wants to reset a droppable",
+      "default":"Reset drop"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop?"
+      "label":"Confirmation dialog description that user wants to reset a droppable",
+      "default":"Are you sure you want to reset this drop?"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Grabbed."
+      "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
+      "default":"Grabbed."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label":"Label used for accessibility, where the read speaker indicates that dragging is canceled",
+      "default":"Cancelled dragging."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Correct answer:"
+      "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
+      "default":"Correct answer:"
     },
     {
-      "label": "Options générales.",
-      "description": "Ces options vous permettent de paramétrer le déroulement de l'exercice.",
-      "fields": [
+      "label":"Options générales.",
+      "description":"Ces options vous permettent de paramétrer le déroulement de l'exercice.",
+      "fields":[
         {
-          "label": "Activer le bouton \"Recommencer\""
+          "label":"Activer le bouton \"Recommencer\""
         },
         {
-          "label": "Activer le bouton \"Voir la correction\""
+          "label":"Activer le bouton \"Voir la correction\""
         },
         {
-          "label": "Correction instantanée"
+          "label":"Correction instantanée"
         }
       ]
     }

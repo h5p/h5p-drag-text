@@ -282,11 +282,19 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     const indexText = this.params.dropZoneIndex.replace('@index', index.toString());
     const correctFeedback = dropZone.classList.contains('h5p-drag-correct-feedback');
     const inCorrectFeedback = dropZone.classList.contains('h5p-drag-wrong-feedback');
+    const checkButtonPressed = correctFeedback || inCorrectFeedback;
     const hasChildren = (dropZone.childNodes.length > 0);
 
     if (dropZone) {
-      if (correctFeedback || inCorrectFeedback) {
-        const resultString = this.params[correctFeedback ? 'correctText' : 'incorrectText'];
+      if (checkButtonPressed) {
+        const droppable = this.getDroppableByElement(dropZone);
+        let resultString = '';
+        if (correctFeedback) {
+          resultString = droppable.correctFeedback ? droppable.correctFeedback : this.params['correctText'];
+        }
+        else {
+          resultString = droppable.incorrectFeedback ? droppable.incorrectFeedback : this.params['incorrectText'];
+        }
         dropZone.setAttribute('aria-label', `${text} - ${indexText}. ${resultString}.`);
       }
       else if (hasChildren) {
@@ -416,6 +424,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.answered = false;
 
       self.hideEvaluation();
+      self.hideExplanation();
 
       self.hideButton('try-again');
       self.hideButton('show-solution');
@@ -572,6 +581,41 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   };
 
   /**
+   * Generates data that is used to render the explanation container
+   * at the bottom of the content type
+   */
+  DragText.prototype.showExplanation = function () {
+    const self = this;
+    let explanations = [];
+
+    this.droppables.forEach(droppable => {
+      const draggable = droppable.containedDraggable;
+
+      if (droppable && draggable) {
+
+        if (droppable.isCorrect() && droppable.correctFeedback) {
+          explanations.push({
+            correct: draggable.text,
+            text: droppable.correctFeedback
+          });
+        }
+
+        if (!droppable.isCorrect() && droppable.incorrectFeedback) {
+          explanations.push({
+            correct: droppable.text,
+            wrong: draggable.text,
+            text: droppable.correctFeedback
+          });
+        }
+      }
+    })
+
+    if (explanations.length !== 0) {
+      this.setExplanation(explanations, 'Feedback header');
+    }
+  }
+
+  /**
    * Evaluate task and display score text for word markings.
    *
    * @param {boolean} [skipXapi] Skip sending xAPI event answered
@@ -581,6 +625,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.showEvaluation = function (skipXapi) {
     this.hideEvaluation();
     this.showDropzoneFeedback();
+    this.showExplanation();
 
     var score = this.calculateScore();
     var maxScore = this.droppables.length;
@@ -631,6 +676,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   };
 
   /**
+   * Remove the explanation container
+   */
+  DragText.prototype.hideExplanation = function () {
+    this.setExplanation();
+    this.trigger('resize');
+  };
+
+  /**
    * Hides solution text for all dropzones.
    */
   DragText.prototype.hideAllSolutions = function () {
@@ -669,7 +722,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           // is draggable/droppable
           const solution = self.parseSolution(part);
           const draggable = self.createDraggable(solution.text);
-          const droppable = self.createDroppable(solution.text, solution.tip);
+          const droppable = self.createDroppable(solution.text, solution.tip, solution.correctFeedback, solution.incorrectFeedback);
 
           // trigger instant feedback
           if (self.params.behaviour.instantFeedback) {
@@ -808,7 +861,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    *
    * @returns {H5P.TextDroppable}
    */
-  DragText.prototype.createDroppable = function (answer, tip) {
+  DragText.prototype.createDroppable = function (answer, tip, correctFeedback, incorrectFeedback) {
     var self = this;
 
     var draggableIndex = this.draggables.length;
@@ -831,7 +884,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         }
       });
 
-    var droppable = new Droppable(answer, tip, $dropzone, $dropzoneContainer, draggableIndex, self.params);
+    var droppable = new Droppable(answer, tip, correctFeedback, incorrectFeedback, $dropzone, $dropzoneContainer, draggableIndex, self.params);
     droppable.appendDroppableTo(self.$wordContainer);
 
     self.droppables.push(droppable);

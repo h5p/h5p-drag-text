@@ -9,6 +9,39 @@
       "description": "Gli spazi vuoti sono aggiunti con un asterisco (*) davanti e dietro la parola/frase corretta. Si può aggiungere un suggerimento testuale, usando i due punti (:) prima del suggerimento. Esempio: Il contentuto H5P può essere editato utilizzando un *browser:Qualcosa che usi tutti i giorni*."
     },
     {
+      "englishLabel": "Overall Feedback",
+      "label": "Samlet tilbakemelding",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "englishLabel": "Default",
+              "label": "Standard"
+            }
+          ],
+          "englishLabel": "Define custom feedback for any score range",
+          "label": "Definer tilpasset tilbakemelding for et poengområde",
+          "englishDescription": "Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!\nAvailable variables: @score and @total. Example: 'You got @score of @total possible points'",
+          "description": "For eksempel: 0-20% Dårlig poengsum, 21-91% Gjennomsnittlig poengsum, 91-100% Stor poengsum!\nTilgjengelige variabler: @score og @total. For eksempel: 'Du fikk @score av @total mulige poeng'",
+          "field": {
+            "fields": [
+              {
+                "englishLabel": "Score Range",
+                "label": "Poengområde"
+              },
+              {},
+              {
+                "englishLabel": "Feedback for defined score range",
+                "label": "Tilbakemelding for definert poengområde",
+                "englishPlaceholder": "Fill in the feedback",
+                "placeholder": "Fyll inn tilbakemeldingen"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "label": "Testo per il pulsante \"Verifica\""
     },
     {
@@ -16,10 +49,6 @@
     },
     {
       "label": "Testo per il pulsante \"Mostra Soluzione\""
-    },
-    {
-      "label": "Testo del Feedback",
-      "description": "Testo del Feedback (Riscontro), variabili consentite: @score @total. Esempio: 'Hai ottenuto il punteggio @score su @total punti possibili.'"
     },
     {
       "label": "Numbered Drop zone label",

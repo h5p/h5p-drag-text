@@ -28,7 +28,7 @@ H5PUpgrades['H5P.DragText'] = (function ($) {
        * @param {object} parameters
        * @param {function} finished
        */
-      8: function (parameters, finished) {
+      6: function (parameters, finished) {
         if (parameters && parameters.score) {
           parameters.overallFeedback = [
             {

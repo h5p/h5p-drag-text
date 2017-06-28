@@ -592,7 +592,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       const draggable = droppable.containedDraggable;
 
       if (droppable && draggable) {
-
         if (droppable.isCorrect() && droppable.correctFeedback) {
           explanations.push({
             correct: draggable.text,
@@ -604,7 +603,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           explanations.push({
             correct: droppable.text,
             wrong: draggable.text,
-            text: droppable.correctFeedback
+            text: droppable.incorrectFeedback
           });
         }
       }
@@ -720,7 +719,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       .forEach(function(part) {
         if(self.isAnswerPart(part)) {
           // is draggable/droppable
-          const solution = self.lex(part);
+          const solution = lex(part);
           const draggable = self.createDraggable(solution.text);
           const droppable = self.createDroppable(solution.text, solution.tip, solution.correctFeedback, solution.incorrectFeedback);
 
@@ -1447,10 +1446,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.getSolutionsFromQuestion = function (question) {
     return parseText(question)
       .filter(this.isAnswerPart)
-      .map(part => this.lex(part))
+      .map(part => lex(part))
       .map(solution => solution.text)
       .join('[,]');
   };
+
+  return DragText;
 
 }(H5P.jQuery, H5P.Question, H5P.ConfirmationDialog));
 

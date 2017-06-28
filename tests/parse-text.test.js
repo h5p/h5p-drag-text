@@ -1,5 +1,5 @@
 import test from 'ava';
-import parseText from '../src/scripts/parse-text';
+import { parseText } from '../src/scripts/parse-text';
 
 
 test('Parser should parse middle', t => {

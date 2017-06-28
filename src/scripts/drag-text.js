@@ -1,4 +1,4 @@
-import parseText from './parse-text';
+import { parseText, lex } from './parse-text';
 import StopWatch from './stop-watch';
 import Util from './util';
 import Draggable from './draggable';
@@ -720,7 +720,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       .forEach(function(part) {
         if(self.isAnswerPart(part)) {
           // is draggable/droppable
-          const solution = self.parseSolution(part);
+          const solution = self.lex(part);
           const draggable = self.createDraggable(solution.text);
           const droppable = self.createDroppable(solution.text, solution.tip, solution.correctFeedback, solution.incorrectFeedback);
 
@@ -1447,49 +1447,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.getSolutionsFromQuestion = function (question) {
     return parseText(question)
       .filter(this.isAnswerPart)
-      .map(part => this.parseSolution(part))
+      .map(part => this.lex(part))
       .map(solution => solution.text)
       .join('[,]');
   };
 
-  /**
-   * @typedef {object} Solution
-   * @param {string} tip
-   * @param {string} correct
-   * @param {string} incorrect
-   * @param {string} text
-   */
-  /**
-   * Parse the solution text (text between the asterisks)
-   *
-   * @param {string} solutionText
-   * @returns {Solution}
-   */
-  DragText.prototype.parseSolution = function (solutionText) {
-    let tip = solutionText.match(/(:([\w\s]+))/g);
-    let correctFeedback = solutionText.match(/(\\\+([\w\s]+))/g);
-    let incorrectFeedback = solutionText.match(/(\\\-([\w\s]+))/g);
-
-    // Strip the tokens
-    const text = Util.cleanCharacter('*', solutionText)
-      .replace(tip, '')
-      .replace(correctFeedback, '')
-      .replace(incorrectFeedback, '');
-
-    if (tip) {
-      tip = tip[0].replace(':','');
-    }
-    if (correctFeedback) {
-      correctFeedback = correctFeedback[0].replace('\\+','');
-    }
-    if (incorrectFeedback) {
-      incorrectFeedback = incorrectFeedback[0].replace('\\-','');
-    }
-
-    return { tip, correctFeedback, incorrectFeedback, text };
-  };
-
-  return DragText;
 }(H5P.jQuery, H5P.Question, H5P.ConfirmationDialog));
 
 export default H5P.DragText;

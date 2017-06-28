@@ -610,7 +610,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     })
 
     if (explanations.length !== 0) {
-      this.setExplanation(explanations, 'Feedback header');
+      this.setExplanation(explanations, self.params.feedbackHeader);
     }
   }
 

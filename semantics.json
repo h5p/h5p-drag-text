@@ -150,6 +150,14 @@
     "common": true
   },
   {
+    "name": "feedbackHeader",
+    "type": "text",
+    "label": "Header for panel containing feedback for correct/incorrect answers",
+    "importance": "low",
+    "default": "Feedback",
+    "common": true
+  },
+  {
     "name": "behaviour",
     "type": "group",
     "label": "Behavioural settings.",

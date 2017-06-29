@@ -10,7 +10,8 @@
       "placeholder":"*Amsterdam* is de hoofdstad van Nederland, *Brussel* is de hoofdstad van België en *Luxemburg* is de hoofdstad van Luxemburg.",
       "description":"",
       "important":{
-        "description":"<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li></ul>"
+        "description":"<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
+        "example":"H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
       }
     },
     {
@@ -74,17 +75,21 @@
       "default":"Correct answer:"
     },
     {
-      "label":"Gedragsinstellingen",
-      "description":"Met deze opties kun je instellen hoe de taak zich gedraagt.",
+      "label":"Header for panel containing feedback for correct/incorrect answers",
+      "default":"Feedback"
+    },
+    {
+      "label":"Behavioural settings.",
+      "description":"These options will let you control how the task behaves.",
       "fields":[
         {
-          "label":"Schakel de knop \"Opnieuw\" in"
+          "label":"Enable \"Retry\""
         },
         {
-          "label":"Schakel de knop \"Toon oplossing\" in"
+          "label":"Enable \"Show Solution\" button"
         },
         {
-          "label":"Geef direct feedback (Antwoorden)"
+          "label":"Instant feedback"
         }
       ]
     }

@@ -94,11 +94,11 @@
     "common": true
   },
   {
-    "label": "Tip prefix",
+    "label": "Label for show tip button",
     "importance": "low",
-    "name": "tipPrefix",
+    "name": "tipLabel",
     "type": "text",
-    "default": "tip: ",
+    "default": "Show tip",
     "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out",
     "common": true
   },

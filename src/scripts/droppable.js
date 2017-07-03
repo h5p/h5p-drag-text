@@ -39,7 +39,7 @@ H5P.TextDroppable = (function ($) {
 
     if (self.tip) {
       self.$tip = H5P.JoubelUI.createTip(self.tip, {
-        tipLabel: self.params.tipPrefix + self.tip
+        tipLabel: self.params.tipLabel
       });
       self.$tip.removeAttr('tabindex');
       self.$dropzoneContainer.append(self.$tip);

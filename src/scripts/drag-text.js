@@ -312,7 +312,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    */
   DragText.prototype.registerDomElements = function () {
     // Register task introduction text
-    this.setIntroduction('<p id="' + this.introductionId + '">' + this.params.taskDescription + '</p>');
+    this.$introduction = $('<p id="' + this.introductionId + '">' + this.params.taskDescription + '</p>');
+    this.setIntroduction(this.$introduction);
+    this.$introduction.parent().attr('tabindex', '-1');
 
     // Register task content area
     this.setContent(this.$inner);
@@ -401,6 +403,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         self.hideButton('try-again');
         self.hideButton('check-answer');
       }
+
+      // Focus top of the task for natural navigation
+      self.$introduction.parent().focus();
     }, !self.params.behaviour.instantFeedback);
 
     //Show Solution button

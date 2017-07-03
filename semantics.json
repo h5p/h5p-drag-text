@@ -94,6 +94,15 @@
     "common": true
   },
   {
+    "label": "Tip prefix",
+    "importance": "low",
+    "name": "tipPrefix",
+    "type": "text",
+    "default": "tip: ",
+    "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out",
+    "common": true
+  },
+  {
     "name": "correctText",
     "type": "text",
     "label": "Readspeaker text for correct answer",

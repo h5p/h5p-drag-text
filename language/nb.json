@@ -43,6 +43,11 @@
       "default": "Flyttbart element. @index av @count."
     },
     {
+      "label": "Tip prefix",
+      "default": "tip: ",
+      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+    },
+    {
       "label": "Merkelapp for riktig svar",
       "default": "Riktig!"
     },
@@ -87,5 +92,3 @@
     }
   ]
 }
-
-

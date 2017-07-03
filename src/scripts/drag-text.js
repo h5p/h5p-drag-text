@@ -576,6 +576,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       if (droppable && draggable) {
         this.setDroppableLabel(droppable.getElement(), draggable.getElement().textContent, droppable.getIndex());
+        this.setDraggableAriaLabel(draggable)
       }
     });
   };
@@ -999,6 +1000,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @return {H5P.TextDraggable}
    */
   DragText.prototype.setDraggableAriaLabel = function (draggable) {
+    var text = draggable.text;
+    if (draggable.isInsideDropZone()) {
+      var droppable = draggable.getInsideDropzone();
+      text = droppable.getDropzone()[0].getAttribute('aria-label');
+    }
+
     const count = this.draggables.length;
     const label = this.params.draggableIndex
       .replace('@index', (draggable.getIndex() + 1).toString())
@@ -1006,7 +1013,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     const grabbed = this.isGrabbed(draggable.getElement()) ? this.params.grabbed : '';
 
-    draggable.$draggable.attr('aria-label', `${draggable.text}. ${grabbed} ${label}`);
+    draggable.$draggable.attr('aria-label', `${text}. ${grabbed} ${label}`);
 
     return draggable;
   };

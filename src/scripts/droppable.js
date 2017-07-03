@@ -38,7 +38,9 @@ H5P.TextDroppable = (function ($) {
     self.$dropzoneContainer = $(dropzoneContainer);
 
     if (self.tip) {
-      self.$tip = H5P.JoubelUI.createTip(self.tip, {tipPrefix: self.params.tipPrefix});
+      self.$tip = H5P.JoubelUI.createTip(self.tip, {
+        tipLabel: self.params.tipPrefix + self.tip
+      });
       self.$tip.removeAttr('tabindex');
       self.$dropzoneContainer.append(self.$tip);
 
@@ -202,7 +204,7 @@ H5P.TextDroppable = (function ($) {
   };
 
   /**
-   * Removes all CSS styling feedback for this drop box.
+   * Removes all CSS styling feedback for this drop  *  * box.
    */
   Droppable.prototype.removeFeedback = function () {
     this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);

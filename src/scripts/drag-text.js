@@ -76,13 +76,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       taskDescription: "Set in adjectives in the following sentence",
       textField: "This is a *nice*, *flexible* content type, which allows you to highlight all the *wonderful* words in this *exciting* sentence.\n" +
         "This is another line of *fantastic* text.",
-      overallFeedback: [
-        {
-          'from': 0,
-          'to': 100,
-          'feedback': 'You got @score of @total points'
-        }
-      ],
+      overallFeedback: [],
       checkAnswer: "Check",
       tryAgain: "Retry",
       behaviour: {

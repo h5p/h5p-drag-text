@@ -88,6 +88,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       dropZoneIndex: "Drop Zone @index.",
       empty: "Empty.",
       draggableIndex: "Draggable. @index of @count.",
+      tipLabel: "Show tip",
       correctText: "Correct!",
       incorrectText: "Incorrect!",
       resetDropTitle: "Reset drop",

@@ -225,3 +225,7 @@
   display: inline-block;
   color: transparent;
 }
+
+.h5p-drag-text .h5p-question-introduction {
+  outline: none;
+}

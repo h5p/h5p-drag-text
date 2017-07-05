@@ -85,14 +85,15 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       },
       score: "You got @score of @total points",
       showSolution : "Show solution",
-      dropZoneIndex: "Drop Zone @index.",
-      empty: "Empty.",
-      draggableIndex: "Draggable. @index of @count.",
+      dropZoneIndex: "Drop Zone @index",
+      empty: "Drop Zone @index is empty",
+      contains: "Drop Zone @index contains draggable @draggable",
+      draggableIndex: "Draggable @text. @index of @count draggables",
       correctText: "Correct!",
       incorrectText: "Incorrect!",
       resetDropTitle: "Reset drop",
       resetDropDescription: "Are you sure you want to reset this drop zone?",
-      grabbed: "Grabbed.",
+      grabbed: "Draggable is grabbed.",
       cancelledDragging: "Cancelled dragging.",
       correctAnswer: "Correct answer:"
     }, params);
@@ -295,13 +296,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         else {
           resultString = droppable.incorrectFeedback ? droppable.incorrectFeedback : this.params['incorrectText'];
         }
-        dropZone.setAttribute('aria-label', `${text} - ${indexText}. ${resultString}.`);
+        dropZone.setAttribute('aria-label', `${indexText} ${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`);
       }
       else if (hasChildren) {
-        dropZone.setAttribute('aria-label', `${text}  - ${indexText}`);
+        dropZone.setAttribute('aria-label', `${indexText} ${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)}`);
       }
       else {
-        dropZone.setAttribute('aria-label',  `${indexText}  - ${this.params.empty}`);
+        dropZone.setAttribute('aria-label',  `${indexText} ${this.params.empty.replace('@index', index.toString())}`);
       }
     }
   };
@@ -875,9 +876,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var $dropzoneContainer = $('<div/>', {
       'class': DROPZONE_CONTAINER
     });
+
     var $dropzone = $('<div/>', {
       'aria-dropeffect': "none",
-      'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + '. ' + this.params.empty,
+      'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + ' ' + this.params.empty.replace('@index', draggableIndex.toString()),
       'tabindex': '-1'
     }).appendTo($dropzoneContainer)
       .droppable({
@@ -1013,12 +1015,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     const count = this.draggables.length;
     const label = this.params.draggableIndex
+      .replace('@text', draggable.text)
       .replace('@index', (draggable.getIndex() + 1).toString())
       .replace('@count', count.toString());
 
     const grabbed = this.isGrabbed(draggable.getElement()) ? this.params.grabbed : '';
 
-    draggable.$draggable.attr('aria-label', `${text}. ${grabbed} ${label}`);
+    draggable.$draggable.attr('aria-label', `${label} ${grabbed}`);
 
     return draggable;
   };

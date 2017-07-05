@@ -80,8 +80,17 @@
     "importance": "low",
     "name": "empty",
     "type": "text",
-    "default": "Empty.",
+    "default": "Drop Zone @index is empty.",
     "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty",
+    "common": true
+  },
+  {
+    "label": "Contains Drop Zone label",
+    "importance": "low",
+    "name": "contains",
+    "type": "text",
+    "default": "Drop Zone @index contains draggable @draggable.",
+    "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable",
     "common": true
   },
   {
@@ -89,7 +98,7 @@
     "importance": "low",
     "name": "draggableIndex",
     "type": "text",
-    "default": "Draggable. @index of @count.",
+    "default": "Draggable @text. @index of @count draggables.",
     "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count",
     "common": true
   },
@@ -130,7 +139,7 @@
     "type": "text",
     "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
     "importance": "low",
-    "default": "Grabbed.",
+    "default": "Draggable is grabbed.",
     "common": true
   },
   {

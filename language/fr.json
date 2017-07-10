@@ -47,6 +47,11 @@
       "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {
+      "label":"Label for show tip button",
+      "default":"tip: ",
+      "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
+    },
+    {
       "label":"Readspeaker text for correct answer",
       "default":"Correct!"
     },
@@ -60,7 +65,7 @@
     },
     {
       "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop?"
+      "default":"Are you sure you want to reset this drop zone?"
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",

@@ -28,12 +28,12 @@
     },
     {
       "label":"フィードバックテキスト",
-      "default":"You got @score of @total points",
-      "description":"Feedback text, variables available: @score and @total. Example: 'You got @score of @total possible points'"
+      "default":"@total 点中 @score 点獲得",
+      "description":"フィードバック テキスト、利用可能な変数: @score と @total 。 例: ' @total 点中 @score 点獲得。 '"
     },
     {
-      "label":"Numbered Drop zone label",
-      "default":"Drop Zone @index.",
+      "label":"番号付きのドロップゾーンラベル",
+      "default":"ドロップゾーン @index 。",
       "description":"Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
     },
     {

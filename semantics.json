@@ -103,6 +103,15 @@
     "common": true
   },
   {
+    "label": "Label for show tip button",
+    "importance": "low",
+    "name": "tipLabel",
+    "type": "text",
+    "default": "Show tip",
+    "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out",
+    "common": true
+  },
+  {
     "name": "correctText",
     "type": "text",
     "label": "Readspeaker text for correct answer",

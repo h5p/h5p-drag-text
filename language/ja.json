@@ -88,13 +88,13 @@
       "description":"これらのオプションでタスクがどのように動作するかを制御できます。",
       "fields":[
         {
-          "label":"Enable \"Retry\""
+          "label":"\"リトライ\"を有効化"
         },
         {
-          "label":"Enable \"Show Solution\" button"
+          "label":"\"正解を表示\"ボタンを有効化"
         },
         {
-          "label":"Instant feedback"
+          "label":"即時フィードバック"
         }
       ]
     }

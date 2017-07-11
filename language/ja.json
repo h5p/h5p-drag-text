@@ -47,9 +47,9 @@
       "description":"アクセシビリティのためのラベル、音声読み上げソフトがドラッグ可能な要素を読みえげるところ。利用可能な変数: @index, @count"
     },
     {
-      "label":"Label for show tip button",
+      "label":"ヒント表示ボタンのラベル",
       "default":"tip: ",
-      "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "description":"アクセシビリティのためのラベル、ヒントが読まれる前に音声読み上げソフトが読むところ"
     },
     {
       "label":"Readspeaker text for correct answer",

@@ -34,15 +34,15 @@
     {
       "label":"番号付きのドロップゾーンラベル",
       "default":"ドロップゾーン @index 。",
-      "description":"Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "description":"アクセシビリティのためのラベル、音声読み上げソフトがドロップゾーンのインデックスを読み上げるところ。利用可能な変数: @index"
     },
     {
-      "label":"Empty Drop Zone label",
-      "default":"Empty.",
-      "description":"Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label":"空のドロップゾーンのラベル",
+      "default":"空。",
+      "description":"アクセシビリティのためのラベル、音声読み上げソフトがドロップゾーンが空のときに読み上げるところ"
     },
     {
-      "label":"Draggable elements label",
+      "label":"ドラッグ可能な要素のラベル",
       "default":"Draggable. @index of @count.",
       "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },

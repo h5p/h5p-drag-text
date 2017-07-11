@@ -48,16 +48,16 @@
     },
     {
       "label":"ヒント表示ボタンのラベル",
-      "default":"tip: ",
+      "default":"ヒント: ",
       "description":"アクセシビリティのためのラベルで、ヒントが読まれる前に音声読み上げソフトが読み上げる。"
     },
     {
-      "label":"テキストを正しい答えと置き換える",
-      "default":"Correct!"
+      "label":"正しい答えのための読み上げソフト用テキスト",
+      "default":"正解 !"
     },
     {
-      "label":"テキストを間違った答えと置き換える",
-      "default":"Incorrect!"
+      "label":"間違った答えのための読み上げソフト用テキスト",
+      "default":"不正解 !"
     },
     {
       "label":"Confirmation dialog title that user wants to reset a droppable",

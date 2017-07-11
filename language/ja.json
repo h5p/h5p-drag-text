@@ -60,8 +60,8 @@
       "default":"不正解 !"
     },
     {
-      "label":"Confirmation dialog title that user wants to reset a droppable",
-      "default":"Reset drop"
+      "label":"ユーザーがドロップ可能なようにリセットする際の確認ダイアログのタイトル",
+      "default":"ドロップをリセット"
     },
     {
       "label":"Confirmation dialog description that user wants to reset a droppable",

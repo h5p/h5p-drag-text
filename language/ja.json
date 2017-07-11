@@ -52,11 +52,11 @@
       "description":"アクセシビリティのためのラベル、ヒントが読まれる前に音声読み上げソフトが読むところ"
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"テキストを正しい答えと置き換える",
       "default":"Correct!"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"テキストを間違った答えと置き換える",
       "default":"Incorrect!"
     },
     {
@@ -68,19 +68,19 @@
       "default":"Are you sure you want to reset this drop zone?"
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
+      "label":"アクセシビリティのためのラベル、音声読み上げソフトがドロップが始まったことを示すところ。",
       "default":"Grabbed."
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is canceled",
+      "label":"アクセシビリティのためのラベル、音声読み上げソフトがドラッグがキャンセルされたことを示すところ。",
       "default":"Cancelled dragging."
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
+      "label":"アクセシビリティのためのラベル、音声読み上げソフトがテキストが正しい答えであることを示すところ。",
       "default":"Correct answer:"
     },
     {
-      "label":"Header for panel containing feedback for correct/incorrect answers",
+      "label":"正解/不正解のフィードバックを含むパネルのヘッダー",
       "default":"Feedback"
     },
     {

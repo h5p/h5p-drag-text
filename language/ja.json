@@ -64,28 +64,28 @@
       "default":"ドロップをリセット"
     },
     {
-      "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop zone?"
+      "label":"ユーザーがドロップ可能なようにリセットする際の確認ダイアログの説明",
+      "default":"このドロップゾーンを本当にリセットしたいですか ?"
     },
     {
       "label":"アクセシビリティのためのラベルで、音声読み上げソフトがドロップが始まったことを示す。",
-      "default":"Grabbed."
+      "default":"つかみました。"
     },
     {
       "label":"アクセシビリティのためのラベルで、音声読み上げソフトがドラッグがキャンセルされたことを示す。",
-      "default":"Cancelled dragging."
+      "default":"ドラッグがキャンセルされました。"
     },
     {
       "label":"アクセシビリティのためのラベルで、音声読み上げソフトがテキストが正しい答えであることを示す。",
-      "default":"Correct answer:"
+      "default":"正解 :"
     },
     {
       "label":"正解/不正解のフィードバックを含むパネルのヘッダー",
-      "default":"Feedback"
+      "default":"フィードバック"
     },
     {
-      "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
+      "label":"動作設定",
+      "description":"これらのオプションでタスクがどのように動作するかを制御できます。",
       "fields":[
         {
           "label":"Enable \"Retry\""

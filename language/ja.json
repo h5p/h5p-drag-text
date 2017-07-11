@@ -28,8 +28,8 @@
     },
     {
       "label":"フィードバックテキスト",
-      "default":"@total 点中 @score 点獲得",
-      "description":"フィードバック テキスト、利用可能な変数: @score と @total 。 例: ' @total 点中 @score 点獲得。 '"
+      "default":"@score / @total 獲得",
+      "description":"フィードバック テキスト、利用可能な変数: @score と @total 。 例: ' @score / @total 獲得。'"
     },
     {
       "label":"番号付きのドロップゾーンラベル",
@@ -43,8 +43,8 @@
     },
     {
       "label":"ドラッグ可能な要素のラベル",
-      "default":"Draggable. @index of @count.",
-      "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "default":"ドラッグ可能。 @index / @count。",
+      "description":"アクセシビリティのためのラベル、音声読み上げソフトがドラッグ可能な要素を読みえげるところ。利用可能な変数: @index, @count"
     },
     {
       "label":"Label for show tip button",

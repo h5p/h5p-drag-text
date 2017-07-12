@@ -38,12 +38,17 @@
     },
     {
       "label":"Tom slippsone merkelapp",
-      "default":"Tom.",
+      "default":"Drop Zone @index is empty.",
       "description":"Label used for accessibility, where the Read speaker will read that the drop zone is empty"
     },
     {
-      "label":"Nummerert merkelapp for element som kan dras",
-      "default":"Flyttbart element. @index av @count.",
+      "label":"Contains Drop Zone label",
+      "default":"Drop Zone @index contains draggable @draggable.",
+      "description":"Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+    },
+    {
+      "label":"Draggable elements label",
+      "default":"Draggable @text. @index of @count draggables.",
       "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {
@@ -69,7 +74,7 @@
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default":"Grabbed."
+      "default":"Draggable is grabbed."
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that dragging is canceled",

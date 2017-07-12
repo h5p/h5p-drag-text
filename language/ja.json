@@ -38,63 +38,68 @@
     },
     {
       "label":"空のドロップゾーンのラベル",
-      "default":"空。",
+      "default":"Drop Zone @index is empty.",
       "description":"アクセシビリティのためのラベルで、音声読み上げソフトがドロップゾーンが空であることを読み上げる"
     },
     {
-      "label":"ドラッグ可能な要素のラベル",
-      "default":"ドラッグ可能。 @index / @count。",
-      "description":"アクセシビリティのためのラベルで、音声読み上げソフトがこれがドラッグ可能な要素であることを読み上げる。利用可能な変数: @index, @count"
+      "label":"Contains Drop Zone label",
+      "default":"Drop Zone @index contains draggable @draggable.",
+      "description":"Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
     },
     {
-      "label":"ヒント表示ボタンのラベル",
-      "default":"ヒント: ",
-      "description":"アクセシビリティのためのラベルで、ヒントが読まれる前に音声読み上げソフトが読み上げる。"
+      "label":"Draggable elements label",
+      "default":"Draggable @text. @index of @count draggables.",
+      "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {
-      "label":"正解のための読み上げソフト用テキスト",
-      "default":"正解 !"
+      "label":"Label for show tip button",
+      "default":"tip: ",
+      "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
-      "label":"不正解ための読み上げソフト用テキスト",
-      "default":"不正解 !"
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct!"
     },
     {
-      "label":"ユーザーがドロップ可能なようにリセットする際の確認ダイアログのタイトル",
-      "default":"ドロップをリセット"
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect!"
     },
     {
-      "label":"ユーザーがドロップ可能なようにリセットする際の確認ダイアログの説明",
-      "default":"このドロップゾーンを本当にリセットしますか ?"
+      "label":"Confirmation dialog title that user wants to reset a droppable",
+      "default":"Reset drop"
     },
     {
-      "label":"アクセシビリティのためのラベルで、音声読み上げソフトがドロップが始まったことを示す。",
-      "default":"つかみました。"
+      "label":"Confirmation dialog description that user wants to reset a droppable",
+      "default":"Are you sure you want to reset this drop zone?"
     },
     {
-      "label":"アクセシビリティのためのラベルで、音声読み上げソフトがドラッグがキャンセルされたことを示す。",
-      "default":"ドラッグがキャンセルされました。"
+      "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
+      "default":"Draggable is grabbed."
     },
     {
-      "label":"アクセシビリティのためのラベルで、音声読み上げソフトがテキストが正しい答えであることを示す。",
-      "default":"正解 :"
+      "label":"Label used for accessibility, where the read speaker indicates that dragging is canceled",
+      "default":"Cancelled dragging."
     },
     {
-      "label":"正解/不正解のフィードバックを含むパネルのヘッダー",
-      "default":"フィードバック"
+      "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
+      "default":"Correct answer:"
     },
     {
-      "label":"動作設定",
-      "description":"これらのオプションでタスクがどのように動作するかを制御できます。",
+      "label":"Header for panel containing feedback for correct/incorrect answers",
+      "default":"Feedback"
+    },
+    {
+      "label":"Behavioural settings.",
+      "description":"These options will let you control how the task behaves.",
       "fields":[
         {
-          "label":"\"リトライ\"を有効化"
+          "label":"Enable \"Retry\""
         },
         {
-          "label":"\"正解を表示\"ボタンを有効化"
+          "label":"Enable \"Show Solution\" button"
         },
         {
-          "label":"即時フィードバック"
+          "label":"Instant feedback"
         }
       ]
     }

@@ -1007,10 +1007,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @return {H5P.TextDraggable}
    */
   DragText.prototype.setDraggableAriaLabel = function (draggable) {
-    var text = draggable.text;
+    let text = draggable.text;
     if (draggable.isInsideDropZone()) {
       var droppable = draggable.getInsideDropzone();
-      text = droppable.getDropzone()[0].getAttribute('aria-label');
+      text = droppable.getDropzone().attr('aria-label');
     }
 
     const count = this.draggables.length;

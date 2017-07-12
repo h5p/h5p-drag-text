@@ -38,11 +38,11 @@
     },
     {
       "label":"空のドロップゾーンのラベル",
-      "default":"Drop Zone @index is empty.",
+      "default":"ドロップゾーン @index は空です。",
       "description":"アクセシビリティのためのラベルで、音声読み上げソフトがドロップゾーンが空であることを読み上げる"
     },
     {
-      "label":"Contains Drop Zone label",
+      "label":"ドロップゾーンのラベルが含まれる",
       "default":"ドロップゾーン @index にはドロップ要素が @draggable 含まれる。",
       "description":"アクセシビリティのためのラベルで、音声読み上げソフトが「ドロップゾーンにドラッグ要素が含まれる」ことを読み上げる"
     },
@@ -52,25 +52,25 @@
       "description":"アクセシビリティのためのラベルで、音声読み上げソフトが「これがドラッグ可能な要素である」ことを読み上げる。利用可能な変数: @index, @count"
     },
     {
-      "label":"Label for show tip button",
-      "default":"tip: ",
-      "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "label":"ヒント表示ボタンのラベル",
+      "default":"ヒント : ",
+      "description":"アクセシビリティのためのラベルで、ヒントが読まれる前に音声読み上げソフトが読み上げる。"
     },
     {
-      "label":"Readspeaker text for correct answer",
-      "default":"Correct!"
+      "label":"正解のための読み上げソフト用テキスト",
+      "default":"正解 !"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
-      "default":"Incorrect!"
+      "label":"不正解ための読み上げソフト用テキスト",
+      "default":"不正解 !"
     },
     {
-      "label":"Confirmation dialog title that user wants to reset a droppable",
-      "default":"Reset drop"
+      "label":"ユーザーがドロップドロップ要素をリセットする際の確認ダイアログのタイトル",
+      "default":"ドロップをリセット"
     },
     {
-      "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop zone?"
+      "label":"ユーザーがドロップ要素をリセットする際の確認ダイアログの説明",
+      "default":"このドロップゾーンを本当にリセットしますか ?"
     },
     {
       "label":"アクセシビリティのためのラベルで、音声読み上げソフトが「ドロップが始まった」ことを示す。",
@@ -81,25 +81,25 @@
       "default":"ドラッグがキャンセルされました。"
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default":"Correct answer:"
+      "label":"アクセシビリティのためのラベルで、音声読み上げソフトが「テキストが正解である」ことを示す。",
+      "default":"正解 :"
     },
     {
-      "label":"Header for panel containing feedback for correct/incorrect answers",
-      "default":"Feedback"
+      "label":"正解/不正解のフィードバックを含むパネルのヘッダー",
+      "default":"フィードバック"
     },
     {
-      "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
+      "label":"動作設定",
+      "description":"これらのオプションでタスクがどのように動作するかを制御できます。",
       "fields":[
         {
-          "label":"Enable \"Retry\""
+          "label":"「リトライ」を有効化"
         },
         {
-          "label":"Enable \"Show Solution\" button"
+          "label":"「正解を表示」ボタンを有効化"
         },
         {
-          "label":"Instant feedback"
+          "label":"即時フィードバック"
         }
       ]
     }

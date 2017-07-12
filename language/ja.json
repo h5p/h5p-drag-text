@@ -43,13 +43,13 @@
     },
     {
       "label":"Contains Drop Zone label",
-      "default":"Drop Zone @index contains draggable @draggable.",
-      "description":"Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "default":"ドロップゾーン @index にはドロップ要素が @draggable 含まれる。",
+      "description":"アクセシビリティのためのラベルで、音声読み上げソフトが「ドロップゾーンにドラッグ要素が含まれる」ことを読み上げる"
     },
     {
-      "label":"Draggable elements label",
-      "default":"Draggable @text. @index of @count draggables.",
-      "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label":"ドラッグ要素のラベル",
+      "default":"ドラッグする @text 。@index / @ count ドラッグ",
+      "description":"アクセシビリティのためのラベルで、音声読み上げソフトが「これがドラッグ可能な要素である」ことを読み上げる。利用可能な変数: @index, @count"
     },
     {
       "label":"Label for show tip button",
@@ -73,12 +73,12 @@
       "default":"Are you sure you want to reset this drop zone?"
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default":"Draggable is grabbed."
+      "label":"アクセシビリティのためのラベルで、音声読み上げソフトが「ドロップが始まった」ことを示す。",
+      "default":"ドラッグ要素をつかんだ。"
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default":"Cancelled dragging."
+      "label":"アクセシビリティのためのラベルで、音声読み上げソフトが「ドラッグがキャンセルされた」ことを示す。",
+      "default":"ドラッグがキャンセルされました。"
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",

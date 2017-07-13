@@ -76,6 +76,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       taskDescription: "Set in adjectives in the following sentence",
       textField: "This is a *nice*, *flexible* content type, which allows you to highlight all the *wonderful* words in this *exciting* sentence.\n" +
         "This is another line of *fantastic* text.",
+      overallFeedback: [],
       checkAnswer: "Check",
       tryAgain: "Retry",
       behaviour: {
@@ -83,7 +84,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         enableSolutionsButton: true,
         instantFeedback: false
       },
-      score: "You got @score of @total points",
       showSolution : "Show solution",
       dropZoneIndex: "Drop Zone @index.",
       empty: "Empty.",
@@ -237,7 +237,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       .filter(droppable => !droppable.hasDraggable())
       .map(droppable => droppable.getElement())
       .forEach(el => {
-        this.dropControls.removeElement(el)
+        this.dropControls.removeElement(el);
       });
   };
 
@@ -269,7 +269,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Remove all drop zones from drop keyboard controls
    */
   DragText.prototype.anyDropZoneHasDraggable = function() {
-    return this.droppables.some(droppable => droppable.hasDraggable())
+    return this.droppables.some(droppable => droppable.hasDraggable());
   };
 
   /**
@@ -643,7 +643,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       this.trigger(xAPIEvent);
     }
 
-    var scoreText = this.params.score
+    var scoreText = H5P.Question.determineOverallFeedback(this.params.overallFeedback, score / maxScore)
       .replace(/@score/g, score.toString())
       .replace(/@total/g, maxScore.toString());
 
@@ -887,7 +887,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         drop: function (event, ui) {
           var draggable = self.getDraggableByElement(ui.draggable[0]);
           var droppable = self.getDroppableByElement(event.target);
-          self.drop(draggable, droppable)
+          self.drop(draggable, droppable);
         }
       });
 
@@ -995,7 +995,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       .map((draggable, index) => draggable.setIndex(index))
       .map(draggable => this.addDraggableToContainer($container, draggable))
       .map(draggable => this.setDraggableAriaLabel(draggable))
-      .map(draggable => this.addDraggableToControls(this.dragControls, draggable))
+      .map(draggable => this.addDraggableToControls(this.dragControls, draggable));
   };
 
 

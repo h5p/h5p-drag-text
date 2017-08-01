@@ -291,10 +291,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         const droppable = this.getDroppableByElement(dropZone);
         let resultString = '';
         if (correctFeedback) {
-          resultString = droppable.correctFeedback ? droppable.correctFeedback : this.params['correctText'];
+          resultString = droppable.correctFeedback ? droppable.correctFeedback : this.params.correctText;
         }
         else {
-          resultString = droppable.incorrectFeedback ? droppable.incorrectFeedback : this.params['incorrectText'];
+          resultString = droppable.incorrectFeedback ? droppable.incorrectFeedback : this.params.incorrectText;
         }
         dropZone.setAttribute('aria-label', `${indexText} ${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`);
       }
@@ -582,7 +582,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       if (droppable && draggable) {
         this.setDroppableLabel(droppable.getElement(), draggable.getElement().textContent, droppable.getIndex());
-        this.setDraggableAriaLabel(draggable)
+        this.setDraggableAriaLabel(draggable);
       }
     });
   };
@@ -614,12 +614,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           });
         }
       }
-    })
+    });
 
     if (explanations.length !== 0) {
       this.setExplanation(explanations, self.params.feedbackHeader);
     }
-  }
+  };
 
   /**
    * Evaluate task and display score text for word markings.
@@ -677,7 +677,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Clear the evaluation text.
    */
   DragText.prototype.hideEvaluation = function () {
-    this.setFeedback();
+    this.removeFeedback();
     this.trigger('resize');
   };
 

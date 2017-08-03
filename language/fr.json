@@ -11,6 +11,39 @@
       "description": "Les mots à placer sont identifiés par un astérisque (*) avant et après le mot/l'expression. Vous pouvez ajouter un indice à l'aide des deux points (:) placés devant l'indice. (Exemple: On peut créer des exercices h5p en utilisant un *navigateur:Quelque chose que vous utilisez tous les jours*."
     },
     {
+      "englishLabel": "Overall Feedback",
+      "label": "Samlet tilbakemelding",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "englishLabel": "Default",
+              "label": "Standard"
+            }
+          ],
+          "englishLabel": "Define custom feedback for any score range",
+          "label": "Definer tilpasset tilbakemelding for et poengområde",
+          "englishDescription": "Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!\nAvailable variables: @score and @total. Example: 'You got @score of @total possible points'",
+          "description": "For eksempel: 0-20% Dårlig poengsum, 21-91% Gjennomsnittlig poengsum, 91-100% Stor poengsum!\nTilgjengelige variabler: @score og @total. For eksempel: 'Du fikk @score av @total mulige poeng'",
+          "field": {
+            "fields": [
+              {
+                "englishLabel": "Score Range",
+                "label": "Poengområde"
+              },
+              {},
+              {
+                "englishLabel": "Feedback for defined score range",
+                "label": "Tilbakemelding for definert poengområde",
+                "englishPlaceholder": "Fill in the feedback",
+                "placeholder": "Fyll inn tilbakemeldingen"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "label": "Texte pour le bouton \"Vérifier\"",
       "default": "Vérifier"
     },
@@ -23,9 +56,44 @@
       "default": "Voir la correction"
     },
     {
-      "label": "Commentaire final",
-      "default": "Vous avez obtenu @score point(s) sur @total",
-      "description": "Texte du commentaire, variables possibles: @score et @total. Exemple: 'Vous avez @score sur un total possible de @total points'"
+      "label": "Numbered Drop zone label",
+      "default": "Drop Zone @index."
+    },
+    {
+      "label": "Empty Drop Zone label",
+      "default": "Empty."
+    },
+    {
+      "label": "Draggable elements label",
+      "default": "Draggable. @index of @count."
+    },
+    {
+      "label": "Readspeaker text for correct answer",
+      "default": "Correct!"
+    },
+    {
+      "label": "Readspeaker text for incorrect answer",
+      "default": "Incorrect!"
+    },
+    {
+      "label": "Confirmation dialog title that user wants to reset a droppable",
+      "default": "Reset drop"
+    },
+    {
+      "label": "Confirmation dialog description that user wants to reset a droppable",
+      "default": "Are you sure you want to reset this drop?"
+    },
+    {
+      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
+      "default": "Grabbed."
+    },
+    {
+      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
+      "default": "Cancelled dragging."
+    },
+    {
+      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
+      "default": "Correct answer:"
     },
     {
       "label": "Options générales.",

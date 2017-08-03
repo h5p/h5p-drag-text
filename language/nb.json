@@ -7,7 +7,44 @@
     {
       "label": "Tekst",
       "placeholder": "*Oslo* er hovedstaden i Norge, *Stockholm* er hovedstaden i Sverige og *København* er hovedstaden i Danmark. Alle byene er lokalisert i *Skandinavia:Nordlige delen av europa*.",
-      "description": "Åpne felter merkes med en stjerne * foran og bak det korrekte ordet/uttrykket. Tips angis med et kolon (:) før tipset: H5P innhold kan lages i en *nettleser:Noe du bruker til å navigere internett med*.<br>For hvert åpne felt er det bare ett rett ord."
+      "description": "",
+      "important": {
+        "description": "<ul><li>Åpne felter merkes med en stjerne * foran og bak det korrekte ordet/uttrykket.</li><li>Tips angis med et kolon (:) før tipset.</li><li>For hvert åpne felt er det bare ett rett ord.</li></ul>",
+        "example": "H5P innhold kan lages i en *nettleser:Noe du bruker til å navigere internett med*."
+      }
+    },
+    {
+      "englishLabel": "Overall Feedback",
+      "label": "Samlet tilbakemelding",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "englishLabel": "Default",
+              "label": "Standard"
+            }
+          ],
+          "englishLabel": "Define custom feedback for any score range",
+          "label": "Definer tilpasset tilbakemelding for et poengområde",
+          "englishDescription": "Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!\nAvailable variables: @score and @total. Example: 'You got @score of @total possible points'",
+          "description": "For eksempel: 0-20% Dårlig poengsum, 21-91% Gjennomsnittlig poengsum, 91-100% Stor poengsum!\nTilgjengelige variabler: @score og @total. For eksempel: 'Du fikk @score av @total mulige poeng'",
+          "field": {
+            "fields": [
+              {
+                "englishLabel": "Score Range",
+                "label": "Poengområde"
+              },
+              {},
+              {
+                "englishLabel": "Feedback for defined score range",
+                "label": "Tilbakemelding for definert poengområde",
+                "englishPlaceholder": "Fill in the feedback",
+                "placeholder": "Fyll inn tilbakemeldingen"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "label": "Tekst for \"Sjekk svar\" knapp",
@@ -22,9 +59,49 @@
       "default": "Fasit"
     },
     {
-      "label": "Tilbakemelding",
-      "default": "@score av @total poeng",
-      "description": "Tekstlig tilbakemelding, tilgjengelige variabler: @score og @total. Eksempel: 'Du fikk @score av @total felt rett.'"
+      "label": "Nummerert slippsone merkelapp",
+      "default": "Slippsone @index."
+    },
+    {
+      "label": "Tom slippsone merkelapp",
+      "default": "Tom."
+    },
+    {
+      "label": "Nummerert merkelapp for element som kan dras",
+      "default": "Flyttbart element. @index av @count."
+    },
+    {
+      "label": "Merkelapp for vis-tips-knappen",
+      "default": "Vis tips",
+      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+    },
+    {
+      "label": "Merkelapp for riktig svar",
+      "default": "Riktig!"
+    },
+    {
+      "label": "Merkelapp for feil svar",
+      "default": "Feil!"
+    },
+    {
+      "label": "Bekreftelsesdialogtittel om at brukeren vil nullstille et flyttbart element",
+      "default": "Nullstill flyttbart element"
+    },
+    {
+      "label": "Bekreftelsesdialogbeskrivelse om at brukeren vil nullstille et flyttbart element",
+      "default": "Er du sikker på at du vil nullstille dette elementet?"
+    },
+    {
+      "label": "Merkelapp for universal utforming, når brukeren indikerer at dragning har startet",
+      "default": "Grepet."
+    },
+    {
+      "label": "LMerkelapp for universal utforming, når brukeren indikerer at dragnig er avbrutt",
+      "default": "Dragning avbrutt."
+    },
+    {
+      "label": "Merkelapp for korrekt svar",
+      "default": "Korrekt svar:"
     },
     {
       "label": "Innstillinger for oppgave-oppførsel",

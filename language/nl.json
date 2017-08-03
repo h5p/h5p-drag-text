@@ -11,6 +11,39 @@
       "description": "Te slepen woorden worden aangegeven met een asterisk (*) voor en achter het juiste woord/zinsdeel. Je kunt een hint toevoegen door een dubbele punt (:) voor de hint te zetten. Voorbeeld: De H5P content kan worden bewerkt in een *browser:Iets wat je dagelijks gebruikt*."
     },
     {
+      "englishLabel": "Overall Feedback",
+      "label": "Samlet tilbakemelding",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "englishLabel": "Default",
+              "label": "Standard"
+            }
+          ],
+          "englishLabel": "Define custom feedback for any score range",
+          "label": "Definer tilpasset tilbakemelding for et poengområde",
+          "englishDescription": "Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!\nAvailable variables: @score and @total. Example: 'You got @score of @total possible points'",
+          "description": "For eksempel: 0-20% Dårlig poengsum, 21-91% Gjennomsnittlig poengsum, 91-100% Stor poengsum!\nTilgjengelige variabler: @score og @total. For eksempel: 'Du fikk @score av @total mulige poeng'",
+          "field": {
+            "fields": [
+              {
+                "englishLabel": "Score Range",
+                "label": "Poengområde"
+              },
+              {},
+              {
+                "englishLabel": "Feedback for defined score range",
+                "label": "Tilbakemelding for definert poengområde",
+                "englishPlaceholder": "Fill in the feedback",
+                "placeholder": "Fyll inn tilbakemeldingen"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
       "label": "Tekst voor de knop \"Controleer\"",
       "default": "Controleer"
     },
@@ -23,9 +56,44 @@
       "default": "Toon oplossing"
     },
     {
-      "label": "Tekst voor Feedback",
-      "default": "Je hebt @score van @total punten gescoord",
-      "description": "Tekst voor Feedback (Antwoorden), toegestane variabelen: @score @total. Voorbeeld: 'Je hebt @score van @total mogelijke punten gescoord.'"
+      "label": "Numbered Drop zone label",
+      "default": "Drop Zone @index."
+    },
+    {
+      "label": "Empty Drop Zone label",
+      "default": "Empty."
+    },
+    {
+      "label": "Draggable elements label",
+      "default": "Draggable. @index of @count."
+    },
+    {
+      "label": "Readspeaker text for correct answer",
+      "default": "Correct!"
+    },
+    {
+      "label": "Readspeaker text for incorrect answer",
+      "default": "Incorrect!"
+    },
+    {
+      "label": "Confirmation dialog title that user wants to reset a droppable",
+      "default": "Reset drop"
+    },
+    {
+      "label": "Confirmation dialog description that user wants to reset a droppable",
+      "default": "Are you sure you want to reset this drop?"
+    },
+    {
+      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
+      "default": "Grabbed."
+    },
+    {
+      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
+      "default": "Cancelled dragging."
+    },
+    {
+      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
+      "default": "Correct answer:"
     },
     {
       "label": "Gedragsinstellingen",

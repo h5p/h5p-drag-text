@@ -3,7 +3,7 @@
   "description": "Drag and drop pieces of text to create complete sentences.",
   "majorVersion": 1,
   "minorVersion": 6,
-  "patchVersion": 0,
+  "patchVersion": 1,
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 6
@@ -39,12 +39,12 @@
     {
       "machineName": "H5P.JoubelUI",
       "majorVersion": 1,
-      "minorVersion": 2
+      "minorVersion": 3
     },
     {
       "machineName": "H5P.Question",
       "majorVersion": 1,
-      "minorVersion": 2
+      "minorVersion": 3
     }
   ],
   "editorDependencies": [

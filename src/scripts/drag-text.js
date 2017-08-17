@@ -887,6 +887,15 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         drop: function (event, ui) {
           var draggable = self.getDraggableByElement(ui.draggable[0]);
           var droppable = self.getDroppableByElement(event.target);
+
+          /**
+           * Note that drop will run for all initialized DragText dropzones globally. Even other
+           * DragTexts instances. Thus if no matching draggable or droppable is found
+           * for this dropzone we must skip it.
+           */
+          if (!draggable || !droppable) {
+            return;
+          }
           self.drop(draggable, droppable);
         }
       });

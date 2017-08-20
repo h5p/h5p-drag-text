@@ -11,39 +11,39 @@
       "description":"",
       "important":{
         "description":"<ul><li>Dementsprechende Wörter sind mit einem Sternchen (*) vor und hinter den richtigen Wort oder Satzteil hinzugefügt.</li> <li>Du kannst einen Tipp mit einem Doppelpunkt (:) vor der Spitze hinzufügen.</li> <li>Für jede leere Stelle gibt es nur ein richtiges Wort.</li> <li>Du kannst auch eine Rückmeldung hinzufügen, die angezeigt wird, wenn eine Aufgabe abgeschlossen ist. Verwende \"\\+\" für positive und \" \\-\" für negative Rückmeldungen.</li></ul>",
-        "example":"H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+        "example":"Ein H5P-Inhalt kann bearbeitet werden, mit einem *Browser: Welche Art von Programm ist Chrome?*. </br> H5P-Inhalte sind *interaktiv\\+ Richtig! \\-Falsch, versuchen Sie es erneut!*"
       }
     },
     {
-      "label":"Text for \"Check\" button",
-      "default":"Check"
+      "label":"Text für den \"Überprüfen\"-Button",
+      "default":"Überprüfen"
     },
     {
-      "label":"Text for \"Retry\" button",
-      "default":"Retry"
+      "label":"Text für den \"Wiederholen\"-Button",
+      "default":"Wiederholen"
     },
     {
-      "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "label":"Text für den \"Lösung anzeigen\"-Button",
+      "default":"Lösung anzeigen"
     },
     {
-      "label":"Feedback text",
-      "default":"You got @score of @total points",
-      "description":"Feedback text, variables available: @score and @total. Example: 'You got @score of @total possible points'"
+      "label":"Rückmeldungstext",
+      "default":"Du hast @score von @total Punkten erreicht.",
+      "description":"Rückmeldungstext, verfügbare Variablen: @score und @total. Beispiel: 'Du hast @score von @total möglichen Punkten erreicht.'"
     },
     {
       "label":"Numbered Drop zone label",
-      "default":"Drop Zone @index.",
+      "default":"Drop-Zone @index.",
       "description":"Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
     },
     {
       "label":"Empty Drop Zone label",
-      "default":"Drop Zone @index is empty.",
+      "default":"Drop-Zone @index ist leer.",
       "description":"Label used for accessibility, where the Read speaker will read that the drop zone is empty"
     },
     {
       "label":"Contains Drop Zone label",
-      "default":"Drop Zone @index contains draggable @draggable.",
+      "default":"Drop-Zone @index enthält ziehbare @draggable.",
       "description":"Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
     },
     {
@@ -52,17 +52,17 @@
       "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {
-      "label":"Label for show tip button",
-      "default":"tip: ",
+      "label":"Beschriftung für Senden-Schaltfäche",
+      "default":"Tipp: ",
       "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
       "label":"Readspeaker text for correct answer",
-      "default":"Correct!"
+      "default":"Richtig!"
     },
     {
       "label":"Readspeaker text for incorrect answer",
-      "default":"Incorrect!"
+      "default":"Falsch!"
     },
     {
       "label":"Confirmation dialog title that user wants to reset a droppable",
@@ -70,7 +70,7 @@
     },
     {
       "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop zone?"
+      "default":"Sind Sie sicher, dass Sie alle Optionen zurücksetzen möchten?"
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
@@ -82,18 +82,18 @@
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default":"Correct answer:"
+      "default":"Richtige Antwort:"
     },
     {
       "label":"Header for panel containing feedback for correct/incorrect answers",
-      "default":"Feedback"
+      "default":"Rückmeldung"
     },
     {
-      "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
+      "label":"Interaktionseinstellungen.",
+      "description":"Diese Optionen legen fest, wie die Aufgabe auf Eingaben reagiert.",
       "fields":[
         {
-          "label":"Enable \"Retry\""
+          "label":"\"Wiederholen\" ermöglichen"
         },
         {
           "label":"Enable \"Show Solution\" button"

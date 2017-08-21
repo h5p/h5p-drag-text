@@ -6,7 +6,7 @@
       "default":"Drag the words into the correct boxes"
     },
     {
-      "label":"Text",
+      "label":"Metin",
       "placeholder":"*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
       "description":"",
       "important":{
@@ -19,7 +19,7 @@
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Varsayılan"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -43,16 +43,16 @@
       ]
     },
     {
-      "label":"Text for \"Check\" button",
-      "default":"Check"
+      "label":"\"Kontrol et\" butonu için metin",
+      "default":"Kontrol et"
     },
     {
-      "label":"Text for \"Retry\" button",
-      "default":"Retry"
+      "label":"\"Yeniden dene\" butonu için metin",
+      "default":"Yeniden dene"
     },
     {
       "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "default":"Çözümü göster"
     },
     {
       "label":"Numbered Drop zone label",
@@ -76,7 +76,7 @@
     },
     {
       "label":"Label for show tip button",
-      "default":"Show tip",
+      "default":"İpucu göster",
       "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
@@ -113,13 +113,13 @@
     },
     {
       "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
+      "description":"Bu seçenekler aktivitenin çalışma şeklini denetlemenize izin verir.",
       "fields":[
         {
           "label":"Enable \"Retry\""
         },
         {
-          "label":"Enable \"Show Solution\" button"
+          "label":"\"Çözümü göster\" butonunu aktifleştirin"
         },
         {
           "label":"Instant feedback"

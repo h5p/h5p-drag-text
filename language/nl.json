@@ -6,7 +6,7 @@
       "default":"Sleep de woorden naar de juiste vakjes."
     },
     {
-      "label":"Tekstveld",
+      "label":"Tekst",
       "placeholder":"*Amsterdam* is de hoofdstad van Nederland, *Brussel* is de hoofdstad van België en *Luxemburg* is de hoofdstad van Luxemburg.",
       "description":"",
       "important":{
@@ -19,7 +19,7 @@
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Standaard"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -43,16 +43,16 @@
       ]
     },
     {
-      "label":"Text for \"Check\" button",
-      "default":"Check"
+      "label":"Tekst voor de \"Controleer\"-knop",
+      "default":"Controleer"
     },
     {
-      "label":"Text for \"Retry\" button",
-      "default":"Retry"
+      "label":"Tekst voor de \"Opnieuw proberen\"-knop",
+      "default":"Opnieuw proberen"
     },
     {
-      "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "label":"Tekst voor de knop \"Toon oplossing\"",
+      "default":"Toon oplossing"
     },
     {
       "label":"Numbered Drop zone label",
@@ -76,7 +76,7 @@
     },
     {
       "label":"Label for show tip button",
-      "default":"Show tip",
+      "default":"Toon tip",
       "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
@@ -93,7 +93,7 @@
     },
     {
       "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop zone?"
+      "default":"Are you sure you want to reset this drop?"
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
@@ -112,17 +112,17 @@
       "default":"Feedback"
     },
     {
-      "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
+      "label":"Gedragsinstellingen",
+      "description":"Deze opties bepalen hoe de taak op de input reageert.",
       "fields":[
         {
-          "label":"Enable \"Retry\""
+          "label":"Schakel de knop \"Opnieuw\" in"
         },
         {
-          "label":"Enable \"Show Solution\" button"
+          "label":"\"Toon oplossing\"-knop inschakelen"
         },
         {
-          "label":"Instant feedback"
+          "label":"Geef direct feedback (Antwoorden)"
         }
       ]
     }

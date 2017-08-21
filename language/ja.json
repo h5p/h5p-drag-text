@@ -10,26 +10,49 @@
       "placeholder":"*オスロ*はノルウェーの首都です。*ストックホルム*はスウェーデンの首都で、*コペンハーゲン*はデンマークの首都です。すべての都市は*スカンジナビア:ヨーロッパの北部*半島に位置しています。",
       "description":"",
       "important":{
-        "description":"<ul><li>ドロップできる語句は、アスタリスク (*) を適切な語句の前後に付けて追加します。</li><li>コロン (:) をヒントの前に付けて、テキストのヒントを追加できます。</li><li>各空欄には、一つだけ適切な語句を置けます。</li><li>タスクが完了したときに表示されるフィードバックを追加できます。正解のフィードバックには '\\+'、不正解のフィードバックには '\\-'を使います。</li></ul>",
-        "example":"H5P コンテンツは*ブラウザ: Chrome はどのようなタイプのプログラム？*で編集できます。</br> H5P コンテンツは*インタラクティブ\\+正解 ! \\-不正解です。もう一度トライ !*"
+        "description":"<ul><li>ドロップできる語句は、アスタリスク (*) を適切な語句の前後に付けて追加します。</li><li>コロン (:) をヒントの前に付けて、テキストのヒントを追加できます。</li><li>各空欄には、一つだけ適切な語句を置けます。</li><li>タスクが完了したときに表示されるフィードバックを追加できます。正解のフィードバックには '\\+'、不正解のフィードバックには '\\-'を使います。</li></ul>"
       }
     },
     {
-      "label":"「チェック」ボタンのテキスト",
-      "default":"チェック"
+      "label":"Overall Feedback",
+      "fields":[
+        {
+          "widgets":[
+            {
+              "label":"Default"
+            }
+          ],
+          "label":"Define custom feedback for any score range",
+          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity":"range",
+          "field":{
+            "fields":[
+              {
+                "label":"Score Range"
+              },
+              {
+                
+              },
+              {
+                "label":"Feedback for defined score range",
+                "placeholder":"Fill in the feedback"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
-      "label":"「リトライ」ボタンのテキスト",
-      "default":"リトライ"
+      "label":"Text for \"Check\" button",
+      "default":"Check"
     },
     {
-      "label":"「解を表示」ボタンのテキスト",
-      "default":"解を表示"
+      "label":"Text for \"Retry\" button",
+      "default":"Retry"
     },
     {
-      "label":"フィードバックテキスト",
-      "default":"@score / @total 獲得",
-      "description":"フィードバック テキスト、利用可能な変数: @score と @total 。 例: ' @score / @total 獲得。'"
+      "label":"Text for \"Show Solution\" button",
+      "default":"Show solution"
     },
     {
       "label":"番号付きのドロップゾーンラベル",
@@ -53,7 +76,7 @@
     },
     {
       "label":"ヒント表示ボタンのラベル",
-      "default":"ヒント : ",
+      "default":"Show tip",
       "description":"アクセシビリティのためのラベルで、ヒントが読まれる前にリードスピーカーが読み上げる。"
     },
     {

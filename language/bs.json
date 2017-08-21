@@ -1,12 +1,12 @@
 {
   "semantics":[
     {
-      "label":"Task description",
+      "label":"Opis zadatka",
       "description":"Describe how the user should solve the task.",
       "default":"Drag the words into the correct boxes"
     },
     {
-      "label":"Text",
+      "label":"Tekst",
       "placeholder":"*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
       "description":"",
       "important":{
@@ -14,12 +14,12 @@
       }
     },
     {
-      "label":"Overall Feedback",
+      "label":"Pozadinska zamućenost za elemente za uzimanje",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Standard"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -43,16 +43,16 @@
       ]
     },
     {
-      "label":"Text for \"Check\" button",
-      "default":"Check"
+      "label":"Oznaka za dugme \"Provjeri\"",
+      "default":"Provjeri"
     },
     {
-      "label":"Text for \"Retry\" button",
-      "default":"Retry"
+      "label":"Oznaka za dugme \"Ponovi\"",
+      "default":"Ponovi"
     },
     {
       "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "default":"Prikaži rješenje"
     },
     {
       "label":"Numbered Drop zone label",
@@ -80,12 +80,12 @@
       "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
-      "label":"Readspeaker text for correct answer",
-      "default":"Correct!"
+      "label":"\"Readspeaker\" tekst za tačan odgovor",
+      "default":"Tačno!!"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
-      "default":"Incorrect!"
+      "label":"\"Readspeaker\" tekst za netačan odgovor",
+      "default":"Netačno!!"
     },
     {
       "label":"Confirmation dialog title that user wants to reset a droppable",
@@ -105,18 +105,18 @@
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default":"Correct answer:"
+      "default":"Tačan odgovor:"
     },
     {
       "label":"Header for panel containing feedback for correct/incorrect answers",
       "default":"Feedback"
     },
     {
-      "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
+      "label":"Podešavanje ponašanja.",
+      "description":"Diese Optionen kontrollieren, wie sich die Aufgabe verhält.",
       "fields":[
         {
-          "label":"Enable \"Retry\""
+          "label":"Omogući \"Ponovi\" dugme"
         },
         {
           "label":"Enable \"Show Solution\" button"

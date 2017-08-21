@@ -2,11 +2,11 @@
   "semantics":[
     {
       "label":"Consigne",
-      "description":"Expliquez ce que doit faire l'utilisateur.",
+      "description":"La consigne indique ce que l'utilisateur doit faire.",
       "default":"Glissez les étiquettes dans les bonnes cases."
     },
     {
-      "label":"Champ de texte",
+      "label":"Question",
       "placeholder":"Paris est la capitale de la *France*",
       "description":"",
       "important":{
@@ -14,12 +14,12 @@
       }
     },
     {
-      "label":"Overall Feedback",
+      "label":"Opacité des étiquettes",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Par défaut"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -43,16 +43,16 @@
       ]
     },
     {
-      "label":"Text for \"Check\" button",
-      "default":"Check"
+      "label":"Texte du bouton \"Vérifier\"",
+      "default":"Vérifier"
     },
     {
-      "label":"Text for \"Retry\" button",
-      "default":"Retry"
+      "label":"Texte du bouton \"Recommencer\"",
+      "default":"Recommencer"
     },
     {
-      "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "label":"Texte pour le bouton \"Voir la correction\"",
+      "default":"Voir la solution"
     },
     {
       "label":"Numbered Drop zone label",
@@ -76,15 +76,15 @@
     },
     {
       "label":"Label for show tip button",
-      "default":"Show tip",
+      "default":"Montrer l'indice",
       "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
-      "label":"Readspeaker text for correct answer",
+      "label":"Texte exprimé par la synthèse vocale en cas de réponse correcte",
       "default":"Correct!"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
+      "label":"Texte exprimé par la synthèse vocale en cas de réponse incorrecte",
       "default":"Incorrect!"
     },
     {
@@ -93,7 +93,7 @@
     },
     {
       "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop zone?"
+      "default":"Are you sure you want to reset this drop?"
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
@@ -105,24 +105,24 @@
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default":"Correct answer:"
+      "default":"Réponse correcte :"
     },
     {
       "label":"Header for panel containing feedback for correct/incorrect answers",
-      "default":"Feedback"
+      "default":"Commentaire de retour"
     },
     {
-      "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
+      "label":"Options générales.",
+      "description":"Ces options vous permettent de contrôler le déroulement de vos activités.",
       "fields":[
         {
-          "label":"Enable \"Retry\""
+          "label":"Activer le bouton \"Recommencer\""
         },
         {
-          "label":"Enable \"Show Solution\" button"
+          "label":"Activer le bouton \"Voir la solution\""
         },
         {
-          "label":"Instant feedback"
+          "label":"Correction instantanée"
         }
       ]
     }

@@ -19,7 +19,7 @@
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Per defecte"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -43,16 +43,16 @@
       ]
     },
     {
-      "label":"Text for \"Check\" button",
-      "default":"Check"
+      "label":"Text pel botó \"Verificar\"",
+      "default":"Verificar"
     },
     {
-      "label":"Text for \"Retry\" button",
-      "default":"Retry"
+      "label":"Text pel botó \"Tornar-ho a provar\"",
+      "default":"Tornar-ho a provar"
     },
     {
       "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "default":"Mostrar solució"
     },
     {
       "label":"Numbered Drop zone label",
@@ -76,7 +76,7 @@
     },
     {
       "label":"Label for show tip button",
-      "default":"Show tip",
+      "default":"Mostrar consell",
       "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
@@ -113,13 +113,13 @@
     },
     {
       "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
+      "description":"Aquestes opcions et permetran controlar com es comporta la tasca.",
       "fields":[
         {
           "label":"Enable \"Retry\""
         },
         {
-          "label":"Enable \"Show Solution\" button"
+          "label":"Activa el botó \"Mostrar solució\""
         },
         {
           "label":"Instant feedback"

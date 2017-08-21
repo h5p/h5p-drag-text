@@ -1,12 +1,12 @@
 {
   "semantics":[
     {
-      "label":"Task description",
+      "label":"Descripción de la tarea",
       "description":"Describe how the user should solve the task.",
       "default":"Drag the words into the correct boxes"
     },
     {
-      "label":"Text",
+      "label":"Texto",
       "placeholder":"*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
       "description":"",
       "important":{
@@ -19,7 +19,7 @@
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Predeterminado"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -47,12 +47,12 @@
       "default":"Check"
     },
     {
-      "label":"Text for \"Retry\" button",
-      "default":"Retry"
+      "label":"Texto para el botón de \"Reintentar\"",
+      "default":"Reintentar"
     },
     {
       "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "default":"Mostrar solución"
     },
     {
       "label":"Numbered Drop zone label",

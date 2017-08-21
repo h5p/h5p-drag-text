@@ -14,12 +14,12 @@
       }
     },
     {
-      "label":"Overall Feedback",
+      "label":"Samlet tilbakemelding",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Standard"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -43,16 +43,16 @@
       ]
     },
     {
-      "label":"Text for \"Check\" button",
-      "default":"Check"
+      "label":"Etikett for \"Sjekk\"-knapp",
+      "default":"Sjekk"
     },
     {
-      "label":"Text for \"Retry\" button",
-      "default":"Retry"
+      "label":"Etikett for \"Prøv igjen\"-knappen.",
+      "default":"Prøv igjen"
     },
     {
-      "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "label":"Tekst for \"Fasit\" knapp",
+      "default":"Fasit"
     },
     {
       "label":"Nummerert slippsone merkelapp",
@@ -70,59 +70,59 @@
       "description":"Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
     },
     {
-      "label":"Draggable elements label",
+      "label":"Nummerert merkelapp for element som kan dras",
       "default":"Draggable @text. @index of @count draggables.",
       "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {
-      "label":"Label for show tip button",
-      "default":"Show tip",
+      "label":"Ingen slippsone valg-merkelapp",
+      "default":"Vis tips",
       "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
-      "label":"Readspeaker text for correct answer",
-      "default":"Correct!"
+      "label":"Rett svar tekst for hjelpemiddelteknologi",
+      "default":"Riktig"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
-      "default":"Incorrect!"
+      "label":"Galt svar tekst for hjelpemiddelteknologi",
+      "default":"Feil"
     },
     {
-      "label":"Confirmation dialog title that user wants to reset a droppable",
-      "default":"Reset drop"
+      "label":"Bekreftelsesdialogtittel om at brukeren vil nullstille et flyttbart element",
+      "default":"Nullstill flyttbart element"
     },
     {
-      "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop zone?"
+      "label":"Bekreftelsesdialogbeskrivelse om at brukeren vil nullstille et flyttbart element",
+      "default":"Er du sikker på at du vil nullstille dette elementet?"
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
+      "label":"Merkelapp for universal utforming, når brukeren indikerer at dragning har startet",
       "default":"Draggable is grabbed."
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default":"Cancelled dragging."
+      "label":"LMerkelapp for universal utforming, når brukeren indikerer at dragnig er avbrutt",
+      "default":"Dragning avbrutt."
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default":"Correct answer:"
+      "label":"Merkelapp for korrekt svar",
+      "default":"Svar:"
     },
     {
-      "label":"Header for panel containing feedback for correct/incorrect answers",
-      "default":"Feedback"
+      "label":"Merkelapp for feil svar",
+      "default":"Tilbakemelding"
     },
     {
-      "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
+      "label":"Innstillinger for oppgave-oppførsel",
+      "description":"Disse instillingene lar deg bestemme hvordan oppgavetypen skal oppføre seg.",
       "fields":[
         {
-          "label":"Enable \"Retry\""
+          "label":"Aktiver \"Prøv igjen\"-knapp"
         },
         {
-          "label":"Enable \"Show Solution\" button"
+          "label":"Aktiver \"Fasit\" knapp"
         },
         {
-          "label":"Instant feedback"
+          "label":"Krev inndata fra brukeren før fasit gis."
         }
       ]
     }

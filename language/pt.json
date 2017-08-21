@@ -1,25 +1,25 @@
 {
   "semantics":[
     {
-      "label":"Consigne",
-      "description":"La consigne indique ce que l'utilisateur doit faire.",
-      "default":"Glissez les étiquettes dans les bonnes cases."
+      "label":"Task description",
+      "description":"Describe how the user should solve the task.",
+      "default":"Drag the words into the correct boxes"
     },
     {
-      "label":"Question",
-      "placeholder":"Paris est la capitale de la *France*",
+      "label":"Mensagem",
+      "placeholder":"*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
       "description":"",
       "important":{
         "description":"<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>"
       }
     },
     {
-      "label":"Opacité des étiquettes",
+      "label":"Overall Feedback",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Par défaut"
+              "label":"Default"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -43,16 +43,16 @@
       ]
     },
     {
-      "label":"Texte du bouton \"Vérifier\"",
-      "default":"Vérifier"
+      "label":"Text for \"Check\" button",
+      "default":"Check"
     },
     {
-      "label":"Texte du bouton \"Recommencer\"",
-      "default":"Recommencer"
+      "label":"Text for \"Retry\" button",
+      "default":"Retry"
     },
     {
-      "label":"Texte pour le bouton \"Voir la correction\"",
-      "default":"Voir la solution"
+      "label":"Text for \"Show Solution\" button",
+      "default":"Show solution"
     },
     {
       "label":"Numbered Drop zone label",
@@ -76,15 +76,15 @@
     },
     {
       "label":"Label for show tip button",
-      "default":"Montrer l'indice",
+      "default":"Show tip",
       "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
-      "label":"Texte exprimé par la synthèse vocale en cas de réponse correcte",
+      "label":"Readspeaker text for correct answer",
       "default":"Correct!"
     },
     {
-      "label":"Texte exprimé par la synthèse vocale en cas de réponse incorrecte",
+      "label":"Readspeaker text for incorrect answer",
       "default":"Incorrect!"
     },
     {
@@ -93,7 +93,7 @@
     },
     {
       "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop?"
+      "default":"Are you sure you want to reset this drop zone?"
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
@@ -105,24 +105,24 @@
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default":"Réponse correcte :"
+      "default":"Correct answer:"
     },
     {
       "label":"Header for panel containing feedback for correct/incorrect answers",
-      "default":"Commentaire de retour"
+      "default":"Feedback"
     },
     {
-      "label":"Options générales.",
-      "description":"Ces options vous permettent de contrôler le déroulement de vos activités.",
+      "label":"Behavioural settings.",
+      "description":"These options will let you control how the task behaves.",
       "fields":[
         {
-          "label":"Activer le bouton \"Recommencer\""
+          "label":"Enable \"Retry\""
         },
         {
-          "label":"Activer le bouton \"Voir la solution\""
+          "label":"Enable \"Show Solution\" button"
         },
         {
-          "label":"Correction instantanée"
+          "label":"Instant feedback"
         }
       ]
     }

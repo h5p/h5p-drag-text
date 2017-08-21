@@ -6,7 +6,7 @@
       "default":"Drag the words into the correct boxes"
     },
     {
-      "label":"Text",
+      "label":"Mensagem",
       "placeholder":"*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
       "description":"",
       "important":{

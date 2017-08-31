@@ -122,7 +122,7 @@
           "label":"Aktiver \"Fasit\" knapp"
         },
         {
-          "label":"Krev inndata fra brukeren før fasit gis."
+          "label":"Instant feedback"
         }
       ]
     }

@@ -1,12 +1,12 @@
 {
   "semantics":[
     {
-      "label":"وصف النشاط",
-      "description":"وصف الكيفية التي ينبغي للمستخدم حل النشاط",
+      "label":"Task description",
+      "description":"Describe how the user should solve the task.",
       "default":"Drag the words into the correct boxes"
     },
     {
-      "label":"نص",
+      "label":"Teksti",
       "placeholder":"*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
       "description":"",
       "important":{
@@ -14,12 +14,12 @@
       }
     },
     {
-      "label":"شفافية خلفية العناصر",
+      "label":"Overall Feedback",
       "fields":[
         {
           "widgets":[
             {
-              "label":"الافتراضي"
+              "label":"Default"
             }
           ],
           "label":"Define custom feedback for any score range",
@@ -43,16 +43,16 @@
       ]
     },
     {
-      "label":"النص ل \"تحقق \" الزر",
+      "label":"Text for \"Check\" button",
       "default":"Check"
     },
     {
-      "label":"النص ل \"إعادة المحاولة \" الزر",
-      "default":"إعادة المحاولة"
+      "label":"Text for \"Retry\" button",
+      "default":"Yritä uudelleen"
     },
     {
-      "label":"النص  \"مشاهدة الحل \" الزر",
-      "default":"مشاهدة الحل"
+      "label":"Text for \"Show Solution\" button",
+      "default":"Show solution"
     },
     {
       "label":"Numbered Drop zone label",
@@ -80,12 +80,12 @@
       "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
-      "label":"النص Readspeaker عن الإجابة الصحيحة",
-      "default":"صحيح!"
+      "label":"Readspeaker text for correct answer",
+      "default":"Correct!"
     },
     {
-      "label":"النص Readspeaker للإجابة غير صحيحة",
-      "default":"غير صحيح!"
+      "label":"Readspeaker text for incorrect answer",
+      "default":"Incorrect!"
     },
     {
       "label":"Confirmation dialog title that user wants to reset a droppable",
@@ -93,7 +93,7 @@
     },
     {
       "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop?"
+      "default":"Are you sure you want to reset this drop zone?"
     },
     {
       "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
@@ -112,17 +112,17 @@
       "default":"Feedback"
     },
     {
-      "label":"إعدادت النشاط",
-      "description":"وهذه الخيارات تمكنك من التحكم في كيفية سلوك هذا النشاط",
+      "label":"Behavioural settings.",
+      "description":"These options will let you control how the task behaves.",
       "fields":[
         {
-          "label":"تمكين \"إعادة المحاولة \""
+          "label":"Enable \"Retry\""
         },
         {
-          "label":"تمكين \"مشاهدة الحل \" الزر"
+          "label":"Enable \"Show Solution\" button"
         },
         {
-          "label":"تلميح"
+          "label":"Instant feedback"
         }
       ]
     }

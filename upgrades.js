@@ -17,6 +17,31 @@ H5PUpgrades['H5P.DragText'] = (function ($) {
 
           finished(null, parameters);
         }
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support DragText 1.6
+       *
+       * Move old feedback message to the new overall feedback system.
+       *
+       * @param {object} parameters
+       * @param {function} finished
+       */
+      6: function (parameters, finished) {
+        if (parameters && parameters.score) {
+          parameters.overallFeedback = [
+            {
+              'from': 0,
+              'to': 100,
+              'feedback': parameters.score
+            }
+          ];
+
+          delete parameters.score;
+        }
+
+        finished(null, parameters);
       }
     }
   };

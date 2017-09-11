@@ -2,40 +2,40 @@
   "semantics": [
     {
       "label": "Tehtävän kuvaus",
-      "description": "Kuvaile kuinka käyttäjän pitää ratkaista tehtävä.",
+      "description": "Kuvaile, mitä käyttäjän pitää tehdä.",
       "default": "Raahaa sanat oikeisiin laatikoihin."
     },
     {
       "label": "Tekstikenttä",
-      "placeholder": "*Helsinki* on Suomessa, *Tukholma* on Ruotsissa. Molemmat ovat maidensa *pääkaupunki:hallinnollinen keskus*.",
-      "description": "Pudotettavat sanat merkitään tähdillä edessä ja jälkeen. Vihje voidaan lisätä kaksoispisteellä kohteesta erotettuna tähtien väliin. Jokaiseen kohtaan on yksi oikea sana."
+      "placeholder": "*Helsinki* on Suomessa, *Tukholma* on Ruotsissa. Kumpikin on maansa *pääkaupunki:hallinnollinen keskus*.",
+      "description": "Merkitse raahattavat sanat tähtien (*) väliin, esimerkiksi *Helsinki*. Jos haluat lisätä vihjeen, kirjoita raahattavan sanan perään kaksoispiste ja vihje, esimerkiksi *pääkaupunki:hallinnollinen keskus*."
     },
     {
-      "label": "Nimike painikkeelle \"Tarkista\"",
+      "label": "Painikkeen \"Tarkista\" nimi",
       "default": "Tarkista"
     },
     {
-      "label": "Nimike painikkeelle \"Yritä uudelleen\"",
+      "label": "Painikkeen \"Yritä uudelleen\" nimi",
       "default": "Yritä uudelleen"
     },
     {
-      "label": "Nimike painikkeelle \"Katso vastaus\"",
+      "label": "Painikkeen \"Katso vastaus\" nimi",
       "default": "Katso vastaus"
     },
     {
       "label": "Palauteteksti",
-      "default": "Sait @score \/ @total pistettä",
-      "description": "Palauteteksti, käytettävissä olevat muuttujat: @score ja @total. Esimerkki: 'Sait @score \/ @total pistettä'"
+      "default": "Sait @score\/@total pistettä",
+      "description": "Palauteteksti, käytettävissä on seuraavat muuttujat: @score ja @total. Esimerkki: 'Sait @score\/@total pistettä'"
     },
     {
       "label": "Yleisasetukset",
-      "description": "Näillä valinnoilla voit hallita tehtävän toimintaa.",
+      "description": "Näillä valinnoilla voit ohjailla tehtävän toimintoja.",
       "fields": [
         {
-          "label": "Salli nappi  \"Yritä uudelleen\""
+          "label": "Salli painike \"Yritä uudelleen\""
         },
         {
-          "label": "Salli nappi \"Katso vastaus\""
+          "label": "Salli painike \"Katso vastaus\""
         },
         {
           "label": "Pikapalaute"

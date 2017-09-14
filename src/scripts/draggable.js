@@ -2,17 +2,21 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
   //CSS Draggable feedback:
   var DRAGGABLE_DROPPED = 'h5p-drag-dropped';
   /**
-   * Private class for keeping track of 0e text.
+   * Private class for keeping track of draggable text.
+   *
    * @private
    * @param {String} text String that will be turned into a selectable word.
    * @param {jQuery} draggable Draggable object.
+   * @param {number} index
    */
-  function Draggable(text, draggable) {
+  function Draggable(text, draggable, index) {
     H5P.EventDispatcher.call(this);
     var self = this;
     self.text = text;
     self.insideDropzone = null;
     self.$draggable = $(draggable);
+    self.index = index;
+    self.initialIndex = index;
 
     self.shortFormat = self.text;
     //Shortens the draggable string if inside a dropbox.
@@ -25,8 +29,48 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
   Draggable.prototype.constructor = Draggable;
 
   /**
+   * Gets the index
+   *
+   * @return {number}
+   */
+  Draggable.prototype.getIndex = function () {
+    return this.index;
+  };
+
+  /**
+   * Sets the index
+   *
+   * @param {number} index
+   * @returns {H5P.TextDraggable}
+   */
+  Draggable.prototype.setIndex = function (index) {
+    this.index = index;
+    return this;
+  };
+
+  /**
+   * Gets the initial index
+   *
+   * @return {number}
+   */
+  Draggable.prototype.getInitialIndex = function () {
+    return this.initialIndex;
+  };
+
+
+  /**
+   * Checks if a index is this droppables initial index
+   *
+   * @param {number} index
+   * @returns {boolean}
+   */
+  Draggable.prototype.hasInitialIndex = function (index) {
+    return this.initialIndex === index;
+  };
+
+  /**
    * Moves the draggable to the provided container.
-   * @public
+   *
    * @param {jQuery} $container Container the draggable will append to.
    */
   Draggable.prototype.appendDraggableTo = function ($container) {
@@ -35,7 +79,7 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   /**
    * Reverts the draggable to its' provided container.
-   * @public
+   *
    * @params {jQuery} $container The parent which the draggable will revert to.
    */
   Draggable.prototype.revertDraggableTo = function ($container) {
@@ -53,7 +97,7 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   /**
    * Sets dropped feedback if the on the draggable if parameter is true.
-   * @public
+   *
    * @params {Boolean} isDropped Decides whether the draggable has been dropped.
    */
   Draggable.prototype.toggleDroppedFeedback = function (isDropped) {
@@ -66,7 +110,6 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   /**
    * Disables the draggable, making it immovable.
-   * @public
    */
   Draggable.prototype.disableDraggable = function () {
     this.$draggable.draggable({ disabled: true});
@@ -74,7 +117,6 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   /**
    * Enables the draggable, making it movable.
-   * @public
    */
   Draggable.prototype.enableDraggable = function () {
     this.$draggable.draggable({ disabled: false});
@@ -82,7 +124,6 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   /**
    * Gets the draggable jQuery object for this class.
-   * @public
    *
    * @returns {jQuery} Draggable item.
    */
@@ -91,10 +132,23 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
   };
 
   /**
-   * Removes this draggable from its dropzone, if it is contained in one.
-   * @public
+   * Gets the draggable element for this class.
+   *
+   * @returns {HTMLElement}
+   */
+  Draggable.prototype.getElement = function () {
+    return this.$draggable.get(0);
+  };
+
+  /**
+   * Removes this draggable from its dropzone, if it is contained in one,
+   * and returns a reference to it
+   *
+   * @returns {Droppable}
    */
   Draggable.prototype.removeFromZone = function () {
+    var dropZone = this.insideDropzone;
+
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeFeedback();
       this.insideDropzone.removeDraggable();
@@ -102,26 +156,27 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
     this.toggleDroppedFeedback(false);
     this.removeShortFormat();
     this.insideDropzone = null;
+
+    return dropZone;
   };
 
   /**
    * Adds this draggable to the given dropzone.
-   * @public
+   *
    * @param {Droppable} droppable The droppable this draggable will be added to.
    */
   Draggable.prototype.addToZone = function (droppable) {
-    this.trigger('addedToZone');
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeDraggable();
     }
     this.toggleDroppedFeedback(true);
     this.insideDropzone = droppable;
     this.setShortFormat();
+    this.trigger('addedToZone');
   };
 
   /**
    * Gets the answer text for this draggable.
-   * @public
    *
    * @returns {String} The answer text in this draggable.
    */
@@ -131,7 +186,6 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   /**
    * Sets short format of draggable when inside a dropbox.
-   * @public
    */
   Draggable.prototype.setShortFormat = function () {
     this.$draggable.html(this.shortFormat);
@@ -139,6 +193,7 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   /**
    * Get short format of draggable when inside a dropbox.
+   *
    * @returns {String|*}
    */
   Draggable.prototype.getShortFormat = function () {
@@ -147,7 +202,6 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   /**
    * Removes the short format of draggable when it is outside a dropbox.
-   * @public
    */
   Draggable.prototype.removeShortFormat = function () {
     this.$draggable.html(this.text);
@@ -155,10 +209,23 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
 
   /**
    * Get the droppable this draggable is inside
+   *
    * @returns {Droppable} Droppable
    */
   Draggable.prototype.getInsideDropzone = function () {
     return this.insideDropzone;
   };
+
+  /**
+   * Returns true if inside dropzone
+   *
+   * @returns {boolean}
+   */
+  Draggable.prototype.isInsideDropZone = function () {
+    return !!this.insideDropzone;
+  };
+
   return Draggable;
 })(H5P.jQuery, H5P.EventDispatcher);
+
+export default H5P.TextDraggable;

@@ -135,9 +135,8 @@
 .h5p-drag-text [aria-grabbed='true'],
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-state-disabled):hover,
 .h5p-drag-text [aria-grabbed]:not(.ui-state-disabled):hover {
-  border: 0.1em solid rgb(212,190,216);
-  color: #663366;
-  background: #edd6e9;
+  border: 0.1em solid #c4c4c4;
+  background: #c7c7c7;
 }
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped {
   width: 100%;

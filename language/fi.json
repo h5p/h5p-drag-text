@@ -1,41 +1,41 @@
 {
   "semantics":[
     {
-      "label":"Task description",
-      "description":"Describe how the user should solve the task.",
-      "default":"Drag the words into the correct boxes"
+      "label": "Tehtävän kuvaus",
+      "description": "Kuvaile, mitä käyttäjän pitää tehdä.",
+      "default": "Raahaa sanat oikeisiin laatikoihin."
     },
     {
       "label":"Teksti",
-      "placeholder":"*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
+      "placeholder":"*Helsinki* on Suomessa, *Tukholma* on Ruotsissa. Kumpikin on maansa *pääkaupunki:hallinnollinen keskus*.",
       "description":"",
       "important":{
-        "description":"<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>"
+        "description":"<ul><li>Merkitse raahattavat sanat tähtien (*) väliin, esimerkiksi *Helsinki*.</li><li>Jos haluat lisätä vihjeen, kirjoita raahattavan sanan perään kaksoispiste ja vihje, esimerkiksi *pääkaupunki:hallinnollinen keskus*.</li><li>Jokaista tyhjää kohtaa vastaa yksi oikea sana.</li><li>Voit lisätä palautteen näytettäväksi kun tehtävä on suoritettu. Käytä '\\+' oikein ja '\\-' väärin palautteelle.</li></ul>"
       }
     },
     {
-      "label":"Overall Feedback",
+      "label":"Yleispalaute",
       "fields":[
         {
           "widgets":[
             {
-              "label":"Default"
+              "label":"Oletus"
             }
           ],
-          "label":"Define custom feedback for any score range",
-          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity":"range",
+          "label":"Määritä palaute pistealueiden mukaan.",
+          "description":"Klikkaa \"Lisää alue\" painiketta lisätäksesi niin monta pistealuetta kuin tarvit. Esimerkiksi: 0-20% Huono tulos, 21-91% Kelpo tulos, 91-100% Mahtava tulos!",
+          "entity":"alue",
           "field":{
             "fields":[
               {
-                "label":"Score Range"
+                "label":"Pistealue"
               },
               {
                 
               },
               {
-                "label":"Feedback for defined score range",
-                "placeholder":"Fill in the feedback"
+                "label":"Palaute määritellylle pistealueelle",
+                "placeholder":"Kirjoita palaute"
               }
             ]
           }
@@ -43,16 +43,16 @@
       ]
     },
     {
-      "label":"Text for \"Check\" button",
-      "default":"Check"
+      "label":"Painikkeen \"Tarkista\" nimi",
+      "default":"Tarkista"
     },
     {
-      "label":"Text for \"Retry\" button",
+      "label":"Painikkeen \"Yritä uudelleen\" nimi",
       "default":"Yritä uudelleen"
     },
     {
-      "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "label":"Painikkeen \"Katso vastaus\" nimi",
+      "default":"Katso vastaus"
     },
     {
       "label":"Numbered Drop zone label",
@@ -112,17 +112,17 @@
       "default":"Feedback"
     },
     {
-      "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
-      "fields":[
+      "label": "Yleisasetukset",
+      "description": "Näillä valinnoilla voit ohjailla tehtävän toimintoja.",
+      "fields": [
         {
-          "label":"Enable \"Retry\""
+          "label": "Salli painike \"Yritä uudelleen\""
         },
         {
-          "label":"Enable \"Show Solution\" button"
+          "label": "Salli painike \"Katso vastaus\""
         },
         {
-          "label":"Instant feedback"
+          "label": "Pikapalaute"
         }
       ]
     }

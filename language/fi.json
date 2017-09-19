@@ -55,61 +55,61 @@
       "default":"Katso vastaus"
     },
     {
-      "label":"Numbered Drop zone label",
-      "default":"Drop Zone @index.",
-      "description":"Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label":"Pudotuskohteen numerointi",
+      "default":"Pudotuskohde @index.",
+      "description":"Esteettömyystoiminto. Ruudunlukija lukee pudotuskohteen järjestysnumeron. Käytettävissä muuttuja: @index"
     },
     {
-      "label":"Empty Drop Zone label",
-      "default":"Drop Zone @index is empty.",
-      "description":"Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label":"Tyhjän pudotuskohteen numerointi",
+      "default":"Pudotuskohde @index on tyhjä.",
+      "description":"Esteettömyystoiminto. Ruudunlukija lukee tyhjän pudotuskohteen järjestysnumeron."
     },
     {
-      "label":"Contains Drop Zone label",
-      "default":"Drop Zone @index contains draggable @draggable.",
-      "description":"Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label":"Pudotuskohde sisältää raahattavan",
+      "default":"Pudotuskohde @index sisältää raahattavan @draggable.",
+      "description":"Esteettömyystoiminto. Ruudunlukija lukee, että pudotuskohteessa on jo jokin raahattava."
     },
     {
-      "label":"Draggable elements label",
-      "default":"Draggable @text. @index of @count draggables.",
-      "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label":"Raahattavan elementin selite",
+      "default":"Raahattava @text. @index\/@count raahattavista.",
+      "description":"Esteettömyystoiminto. Ruuudunlukija lukee, että tämä on raahattava elementti. Käytettävissä muuttujat: @index, @count"
     },
     {
-      "label":"Label for show tip button",
-      "default":"Show tip",
-      "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "label":"Vihjepainikkeen teksti",
+      "default":"Näytä vihje",
+      "description":"Esteettömyystoiminto. Ruudunlukija lukee tämän ennen vihjeen lukemista."
     },
     {
-      "label":"Readspeaker text for correct answer",
-      "default":"Correct!"
+      "label":"Ruudunlukijan teksti oikealle vastaukselle",
+      "default":"Oikein!"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
-      "default":"Incorrect!"
+      "label":"Ruudunlukijan teksti väärälle vastaukselle",
+      "default":"Väärin!"
     },
     {
-      "label":"Confirmation dialog title that user wants to reset a droppable",
-      "default":"Reset drop"
+      "label":"Varmistusdialogi kun käyttäjä haluaa palauttaa pudotuksen",
+      "default":"Palauta pudotus"
     },
     {
-      "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop zone?"
+      "label":"Selite varmistusdialogille kun käyttäjä haluaa palauttaa pudotuksen",
+      "default":"Haluatko varmasti palauttaa pudotuskohteen?"
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default":"Draggable is grabbed."
+      "label":"Ruudunlukijan teksti raahauksen aloittamiselle",
+      "default":"Raahattavasta on otettu kiinni."
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default":"Cancelled dragging."
+      "label":"Ruudunlukijan teksti raahauksen keskeyttämiselle",
+      "default":"Raahaus keskeytetty."
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default":"Correct answer:"
+      "label":"Ruudunlukijan teksti ilmaisemaan mikä oli oikea vastaus",
+      "default":"Oikea vastaus:"
     },
     {
-      "label":"Header for panel containing feedback for correct/incorrect answers",
-      "default":"Feedback"
+      "label":"Oikeiden ja väärien vastauksien palautteen sisältävän paneelin otsikko",
+      "default":"Palaute"
     },
     {
       "label": "Yleisasetukset",

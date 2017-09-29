@@ -1,41 +1,39 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"Task description",
-      "description":"Describe how the user should solve the task.",
-      "default":"Drag the words into the correct boxes"
+      "label": "Tehtävän kuvaus",
+      "description": "Kuvaile, mitä käyttäjän pitää tehdä.",
+      "default": "Raahaa sanat oikeisiin laatikoihin."
     },
     {
-      "label":"Teksti",
-      "placeholder":"*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
-      "description":"",
-      "important":{
-        "description":"<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>"
+      "label": "Teksti",
+      "placeholder": "*Helsinki* on Suomessa, *Tukholma* on Ruotsissa. Kumpikin on maansa *pääkaupunki:hallinnollinen keskus*.",
+      "description": "",
+      "important": {
+        "description": "<ul><li>Merkitse raahattavat sanat tähtien (*) väliin, esimerkiksi *Helsinki*.</li><li>Jos haluat lisätä vihjeen, kirjoita raahattavan sanan perään kaksoispiste ja vihje, esimerkiksi *pääkaupunki:hallinnollinen keskus*.</li><li>Jokaista tyhjää kohtaa vastaa yksi oikea sana.</li><li>Voit lisätä palautteen näytettäväksi kun tehtävä on suoritettu. Käytä '\\+' oikein ja '\\-' väärin palautteelle.</li></ul>"
       }
     },
     {
-      "label":"Overall Feedback",
-      "fields":[
+      "label": "Yleispalaute",
+      "fields": [
         {
-          "widgets":[
+          "widgets": [
             {
-              "label":"Default"
+              "label": "Oletus"
             }
           ],
-          "label":"Define custom feedback for any score range",
-          "description":"Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity":"range",
-          "field":{
-            "fields":[
+          "label": "Määritä palaute pistealueiden mukaan.",
+          "description": "Klikkaa \"Lisää alue\" painiketta lisätäksesi niin monta pistealuetta kuin tarvit. Esimerkiksi: 0-20% Huono tulos, 21-91% Kelpo tulos, 91-100% Mahtava tulos!",
+          "entity": "alue",
+          "field": {
+            "fields": [
               {
-                "label":"Score Range"
+                "label": "Pistealue"
               },
+              {},
               {
-                
-              },
-              {
-                "label":"Feedback for defined score range",
-                "placeholder":"Fill in the feedback"
+                "label": "Palaute määritellylle pistealueelle",
+                "placeholder": "Kirjoita palaute"
               }
             ]
           }
@@ -43,88 +41,92 @@
       ]
     },
     {
-      "label":"Text for \"Check\" button",
-      "default":"Check"
+      "label": "Painikkeen \"Tarkista\" nimi",
+      "default": "Tarkista"
     },
     {
-      "label":"Text for \"Retry\" button",
-      "default":"Yritä uudelleen"
+      "label": "Painikkeen \"Yritä uudelleen\" nimi",
+      "default": "Yritä uudelleen"
     },
     {
-      "label":"Text for \"Show Solution\" button",
-      "default":"Show solution"
+      "label": "Painikkeen \"Katso vastaus\" nimi",
+      "default": "Katso vastaus"
     },
     {
-      "label":"Numbered Drop zone label",
-      "default":"Drop Zone @index.",
-      "description":"Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "Pudotuskohteen numerointi",
+      "default": "Pudotuskohde @index.",
+      "description": "Esteettömyystoiminto. Ruudunlukija lukee pudotuskohteen järjestysnumeron. Käytettävissä muuttuja: @index"
     },
     {
-      "label":"Empty Drop Zone label",
-      "default":"Drop Zone @index is empty.",
-      "description":"Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Tyhjän pudotuskohteen numerointi",
+      "default": "Pudotuskohde @index on tyhjä.",
+      "description": "Esteettömyystoiminto. Ruudunlukija lukee tyhjän pudotuskohteen järjestysnumeron."
     },
     {
-      "label":"Contains Drop Zone label",
-      "default":"Drop Zone @index contains draggable @draggable.",
-      "description":"Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Pudotuskohde sisältää raahattavan",
+      "default": "Pudotuskohde @index sisältää raahattavan @draggable.",
+      "description": "Esteettömyystoiminto. Ruudunlukija lukee, että pudotuskohteessa on jo jokin raahattava."
     },
     {
-      "label":"Draggable elements label",
-      "default":"Draggable @text. @index of @count draggables.",
-      "description":"Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "Raahattavan elementin selite",
+      "default": "Raahattava @text. @index/@count raahattavista.",
+      "description": "Esteettömyystoiminto. Ruuudunlukija lukee, että tämä on raahattava elementti. Käytettävissä muuttujat: @index, @count"
     },
     {
-      "label":"Label for show tip button",
-      "default":"Show tip",
-      "description":"Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "label": "Vihjepainikkeen teksti",
+      "default": "Näytä vihje",
+      "description": "Esteettömyystoiminto. Ruudunlukija lukee tämän ennen vihjeen lukemista."
     },
     {
-      "label":"Readspeaker text for correct answer",
-      "default":"Correct!"
+      "label": "Ruudunlukijan teksti oikealle vastaukselle",
+      "default": "Oikein!"
     },
     {
-      "label":"Readspeaker text for incorrect answer",
-      "default":"Incorrect!"
+      "label": "Ruudunlukijan teksti väärälle vastaukselle",
+      "default": "Väärin!"
     },
     {
-      "label":"Confirmation dialog title that user wants to reset a droppable",
-      "default":"Reset drop"
+      "label": "Varmistusdialogi kun käyttäjä haluaa palauttaa pudotuksen",
+      "default": "Palauta pudotus"
     },
     {
-      "label":"Confirmation dialog description that user wants to reset a droppable",
-      "default":"Are you sure you want to reset this drop zone?"
+      "label": "Selite varmistusdialogille kun käyttäjä haluaa palauttaa pudotuksen",
+      "default": "Haluatko varmasti palauttaa pudotuskohteen?"
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default":"Draggable is grabbed."
+      "label": "Ruudunlukijan teksti raahauksen aloittamiselle",
+      "default": "Raahattavasta on otettu kiinni."
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default":"Cancelled dragging."
+      "label": "Ruudunlukijan teksti raahauksen keskeyttämiselle",
+      "default": "Raahaus keskeytetty."
     },
     {
-      "label":"Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default":"Correct answer:"
+      "label": "Ruudunlukijan teksti ilmaisemaan mikä oli oikea vastaus",
+      "default": "Oikea vastaus:"
     },
     {
-      "label":"Header for panel containing feedback for correct/incorrect answers",
-      "default":"Feedback"
+      "label": "Oikeiden ja väärien vastauksien palautteen sisältävän paneelin otsikko",
+      "default": "Palaute"
     },
     {
-      "label":"Behavioural settings.",
-      "description":"These options will let you control how the task behaves.",
-      "fields":[
+      "label": "Yleisasetukset",
+      "description": "Näillä valinnoilla voit ohjailla tehtävän toimintoja.",
+      "fields": [
         {
-          "label":"Enable \"Retry\""
+          "label": "Salli painike \"Yritä uudelleen\""
         },
         {
-          "label":"Enable \"Show Solution\" button"
+          "label": "Salli painike \"Katso vastaus\""
         },
         {
-          "label":"Instant feedback"
+          "label": "Pikapalaute"
         }
       ]
+    },
+    {
+      "label": "Textual representation of the score bar for those using a readspeaker",
+      "default": "You got :num out of :total points"
     }
   ]
 }

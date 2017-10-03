@@ -82,6 +82,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       behaviour: {
         enableRetry: true,
         enableSolutionsButton: true,
+        enableCheckButton: true,
         instantFeedback: false
       },
       showSolution : "Show solution",
@@ -407,9 +408,17 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         self.hideButton('check-answer');
       }
 
+      if (!self.params.behaviour.enableCheckButton) {
+        self.hideButton('check-answer');
+      }
+
       // Focus top of the task for natural navigation
       self.$introduction.parent().focus();
     }, !self.params.behaviour.instantFeedback);
+
+    if (!self.params.behaviour.enableCheckButton) {
+      self.hideButton('check-answer');
+    }
 
     //Show Solution button
     self.addButton('show-solution', self.params.showSolution, function () {
@@ -440,7 +449,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       if (self.params.behaviour.instantFeedback) {
         self.enableAllDropzonesAndDraggables();
       } else {
-        self.showButton('check-answer');
+        if (self.params.behaviour.enableCheckButton) {
+          self.showButton('check-answer');
+        }
         self.enableDraggables();
       }
       self.hideAllSolutions();

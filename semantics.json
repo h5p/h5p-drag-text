@@ -254,7 +254,7 @@
         "importance": "low",
         "default": true,
         "optional": true
-      },      
+      },
       {
         "label": "Instant feedback",
         "importance": "low",

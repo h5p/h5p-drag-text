@@ -120,6 +120,9 @@
           "label": "\"Lösung zeigen\"-Button anzeigen"
         },
         {
+          "label": "Enable \"Check\" button"
+        },
+        {
           "label": "Instant feedback"
         }
       ]

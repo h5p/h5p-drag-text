@@ -852,7 +852,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
 
     var draggable = new Draggable(answer, $draggable, self.draggables.length);
-    draggable.on('addedToZone', function (event) {
+    draggable.on('addedToZone', function () {
       self.triggerXAPI('interacted');
     });
 

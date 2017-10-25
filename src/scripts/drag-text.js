@@ -363,9 +363,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       // Adds a class that floats the draggables to the right.
       self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
       // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
-      self.$wordContainer.detach().prependTo(self.$taskContainer);
+      self.$wordContainer.detach().appendTo(self.$taskContainer);
       // Set margin so the wordContainer does not expand when there are no more draggables left.
-      self.$wordContainer.css({'margin-right': self.widestDraggable});
+      // Set timeout to allow $wordContainer to reattach so the correct $draggables width can be calculated
+      setTimeout(() => {
+        self.$wordContainer.css({'margin-right': self.$draggables.width()});
+      }, 10);
       // Set all draggables to be blocks
       self.draggables.forEach(function (draggable) {
         draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
@@ -748,8 +751,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       });
 
     self.shuffleAndAddDraggables(self.$draggables);
-    self.$wordContainer.prependTo(self.$taskContainer);
     self.$draggables.appendTo(self.$taskContainer);
+    self.$wordContainer.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
   };

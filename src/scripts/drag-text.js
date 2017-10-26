@@ -96,7 +96,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       resetDropDescription: "Are you sure you want to reset this drop zone?",
       grabbed: "Draggable is grabbed.",
       cancelledDragging: "Cancelled dragging.",
-      correctAnswer: "Correct answer:"
+      correctAnswer: "Correct answer:",
+      scoreBarLabel: 'You got :num out of :total points'
     }, params);
 
     this.contentData = contentData;
@@ -658,7 +659,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.trigger('resize');
 
     // Set feedback score
-    this.setFeedback(scoreText, score, maxScore);
+    this.setFeedback(scoreText, score, maxScore, this.params.scoreBarLabel);
 
     return score === maxScore;
   };
@@ -851,7 +852,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
 
     var draggable = new Draggable(answer, $draggable, self.draggables.length);
-    draggable.on('addedToZone', function (event) {
+    draggable.on('addedToZone', function () {
       self.triggerXAPI('interacted');
     });
 

@@ -17,7 +17,7 @@ var curry =function(fn) {
       return function f2() {
         var args2 = Array.prototype.slice.call(arguments, 0);
         return f1.apply(null, args.concat(args2));
-      }
+      };
     }
   };
 };

@@ -1,4 +1,4 @@
-H5P.TextDraggable = (function ($, EventDispatcher) {
+H5P.TextDraggable = (function ($) {
   //CSS Draggable feedback:
   var DRAGGABLE_DROPPED = 'h5p-drag-dropped';
   /**
@@ -226,6 +226,6 @@ H5P.TextDraggable = (function ($, EventDispatcher) {
   };
 
   return Draggable;
-})(H5P.jQuery, H5P.EventDispatcher);
+})(H5P.jQuery);
 
 export default H5P.TextDraggable;

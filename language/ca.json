@@ -120,6 +120,9 @@
           "label": "Activa el botó \"Mostrar solució\""
         },
         {
+          "label": "Enable \"Check\" button"
+        },
+        {
           "label": "Instant feedback"
         }
       ]

@@ -120,6 +120,9 @@
           "label": "Aktiver \"Fasit\" knapp"
         },
         {
+          "label": "Enable \"Check\" button"
+        },
+        {
           "label": "Instant feedback"
         }
       ]

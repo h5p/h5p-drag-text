@@ -120,6 +120,9 @@
           "label": "Activer le bouton \"Voir la solution\""
         },
         {
+          "label": "Enable \"Check\" button"
+        },
+        {
           "label": "Correction instantanée"
         }
       ]

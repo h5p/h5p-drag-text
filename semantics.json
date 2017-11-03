@@ -247,6 +247,15 @@
         "default": true
       },
       {
+        "name": "enableCheckButton",
+        "type": "boolean",
+        "label": "Enable \"Check\" button",
+        "widget": "none",
+        "importance": "low",
+        "default": true,
+        "optional": true
+      },
+      {
         "label": "Instant feedback",
         "importance": "low",
         "name": "instantFeedback",

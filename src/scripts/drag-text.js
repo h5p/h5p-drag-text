@@ -82,6 +82,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       behaviour: {
         enableRetry: true,
         enableSolutionsButton: true,
+        enableCheckButton: true,
         instantFeedback: false
       },
       showSolution : "Show solution",
@@ -391,29 +392,31 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.addButtons = function () {
     var self = this;
 
-    // Checking answer button
-    self.addButton('check-answer', self.params.checkAnswer, function () {
-      self.answered = true;
-      self.removeAllElementsFromDragControl();
+    if (self.params.behaviour.enableCheckButton) {
+      // Checking answer button
+      self.addButton('check-answer', self.params.checkAnswer, function () {
+        self.answered = true;
+        self.removeAllElementsFromDragControl();
 
-      if (!self.showEvaluation()) {
-        if (self.params.behaviour.enableRetry) {
-          self.showButton('try-again');
+        if (!self.showEvaluation()) {
+          if (self.params.behaviour.enableRetry) {
+            self.showButton('try-again');
+          }
+          if (self.params.behaviour.enableSolutionsButton) {
+            self.showButton('show-solution');
+          }
+          self.hideButton('check-answer');
+          self.disableDraggables();
+        } else {
+          self.hideButton('show-solution');
+          self.hideButton('try-again');
+          self.hideButton('check-answer');
         }
-        if (self.params.behaviour.enableSolutionsButton) {
-          self.showButton('show-solution');
-        }
-        self.hideButton('check-answer');
-        self.disableDraggables();
-      } else {
-        self.hideButton('show-solution');
-        self.hideButton('try-again');
-        self.hideButton('check-answer');
-      }
 
-      // Focus top of the task for natural navigation
-      self.$introduction.parent().focus();
-    }, !self.params.behaviour.instantFeedback);
+        // Focus top of the task for natural navigation
+        self.$introduction.parent().focus();
+      }, !self.params.behaviour.instantFeedback);
+    }
 
     //Show Solution button
     self.addButton('show-solution', self.params.showSolution, function () {

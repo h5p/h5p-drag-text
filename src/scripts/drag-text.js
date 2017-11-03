@@ -368,6 +368,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       // Set timeout to allow $wordContainer to reattach so the correct $draggables width can be calculated
       setTimeout(() => {
         self.$wordContainer.css({'margin-right': self.$draggables.width()});
+        self.trigger('resize');
       }, 10);
       // Set all draggables to be blocks
       self.draggables.forEach(function (draggable) {

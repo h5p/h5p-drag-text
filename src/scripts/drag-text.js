@@ -363,18 +363,17 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     if ((self.$inner.width() / parseFloat(self.$inner.css("font-size"), 10) > 43) && (self.widestDraggable <= (self.$inner.width() / 3))) {
       // Adds a class that floats the draggables to the right.
       self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
+
       // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
       self.$wordContainer.detach().appendTo(self.$taskContainer);
-      // Set margin so the wordContainer does not expand when there are no more draggables left.
-      // Set timeout to allow $wordContainer to reattach so the correct $draggables width can be calculated
-      setTimeout(() => {
-        self.$wordContainer.css({'margin-right': self.$draggables.width()});
-        self.trigger('resize');
-      }, 10);
+
       // Set all draggables to be blocks
       self.draggables.forEach(function (draggable) {
         draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
       });
+
+      // Set margin so the wordContainer does not expand when there are no more draggables left.
+      self.$wordContainer.css({'margin-right': self.$draggables.width()});
     } else {
       // Remove the specific wide screen settings.
       self.$wordContainer.css({'margin-right': 0});
@@ -796,7 +795,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         'margin': 0
       }).html(draggable.getAnswerText())
         .appendTo($draggableElement.parent());
-      var width = $tmp.width();
+      var width = $tmp.outerWidth();
 
       widestDragagble = width > widestDragagble ? width : widestDragagble;
 
@@ -817,7 +816,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     }
     this.widestDraggable = widestDragagble;
     this.widest = widest;
-
     //Adjust all droppable to widest size.
     this.droppables.forEach(function (droppable) {
       droppable.getDropzone().width(self.widest);

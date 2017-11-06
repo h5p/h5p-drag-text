@@ -72,7 +72,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     Question.call(this, 'drag-text');
 
     // Set default behavior.
-    this.params = $.extend({}, {
+    this.params = $.extend(true, {
       taskDescription: "Set in adjectives in the following sentence",
       textField: "This is a *nice*, *flexible* content type, which allows you to highlight all the *wonderful* words in this *exciting* sentence.\n" +
         "This is another line of *fantastic* text.",

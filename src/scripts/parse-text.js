@@ -25,32 +25,31 @@ const parseText = text => text.split(/(\*.*?\*)/).filter(str => str.length > 0);
  * @returns {Solution}
  */
 const lex = solutionText => {
+
   let tip = solutionText.match(/(:([^\\*]+))/g);
   let correctFeedback = solutionText.match(/(\\\+([^\\*:]+))/g);
   let incorrectFeedback = solutionText.match(/(\\\-([^\\*:]+))/g);
 
   // Strip the tokens
-  let text = Util.cleanCharacter('*', solutionText)
-    .replace(tip, '')
-    .replace(correctFeedback, '')
-    .replace(incorrectFeedback, '');
-
-  text = text.replace(/\s+$/, ''); // remove trailing spaces and tabs
-
-
+  let text = Util.cleanCharacter('*', solutionText);
 
   if (tip) {
+    text = text.replace(tip, '');
     tip = tip[0].replace(':','');
     tip = tip.replace(/\s+$/, '');
   }
   if (correctFeedback) {
+    text = text.replace(correctFeedback, '');
     correctFeedback = correctFeedback[0].replace('\\+','');
     correctFeedback = correctFeedback.replace(/\s+$/, '');
   }
   if (incorrectFeedback) {
+    text = text.replace(incorrectFeedback, '');
     incorrectFeedback = incorrectFeedback[0].replace('\\-','');
     incorrectFeedback = incorrectFeedback.replace(/\s+$/, '');
   }
+
+  text = text.replace(/\s+$/, ''); // remove trailing spaces and tabs
 
   return { tip, correctFeedback, incorrectFeedback, text };
 };

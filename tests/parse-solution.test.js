@@ -2,6 +2,26 @@ import test from 'ava';
 
 import { lex } from '../src/scripts/parse-text';
 
+test('Parser should allow null', t => {
+  const solution = lex('*Lorem null*');
+  t.deepEqual(solution, {
+    correctFeedback: null,
+    incorrectFeedback: null,
+    text: "Lorem null",
+    tip: null
+  });
+});
+
+test('Parser should allow undefined', t => {
+  const solution = lex('*Lorem undefined*');
+  t.deepEqual(solution, {
+    correctFeedback: null,
+    incorrectFeedback: null,
+    text: "Lorem undefined",
+    tip: null
+  });
+});
+
 test('Parser should recognize a tip', t => {
   const solution = lex('*Lorem ipsum :tip*');
   t.deepEqual(solution, {

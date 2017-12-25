@@ -1,39 +1,39 @@
 {
   "semantics": [
     {
-      "label": "Task description",
-      "description": "Describe how the user should solve the task.",
-      "default": "Drag the words into the correct boxes"
+      "label": "任務描述",
+      "description": "請描述使用者如何進行此任務.",
+      "default": "請將答案拖曳至正確的作答框中"
     },
     {
-      "label": "Text",
-      "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
+      "label": "文字",
+      "placeholder": "*奧斯陸* 是挪威的首都, *斯德哥爾摩* 是瑞典的首都, *哥本哈根* 是丹麥的首都.所有的城市都位於 *斯堪地那維亞:歐洲的北部* 半島.",
       "description": "",
       "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>"
+        "description": "<ul><li>請在填空單字前後註記星號(*).</li><li>若需新增文字提示時請使用冒號(:)表示.</li><li>每一個作答框中只有一組正確答案.</li><li>您可添加任務完成時的即時回饋. 正確回饋使用 '\\+' ,錯誤回饋使用 '\\-' .</li></ul>"
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "整體回饋",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Default"
+              "label": "預設"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "定義任意分數範圍的回饋",
+          "description": "點擊＂新增範圍＂功能鈕以添加您所需要的範圍. 例如: 0-20% 低分, 21-91% 平均得分, 91-100% 高分!",
+          "entity": "範圍",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "得分範圍"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "回饋定義的得分範圍",
+                "placeholder": "填寫回饋"
               }
             ]
           }
@@ -41,95 +41,95 @@
       ]
     },
     {
-      "label": "Text for \"Check\" button",
-      "default": "Check"
+      "label": "檢查功能鈕名稱",
+      "default": "檢查"
     },
     {
-      "label": "Text for \"Retry\" button",
-      "default": "Retry"
+      "label": "重試功能鈕名稱",
+      "default": "重試"
     },
     {
-      "label": "Text for \"Show Solution\" button",
-      "default": "Show solution"
+      "label": "查看解法功能鈕名稱",
+      "default": "查看解法"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "拖曳作答區編號名稱",
+      "default": "拖曳作答區 @index.",
+      "description": "輔助功能使用資訊，供閱讀器導讀各拖曳作答區索引名稱: @index"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "空的拖曳作答區顯示名稱",
+      "default": "拖曳作答區 @index 是空的.",
+      "description": "輔助功能使用資訊，供閱讀器導讀此拖曳作答區是空的"
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "包含拖曳元素的名稱",
+      "default": "拖曳作答區 @index 包含可拖曳的 @draggable.",
+      "description": "輔助功能使用資訊，供閱讀器導讀此拖曳作答區中包含可拖曳的元素名稱"
     },
     {
-      "label": "Draggable elements label",
-      "default": "Draggable @text. @index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "可拖曳的元素",
+      "default": "拖曳 @text. @count draggables 的 @index.",
+      "description": "輔助功能使用資訊，供閱讀器導讀此為一個可拖曳的元素。可用變數： @index, @count"
     },
     {
-      "label": "Label for show tip button",
-      "default": "Show tip",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "label": "顯示提示功能鈕名稱",
+      "default": "顯示提示",
+      "description": "輔助功能使用資訊，當顯示提示前供閱讀器導讀此段文字"
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct!"
+      "label": "閱讀器導讀文字-正確答案",
+      "default": "正確答案!"
     },
     {
-      "label": "Readspeaker text for incorrect answer",
-      "default": "Incorrect!"
+      "label": "閱讀器導讀文字-錯誤答案",
+      "default": "不正確!"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label": "當使用者想重置作答時顯示的對話視窗標題",
+      "default": "重置拖曳"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop zone?"
+      "label": "當使用者想重置作答時顯示的對話視窗內容",
+      "default": "您確定要重置目前的拖曳作答區域嗎?"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
+      "label": "閱讀器導讀文字-拖曳時",
+      "default": "正在拖曳."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label": "閱讀器導讀文字-拖曳取消",
+      "default": "取消拖曳."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Correct answer:"
+      "label": "閱讀器導讀文字-正確答案",
+      "default": "正確答案:"
     },
     {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
-      "default": "Feedback"
+      "label": "正確或錯誤回饋訊息之標題名稱",
+      "default": "回饋"
     },
     {
-      "label": "Behavioural settings.",
-      "description": "These options will let you control how the task behaves.",
+      "label": "行為設定.",
+      "description": "這些選項將可讓您控制任務的行為.",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "啟用＂重試＂功能"
         },
         {
-          "label": "Enable \"Show Solution\" button"
+          "label": "啟用＂查看解法＂功能鈕"
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "啟用 ＂檢查＂功能鈕"
         },
         {
-          "label": "Instant feedback"
+          "label": "即時回饋"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "閱讀器導讀文字-評分欄",
+      "default": "您得到了:num 分，總分 :total "
     }
   ]
 }

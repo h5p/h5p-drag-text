@@ -42,6 +42,18 @@ H5PUpgrades['H5P.DragText'] = (function ($) {
         }
 
         finished(null, parameters);
+      },
+      7: function (parameters, finished, extras) {
+        if (parameters) {
+          var title = (parameters.taskDescription || 'Drag the Words')
+            .replace(/<[^>]*>?/g, '');
+
+          extras = extras || {};
+          extras.metadata = extras.metadata || {};
+          extras.metadata.title = title;
+        }
+
+        finished(null, parameters, extras);
       }
     }
   };

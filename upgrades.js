@@ -44,13 +44,13 @@ H5PUpgrades['H5P.DragText'] = (function ($) {
         finished(null, parameters);
       },
       7: function (parameters, finished, extras) {
-        var title = parameters.taskDescription;
-        if (parameters) {
+        var title = (parameters) ? parameters.taskDescription : 'Drag the Words';
+        if (title) {
           title = title.replace(/<[^>]*>?/g, '');
         }
         extras = extras || {};
         extras.metadata = extras.metadata || {};
-        extras.metadata.title = title || 'Drag the Words';
+        extras.metadata.title = title;
 
         finished(null, parameters, extras);
       }

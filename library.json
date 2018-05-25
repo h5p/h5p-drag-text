@@ -2,8 +2,8 @@
   "title": "Drag Text",
   "description": "Drag and drop pieces of text to create complete sentences.",
   "majorVersion": 1,
-  "minorVersion": 6,
-  "patchVersion": 10,
+  "minorVersion": 7,
+  "patchVersion": 0,
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 6
@@ -44,7 +44,7 @@
     {
       "machineName": "H5P.Question",
       "majorVersion": 1,
-      "minorVersion": 3
+      "minorVersion": 4
     }
   ],
   "editorDependencies": [

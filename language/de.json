@@ -10,7 +10,8 @@
       "placeholder": "* Oslo * ist die Hauptstadt von Norwegen, * Stockholm * ist die Hauptstadt von Schweden und * Copenhagen * ist die Hauptstadt von Dänemark. Alle Städte befinden sich der * skandinavischen: nördliche Teil von Europa * Halbinsel.",
       "description": "",
       "important": {
-        "description": "<ul><li>Dementsprechende Wörter sind mit einem Sternchen (*) vor und hinter den richtigen Wort oder Satzteil hinzugefügt.</li> <li>Du kannst einen Tipp mit einem Doppelpunkt (:) vor der Spitze hinzufügen.</li> <li>Für jede leere Stelle gibt es nur ein richtiges Wort.</li> <li>Du kannst auch eine Rückmeldung hinzufügen, die angezeigt wird, wenn eine Aufgabe abgeschlossen ist. Verwende \"\\+\" für positive und \" \\-\" für negative Rückmeldungen.</li></ul>"
+        "description": "<ul><li>Dementsprechende Wörter sind mit einem Sternchen (*) vor und hinter den richtigen Wort oder Satzteil hinzugefügt.</li> <li>Du kannst einen Tipp mit einem Doppelpunkt (:) vor der Spitze hinzufügen.</li> <li>Für jede leere Stelle gibt es nur ein richtiges Wort.</li> <li>Du kannst auch eine Rückmeldung hinzufügen, die angezeigt wird, wenn eine Aufgabe abgeschlossen ist. Verwende \"\\+\" für positive und \" \\-\" für negative Rückmeldungen.</li></ul>",
+        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
       }
     },
     {

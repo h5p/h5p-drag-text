@@ -3,14 +3,15 @@
     {
       "label": "Consigne",
       "description": "La consigne indique ce que l'utilisateur doit faire.",
-      "default": "Glissez les étiquettes dans les bonnes cases."
+      "default": "Déplacez les textes dans les emplacements qui leur correspondent."
     },
     {
       "label": "Question",
       "placeholder": "Paris est la capitale de la *France*",
       "description": "",
       "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>"
+        "description": "<ul><li>Les textes déplaçables s'ajoutent avec un astérisque (*) devant et derrière chaque texte.</li><li>Vous pouvez ajouter un indice en plaçant 2 points (:) avant cet indice.</li><li>Il ne peut y avoir qu'un seul texte correct pour chaque espace à remplir.</li><li>Vous pouvez ajouter un feedback qui apparaîtra une fois l'exercice terminé. Utilisez '\\+' pour créer le feedback en cas de réponse correcte et '\\-' pour le feedback en cas de mauvaise réponse.</li></ul>",
+        "example": "Les contenus H5P peuvent être édités en utilisant un *navigateur:Quel type de programme utilisez vous pour consulter des sites Internet ?*. </br> Un contenu H5P est *interactif\\+Correct ! \\-Incorrect, Recommencez !*"
       }
     },
     {
@@ -22,18 +23,18 @@
               "label": "Par défaut"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "Définissez le feedback pour chaque intervalle de scores",
+          "description": "Cliquez sur le bouton \"Ajouter Intervalle\" pour ajouter autant d'intervalles que vous le souhaitez. Exemple: 0-20% Mauvais score, 21-91% Score moyen, 91-100% Score excellent !",
+          "entity": "intervalle",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Intervalle de score"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Feedback pour un intervalle de score défini",
+                "placeholder": "Remplir le feedback"
               }
             ]
           }
@@ -53,60 +54,60 @@
       "default": "Voir la solution"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "Etiquette de la zone de dépôt numérotée",
+      "default": "Zone de dépôt @index.",
+      "description": "Etiquette utilisée pour l'accessibilité quand la synthèse vocale annonce le numéro de la zone de dépôt. Variable disponible : @index"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Etiquette zone de dépôt vide",
+      "default": "La zone de dépôt @index est vide.",
+      "description": "Etiquette utilisée pour l'accessibilité quand la syntèse vocale annonce que la zone de dépôt est vide"
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Etiquette pour la zone de dépôt contient",
+      "default": "La zone de dépôt @index contient un élément déplaçable @draggable.",
+      "description": "Etiquette utilisée pour l'accessibilité quand la syntèse vocale annonce que la zone de dépôt contient un élément déplaçable"
     },
     {
-      "label": "Draggable elements label",
-      "default": "Draggable @text. @index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "Etiquette pour les éléments à déplacer",
+      "default": "Elément déplaçable @text. @index sur @count éléments déplaçables.",
+      "description": "Etiquette utilisée pour l'accessibilité quand la syntèse vocale annonce que c'est un élément déplaçable. Variables disponibles : @index, @count"
     },
     {
-      "label": "Label for show tip button",
+      "label": "Etiquette pour le bouton d'indice",
       "default": "Montrer l'indice",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "description": "Etiquette utilisée pour l'accessibilité quand la syntèse vocale annonce l'indice"
     },
     {
       "label": "Texte exprimé par la synthèse vocale en cas de réponse correcte",
-      "default": "Correct!"
+      "default": "Correct !"
     },
     {
       "label": "Texte exprimé par la synthèse vocale en cas de réponse incorrecte",
-      "default": "Incorrect!"
+      "default": "Incorrect !"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label": "Intitulé de dialogue pour confirmer que l'utilisateur souhaite reparamétrer l'élément déplaçable",
+      "default": "Reparamétrer le déplacement"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop?"
+      "label": "Description du dialogue de confirmation pour reparamétrer un élément déplaçable",
+      "default": "Etes-vous certain de vouloir reparamétrer cet élément déplaçable ?"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
+      "label": "Etiquette utilisée pour l'accessibilité quand la synthèse vocale annonce que le déplacement d'un élément est initié",
+      "default": "L'élément déplaçable est saisi."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label": "Etiquette utilisée pour l'accessibilité quand la synthèse vocale annonce que le déplacement de l'élément est annulé",
+      "default": "Annuler le déplacement."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
+      "label": "Etiquette utilisée pour l'accessibilité quand la bonne réponse est annoncée par la synthèse vocale",
       "default": "Réponse correcte :"
     },
     {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
+      "label": "Intitulé de l'espace contenant des feedbacks pour des réponses correctes/incorrectes",
       "default": "Commentaire de retour"
     },
     {
@@ -120,7 +121,7 @@
           "label": "Activer le bouton \"Voir la solution\""
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "Activer le bouton \"Vérifier\""
         },
         {
           "label": "Correction instantanée"
@@ -128,8 +129,8 @@
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "Représentation textuelle du panneau du score pour les utilisateurs des outils de la vocalisation (comme ReadSpeaker)",
+      "default": "Vous avez obtenu :num sur un total de :points"
     }
   ]
 }

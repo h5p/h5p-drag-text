@@ -15,7 +15,7 @@
       }
     },
     {
-      "label": "Hintergrunddeckkraft für bewegliche Elemente",
+      "label": "Allgemeine Rückmeldung",
       "fields": [
         {
           "widgets": [
@@ -23,18 +23,18 @@
               "label": "Vorgabe"
             }
           ],
-          "label": "Benutzerdefinierte Rückmeldung für jeden Punkte-Bereich definieren",
-          "description": "Klicke auf \"Bereich hinzufügen\", um so viele Bereiche zu erstellen, wie du benötigst. Beispiel: 0-20 % Schlechte Punktzahl, 21-91 % Durchschnittliche Punktzahl, 91-100 % Sehr gute Punktzahl!",
+          "label": "Lege Rückmeldungen für einzelne Punktebereiche fest",
+          "description": "Klicke auf den \"Bereich hinzufügen\"-Button, um so viele Bereiche hinzuzufügen, wie du brauchst. Beispiel: 0-20% Schlechte Punktzahl, 21-91% Durchschnittliche Punktzahl, 91-100% Großartige Punktzahl!",
           "entity": "Bereich",
           "field": {
             "fields": [
               {
-                "label": "Punkte-Bereich"
+                "label": "Punktebereich"
               },
               {},
               {
-                "label": "Rückmeldung für den definierten Punktebereich",
-                "placeholder": "Fülle die Rückmeldung aus"
+                "label": "Rückmeldung für festgelegte Punktebereiche",
+                "placeholder": "Trage die Rückmeldung ein"
               }
             ]
           }
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "label": "Beschriftung für den \"Überprüfen\"-Knopf",
+      "label": "Beschriftung für den \"Überprüfen\"-Button",
       "default": "Überprüfen"
     },
     {
@@ -54,29 +54,29 @@
       "default": "Lösung anzeigen"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop-Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "Beschriftung: Nummer des Ablagefelds",
+      "default": "Ablagefeld @index.",
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest die Nummer des Ablagefeldes vor. Verfügbare Variable: @index"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop-Zone @index ist leer.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Beschriftung: Leeres Ablagefeld",
+      "default": "Ablagefeld @index ist leer.",
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass das Ablagefeld leer ist."
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop-Zone @index enthält ziehbare @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Beschriftung: Ablagefeld enthält",
+      "default": "Ablagefeld @index enthält ziehbare @draggable.",
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass das Ablagefeld ein ziehbares Element enthält."
     },
     {
-      "label": "Draggable elements label",
+      "label": "Beschriftung: Ziehbare Elements",
       "default": "Draggable @text. @index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass es sich um ein ziehbares Element handelt. Verfügbare Variablen: @index, @count"
     },
     {
-      "label": "Beschriftung für Senden-Schaltfäche",
+      "label": "Beschriftung: Tipp anzeigen",
       "default": "Tipp anzeigen",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest dies vor, bevor er einen Hinweis gibt."
     },
     {
       "label": "\"Readspeaker\"-Text für eine richtige Antwort",
@@ -87,27 +87,27 @@
       "default": "Falsch!"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label": "Titel für den Bestätigungsdialog, in dem die Lernenden das Zurücksetzen bestätigen",
+      "default": "Ablagefelder zurücksetzen"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Sind Sie sicher, dass Sie alle Optionen zurücksetzen möchten?"
+      "label": "Beschreibung für den Bestätigungsdialog",
+      "default": "Bist du sicher, dass su alle Optionen zurücksetzen möchtest?"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
+      "label": "Beschriftung für Barrierefreiheit: Ziehen-Modus hat begonnen",
+      "default": "Ziehbares Element wurde aufgenommen."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label": "Beschriftung für Barrierefreiheit: Ziehen-Modus abgebrochen",
+      "default": "Ziehen abgebrochen."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
+      "label": "Beschriftung für Barrierefreiheit: Korrekte Antwort",
       "default": "Korrekte Antwort:"
     },
     {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
+      "label": "Kopfzeile für den Abschnitt, der die Rückmeldungen für richtige/falsche Antworten enthält",
       "default": "Rückmeldung"
     },
     {
@@ -121,16 +121,16 @@
           "label": "\"Lösung zeigen\"-Button anzeigen"
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "\"Überprüfen\"-Button anzeigen"
         },
         {
-          "label": "Instant feedback"
+          "label": "Sofortige Rückmeldung"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "Textliche Repräsentation der Punkteleiste für diejenigen, die Readspeaker benutzen",
+      "default": "Du hast :num von :total Punkten erreicht."
     }
   ]
 }

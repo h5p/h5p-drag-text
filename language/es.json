@@ -2,20 +2,20 @@
   "semantics": [
     {
       "label": "Descripción de la tarea",
-      "description": "Describe how the user should solve the task.",
-      "default": "Drag the words into the correct boxes"
+      "description": "Describe cómo el usuario debería resolver la tarea.",
+      "default": "Arrastre las palabras a los cuadros correctos"
     },
     {
       "label": "Texto",
-      "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
+      "placeholder": "*Oslo* es la capital de Noruega, *Estocolmo* es la capital de Suecia y *Copenhague* es la capital de Dinamarca. Todas las ciudades están ubicadas en la península *Escandinava:Parte norte de Europa*.",
       "description": "",
       "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
-        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+        "description": "<ul><li>Las palabras desplegables se agregan con un asterisco (*) al frente y detrás de la palabra / frase correcta.</li><li>Puede agregar una sugerencia textual, usando dos puntos (:) en frente de la punta.</li><li>Por cada punto vacío solo hay una palabra correcta.</li><li>Puede agregar comentarios que se mostrarán cuando se complete una tarea. Utilizar '\\+' para las correctas '\\-' para comentarios incorrectos.</li></ul>",
+        "ejemplo": "El contenido de H5P se puede editar utilizando un navegador *:¿Qué tipo de programa es Chrome?*. </br> El contenido de H5P es *interactivo\\+Correcto! \\-Incorrecto, prueba de nuevo!*"
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "Comentarios generales",
       "fields": [
         {
           "widgets": [
@@ -23,18 +23,18 @@
               "label": "Predeterminado"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "Definir comentarios personalizados para cualquier rango de puntuación",
+          "description": "Haga clic en el botón \"Agregar rango\" para agregar tantos rangos como necesite. Ejemplo: 0-20% puntaje malo, 21-91% puntaje promedio, 91-100% puntaje excelente!",
+          "entity": "rango",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Rango de puntuación"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Comentarios para el rango de puntuación definido",
+                "placeholder": "Complete los comentarios"
               }
             ]
           }
@@ -42,95 +42,95 @@
       ]
     },
     {
-      "label": "Text for \"Check\" button",
-      "default": "Check"
+      "label": "Texto para el botón \"Verificar\"",
+      "default": "Verificar"
     },
     {
-      "label": "Texto para el botón de \"Reintentar\"",
+      "label": "Texto para el botón  \"Reintentar\"",
       "default": "Reintentar"
     },
     {
-      "label": "Text for \"Show Solution\" button",
+      "label": "Texto para el botón \"Mostrar solución\"",
       "default": "Mostrar solución"
     },
     {
-      "label": "Numbered Drop zone label",
+      "label": "Etiqueta de zona de caída numerada",
       "default": "Drop Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "description": "Etiqueta utilizada para accesibilidad, donde el hablante leerá el índice de una zona de colocación. Variable disponible: @index"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Etiqueta Empty Drop Zone",
+      "default": "Drop Zone @index está vacío.",
+      "description": "Etiqueta utilizada para la accesibilidad, donde el hablante de lectura leerá que la zona de colocación está vacía"
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Contiene la etiqueta Drop Zone",
+      "default": "Drop Zone @index contiene @draggable que se puede arrastrar.",
+      "description": "Etiqueta utilizada para la accesibilidad, donde el altavoz de lectura leerá que la zona de colocación contiene un elemento que se puede arrastrar"
     },
     {
-      "label": "Draggable elements label",
-      "default": "Draggable @text. @index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "Etiqueta de elementos arrastrables",
+      "default": "Arrastrable @text. @index de @count arrastrable.",
+      "description": "Etiqueta utilizada para la accesibilidad, donde el altavoz de lectura lee que se trata de un elemento que se puede arrastrar. Variable disponible: @index, @count"
     },
     {
-      "label": "Label for show tip button",
-      "default": "Show tip",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "label": "Etiqueta para mostrar el botón de sugerencia",
+      "default": "Mostrar sugerencia",
+      "description": "Etiqueta utilizada para accesibilidad, donde el parlante de lectura la lee antes de leer la punta"
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct!"
+      "label": "Texto del hablante para una respuesta correcta",
+      "default": "Correcto!"
     },
     {
-      "label": "Readspeaker text for incorrect answer",
-      "default": "Incorrect!"
+      "label": "Texto del asistente de lectura para una respuesta incorrecta",
+      "default": "Incorrecto!"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label": "Título del diálogo de confirmación que el usuario quiere restablecer una acción",
+      "default": "Restablecer"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop zone?"
+      "label": "Descripción del diálogo de confirmación que el usuario quiere restablecer una acción",
+      "default": "¿Seguro que quieres restablecer esta zona de colocación?"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
+      "label": "Etiqueta utilizada para accesibilidad, donde el altavoz de lectura indica que se inició el arrastre",
+      "default": "El arrastre fue realizado."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label": "Etiqueta utilizada para accesibilidad, donde el altavoz de lectura indica que el arrastre está cancelado",
+      "default": "Arrastre cancelado."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Correct answer:"
+      "label": "Etiqueta utilizada para accesibilidad, donde el hablante de lectura indica que un texto es la respuesta correcta",
+      "default": "Respuesta correcta:"
     },
     {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
-      "default": "Feedback"
+      "label": "Encabezado para el panel que contiene comentarios para respuestas correctas / incorrectas",
+      "default": "Retroalimentación"
     },
     {
-      "label": "Behavioural settings.",
-      "description": "These options will let you control how the task behaves.",
+      "label": "Configuraciones de comportamiento.",
+      "description": "Estas opciones te permitirán controlar cómo se comporta la tarea.",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "Habilite \"Reintentar\""
         },
         {
-          "label": "Enable \"Show Solution\" button"
+          "label": "Habilite el botón \"Mostrar solución\""
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "Habilite el botón \"Comprobar\""
         },
         {
-          "label": "Instant feedback"
+          "label": "Retroalimentacion instantanea"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "Representación textual de la barra de puntaje para aquellos que usan un revisor",
+      "default": "Tienes :num out of :puntos en total"
     }
   ]
 }

@@ -18,9 +18,7 @@ H5PPresave['H5P.DragText'] = function (content, finished) {
 
   presave.validateScore(score);
 
-  if (finished) {
-    finished({maxScore: score});
-  }
+  finished({maxScore: score});
 
   /**
    * Check if required parameters is present

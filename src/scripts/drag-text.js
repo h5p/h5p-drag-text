@@ -69,6 +69,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   function DragText(params, contentId, contentData) {
     this.$ = $(this);
     this.contentId = contentId;
+    this.contentData = contentData;
     Question.call(this, 'drag-text');
 
     // Set default behavior.
@@ -1184,7 +1185,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @returns {string} title
    */
   DragText.prototype.getTitle = function () {
-    return H5P.createTitle(this.params.taskDescription);
+    return H5P.createTitle((this.contentData && this.contentData.metadata && this.contentData.metadata.title) ? this.contentData.metadata.title : 'Drag the Words');
   };
 
   /**

@@ -69,6 +69,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   function DragText(params, contentId, contentData) {
     this.$ = $(this);
     this.contentId = contentId;
+    this.contentData = contentData;
     Question.call(this, 'drag-text');
 
     // Set default behavior.
@@ -108,6 +109,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // Keeps track of if Question has been answered
     this.answered = false;
+    this.instantFeedbackEvaluationFilled = false;
 
     // Convert line breaks to HTML
     this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
@@ -1095,8 +1097,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       }
 
       // Shows evaluation text
-      self.showEvaluation();
+      self.showEvaluation(!self.instantFeedbackEvaluationFilled);
+      self.instantFeedbackEvaluationFilled = true;
     } else {
+      self.instantFeedbackEvaluationFilled = false;
       //Hides "retry" and "show solution" buttons.
       self.hideButton('try-again');
       self.hideButton('show-solution');
@@ -1181,7 +1185,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @returns {string} title
    */
   DragText.prototype.getTitle = function () {
-    return H5P.createTitle(this.params.taskDescription);
+    return H5P.createTitle((this.contentData && this.contentData.metadata && this.contentData.metadata.title) ? this.contentData.metadata.title : 'Drag the Words');
   };
 
   /**
@@ -1246,6 +1250,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var self = this;
     // Reset task answer
     self.answered = false;
+    self.instantFeedbackEvaluationFilled = false;
     //Reset draggables parameters and position
     self.resetDraggables();
     //Hides solution text and re-enable draggables

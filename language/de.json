@@ -2,8 +2,8 @@
   "semantics": [
     {
       "label": "Aufgabenbeschreibung",
-      "description": "Beschreibe, wie der Nutzer die Aufgabe lösen kann.",
-      "default": "Ziehen Sie die Wörter in die richtigen Felder!"
+      "description": "Beschreibung darüber, wie der Benutzer die Aufgabe lösen sollte.",
+      "default": "Ziehe die Wörter in die richtigen Felder!"
     },
     {
       "label": "Text",
@@ -64,14 +64,14 @@
       "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass das Ablagefeld leer ist."
     },
     {
-      "label": "Beschriftung: Ablagefeld enthält",
-      "default": "Ablagefeld @index enthält ziehbare @draggable.",
-      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass das Ablagefeld ein ziehbares Element enthält."
+      "label": "Beschriftung: Ablagefeld enthält ziehbaren Text",
+      "default": "Ablagefeld @index enthält ziehbaren Text @draggable.",
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass das Ablagefeld ziehbaren Text enthält."
     },
     {
-      "label": "Beschriftung: Ziehbare Elemente",
-      "default": "Draggable @text. @index of @count draggables.",
-      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass es sich um ein ziehbares Element handelt. Verfügbare Variablen: @index, @count"
+      "label": "Beschriftung: Ziehbarer Text",
+      "default": "Ziehbarer Text: @text. @index von @count ziehbaren Texten.",
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass es sich um ziehbaren Text handelt. Verfügbare Variablen: @index, @count"
     },
     {
       "label": "Beschriftung: Tipp anzeigen",
@@ -87,16 +87,16 @@
       "default": "Falsch!"
     },
     {
-      "label": "Titel für den Bestätigungsdialog, in dem die Lernenden das Zurücksetzen bestätigen",
+      "label": "Titel des Bestätigungsdialogs, wenn die Lernenden ziehbaren Text zurücksetzen möchten",
       "default": "Ablagefelder zurücksetzen"
     },
     {
-      "label": "Beschreibung für den Bestätigungsdialog, wenn die Lernenden ziehbaren Text zurücksetzen möchten",
-      "default": "Bist du sicher, dass du alle Optionen zurücksetzen möchtest?"
+      "label": "Text des Bestätigungsdialogs, wenn die Lernenden ziehbaren Text zurücksetzen möchten",
+      "default": "Bist du sicher, dass du dieses Ablagefeld zurücksetzen möchtest?"
     },
     {
       "label": "Die Beschriftung wird für Barrierefreiheit genutzt. Ziehen-Modus hat begonnen",
-      "default": "Ziehbares Element wurde aufgenommen."
+      "default": "Ziehbarer Text wurde aufgenommen."
     },
     {
       "label": "Die Beschriftung wird für Barrierefreiheit genutzt. Ziehen-Modus abgebrochen",
@@ -107,7 +107,7 @@
       "default": "Korrekte Antwort:"
     },
     {
-      "label": "Kopfzeile für den Abschnitt, der die Rückmeldungen für richtige/falsche Antworten enthält",
+      "label": "Überschrift für den Abschnitt, der die Rückmeldungen für richtige/falsche Antworten enthält",
       "default": "Rückmeldung"
     },
     {

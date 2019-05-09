@@ -1,40 +1,40 @@
 {
   "semantics": [
     {
-      "label": "Task description",
-      "description": "Describe how the user should solve the task.",
-      "default": "Drag the words into the correct boxes"
+      "label": "Описание задачи",
+      "description": "Опишите, как пользователь должен решить задачу.",
+      "default": "Перетащите слова в правильные поля"
     },
     {
-      "label": "Text",
+      "label": "Текст",
       "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
       "description": "",
       "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
-        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+        "description": "<ul><li>Пропущенные слова добавляются со звездочкой (*) спереди и сзади правильного слова/фразы.</li><li>Вы можете добавить текстовую подсказку, используя двоеточие (:) перед подсказкой.</li><li>Для каждого пустого места есть только одно правильное слово.</li><li>Вы можете добавить отзыв, который будет отображаться после завершения задачи. Используйте '\\+' для правильного и '\\-' для неправильного отзыва.</li></ul>",
+        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Верно! \\-Неверно, попробуйте еще раз!*"
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "Общий отзыв",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Default"
+              "label": "По умолчанию"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "label": "Определите произвольный отзыв для любого диапазона оценок",
+          "description": "Нажмите на кнопку \"Добавить диапазон\" чтобы добавить столько диапазонов, сколько вам нужно. Например: 0-20% Плохая оценка, 21-91% Средняя оценка, 91-100% Отличная оценка!",
           "entity": "range",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Диапазон баллов"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Обратная связь для определенного диапазона оценок",
+                "placeholder": "Заполните отзыв"
               }
             ]
           }
@@ -42,95 +42,95 @@
       ]
     },
     {
-      "label": "Text for \"Check\" button",
-      "default": "Check"
+      "label": "Текст для кнопки \"Проверить\"",
+      "default": "Проверить"
     },
     {
-      "label": "Text for \"Retry\" button",
-      "default": "Retry"
+      "label": "Текст для кнопки \"Повторить\"",
+      "default": "Повторить"
     },
     {
-      "label": "Text for \"Show Solution\" button",
-      "default": "Show solution"
+      "label": "Текст для кнопки \"Показать решение\"",
+      "default": "Показать решение"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "Пронумерованная надпись области размещения",
+      "default": "Область размещения @index.",
+      "description": "Надпись, используемая для доступности, где озвучка текста прочтет индекс области рамещения. Доступная переменная: @index"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Надпись пустой области размещения",
+      "default": "Область размещения @index пустая.",
+      "description": "Надпись, используемая для доступности, где озвучка текста прочтет что область рамещения пустая."
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Надпись содержащей области размещения",
+      "default": "Область размещения @index содержит перетаскиваемый @draggable.",
+      "description": "Надпись, используемая для доступности, где озвучка текста прочтет что область размещения содержит перетаскиваемый элемент"
     },
     {
-      "label": "Draggable elements label",
-      "default": "Draggable @text. @index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "Надпись перетаскиваемых элементов",
+      "default": "Перетаскиваемый @text. @index из @count перетаскиваемых.",
+      "description": "Надпись, используемая для доступности, где озвучка текста прочтет что это перетаскиваемый элемент. Доступные переменные: @index, @count"
     },
     {
-      "label": "Label for show tip button",
-      "default": "Show tip",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "label": "Надпись для кнопки показа подсказки",
+      "default": "Показать подсказку",
+      "description": "Надпись, используемая для доступности, где озвучка текста прочтет это до прочтения подсказки"
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct!"
+      "label": "Озвучка текста для правильного ответа",
+      "default": "Верно!"
     },
     {
-      "label": "Readspeaker text for incorrect answer",
-      "default": "Incorrect!"
+      "label": "Озвучка текста для неправильного ответа",
+      "default": "Неверно!"
     },
     {
       "label": "Confirmation dialog title that user wants to reset a droppable",
       "default": "Reset drop"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop zone?"
+      "label": "Заголовок диалогового окна подтверждения, когда пользователь хочет сбросить размещение элемента",
+      "default": "Вы действительно хотите сбросить эту область размещения?"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
+      "label": "Надпись, используемая для доступности, где озвучка текста укажет, что перетаскивание начато",
+      "default": "Перетаскиваемый элемент захвачен."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label": "Надпись, используемая для доступности, где озвучка текста укажет, что перетаскивание отменено",
+      "default": "Перетаскивание отменено."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Correct answer:"
+      "label": "Надпись, используемая для доступности, где озвучка текста укажет, что получен правильный ответ",
+      "default": "Правильный ответ:"
     },
     {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
-      "default": "Feedback"
+      "label": "Заголовок панели, содержащей обратную связь для правильных/неправильных ответов",
+      "default": "Обратная связь"
     },
     {
-      "label": "Behavioural settings.",
-      "description": "These options will let you control how the task behaves.",
+      "label": "Настройки поведения.",
+      "description": "Эти параметры позволят вам контролировать поведение задачи.",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "Включить кнопку \"Повторить\""
         },
         {
-          "label": "Enable \"Show Solution\" button"
+          "label": "Вклчюить кнопку \"Показать решение\""
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "Включить кнопку \"Проверить\""
         },
         {
-          "label": "Instant feedback"
+          "label": "Мгновенная обратная связь"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "Текстовое представление оценки для тех, кто использует озвучку текста",
+      "default": "Вы получили :num из :total баллов"
     }
   ]
 }

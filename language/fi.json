@@ -23,7 +23,7 @@
             }
           ],
           "label":"Määritä palaute pistealueiden mukaan.",
-          "description":"Klikkaa "Lisää alue" painiketta lisätäksesi niin monta pistealuetta kuin tarvit. Esimerkiksi: 0-20% Huono tulos, 21-91% Kelpo tulos, 91-100% Mahtava tulos!",
+          "description":"Klikkaa Lisää alue -painiketta lisätäksesi niin monta pistealuetta kuin tarvit. Esimerkiksi: 0-20% Huono tulos, 21-91% Kelpo tulos, 91-100% Mahtava tulos!",
           "entity":"Pistealue",
           "field":{
             "fields":[

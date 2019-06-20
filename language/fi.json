@@ -10,7 +10,7 @@
       "placeholder":"*Oslo* on Norjan pääkaupunki, *Tukholma* on Ruotsin pääkaupunki. Kumpikin on maansa *pääkaupunki:hallinnollinen keskus* ",
       "description":"",
       "important":{
-        "description":"<ul><li>Raahattavat laatikot/sanat määritetään asteriskillä (*) sanan alussa ja lopussa.</li><li>Voit myös lisätä tekstivihjeen käyttämällä puolipistettä (:) syöttämällä puolipisteen vihjeen eteen esim.  *pääkaupunki:hallinnollinen keskus* </li><li>Jokaiselle tyhjälle kohdalle voi olla vain yksi vastausvaihtoehto.</li><li>Voit määrittää palautteen näkyväksi kun tehtävä on suoritettu. Käytät tällöin merkintätapaa '\+' oikeille ja merkintätapaa '\-' väärille vastauksille esimerkiksi H5P sisältö on *interactive\+Correct! \-Incorrect, yritä uudelleen!*.</li></ul>"
+        "description":"<ul><li>Raahattavat laatikot/sanat määritetään asteriskillä (*) sanan alussa ja lopussa.</li><li>Voit myös lisätä tekstivihjeen käyttämällä puolipistettä (:) syöttämällä puolipisteen vihjeen eteen esim.  *pääkaupunki:hallinnollinen keskus* </li><li>Jokaiselle tyhjälle kohdalle voi olla vain yksi vastausvaihtoehto.</li><li>Voit määrittää palautteen näkyväksi kun tehtävä on suoritettu. Käytät tällöin merkintätapaa '\\+' oikeille ja merkintätapaa '\\-' väärille vastauksille esimerkiksi H5P sisältö on *interactive\+Correct! \-Incorrect, yritä uudelleen!*.</li></ul>"
       }
     },
     {

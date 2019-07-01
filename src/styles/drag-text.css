@@ -178,10 +178,17 @@
 /* Show solution container */
 .h5p-drag-text .h5p-drag-show-solution-container {
   position: relative;
+  display: inline;
+}
+
+.h5p-drag-text .h5p-drag-show-solution-container.incorrect {
   color: #255c41;
   font-weight: bold;
-  display: inline;
-  padding-left: 0.5em;
+  border: 1px #255c41 dashed;
+  background-color: #d4f6e6;
+  padding: 0.15em;
+  border-radius: 0.25em;
+  margin-left: 0.5em;
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {

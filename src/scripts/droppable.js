@@ -61,7 +61,7 @@ H5P.TextDroppable = (function ($) {
     });
 
     self.$showSolution = $('<div/>', {
-      'class': `${SHOW_SOLUTION_CONTAINER}`
+      'class': SHOW_SOLUTION_CONTAINER
     }).appendTo(self.$dropzoneContainer).hide();
   }
 

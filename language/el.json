@@ -1,40 +1,40 @@
 {
   "semantics": [
     {
-      "label": "Task description",
-      "description": "Describe how the user should solve the task.",
-      "default": "Drag the words into the correct boxes"
+      "label": "Περιγραφή άσκησης",
+      "description": "Περιγράψτε τον τρόπο με τον οποίο ο χρήστης θα λύσει την άσκηση.",
+      "default": "Σύρετε τις λέξεις και αποθέστε τις στα κουτάκια"
     },
     {
-      "label": "Text",
-      "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
+      "label": "Κείμενο",
+      "placeholder": "Το *Όσλο* είναι η πρωτεύουσα της Νορβηγίας, η *Στοκχόλμη* είναι η πρωτεύουσα της Σουηδίας και η *Κοπεγχάγη* είναι η πρωτεύουσα της Δανίας. Όλες οι περιοχές βρίσκονται στη *Σκανδιναβική* χερσόνησο.",
       "description": "",
       "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
-        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+        "description": "<ul><li>Ορίστε τα συρόμενα στοιχεία - λέξεις χρησιμοποιώντας κάθε φορά έναν αστερίσκο (*) πριν και μετά τη λέξη.</li><li>Μπορείτε να ορίσετε επεξηγηματικό κείμενο προσθέτοντας μία άνω και κάτω τελεία (:) πριν την επεξήγηση.</li><liΓια κάθε κενό κουτάκι υπάρχει μόνο μια σωστή απάντηση.</li><li>Μπορείτε να προσθέσετε ανατροφοδότηση, η οποία θα εμφανίζεται μετά την ολοκλήρωση της άσκησης. Για ανατροφοδότηση σε σωστή απάντηση χρησιμοποιήστε '\\+'. για ανατροφοδότηση σε λάθος απάντηση χρησιμοποιήστε '\\-'.</li></ul>",
+        "example": "Μπορεί να γίνει επεξεργασία των αντικειμένων του e-me content με τη χρήση ενός *φυλλομετρητή: Τι είδους πρόγραμμα είναι ο Chrome;*.</br>Τα αντικείμενα του e-me content  είναι *διαδραστικά\\+Σωστό! \\-Λάθος, προσπάθησε ξανά!*"
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "Συνολική ανατροφοδότηση ",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Default"
+              "label": "Βασικό"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "Χαρακτηρισμός κάθε κλίμακας βαθμολογίας",
+          "description": "Κάντε κλικ στο κουμπί \"Προσθήκη κλίμακας\" για να προσθέσετε όσες  κλίμακες ή διαβαθμίσεις επιθυμείτε. Παράδειγμα: 0-20% Χαμηλή βαθμολογία, 21-91% Μέτρια βαθμολογία, 91-100% Εξαιρετική βαθμολογία!",
+          "entity": "κλιμακας",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Βαθμολογία"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Χαρακτηρισμός",
+                "placeholder": "Συμπληρώστε τον χαρακτηρισμό"
               }
             ]
           }
@@ -42,95 +42,95 @@
       ]
     },
     {
-      "label": "Text for \"Check\" button",
-      "default": "Check"
+      "label": "Ετικέτα κουμπιού ελέγχου απάντησης",
+      "default": "Έλεγχος"
     },
     {
-      "label": "Text for \"Retry\" button",
+      "label": "Ετικέτα κουμπιού νέας προσπάθειας",
       "default": "Επανάληψη"
     },
     {
-      "label": "Text for \"Show Solution\" button",
-      "default": "Show solution"
+      "label": "Ετικέτα κουμπιού εμφάνισης λύσης",
+      "default": "Λύση"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "Ετικέτα για περιοχή απόθεσης",
+      "default": "Κουτάκι @index.",
+      "description": "Η ετικέτα χρησιμοποιείται για λόγους προσβασιμότητας, ώστε η εφαρμογή ακουστικής υποβοήθησης να δηλώσει την εκάστοτε περιοχή απόθεσης. Διαθέσιμη μεταβλητή: @index"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Ετικέτα για κενή περιοχή απόθεσης",
+      "default": "Το κουτάκι @index είναι κενό.",
+      "description": "Η ετικέτα χρησιμοποιείται για λόγους προσβασιμότητας, ώστε να διαβαστεί από την εφαρμογή ακουστικής υποβοήθησης και να δηλώσει ότι η περιοχή απόθεσης είναι κενή"
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Ετικέτα περιεχομένου περιοχής απόθεσης",
+      "default": "Το κουτάκι @index περιέχει το συρόμενο στοιχείο - λέξη @draggable.",
+      "description": "Η ετικέτα χρησιμοποιείται για λόγους προσβασιμότητας, ώστε η εφαρμογή ακουστικής υποβοήθησης να δηλώσει ότι η περιοχή απόθεσης περιέχει ένα συρόμενο στοιχείο - λέξη"
     },
     {
-      "label": "Draggable elements label",
-      "default": "Draggable @text. @index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "Ετικέτα συρόμενων στοιχείων",
+      "default": "Συρόμενο @text. @index από @count συρόμενα στοιχεία - λέξεις.",
+      "description": "Η ετικέτα χρησιμοποιείται για λόγους προσβασιμότητας, ώστε η εφαρμογή ακουστικής υποβοήθησης να δηλώσει ότι πρόκειται για συρόμενο στοιχείο. Διαθέσιμες μεταβλητές: @index, @count"
     },
     {
-      "label": "Label for show tip button",
-      "default": "Show tip",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "label": "Ετικέτα κουμπιού εμφάνισης επεξηγηματικού κειμένου",
+      "default": "Επεξηγηματικό κείμενο",
+      "description": "Η ετικέτα χρησιμοποιείται για λόγους προσβασιμότητας, ώστε να διαβαστεί από την εφαρμογή ακουστικής υποβοήθησης πριν την ανάγνωση του επεξηγηματικού κειμένου"
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct!"
+      "label": "Ετικέτα σωστής απάντησης για υποστηρικτικές τεχνολογίες",
+      "default": "Σωστό!"
     },
     {
-      "label": "Readspeaker text for incorrect answer",
-      "default": "Incorrect!"
+      "label": "Ετικέτα λάθος απάντησης για υποστηρικτικές τεχνολογίες",
+      "default": "Λάθος!"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label": "Τίτλος παραθύρου επιβεβαίωσης: Επαναφορά απόθεσης",
+      "default": "Επαναφορά"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop zone?"
+      "label": "Κυρίως κείμενο παραθύρου επιβεβαίωσης: Επαναφορά απόθεσης",
+      "default": "Είσαι σίγουρος ότι θέλεις να αδειάσεις το \"κουτάκι\";"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
+      "label": "Η ετικέτα χρησιμοποιείται για λόγους προσβασιμότητας, ώστε η εφαρμογή ακουστικής υποβοήθησης να δηλώσει ότι το σύρσιμο του στοιχείου - λέξης έχει ξεκινήσει",
+      "default": "To συρόμενo στοιχείο - λέξη έχει επιλεγεί."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label": "Η ετικέτα χρησιμοποιείται για λόγους προσβασιμότητας, ώστε η εφαρμογή ακουστικής υποβοήθησης να δηλώσει ότι το σύρσιμο του στοιχείου - λέξης έχει ακυρωθεί",
+      "default": "Ακύρωση συρσίματος."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Correct answer:"
+      "label": "Η ετικέτα χρησιμοποιείται για λόγους προσβασιμότητας, ώστε η εφαρμογή ακουστικής υποβοήθησης να δηλώσει ότι το κείμενο αντιστοιχεί στη σωστή απάντηση",
+      "default": "Σωστή απάντηση:"
     },
     {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
-      "default": "Feedback"
+      "label": "Επικεφαλίδα πλαισίου ανατροφοδότησης για σωστές/ λάθος απαντήσεις",
+      "default": "Ανατροφοδότηση"
     },
     {
-      "label": "Behavioural settings.",
-      "description": "These options will let you control how the task behaves.",
+      "label": "Ρυθμίσεις άσκησης.",
+      "description": "Αυτές οι ρυθμίσεις σας επιτρέπουν να καθορίσετε τον τρόπο λειτουργίας της άσκησης.",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "Ενεργοποίηση κουμπιού \"Επανάληψη\""
         },
         {
-          "label": "Enable \"Show Solution\" button"
+          "label": "Ενεργοποίηση κουμπιού \"Λύση\""
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "Ενεργοποίηση κουμπιού \"Έλεγχος\""
         },
         {
-          "label": "Instant feedback"
+          "label": "Άμεση ανατροφοδότηση"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "Κειμενική απόδοση της μπάρας βαθμολογίας για όσους χρησιμοποιούν ακουστική υποβοήθηση",
+      "default": "Έχεις :num από :total βαθμούς"
     }
   ]
 }

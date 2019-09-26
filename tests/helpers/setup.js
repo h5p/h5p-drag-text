@@ -1,3 +1,4 @@
+import 'ava';
 require('browser-env')();
 const hooks = require('require-extension-hooks');
 

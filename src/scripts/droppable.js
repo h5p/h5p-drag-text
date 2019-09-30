@@ -39,9 +39,9 @@ H5P.TextDroppable = (function ($) {
 
     if (self.tip) {
       self.$tip = H5P.JoubelUI.createTip(self.tip, {
-        tipLabel: self.params.tipLabel
+        tipLabel: self.params.tipLabel,
+        tabcontrol: true
       });
-      self.$tip.attr('tabindex', '-1');
       self.$dropzoneContainer.append(self.$tip);
 
       // toggle tabindex on tip, based on dropzone focus

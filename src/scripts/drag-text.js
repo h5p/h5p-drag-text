@@ -146,24 +146,26 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     }, this);
     this.on('drop', this.removeControlsFromEmptyDropZones, this);
 
-    // on drag and drop, toggle aria-dropeffect between 'move', and 'none'
-    this.on('start', this.toggleDropEffect, this);
-    this.on('stop', this.toggleDropEffect, this);
-
     // toggle label for draggable
     this.on('start', event => {
-      const draggable = this.getDraggableByElement(event.data.element);
+      const element = event.data.element;
+      const draggable = this.getDraggableByElement(element);
+
+      // on drag and drop, toggle aria-dropeffect between 'move', and 'none'
+      this.toggleDropEffect();
+      element.setAttribute('aria-grabbed', 'true')
       this.setDraggableAriaLabel(draggable);
     });
 
     this.on('stop', event => {
-      const draggable = this.getDraggableByElement(event.data.element);
+      const element = event.data.element;
+      const draggable = this.getDraggableByElement(element);
+
+      // on drag and drop, toggle aria-dropeffect between 'move', and 'none'
+      this.toggleDropEffect();
+      element.setAttribute('aria-grabbed', 'false')
       this.setDraggableAriaLabel(draggable);
     });
-
-    // toggles grabbed on mouse
-    this.on('start', event => event.data.element.setAttribute('aria-grabbed', 'true'));
-    this.on('stop', event => event.data.element.setAttribute('aria-grabbed', 'false'));
 
     // on drop, remove all dragging
     this.on('drop', this.ariaDropControls.setAllToNone, this.ariaDropControls);
@@ -335,7 +337,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.initDragText = function () {
     this.$inner = $('<div/>', {
       'aria-describedby': this.introductionId,
-      'class': INNER_CONTAINER
+      'class': INNER_CONTAINER,
+      'role': 'application'
     });
 
     // Create task
@@ -887,7 +890,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
 
     var $dropzone = $('<div/>', {
-      'aria-dropeffect': "none",
+      'aria-dropeffect': 'none',
       'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + ' ' + this.params.empty.replace('@index', draggableIndex.toString()),
       'tabindex': '-1'
     }).appendTo($dropzoneContainer)
@@ -1015,7 +1018,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       .map(draggable => this.setDraggableAriaLabel(draggable))
       .map(draggable => this.addDraggableToControls(this.dragControls, draggable));
   };
-
 
   /**
    * Sets an aria label numbering the draggables

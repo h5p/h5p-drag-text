@@ -90,7 +90,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       dropZoneIndex: "Drop Zone @index.",
       empty: "Empty.",
       contains: "Drop Zone @index contains draggable @draggable.",
-      draggableIndex: "Draggable. @index of @count.",
+      draggableIndex: "@index of @count.",
       tipLabel: "Show tip",
       correctText: "Correct!",
       incorrectText: "Incorrect!",
@@ -839,10 +839,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     //Make the draggable
     var $draggable = $('<div/>', {
-      html: answer,
-      'role': 'button',
+      html: `<span>${answer}</span>`,
+      role: 'button',
       'aria-grabbed': 'false',
-      'tabindex': '-1'
+      tabindex: '-1'
     }).draggable({
       revert: function(isValidDrop) {
         if (!isValidDrop) {
@@ -859,7 +859,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         });
       },
       containment: self.$taskContainer
-    });
+    }).append($('<span>', {
+      'class': 'h5p-hidden-read'
+    }));
 
     var draggable = new Draggable(answer, $draggable, self.draggables.length);
     draggable.on('addedToZone', function () {
@@ -1027,21 +1029,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @return {H5P.TextDraggable}
    */
   DragText.prototype.setDraggableAriaLabel = function (draggable) {
-    let text = draggable.text;
-    if (draggable.isInsideDropZone()) {
-      var droppable = draggable.getInsideDropzone();
-      text = droppable.getDropzone().attr('aria-label');
-    }
-
-    const count = this.draggables.length;
-    const label = this.params.draggableIndex
-      .replace('@text', draggable.text)
+    draggable.updateAriaLabel(this.params.draggableIndex
       .replace('@index', (draggable.getIndex() + 1).toString())
-      .replace('@count', count.toString());
-
-    const grabbed = this.isGrabbed(draggable.getElement()) ? this.params.grabbed : '';
-
-    draggable.$draggable.attr('aria-label', `${label} ${grabbed}`);
+      .replace('@count', this.draggables.length.toString()));
 
     return draggable;
   };

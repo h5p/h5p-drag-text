@@ -8,6 +8,7 @@ import Controls from 'h5p-lib-controls/src/scripts/controls';
 import AriaDrag from 'h5p-lib-controls/src/scripts/aria/drag';
 import AriaDrop from 'h5p-lib-controls/src/scripts/aria/drop';
 import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
+import Mouse from 'h5p-lib-controls/src/scripts/ui/mouse';
 
 /**
  * @typedef {object} H5P.DragTextEvent
@@ -50,7 +51,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   var WORDS_CONTAINER = "h5p-drag-droppable-words";
   var DROPZONE_CONTAINER = "h5p-drag-dropzone-container";
   var DRAGGABLES_CONTAINER = "h5p-drag-draggables-container";
-
+  
   //Special Sub-containers:
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
@@ -125,9 +126,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     // Init keyboard navigation
     this.ariaDragControls = new AriaDrag();
     this.ariaDropControls = new AriaDrop();
-    this.dragControls = new Controls([new UIKeyboard(), this.ariaDragControls]);
+    this.dragControls = new Controls([new UIKeyboard(), new Mouse(), this.ariaDragControls]);
     this.dragControls.useNegativeTabIndex();
-    this.dropControls = new Controls([new UIKeyboard(), this.ariaDropControls]);
+    this.dropControls = new Controls([new UIKeyboard(), new Mouse(), this.ariaDropControls]);
     this.dropControls.useNegativeTabIndex();
 
     // return false to prevent select from happening when draggable is disabled
@@ -337,8 +338,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.initDragText = function () {
     this.$inner = $('<div/>', {
       'aria-describedby': this.introductionId,
-      'class': INNER_CONTAINER,
-      'role': 'application'
+      'class': INNER_CONTAINER
     });
 
     // Create task

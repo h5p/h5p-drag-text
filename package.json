@@ -39,6 +39,12 @@
     "webpack": "^2.2.1"
   },
   "ava": {
+    "babel": {
+      "presets": [
+        "@ava/stage-4",
+        "stage-3"
+      ]
+    },
     "require": [
       "babel-polyfill",
       "./tests/helpers/setup.js"

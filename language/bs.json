@@ -70,7 +70,7 @@
     },
     {
       "label": "Oznaka elemenata za prenošenje",
-      "default": "Prenosiv @text. @index od @count prenosivih riječi.",
+      "default": "@index od @count prenosivih riječi.",
       "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {

@@ -70,7 +70,7 @@
     },
     {
       "label": "Etiqueta para elementos arrastáveis",
-      "default": "@text arrastável. Elemento @index de @count.",
+      "default": "Elemento @index de @count.",
       "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê que este é um elemento arrastável. Variáveis disponíveis: @index, @count"
     },
     {

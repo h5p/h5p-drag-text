@@ -70,7 +70,7 @@
     },
     {
       "label": "Raahattavan elementin selite",
-      "default": "Raahattava @text. @index/@count raahattavista.",
+      "default": "@index/@count raahattavista.",
       "description": "Esteettömyystoiminto. Ruuudunlukija lukee, että tämä on raahattava elementti. Käytettävissä muuttujat: @index, @count"
     },
     {

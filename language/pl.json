@@ -70,7 +70,7 @@
     },
     {
       "label": "Etykieta elementu przeciągalnego",
-      "default": "Element @text. @index z @count elementów.",
+      "default": "@index z @count elementów.",
       "description": "Etykieta używana przez czytniki ekranu. Informuje użytkownika, że aktywny jest element przeciągalny. Możesz użyć zmiennych: @index, @count"
     },
     {

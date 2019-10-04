@@ -70,7 +70,7 @@
     },
     {
       "label": "Rótulo de elemento arrastável",
-      "default": "Arrastável @text. @index de @count arrastáveis.",
+      "default": "@index de @count arrastáveis.",
       "description": "Rótulo usado para acessibilidade, o leitor de tela lerá este texto se for um elemento arrastável. Variáveis disponíveis: @index, @count"
     },
     {

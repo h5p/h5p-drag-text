@@ -70,7 +70,7 @@
     },
     {
       "label": "Lohistatava elemendi silt",
-      "default": "Lohistatav element @text. @index / @count elemendist.",
+      "default": "@index / @count elemendist.",
       "description": "Puudega kasutajale mõeldud silt, millelt tekstiluger loeb, et see on lohistatav element. Kasutatav muutuja: @index, @count"
     },
     {

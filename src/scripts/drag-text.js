@@ -91,7 +91,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       dropZoneIndex: "Drop Zone @index.",
       empty: "Empty.",
       contains: "Drop Zone @index contains draggable @draggable.",
-      draggableIndex: "@index of @count.",
+      ariaDraggableIndex: "@index of @count.",
       tipLabel: "Show tip",
       correctText: "Correct!",
       incorrectText: "Incorrect!",
@@ -1029,7 +1029,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @return {H5P.TextDraggable}
    */
   DragText.prototype.setDraggableAriaLabel = function (draggable) {
-    draggable.updateAriaLabel(this.params.draggableIndex
+    draggable.updateAriaLabel(this.params.ariaDraggableIndex
       .replace('@index', (draggable.getIndex() + 1).toString())
       .replace('@count', this.draggables.length.toString()));
 

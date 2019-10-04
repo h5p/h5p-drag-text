@@ -70,7 +70,7 @@
     },
     {
       "label": "Beschriftung: Ziehbarer Text",
-      "default": "Ziehbarer Text: @text. @index von @count ziehbaren Texten.",
+      "default": "@index von @count ziehbaren Texten.",
       "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass es sich um ziehbaren Text handelt. Verfügbare Variablen: @index, @count"
     },
     {

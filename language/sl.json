@@ -70,7 +70,7 @@
     },
     {
       "label": "Besedilo elementa za premik",
-      "default": "Element za premik @text: @index od @count.",
+      "default": "Element za premik: @index od @count.",
       "description": "Besedilo, s katerim bralnik zaslona označi element za premikanje. Spremenljivki: @index, @count"
     },
     {

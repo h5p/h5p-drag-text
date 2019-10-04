@@ -70,7 +70,7 @@
     },
     {
       "label": "Nummerert merkelapp for element som kan dras",
-      "default": "Draggable @text. @index of @count draggables.",
+      "default": "@index of @count draggables.",
       "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {

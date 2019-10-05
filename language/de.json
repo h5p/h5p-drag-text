@@ -2,7 +2,7 @@
   "semantics": [
     {
       "label": "Aufgabenbeschreibung",
-      "description": "Beschreibung darüber, wie der Benutzer die Aufgabe lösen sollte.",
+      "description": "Beschreibung, wie die Lernenden die Aufgabe lösen sollten. Wird über dem Medium angezeigt.",
       "default": "Ziehe die Wörter in die richtigen Felder!"
     },
     {
@@ -15,12 +15,12 @@
       }
     },
     {
-      "label": "Allgemeine Rückmeldung",
+      "label": "Gesamtrückmeldung",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Voreinstellung"
+              "label": "Eingabemaske"
             }
           ],
           "label": "Lege Rückmeldungen für einzelne Punktebereiche fest",
@@ -33,7 +33,7 @@
               },
               {},
               {
-                "label": "Rückmeldung für festgelegte Punktebereiche",
+                "label": "Rückmeldung für jeweiligen Punktebereich",
                 "placeholder": "Trage die Rückmeldung ein"
               }
             ]
@@ -42,11 +42,11 @@
       ]
     },
     {
-      "label": "Beschriftung für den \"Überprüfen\"-Button",
+      "label": "Beschriftung des \"Überprüfen\"-Buttons",
       "default": "Überprüfen"
     },
     {
-      "label": "Beschriftung für den \"Wiederholen\"-Button",
+      "label": "Beschriftung des \"Wiederholen\"-Buttons",
       "default": "Wiederholen"
     },
     {
@@ -61,12 +61,12 @@
     {
       "label": "Beschriftung: Leeres Ablagefeld",
       "default": "Ablagefeld @index ist leer.",
-      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass das Ablagefeld leer ist."
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Vorlesewerkzeug liest vor, dass das Ablagefeld leer ist."
     },
     {
       "label": "Beschriftung: Ablagefeld enthält ziehbaren Text",
       "default": "Ablagefeld @index enthält ziehbaren Text @draggable.",
-      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass das Ablagefeld ziehbaren Text enthält."
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Vorlesewerkzeug liest vor, dass das Ablagefeld ziehbaren Text enthält."
     },
     {
       "label": "Beschriftung: Ziehbarer Text",
@@ -76,7 +76,7 @@
     {
       "label": "Beschriftung: Tipp anzeigen",
       "default": "Tipp anzeigen",
-      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest dies vor, bevor der Tip vorgelesen wird."
+      "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Vorlesewerkzeug liest dies vor, bevor der Tip vorgelesen wird."
     },
     {
       "label": "Readspeaker-Text für eine richtige Antwort",

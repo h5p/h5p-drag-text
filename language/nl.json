@@ -70,7 +70,7 @@
     },
     {
       "label": "Label sleepbare elementen",
-      "default": "Sleepbare @text. @index van @count sleepbare elementen.",
+      "default": "@index van @count sleepbare elementen.",
       "description": "Label dat wordt gebruikt voor de toegankelijkheid, waarbij de readspeaker aangeeft dat dit een versleepbaar element is. Beschikbare variabelen: @index, @count"
     },
     {

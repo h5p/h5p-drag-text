@@ -70,7 +70,7 @@
     },
     {
       "label": "可拖曳的元素",
-      "default": "拖曳 @text. @count draggables 的 @index.",
+      "default": "@count draggables 的 @index.",
       "description": "輔助功能使用資訊，供閱讀器導讀此為一個可拖曳的元素。可用變數： @index, @count"
     },
     {

@@ -1,40 +1,40 @@
 {
   "semantics": [
     {
-      "label": "Task description",
-      "description": "Describe how the user should solve the task.",
-      "default": "Drag the words into the correct boxes"
+      "label": "Opis zadania",
+      "description": "Opisz sposób rozwiązania zadania.",
+      "default": "Przeciągnij słowa w odpowiednie miejsca"
     },
     {
-      "label": "Text",
-      "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
+      "label": "Treść",
+      "placeholder": "*Oslo* jest stolicą Norwegii, *Sztokholm* jest stolicą Szwecji, a *Kopenhaga* jest stolicą Danii. Wszystkie te miasta leżą w *Skandynawii:Północnej Europie*.",
       "description": "",
       "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
-        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+        "description": "<ul><li>Słowa, które należy przenieść, powinny być oznakowane gwiazdką (*) z obu stron i muszą pasować gramatycznie do zdania.</li><li>Możesz też dodać podpowiedź po dwukropku (:).</li><li>Do każdego pustego miejsca pasuje tylko jeden element przeciągalny.</li><li>Możesz dodać komentarz, który wyświetli się po ukończeniu zadania. Wpisz go po '\\+' (komentarz do odpowiedzi poprawnej) lub po '\\-' (komentarz do odpowiedzi błędnej).</li></ul>",
+        "example": "Zasoby H5P można tworzyć w *przeglądarce:Na przykład Google Chrome.*. </br> Zasoby H5P są *interaktywne\\+Dobrze! \\-Ależ nie, popraw odpowiedź!*"
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "Podsumowanie odpowiedzi",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Default"
+              "label": "Domyślne"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "Określ własne kryteria oceny dla wybranych zakresów poprawnych odpowiedzi",
+          "description": "Klikając przycisk \"Dodaj zakres\" możesz dodać tyle zakresów, ile potrzebujesz. Przykład: 0-20% Słaby wynik, 21-91% Przeciętny wynik, 91-100% Bardzo dobry wynik!",
+          "entity": "zakres",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Zakres"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Komunikat dla danego zakresu",
+                "placeholder": "Wprowadź komunikat"
               }
             ]
           }
@@ -42,95 +42,95 @@
       ]
     },
     {
-      "label": "Text for \"Check\" button",
-      "default": "Check"
+      "label": "Etykieta przycisku sprawdzania odpowiedzi",
+      "default": "Sprawdź"
     },
     {
-      "label": "Text for \"Retry\" button",
-      "default": "Retry"
+      "label": "Etykieta przycisku ponowienia próby odpowiedzi",
+      "default": "Powtórz"
     },
     {
-      "label": "Text for \"Show Solution\" button",
-      "default": "Show solution"
+      "label": "Etykieta przycisku pokazywania poprawnej odpowiedzi",
+      "default": "Pokaż odpowiedź"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "Etykieta numerowanego pola odpowiedzi",
+      "default": "Pole @index.",
+      "description": "Etykieta używana przez czytniki ekranu. Informuje użytkownika, które pole jest aktywne. Użyj zmiennej @index, aby wstawić numer pola."
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Etykieta pustego pola odpowiedzi",
+      "default": "Pole @index jest puste.",
+      "description": "Etykieta używana przez czytniki ekranu. Informuje użytkownika, że aktywne pole jest puste."
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Etykieta niepustego pola odpowiedzi",
+      "default": "Pole @index zawiera element @draggable.",
+      "description": "Etykieta używana przez czytniki ekranu. Informuje użytkownika, że aktywne pole zawiera już element @draggable."
     },
     {
-      "label": "Draggable elements label",
-      "default": "Draggable @text. @index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "Etykieta elementu przeciągalnego",
+      "default": "@index z @count elementów.",
+      "description": "Etykieta używana przez czytniki ekranu. Informuje użytkownika, że aktywny jest element przeciągalny. Możesz użyć zmiennych: @index, @count"
     },
     {
-      "label": "Label for show tip button",
-      "default": "Show tip",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "label": "Etykieta przycisku podpowiedzi",
+      "default": "Pokaż podpowiedź",
+      "description": "Etykieta używana przez czytniki ekranu. Informuje użytkownika, że zaraz zostanie przeczytana podpowiedź."
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct!"
+      "label": "Komunikat głosowy dla poprawnej odpowiedzi",
+      "default": "Dobrze!"
     },
     {
-      "label": "Readspeaker text for incorrect answer",
-      "default": "Incorrect!"
+      "label": "Komunikat głosowy dla błędnej odpowiedzi",
+      "default": "Źle!"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label": "Tytuł okienka z potwierdzeniem wyczyszczenia pola odpowiedzi",
+      "default": "Wyczyść pole"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop zone?"
+      "label": "Tekst okienka z potwierdzeniem wyczyszczenia pola odpowiedzi",
+      "default": "Czy na pewno wyczyścić to pole?"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
+      "label": "Etykieta używana przez czytniki ekranu. Informuje użytkownika, że element przeciągalny został podniesiony",
+      "default": "Element podniesiony."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label": "Etykieta używana przez czytniki ekranu. Informuje użytkownika, że przeciąganie zostało przerwane.",
+      "default": "Przeciąganie przerwane."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Correct answer:"
+      "label": "Etykieta używana przez czytniki ekranu. Informuje użytkownika, że jaka odpowiedź jest poprawna.",
+      "default": "Poprawna odpowiedź:"
     },
     {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
-      "default": "Feedback"
+      "label": "Nagłówek sekcji komentarzy do poprawnych i niepoprawnych odpowiedzi.",
+      "default": "Podsumowanie"
     },
     {
-      "label": "Behavioural settings.",
-      "description": "These options will let you control how the task behaves.",
+      "label": "Ustawienia zachowania",
+      "description": "Te opcje pozwalają określić, jak ma przebiegać zadanie.",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "Wyświetl przycisk \"Powtórz\""
         },
         {
-          "label": "Enable \"Show Solution\" button"
+          "label": "Wyświetl przycisk \"Pokaż odpowiedź\""
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "Wyświetl przycisk \"Sprawdź\""
         },
         {
-          "label": "Instant feedback"
+          "label": "Natychmiastowy komentarz"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "Tekstowy odpowiednik paska wyniku dla czytników ekranu",
+      "default": "Masz :num z :total punktów"
     }
   ]
 }

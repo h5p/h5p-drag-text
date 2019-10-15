@@ -70,7 +70,7 @@
     },
     {
       "label": "Etichetta per elementi trascinabili",
-      "default": "Draggable @text. @index of @count draggables.",
+      "default": "@index of @count draggables.",
       "description": "Etichetta usata per l'accessibilità, dove il lettore vocale legge che questo è un elemento trascinabile. Variabili disponibili: @index, @count"
     },
     {

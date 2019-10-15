@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/h5p/h5p-drag-text.git"
   },
-  "author": "Tom Arild Jakobsen <tom.arild.jakobsen@joubel.com>",
+  "author": "Joubel",
   "license": "MIT",
   "homepage": "https://github.com/h5p/h5p-drag-text",
   "devDependencies": {

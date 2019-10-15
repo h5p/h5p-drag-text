@@ -70,7 +70,7 @@
     },
     {
       "label": "Elementu arrastagarrien etiketa",
-      "default": "@text arrastagarria. @count etik @index garren arrastagarria.",
+      "default": "@count etik @index garren arrastagarria.",
       "description": "Erabilgarritasunerako etiketa, non testu irakurgailuak irakurriko du hori elementu arrastagarri bat dela. Erabiltzen dituen aldagaiak: @index, @count"
     },
     {

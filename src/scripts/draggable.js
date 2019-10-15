@@ -15,6 +15,7 @@ H5P.TextDraggable = (function ($) {
     self.text = text;
     self.insideDropzone = null;
     self.$draggable = $(draggable);
+    self.$ariaLabel = self.$draggable.find('.h5p-hidden-read');
     self.index = index;
     self.initialIndex = index;
 
@@ -129,6 +130,14 @@ H5P.TextDraggable = (function ($) {
    */
   Draggable.prototype.getDraggableElement = function () {
     return this.$draggable;
+  };
+
+  /**
+   * Update Draggables "aria label"
+   * @param {String} label [description]
+   */
+  Draggable.prototype.updateAriaLabel = function (label) {
+    this.$ariaLabel.html(label);
   };
 
   /**

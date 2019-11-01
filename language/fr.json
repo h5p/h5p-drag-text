@@ -51,7 +51,7 @@
     },
     {
       "label": "Texte pour le bouton \"Voir la correction\"",
-      "default": "Voir la solution"
+      "default": "Voir la correction"
     },
     {
       "label": "Etiquette de la zone de dépôt numérotée",
@@ -70,7 +70,7 @@
     },
     {
       "label": "Etiquette pour les éléments à déplacer",
-      "default": "Elément déplaçable @text. @index sur @count éléments déplaçables.",
+      "default": "@index sur @count éléments déplaçables.",
       "description": "Etiquette utilisée pour l'accessibilité quand la syntèse vocale annonce que c'est un élément déplaçable. Variables disponibles : @index, @count"
     },
     {

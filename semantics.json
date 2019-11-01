@@ -145,9 +145,9 @@
   {
     "label": "Draggable elements label",
     "importance": "low",
-    "name": "draggableIndex",
+    "name": "ariaDraggableIndex",
     "type": "text",
-    "default": "Draggable @text. @index of @count draggables.",
+    "default": "@index of @count draggables.",
     "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count",
     "common": true
   },

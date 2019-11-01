@@ -39,9 +39,9 @@ H5P.TextDroppable = (function ($) {
 
     if (self.tip) {
       self.$tip = H5P.JoubelUI.createTip(self.tip, {
-        tipLabel: self.params.tipLabel
+        tipLabel: self.params.tipLabel,
+        tabcontrol: true
       });
-      self.$tip.attr('tabindex', '-1');
       self.$dropzoneContainer.append(self.$tip);
 
       // toggle tabindex on tip, based on dropzone focus
@@ -79,14 +79,13 @@ H5P.TextDroppable = (function ($) {
    * Displays the solution next to the drop box if it is not correct.
    */
   Droppable.prototype.showSolution = function () {
-    if (!((this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text))) {
+    const correct = (this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text);
+    if (!correct) {
       this.$showSolution.html(this.text);
-      this.$showSolution.prepend(this.$incorrectText);
-    }
-    else {
-      this.$showSolution.prepend(this.$correctText);
     }
 
+    this.$showSolution.prepend(correct ? this.$correctText : this.$incorrectText);
+    this.$showSolution.toggleClass('incorrect', !correct);
     this.$showSolution.show();
   };
 

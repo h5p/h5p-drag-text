@@ -70,7 +70,7 @@
     },
     {
       "label": "ドラッグ要素のラベル",
-      "default": "ドラッグする @text 。@index / @ count ドラッグ",
+      "default": "@index / @ count ドラッグ",
       "description": "アクセシビリティのためのラベルで、音声読み上げソフトがこれがドラッグ可能な要素であることを読み上げる。利用可能な変数: @index, @count"
     },
     {

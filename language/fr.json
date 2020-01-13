@@ -15,6 +15,11 @@
       }
     },
     {
+      "label": "Distractors",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Enter extra solutions that are wrong as distractors. Use the same asterick (*) scheme as for the text."
+    },
+    {
       "label": "Opacité des étiquettes",
       "fields": [
         {

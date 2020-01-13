@@ -1120,8 +1120,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @returns {boolean} allFilled Returns true if all answers are answered
    */
   DragText.prototype.isAllAnswersFilled = function () {
-    return this.draggables.every(function(draggable){
-      return draggable.isInsideDropZone();
+    return this.droppables.every(function (droppable) {
+      return droppable.hasDraggable();
     });
   };
 

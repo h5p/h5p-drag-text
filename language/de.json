@@ -125,6 +125,10 @@
         },
         {
           "label": "Sofortige Rückmeldung"
+        },
+        {
+          "label": "Lösungen unterhalb des Inhalts",
+          "description": "Wenn gesetzt, werden Lösungstexte immer unterhalb des Inhalts angezeigt."
         }
       ]
     },

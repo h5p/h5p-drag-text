@@ -54,6 +54,14 @@ H5PUpgrades['H5P.DragText'] = (function ($) {
         }
 
         finished(null, parameters, extras);
+      },
+
+      9: function (parameters, finished, extras) {
+        if (parameters && parameters.behaviour) {
+          parameters.behaviour.noWideScreenLayout = false;
+        }
+
+        finished(null, parameters, extras);
       }
     }
   };

@@ -125,6 +125,10 @@
         },
         {
           "label": "Correction instantanée"
+        },
+        {
+          "label": "Solutions below content",
+          "description": "If set, will force solution texts to be displayed below the content."
         }
       ]
     },

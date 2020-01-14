@@ -15,6 +15,11 @@
       }
     },
     {
+      "label": "Distraktoren",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Gib zusätzlich falsche Lösungsoptionen an. Benutze dasselbe Sternchen-(*)-Schema wie für den Text."
+    },
+    {
       "label": "Gesamtrückmeldung",
       "fields": [
         {

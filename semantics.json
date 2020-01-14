@@ -74,6 +74,14 @@
     }
   },
   {
+    "label": "Distractors",
+    "importance": "high",
+    "name": "distractors",
+    "type": "text",
+    "placeholder": "*Reykjavík* *Helsinki*",
+    "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+  },
+  {
     "name": "overallFeedback",
     "type": "group",
     "label": "Overall Feedback",

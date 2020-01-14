@@ -26,6 +26,11 @@
       }
     },
     {
+      "label": "Distractors",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+    },
+    {
       "label": "Podsumowanie odpowiedzi",
       "fields": [
         {

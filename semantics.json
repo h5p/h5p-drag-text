@@ -40,6 +40,7 @@
     "importance": "high",
     "name": "distractors",
     "type": "text",
+    "optional": true,
     "placeholder": "*Reykjavík* *Helsinki*",
     "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
   },

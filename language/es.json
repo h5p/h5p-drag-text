@@ -55,17 +55,17 @@
     },
     {
       "label": "Etiqueta de zona de caída numerada",
-      "default": "Drop Zone @index.",
+      "default": "Zona de caída @index.",
       "description": "Etiqueta utilizada para accesibilidad, donde el hablante leerá el índice de una zona de colocación. Variable disponible: @index"
     },
     {
-      "label": "Etiqueta Empty Drop Zone",
-      "default": "Drop Zone @index está vacío.",
+      "label": "Etiqueta Zona de Caída Vacía",
+      "default": "Zona de Caída @index está vacío.",
       "description": "Etiqueta utilizada para la accesibilidad, donde el hablante de lectura leerá que la zona de colocación está vacía"
     },
     {
-      "label": "Contiene la etiqueta Drop Zone",
-      "default": "Drop Zone @index contiene @draggable que se puede arrastrar.",
+      "label": "Contiene la etiqueta Zona de Caída",
+      "default": "Zona de Caída @index contiene @draggable que se puede arrastrar.",
       "description": "Etiqueta utilizada para la accesibilidad, donde el altavoz de lectura leerá que la zona de colocación contiene un elemento que se puede arrastrar"
     },
     {

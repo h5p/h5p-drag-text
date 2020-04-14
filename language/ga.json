@@ -100,7 +100,7 @@
     },
     {
       "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default":  
+      "default":  "Cancelled dragging."
     },
     {
       "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",

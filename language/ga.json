@@ -1,13 +1,13 @@
 {
   "semantics": [
     {
-      "label": "Opis zadatka",
-      "description": "Opiši kako korisnik treba riješiti problem.",
-      "default": "Prevucite riječi u odgovarajuća polja"
+      "label": "Task description",
+      "description": "Describe how the user should solve the task.",
+      "default": "Drag the words into the correct boxes"
     },
     {
-      "label": "Tekst",
-      "placeholder": "*Oslo* je glavni grad Norveške, *Stockholm* je glavni grad Švedske i *Copenhagen* je glavni grad Danske. Svi gradovi su locirani u *Skandinavija:Sjeverni dio Europe* poluotok.",
+      "label": "Text",
+      "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
       "description": "",
       "important": {
         "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
@@ -15,26 +15,26 @@
       }
     },
     {
-      "label": "Pozadinska zamućenost za elemente za uzimanje",
+      "label": "Overall Feedback",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Standard"
+              "label": "Default"
             }
           ],
-          "label": "Definiraj standardnu pvratnu informaciju za bilo koji raspon rezultata",
-          "description": "Klikni na dugme \"Dodaj raspon\" i dodaj raspon rezultata koliko je potrebno. Primjer: 0-20% Loše, 21-91% Dobro, 91-100% Odlično!",
-          "entity": "raspon",
+          "label": "Define custom feedback for any score range",
+          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity": "range",
           "field": {
             "fields": [
               {
-                "label": "Raspon rezultata"
+                "label": "Score Range"
               },
               {},
               {
-                "label": "Povratna informacija za definirani raspon rezultata",
-                "placeholder": "Popuni povratnu informaciju"
+                "label": "Feedback for defined score range",
+                "placeholder": "Fill in the feedback"
               }
             ]
           }
@@ -42,95 +42,95 @@
       ]
     },
     {
-      "label": "Oznaka za dugme \"Provjeri\"",
-      "default": "Provjeri"
+      "label": "Text for \"Seiceáil\" button",
+      "default": "Seiceáil"
     },
     {
-      "label": "Oznaka za dugme \"Ponovi\"",
-      "default": "Ponovi"
+      "label": "Text for \"Triail arís\" button",
+      "default": "Triail arís"
     },
     {
-      "label": "Tekst za dugme \"Prikaži rješenje\"",
-      "default": "Prikaži rješenje"
+      "label": "Text for \"Taispeáin an freagra\" button",
+      "default": "Taispeáin an freagra"
     },
     {
-      "label": "Oznaka numerisane zone za ostavljanje riječi",
-      "default": "Zona ispustanja @index.",
+      "label": "Numbered Drop zone label",
+      "default": "Drop Zone @index.",
       "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
     },
     {
-      "label": "Oznaka prazne zone ostavljanja riječi",
-      "default": "Zona ispustanja @index je prazna.",
+      "label": "Empty Drop Zone label",
+      "default": "Drop Zone @index is empty.",
       "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
     },
     {
-      "label": "Sadrži oznaku Zone za ostavljanje riječi",
-      "default": "Zona ispustanja @index sadrži @draggable.",
+      "label": "Contains Drop Zone label",
+      "default": "Drop Zone @index contains draggable @draggable.",
       "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
     },
     {
-      "label": "Oznaka elemenata za prenošenje",
-      "default": "@index od @count prenosivih riječi.",
+      "label": "Draggable elements label",
+      "default": "@index as @count draggables.",
       "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {
-      "label": "Oznaka za dugme prikaži tip",
-      "default": "Prikaži tip",
+      "label": "Label for show tip button",
+      "default": "Taispeáin nod",
       "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
-      "label": "\"Readspeaker\" tekst za tačan odgovor",
-      "default": "Tačno!!"
+      "label": "Readspeaker text for correct answer",
+      "default": "Ceart!"
     },
     {
-      "label": "\"Readspeaker\" tekst za netačan odgovor",
-      "default": "Netačno!!"
+      "label": "Readspeaker text for incorrect answer",
+      "default": "Mícheart!"
     },
     {
       "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Resetiraj ostavljanje"
+      "default": "Athshocraigh é"
     },
     {
       "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Jeste li sigurno da želite resetirati zonu ispustanja?"
+      "default": "Ar mhaith leat an rud seo a athshocrú?"
     },
     {
       "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Riječ za prenošenje je uzeta."
+      "default": "Draggable is grabbed."
     },
     {
       "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Otkaži prenošenje."
+      "default":  "Cancelled dragging."
     },
     {
       "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Tačan odgovor:"
+      "default": "Freagra ceart:"
     },
     {
       "label": "Header for panel containing feedback for correct/incorrect answers",
-      "default": "Povratna informacija"
+      "default": "Aiseolas"
     },
     {
-      "label": "Podešavanje ponašanja.",
-      "description": "Diese Optionen kontrollieren, wie sich die Aufgabe verhält.",
+      "label": "Behavioural settings.",
+      "description": "These options will let you control how the task behaves.",
       "fields": [
         {
-          "label": "Omogući dugme \"Ponovi\""
+          "label": "Enable \"Triail arís\""
         },
         {
-          "label": "Omogući \"Prikaži rješenje\""
+          "label": "Enable \"Taispeáin an freagra\" button"
         },
         {
-          "label": "Omogući dugme \"Provjeri\""
+          "label": "Enable \"Seiceáil\" button"
         },
         {
-          "label": "Instantna povratna informacija"
+          "label": "Instant feedback"
         }
       ]
     },
     {
       "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "Postigli ste :num od :total bodova"
+      "default": "Scóráil tú :num as :total phointe"
     }
   ]
 }

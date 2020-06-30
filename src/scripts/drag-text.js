@@ -51,7 +51,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   var WORDS_CONTAINER = "h5p-drag-droppable-words";
   var DROPZONE_CONTAINER = "h5p-drag-dropzone-container";
   var DRAGGABLES_CONTAINER = "h5p-drag-draggables-container";
-  
+
   //Special Sub-containers:
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
   var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
@@ -1247,6 +1247,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     self.resetDraggables();
     //Hides solution text and re-enable draggables
     self.hideEvaluation();
+    self.hideExplanation();
     self.enableAllDropzonesAndDraggables();
     //Show and hide buttons
     self.hideButton('try-again');

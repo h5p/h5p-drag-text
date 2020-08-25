@@ -131,6 +131,18 @@
     {
       "label": "閱讀器導讀文字-評分欄",
       "default": "您得到了:num 分，總分 :total "
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

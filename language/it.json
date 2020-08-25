@@ -131,6 +131,18 @@
     {
       "label": "Rappresentazione testuale sulla barra del punteggio per chi usa un lettore vocale",
       "default": "Il tuo punteggio è :num su :total"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

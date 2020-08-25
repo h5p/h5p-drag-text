@@ -131,6 +131,18 @@
     {
       "label": "Représentation textuelle du panneau du score pour les utilisateurs des outils de la vocalisation (comme ReadSpeaker)",
       "default": "Vous avez obtenu :num sur un total de :points"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

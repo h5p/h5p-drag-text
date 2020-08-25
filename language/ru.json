@@ -131,6 +131,18 @@
     {
       "label": "Текстовое представление оценки для тех, кто использует озвучку текста",
       "default": "Вы получили :num из :total баллов"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

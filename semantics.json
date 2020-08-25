@@ -274,5 +274,29 @@
     "default": "You got :num out of :total points",
     "importance": "low",
     "common": true
+  },
+  {
+    "name": "a11yCheck",
+    "type": "text",
+    "label": "Assistive technology label for \"Check\" button",
+    "default": "Check",
+    "importance": "low",
+    "common": true
+  },
+  {
+    "name": "a11yShowSolution",
+    "type": "text",
+    "label": "Assistive technology label for \"Show Solution\" button",
+    "default": "Show Solution",
+    "importance": "low",
+    "common": true
+  },
+  {
+    "name": "a11yRetry",
+    "type": "text",
+    "label": "Assistive technology label for \"Retry\" button",
+    "default": "Retry",
+    "importance": "low",
+    "common": true
   }
 ]

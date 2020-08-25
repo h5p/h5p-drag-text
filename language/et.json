@@ -131,6 +131,18 @@
     {
       "label": "Tekstilugeri kasutajale määratud punktisumma rea tekstiline esitus",
       "default": "Sa said :num punkti :total punktist"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

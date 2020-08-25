@@ -100,7 +100,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       grabbed: "Draggable is grabbed.",
       cancelledDragging: "Cancelled dragging.",
       correctAnswer: "Correct answer:",
-      scoreBarLabel: 'You got :num out of :total points'
+      scoreBarLabel: 'You got :num out of :total points',
+      a11yCheck: 'Check',
+      a11yShowSolution: 'Show Solution',
+      a11yRetry: 'Retry',
     }, params);
 
     this.contentData = contentData;
@@ -419,7 +422,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
         // Focus top of the task for natural navigation
         self.$introduction.parent().focus();
-      }, !self.params.behaviour.instantFeedback);
+      }, !self.params.behaviour.instantFeedback, {
+        'aria-label': self.params.a11yCheck,
+      });
     }
 
     //Show Solution button
@@ -431,7 +436,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.disableDraggables();
       self.removeAllDroppablesFromControls();
       self.hideButton('show-solution');
-    }, self.initShowShowSolutionButton || false);
+    }, self.initShowShowSolutionButton || false, {
+      'aria-label': self.params.a11yShowSolution,
+    });
 
     //Retry button
     self.addButton('try-again', self.params.tryAgain, function () {
@@ -458,7 +465,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       self.stopWatch.reset();
       self.read(self.params.taskDescription);
-    }, self.initShowTryAgainButton || false);
+    }, self.initShowTryAgainButton || false, {
+      'aria-label': self.params.a11yRetry,
+    });
   };
 
   /**

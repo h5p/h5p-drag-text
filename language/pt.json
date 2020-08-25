@@ -131,6 +131,18 @@
     {
       "label": "Representação textual da barra de resultados para utilizadores de leitor de ecrã",
       "default": "Conseguiu :num pontos de um total de :total"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

@@ -131,6 +131,18 @@
     {
       "label": "Tekstuele weergave van de score balk voor de gebruikers van de readspeaker",
       "default": "Je hebt :num out van :total points"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

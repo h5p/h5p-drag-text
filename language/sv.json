@@ -131,6 +131,18 @@
     {
       "label": "Text som kan användas av skärmläsare för att läsa upp användarens poäng",
       "default": "Du fick :num av :total poäng"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

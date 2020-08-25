@@ -131,6 +131,18 @@
     {
       "label": "Anzeigetext der Punkteleiste für Readspeaker (Barrierefreiheit)",
       "default": "Du hast :num von :total Punkten erreicht."
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

@@ -131,6 +131,18 @@
     {
       "label": "Текстово представяне на оценката за тези, които използват екранен четец",
       "default": "Вие имате :num от общо :total точки"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

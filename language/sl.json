@@ -131,6 +131,18 @@
     {
       "label": "Besedilo, ki ga bralnik zaslona uporabi za izražanje napredka",
       "default": "Napredek :num od :total"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

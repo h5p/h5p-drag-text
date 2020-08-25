@@ -131,6 +131,18 @@
     {
       "label": "Representação textual da barra de pontuação para aqueles que usam leitores de tela",
       "default": "Você marcou :num de :total pontos"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check"
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show Solution"
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry"
     }
   ]
 }

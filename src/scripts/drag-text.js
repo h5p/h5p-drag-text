@@ -1513,7 +1513,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
  *   },
  *   {
  *     type: 'answer',
- *     correct: 'interactive.'  
+ *     correct: 'interactive'  
+ *   },
+ *   {
+ *     type: 'text',
+ *     content: '.'
  *   }
  * ]
  * 

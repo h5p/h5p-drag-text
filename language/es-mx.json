@@ -133,15 +133,15 @@
       "default": "Tienes :num de :puntos en total"
     },
     {
-      "label": "Etiqueta de Tecnología asistiva para botón \"Check\" ",
+      "label": "Etiqueta de Tecnología asistiva para botón \"Revisar\" ",
       "default": "Revisar"
     },
     {
-      "label": "Etiqueta de Tecnología asistiva para botón \"Show Solution\" ",
+      "label": "Etiqueta de Tecnología asistiva para botón \"Mostrar solución\" ",
       "default": "Mostrar solución"
     },
     {
-      "label": "Etiqueta de Tecnología asistiva para botón \"Retry\" ",
+      "label": "Etiqueta de Tecnología asistiva para botón \"Reintentar\" ",
       "default": "Reintentar"
     }
   ]

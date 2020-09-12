@@ -10,8 +10,8 @@
       "placeholder": "*Oslo* es la capital de Noruega, *Estocolmo* es la capital de Suecia y *Copenhague* es la capital de Dinamarca. Todas las ciudades están ubicadas en la península *Escandinava:Parte norte de Europa*.",
       "description": "",
       "important": {
-        "description": "<ul><li>Las palabras desplegables se agregan con un asterisco (*) al frente y detrás de la palabra / frase correcta.</li><li>Puede agregar una sugerencia textual, usando dos puntos (:) en frente de la punta.</li><li>Por cada punto vacío solo hay una palabra correcta.</li><li>Puede agregar comentarios que se mostrarán cuando se complete una tarea. Utilizar '\\+' para las correctas '\\-' para comentarios incorrectos.</li></ul>",
-        "example": "El contenido de H5P se puede editar utilizando un navegador *:¿Qué tipo de programa es Chrome?*. </br> El contenido de H5P es *interactivo\\+Correcto! \\-Incorrecto, prueba de nuevo!*"
+        "description": "<ul><li>Las palabras desplegables se agregan con un asterisco (*) al frente y detrás de la palabra / frase correcta.</li><li>Puede agregar una sugerencia textual, usando dos puntos (:) en frente de la sugerencia.</li><li>Por cada punto vacío solo hay una palabra correcta.</li><li>Puede agregar comentarios que se mostrarán cuando se complete una tarea. Utilizar '\\+' para las correctas '\\-' para comentarios incorrectos.</li></ul>",
+        "example": "El contenido de H5P se puede editar utilizando un *navegador:¿Qué tipo de programa es Chrome?*. </br> El contenido de H5P es *interactivo\\+¡Correcto! \\-¡Incorrecto, prueba de nuevo!*"
       }
     },
     {
@@ -66,7 +66,7 @@
     {
       "label": "Contiene la etiqueta Zona de Caída",
       "default": "Zona de Caída @index contiene @draggable que se puede arrastrar.",
-      "description": "Etiqueta utilizada para la accesibilidad, donde el altavoz de lectura leerá que la zona de colocación contiene un elemento que se puede arrastrar"
+      "description": "Etiqueta utilizada para la accesibilidad, donde el altavoz de lectura leerá que la zona de caída contiene un elemento que se puede arrastrar"
     },
     {
       "label": "Etiqueta de elementos arrastrables",
@@ -80,11 +80,11 @@
     },
     {
       "label": "Texto del hablante para una respuesta correcta",
-      "default": "Correcto!"
+      "default": "¡Correcto!"
     },
     {
       "label": "Texto del asistente de lectura para una respuesta incorrecta",
-      "default": "Incorrecto!"
+      "default": "¡Incorrecto!"
     },
     {
       "label": "Título del diálogo de confirmación que el usuario quiere restablecer una acción",
@@ -92,7 +92,7 @@
     },
     {
       "label": "Descripción del diálogo de confirmación que el usuario quiere restablecer una acción",
-      "default": "¿Seguro que quieres restablecer esta zona de colocación?"
+      "default": "¿Seguro que quiere restablecer esta zona de colocación?"
     },
     {
       "label": "Etiqueta utilizada para accesibilidad, donde el altavoz de lectura indica que se inició el arrastre",
@@ -112,7 +112,7 @@
     },
     {
       "label": "Configuraciones de comportamiento.",
-      "description": "Estas opciones te permitirán controlar cómo se comporta la tarea.",
+      "description": "Estas opciones le permitirán controlar cómo se comporta la tarea.",
       "fields": [
         {
           "label": "Habilite \"Reintentar\""
@@ -129,20 +129,20 @@
       ]
     },
     {
-      "label": "Representación textual de la barra de puntaje para aquellos que usan un revisor",
-      "default": "Tienes :num out of :puntos en total"
+      "label": "Representación textual de la barra de puntaje para aquellos que usan un lector de pantalla",
+      "default": "Tienes :num de :puntos en total"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check"
+      "label": "Etiqueta de Tecnología asistiva para botón \"Check\" ",
+      "default": "Revisar"
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show Solution"
+      "label": "Etiqueta de Tecnología asistiva para botón \"Show Solution\" ",
+      "default": "Mostrar solución"
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry"
+      "label": "Etiqueta de Tecnología asistiva para botón \"Retry\" ",
+      "default": "Reintentar"
     }
   ]
 }

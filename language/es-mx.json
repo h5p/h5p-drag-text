@@ -133,16 +133,16 @@
       "default": "Tienes :num de :puntos en total"
     },
     {
-      "label": "Etiqueta de Tecnología asistiva para botón \"Revisar\" ",
-      "default": "Revisar"
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
     },
     {
-      "label": "Etiqueta de Tecnología asistiva para botón \"Mostrar solución\" ",
-      "default": "Mostrar solución"
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show the solution. The task will be marked with its correct solution."
     },
     {
-      "label": "Etiqueta de Tecnología asistiva para botón \"Reintentar\" ",
-      "default": "Reintentar"
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry the task. Reset all responses and start the task over again."
     }
   ]
 }

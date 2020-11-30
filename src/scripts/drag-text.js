@@ -1493,4 +1493,51 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
 }(H5P.jQuery, H5P.Question, H5P.ConfirmationDialog));
 
+/**
+ * Static helper method to enable parsing of question text into a format useful
+ * for generating reports.
+ * 
+ * PS: The leading backslash for the correct and incorrect feedback within
+ * answer parts must be escaped appropriately:
+ * 
+ * Example:
+ * 
+ * question: 'H5P content is *interactive\\+Correct! \\-Incorrect, try again!*.'
+ * 
+ * produces the following:
+ * 
+ * [
+ *   {
+ *     type: 'text',
+ *     content: 'H5P content is '
+ *   },
+ *   {
+ *     type: 'answer',
+ *     correct: 'interactive'  
+ *   },
+ *   {
+ *     type: 'text',
+ *     content: '.'
+ *   }
+ * ]
+ * 
+ * @param {string} question Question text for an H5P.DragText content item
+ */
+H5P.DragText.parseText = function (question) {
+  const isAnswerPart = function (part) {
+    return Util.startsWith('*', part) && Util.endsWith('*', part);
+  };
+  return parseText(question)
+    .map(part => isAnswerPart(part) ?
+      ({
+        type: 'answer',
+        correct: lex(part).text
+      }) :
+      ({
+        type: 'text',
+        content: part
+      })
+    );
+};
+
 export default H5P.DragText;

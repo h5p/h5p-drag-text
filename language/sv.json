@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Optional media to display above the question."
+        },
+        {
+          "label": "Disable image zooming"
+        }
+      ]
+    },
+    {
       "label": "Beskrivning av uppgift",
       "description": "Beskriv hur användaren ska lösa uppgiften.",
       "default": "Dra orden till rätt boxar"

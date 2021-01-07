@@ -133,16 +133,16 @@
       "default": "Вие имате :num от общо :total точки"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Етикет за помощни технологии бутон \"Провери\" ",
+      "default": "Проверяване на отговорите. Отговорите ще бъдат маркирани като правилни, неправилни, или неотговорени."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "Етикет за помощни технологии бутон \"Покажи решението\" ",
+      "default": "Показване на решението. Задачата ще бъде показана с правилното ѝ решение. "
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Етикет за помощни технологии бутон \"Опитай пак\" ",
+      "default": "Опитай задачата отново. Изчистване на всички отговори и решаване на задачата отново."
     }
   ]
 }

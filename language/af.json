@@ -13,7 +13,7 @@
       ]
     },
     {
-      "label": "Task description",
+      "label": "Taak beskrywing",
       "description": "Describe how the user should solve the task.",
       "default": "Drag the words into the correct boxes"
     },
@@ -27,26 +27,26 @@
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "Algemene terugvoer",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Default"
+              "label": "Verstek"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "Bepaal verstekterugvoer vir enige reeks tellings",
+          "description": "Kliek op die \"Voeg reeks by\" knoppie om so veel as moontlik reekse by te voeg. Byvoorbeeld: 0-20% Swak Punt, 21-91% Gemiddelde Punt, 91-100% Uitstekende Punt!",
+          "entity": "reeks",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Telling reeks"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Terugvoer vir gedefinieerde telling reeks",
+                "placeholder": "Vul die terugvoer in"
               }
             ]
           }
@@ -87,7 +87,7 @@
     },
     {
       "label": "Label for show tip button",
-      "default": "Show tip",
+      "default": "Wys wenk",
       "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {

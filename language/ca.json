@@ -23,7 +23,7 @@
       "description": "",
       "important": {
         "description": "<ul><li>Les paraules que es poden deixar anar s’afegeixen amb un asterisc (*) davant i darrere de la paraula o frase correcta.</li><li>Podeu afegir una pista textual amb dos punts (:) davant de la pista.</li><li>Per cada espai buit, només hi ha una paraula correcta.</li><li>Podeu afegir suggeriments perquè es mostrin en completar una tasca. Utilitzeu '\\+' per als suggeriments correctes i '\\-' per als incorrectes.</li></ul>",
-        "example": "El contingut d’H5P es pot editar utilitzant un *navegador:Quin tipus de programa és Chrome?*. </br> El contingut d’H5P és *interactiu\\+Correcte \\-Incorrecte; torna-ho a provar.*"
+        "example": "El contingut d’H5P es pot editar utilitzant un *navegador:Quin tipus de programa és Chrome?*. <br /> El contingut d’H5P és *interactiu\\+Correcte \\-Incorrecte; torna-ho a provar.*"
       }
     },
     {

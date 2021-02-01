@@ -14,7 +14,6 @@
         "example": "គោត្រូវបានចាត់ទុកជាប្រភេទ*ថនិកសត្វ:សត្វដែលចិញ្ចឹមកូនដោយទឹកដោះ\\+ត្រឹមត្រូវ! \\-មិនត្រឹមត្រូវទេ សូមសាកម្តងទៀត!*។"
       }
     },
-    
     {
       "label": "មូលវិចារណ៍ទូទៅ",
       "fields": [
@@ -144,10 +143,6 @@
     {
       "label": "Assistive technology description for \"Retry\" button",
       "default": "សាកធ្វើកិច្ចការម្តងទៀត។ លុបចម្លើយទាំងអស់ ហើយចាប់ផ្តើមកិច្ចការជាថ្មី។"
-    },
-    {
-      "label": "Assistive technology description for starting task",
-      "default": "ម៉ូតពិនិត្យចម្លើយ"
     }
   ]
 }

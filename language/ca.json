@@ -3,7 +3,7 @@
     {
       "label": "Descripció de la tasca",
       "description": "Descriu com l’usuari ha de resoldre la tasca.",
-      "default": "Arrossegueu les paraules a les caselles corresponents."
+      "default": "Arrossegueu les paraules a les caselles corresponents"
     },
     {
       "label": "Text",
@@ -24,7 +24,7 @@
             }
           ],
           "label": "Defineix una valoració per cada rang de puntuació",
-          "description": "Feu clic al botó \"Afegeix un rang\" per afegir tants rangs com necessiteu. Exemple: 0-20 % per a puntuació baixa, 21-91 % per a puntuació mitjana, 91-100 % per a puntuació excel·lent.",
+          "description": "Feu clic al botó \"Afegeix un rang\" per afegir tants rangs com necessiteu. Exemple: 0-20 % per a puntuació baixa, 21-91 % per a puntuació mitjana, 91-100 % per a puntuació excel·lent!",
           "entity": "rang",
           "field": {
             "fields": [
@@ -56,27 +56,27 @@
     {
       "label": "Etiqueta per a Zona on deixar anar numerada",
       "default": "Zona on deixar anar @index.",
-      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegirà l’índex d’una zona on deixar anar. Variable disponible: @index."
+      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegirà l’índex d’una zona on deixar anar. Variable disponible: @index"
     },
     {
       "label": "Etiqueta per a una zona on deixar anar buida",
       "default": "La zona on deixar anar @index està buida.",
-      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegirà que la zona on deixar anar és buida."
+      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegirà que la zona on deixar anar és buida"
     },
     {
       "label": "Etiqueta de Conté una zona on deixar anar",
       "default": "La zona on deixar anar @index conté @draggable que es pot arrossegar.",
-      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegirà que la zona on deixar anar conté un element que es pot arrossegar."
+      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegirà que la zona on deixar anar conté un element que es pot arrossegar"
     },
     {
       "label": "Etiqueta dels elements que es poden arrossegar",
       "default": "@index de @count draggables.",
-      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegeix que és un element que es pot arrossegar. Variable disponible: @index, @count."
+      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegeix que és un element que es pot arrossegar. Variable disponible: @index, @count"
     },
     {
-      "label": "Etiqueta del botó de mostra el consell",
-      "default": "Mostrar consell",
-      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegeix el contingut abans de llegir la pista."
+      "label": "Etiqueta del botó de mostra de la pista",
+      "default": "Mostrar pista",
+      "description": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura llegeix el contingut abans de llegir la pista"
     },
     {
       "label": "Text de l’altaveu de lectura per a una resposta correcta",
@@ -95,15 +95,15 @@
       "default": "Confirmeu que voleu restablir aquesta zona on deixar anar?"
     },
     {
-      "label": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura indica que la funció d’arrossegar s’ha iniciat.",
+      "label": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura indica que la funció d’arrossegar s’ha iniciat",
       "default": "S’ha agafat un element que es pot arrossegar."
     },
     {
-      "label": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura indica que la funció d’arrossegar s’ha cancel·lat.",
+      "label": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura indica que la funció d’arrossegar s’ha cancel·lat",
       "default": "S’ha cancel·lat l’opció de deixar anar."
     },
     {
-      "label": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura indica que un text és la resposta correcta.",
+      "label": "Etiqueta utilitzada per a funcions d’accessibilitat, en què l’altaveu de lectura indica que un text és la resposta correcta",
       "default": "Resposta correcta:"
     },
     {
@@ -111,7 +111,7 @@
       "default": "Retroacció"
     },
     {
-      "label": "Opcions de comportament",
+      "label": "Opcions de comportament.",
       "description": "Aquestes opcions et permetran controlar com es comporta la tasca.",
       "fields": [
         {

@@ -1,21 +1,21 @@
 {
   "semantics": [
     {
-      "label": "Descripción de la tarea",
-      "description": "Describe cómo el usuario debería resolver la tarea.",
-      "default": "Arrastre las palabras a los cuadros correctos"
+      "label": "Descripción del trabajo",
+      "description": "Describe como el usuario debería resolver el trabajo.",
+      "default": "Arrastrar las palabras a las cajas correctas"
     },
     {
       "label": "Texto",
       "placeholder": "*Oslo* es la capital de Noruega, *Estocolmo* es la capital de Suecia y *Copenhague* es la capital de Dinamarca. Todas las ciudades están ubicadas en la península *Escandinava:Parte norte de Europa*.",
       "description": "",
       "important": {
-        "description": "<ul><li>Las palabras desplegables se agregan con un asterisco (*) al frente y detrás de la palabra / frase correcta.</li><li>Puede agregar una sugerencia textual, usando dos puntos (:) en frente de la sugerencia.</li><li>Por cada punto vacío solo hay una palabra correcta.</li><li>Puede agregar comentarios que se mostrarán cuando se complete una tarea. Utilizar '\\+' para las correctas '\\-' para comentarios incorrectos.</li></ul>",
-        "example": "El contenido de H5P se puede editar utilizando un *navegador:¿Qué tipo de programa es Chrome?*. <br /> El contenido de H5P es *interactivo\\+¡Correcto! \\-¡Incorrecto, prueba de nuevo!*"
+        "description": "<ul><li>Las palabras desplegables se agregan con un asterisco (*) al frente y detrás de la palabra / frase correcta.</li><li>Puede agregar una sugerencia textual, usando dos puntos (:) en frente de la sugerencia.</li><li>Por cada punto vacío solo hay una palabra correcta.</li><li>Puede agregar comentarios que se mostrarán cuando se complete una tarea. Utilizar '\\+' para los correctos '\\-' para comentarios incorrectos.</li></ul>",
+        "example": "El contenido de H5P se puede editar utilizando un *navegador:¿Qué tipo de programa es Chrome?*. <br /> El contenido H5P es *interactivo\\+¡Correcto! \\-¡Incorrecto, prueba de nuevo!*"
       }
     },
     {
-      "label": "Comentarios generales",
+      "label": "Retroalimentación Global",
       "fields": [
         {
           "widgets": [
@@ -23,18 +23,18 @@
               "label": "Predeterminado"
             }
           ],
-          "label": "Definir comentarios personalizados para cualquier rango de puntuación",
-          "description": "Haga clic en el botón \"Agregar rango\" para agregar tantos rangos como necesite. Ejemplo: 0-20% puntaje malo, 21-91% puntaje promedio, 91-100% puntaje excelente!",
+          "label": "Definir retroalimentación personalizada para cualquier rango de puntaje",
+          "description": "Haga clic en el botón de \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0-20% Mal puntaje, 21-91% Puntaje promedio, 91-100% ¡Magnífico puntaje!",
           "entity": "rango",
           "field": {
             "fields": [
               {
-                "label": "Rango de puntuación"
+                "label": "Rango del Puntaje"
               },
               {},
               {
-                "label": "Comentarios para el rango de puntuación definido",
-                "placeholder": "Complete los comentarios"
+                "label": "Retroalimentación para el rango de puntaje definido",
+                "placeholder": "Complete la retroalimentación"
               }
             ]
           }
@@ -42,107 +42,107 @@
       ]
     },
     {
-      "label": "Texto para el botón \"Verificar\"",
-      "default": "Verificar"
+      "label": "Texto para botón \"Comprobar\"",
+      "default": "Comprobar"
     },
     {
-      "label": "Texto para el botón  \"Reintentar\"",
+      "label": "Texto para botón \"Reintentar\"",
       "default": "Reintentar"
     },
     {
-      "label": "Texto para el botón \"Mostrar solución\"",
+      "label": "Texto para botón \"Mostrar solución\"",
       "default": "Mostrar solución"
     },
     {
       "label": "Etiqueta de zona de caída numerada",
       "default": "Zona de caída @index.",
-      "description": "Etiqueta utilizada para accesibilidad, donde el hablante leerá el índice de una zona de colocación. Variable disponible: @index"
+      "description": "Etiqueta utilizada para accesibilidad, donde el Lector de texto en voz alta leerá el índice de una zona de colocación. Variable disponible: @index"
     },
     {
       "label": "Etiqueta Zona de Caída Vacía",
-      "default": "Zona de Caída @index está vacío.",
-      "description": "Etiqueta utilizada para la accesibilidad, donde el hablante de lectura leerá que la zona de colocación está vacía"
+      "default": "Zona de Caída @index está vacía.",
+      "description": "Etiqueta utilizada para la accesibilidad, donde el Lector de texto en voz alta leerá que la zona de colocación está vacía"
     },
     {
-      "label": "Contiene la etiqueta Zona de Caída",
+      "label": "Contiene etiqueta Zona de Caída",
       "default": "Zona de Caída @index contiene @draggable que se puede arrastrar.",
-      "description": "Etiqueta utilizada para la accesibilidad, donde el altavoz de lectura leerá que la zona de caída contiene un elemento que se puede arrastrar"
+      "description": "Etiqueta utilizada para la accesibilidad, donde el Lector de texto en voz alta leerá que la zona de caída contiene un elemento que se puede arrastrar"
     },
     {
       "label": "Etiqueta de elementos arrastrables",
-      "default": "@index de @count arrastrable.",
-      "description": "Etiqueta utilizada para la accesibilidad, donde el altavoz de lectura lee que se trata de un elemento que se puede arrastrar. Variable disponible: @index, @count"
+      "default": "@index de @count arrastrables.",
+      "description": "Etiqueta utilizada para la accesibilidad, donde el Lector de texto en voz alta lee que se trata de un elemento que se puede arrastrar. Variable disponible: @index, @count"
     },
     {
-      "label": "Etiqueta para mostrar el botón de sugerencia",
-      "default": "Mostrar sugerencia",
-      "description": "Etiqueta utilizada para accesibilidad, donde el parlante de lectura la lee antes de leer la punta"
+      "label": "Etiqueta para mostrar el botón de pista",
+      "default": "Mostrar pista",
+      "description": "Etiqueta utilizada para accesibilidad, donde el Lector de texto en voz alta la lee antes de leer la pista"
     },
     {
-      "label": "Texto del hablante para una respuesta correcta",
+      "label": "Texto de Lector en voz alta para respuesta correcta",
       "default": "¡Correcto!"
     },
     {
-      "label": "Texto del asistente de lectura para una respuesta incorrecta",
+      "label": "Texto del Lector en voz alta para respuesta incorrecta",
       "default": "¡Incorrecto!"
     },
     {
-      "label": "Título del diálogo de confirmación que el usuario quiere restablecer una acción",
-      "default": "Restablecer"
+      "label": "Título del diálogo de confirmación que el usuario quiere restablecer un arrastrable",
+      "default": "Restablecer caída"
     },
     {
-      "label": "Descripción del diálogo de confirmación que el usuario quiere restablecer una acción",
-      "default": "¿Seguro que quiere restablecer esta zona de colocación?"
+      "label": "Descripción del diálogo de confirmación que el usuario quiere restablecer un arrastrable",
+      "default": "¿Seguro que quiere restablecer esta zona de caída?"
     },
     {
-      "label": "Etiqueta utilizada para accesibilidad, donde el altavoz de lectura indica que se inició el arrastre",
-      "default": "El arrastre fue realizado."
+      "label": "Etiqueta utilizada para accesibilidad, donde el Lector de texto en voz alta indica que se inició el arrastre",
+      "default": "El arrastrable está agarrado."
     },
     {
-      "label": "Etiqueta utilizada para accesibilidad, donde el altavoz de lectura indica que el arrastre está cancelado",
+      "label": "Etiqueta utilizada para accesibilidad, donde el Lector de texto en voz alta indica que el arrastre está cancelado",
       "default": "Arrastre cancelado."
     },
     {
-      "label": "Etiqueta utilizada para accesibilidad, donde el hablante de lectura indica que un texto es la respuesta correcta",
+      "label": "Etiqueta utilizada para accesibilidad, donde el Lector de texto env oz alta indica que un texto es la respuesta correcta",
       "default": "Respuesta correcta:"
     },
     {
-      "label": "Encabezado para el panel que contiene comentarios para respuestas correctas / incorrectas",
+      "label": "Encabezado para el panel que contiene retroalimentación para respuestas correctas/incorrectas",
       "default": "Retroalimentación"
     },
     {
-      "label": "Configuraciones de comportamiento.",
-      "description": "Estas opciones le permitirán controlar cómo se comporta la tarea.",
+      "label": "Configuraciones del comportamiento.",
+      "description": "Estas opciones le permitirán controlar cómo se comporta el trabajo.",
       "fields": [
         {
-          "label": "Habilite \"Reintentar\""
+          "label": "Habilitar \"Reintentar\""
         },
         {
-          "label": "Habilite el botón \"Mostrar solución\""
+          "label": "Habilitar botón \"Mostrar Solución\""
         },
         {
-          "label": "Habilite el botón \"Comprobar\""
+          "label": "Habilitar botón \"Comprobar\""
         },
         {
-          "label": "Retroalimentacion instantanea"
+          "label": "Retroalimentación instantánea"
         }
       ]
     },
     {
-      "label": "Representación textual de la barra de puntaje para aquellos que usan un lector de pantalla",
-      "default": "Tienes :num de :puntos en total"
+      "label": "Representación textual de la barra de puntaje para aquellos que usan un lector de texto en voz alta",
+      "default": "Obtuvo :num de un total de :total"
     },
     {
-      "label": "Etiqueta de tecnología asistiva para botón \"Revisar\" ",
-      "default": "Revisar las respuestas. Las respuestas serán marcadas como correcta, incorrecta o sin contestar."
+      "label": "Etiqueta de tecnología asistiva para botón \"Comprobar\"",
+      "default": "Comprobar las respuestas. Las respuestas serán marcadas como correcta, incorrecta o sin contestar."
     },
     {
-      "label": "Etiqueta de tecnología asistiva para botón \"Mostrar Solución\" ",
-      "default": "Mostrar la solución. El trabajo será marcado con su solución correcta."
+      "label": "Etiqueta de tecnología asistiva para botón \"Mostrar Solución\"",
+      "default": "Mostrar la solución. El trabajo será calificado con su solución correcta."
     },
     {
-      "label": "Etiqueta de tecnología asistiva para botón \"Reintentar\" ",
-      "default": "Reintentar el  trabajo. Reiniciar todas las respuestas e iniciar el trabajo de nuevo."
+      "label": "Etiqueta de tecnología asistiva para botón \"Reintentar\"",
+      "default": "Reintentar el trabajo. Reiniciar todas las respuestas e iniciar el trabajo de nuevo."
     }
   ]
 }

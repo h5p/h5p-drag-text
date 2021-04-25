@@ -2,7 +2,7 @@
   "semantics": [
     {
       "label": "Descripción del trabajo",
-      "description": "Describe cómo el usuario debería resolver la tarea.",
+      "description": "Describe como el usuario debería resolver la tarea.",
       "default": "Arrastrar las palabras a las cajas correctas"
     },
     {

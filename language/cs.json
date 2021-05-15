@@ -7,7 +7,7 @@
     },
     {
       "label": "Text",
-      "placeholder": "*Oslo* je hlavním městem Norska, *Stockholm* je hlavním městem Švédska a *Copenhagen* je hlavním městem Dánska. Všechna města se nacházejí na poloostrově  *Skandinávie: Severní část Evropy* .",
+      "placeholder": "*Oslo* je hlavním městem Norska, *Stockholm* je hlavním městem Švédska a *Copenhagen* je hlavním městem Dánska. Všechna města se nacházejí na poloostrově *Skandinávie: Severní část Evropy* .",
       "description": "",
       "important": {
         "description": "<ul><li>Přetahovatelná slova jsou přidána s hvězdičkou (*) před a za správným slovem/frází.</li><li>Můžete přidat textovou nápovědu pomocí dvojtečky (:) před nápovědou.</li><li>Pro každé prázdné místo je pouze jedno správné slovo.</li><li>Můžete přidat zpětnou vazbu, která se zobrazí po dokončení úlohy. Použijte '\\+' pro správnou a '\\-' pro nesprávnou zpětnou vazbu.</li></ul>",
@@ -24,7 +24,7 @@
             }
           ],
           "label": "Definujte vlastní zpětnou vazbu pro jakýkoli rozsah skóre",
-          "description": "Klikněte na tlačítko \"Přidat rozsah\" pro přidání tolika rozsahů, kolik potřebujete. Například: 0-20% špatný výsledek, 21-91% průměrný výsledek, 91-100% výborný výsledek!",
+          "description": "Klepnutím na tlačítko \"Přidat rozsah\" přidejte libovolný počet rozsahů. Příklad: 0-20% špatné skóre, 21-91% průměrné skóre, 91-100% výborné skóre!",
           "entity": "rozsah",
           "field": {
             "fields": [
@@ -34,7 +34,7 @@
               {},
               {
                 "label": "Zpětná vazba pro definovaný rozsah skóre",
-                "placeholder": "Vyplňte ve zpětné vazbě"
+                "placeholder": "Vyplňte zpětnou vazbu"
               }
             ]
           }
@@ -42,15 +42,15 @@
       ]
     },
     {
-      "label": "Popisek tlačítka  \"Zkontrolovat\" ",
+      "label": "Popisek tlačítka \"Zkontrolovat\"",
       "default": "Zkontrolovat"
     },
     {
-      "label": "Popisek tlačítka \"Opakovat\" buttn",
+      "label": "Popisek tlačítka \"Opakovat\"",
       "default": "Opakovat"
     },
     {
-      "label": "Popisek tlačítka \"Zobrazit řešení\" ",
+      "label": "Popisek tlačítka \"Zobrazit řešení\"",
       "default": "Zobrazit řešení"
     },
     {
@@ -75,7 +75,7 @@
     },
     {
       "label": "Popisek tlačítka pro zobrazení nápovědy",
-      "default": "Zobrazení nápovědy",
+      "default": "Zobrazit nápovědu",
       "description": "Štítek používaný pro usnadnění přístupu, kde čtecí zařízení přečte nápovědu"
     },
     {
@@ -118,10 +118,10 @@
           "label": "Povolit \"Opakovat\""
         },
         {
-          "label": "Povolit tlačítko \"Zobrazit řešení\" "
+          "label": "Povolit tlačítko \"Zobrazit řešení\""
         },
         {
-          "label": "Povolit tlačítko \"Zkontrolovat\" "
+          "label": "Povolit tlačítko \"Zkontrolovat\""
         },
         {
           "label": "Okamžitá zpětná vazba"

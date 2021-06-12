@@ -748,7 +748,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       .forEach(function(part) {
         if(self.isAnswerPart(part)) {
           // is draggable/droppable
-          const solution = lex(part);
+          const solution = lex(part)
+
+          // Only inline LaTeX allowed
+          solution.text = solution.text
+            .replace(/\\\[(.*?)\\\]/g, '\\\($1\\\)')
+            .replace(/\$\$(.*?)\$\$/g, '\\\($1\\\)');
+
           const draggable = self.createDraggable(solution.text);
           const droppable = self.createDroppable(solution.text, solution.tip, solution.correctFeedback, solution.incorrectFeedback);
 
@@ -1496,16 +1502,16 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 /**
  * Static helper method to enable parsing of question text into a format useful
  * for generating reports.
- * 
+ *
  * PS: The leading backslash for the correct and incorrect feedback within
  * answer parts must be escaped appropriately:
- * 
+ *
  * Example:
- * 
+ *
  * question: 'H5P content is *interactive\\+Correct! \\-Incorrect, try again!*.'
- * 
+ *
  * produces the following:
- * 
+ *
  * [
  *   {
  *     type: 'text',
@@ -1513,14 +1519,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
  *   },
  *   {
  *     type: 'answer',
- *     correct: 'interactive'  
+ *     correct: 'interactive'
  *   },
  *   {
  *     type: 'text',
  *     content: '.'
  *   }
  * ]
- * 
+ *
  * @param {string} question Question text for an H5P.DragText content item
  */
 H5P.DragText.parseText = function (question) {

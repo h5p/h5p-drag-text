@@ -19,9 +19,12 @@ H5P.TextDraggable = (function ($) {
     self.index = index;
     self.initialIndex = index;
 
+    // Shortening LaTeX would destroy it
+    const containsLatex = /\\\(.*?\\\)/.test(self.text);
+
     self.shortFormat = self.text;
     //Shortens the draggable string if inside a dropbox.
-    if (self.shortFormat.length > 20) {
+    if (!containsLatex && self.shortFormat.length > 20) {
       self.shortFormat = self.shortFormat.slice(0, 17) + '...';
     }
   }

@@ -412,7 +412,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @return {object} Maximum sizes from draggables.
    */
   DragText.prototype.getMaxDraggableSizes = function (initial = {width: 0, height: 0}) {
-    const measurableDraggables = this.draggables.filter(function (draggable) {
+    const undoneDraggables = this.draggables.filter(function (draggable) {
       // Ignore draggables that have been dropped
       return !draggable.getDraggableElement().hasClass('h5p-drag-dropped');
     });
@@ -421,17 +421,26 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     const currentFontSize = parseInt(this.$inner.css('font-size'), 10);
     if (this.fontSize !== currentFontSize) {
       this.fontSize = currentFontSize;
-      if (measurableDraggables.length > 0) {
+      if (undoneDraggables.length > 0) {
         initial = {width: 0, height: 0};
       }
     }
 
-    // Get highest values for height and width
-    return measurableDraggables
+    initial = undoneDraggables
       .reduce(function (maxSizes, draggable) {
         const element = draggable.getDraggableElement();
         return {
           width: Math.max(maxSizes.width, element.width()),
+          height: initial.height
+        };
+      }, initial);
+
+    // Get highest values for height and width
+    return this.draggables
+      .reduce(function (maxSizes, draggable) {
+        const element = draggable.getDraggableElement();
+        return {
+          width: initial.width,
           height: Math.max(maxSizes.height, element.height())
         };
       }, initial);

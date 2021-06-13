@@ -54,7 +54,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   //Special Sub-containers:
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
-  var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
+  var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'wide-screen';
 
   /**
    * Initialize module.
@@ -114,6 +114,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     // Keeps track of if Question has been answered
     this.answered = false;
     this.instantFeedbackEvaluationFilled = false;
+
+    // True if some solution text contains LaTeX
+    this.containsLatex = false,
 
     // Convert line breaks to HTML
     this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
@@ -357,8 +360,82 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Changes layout responsively when resized.
    */
   DragText.prototype.resize = function () {
+    self = this;
     this.changeLayoutToFitWidth();
+
+    if (!this.containsLatex) {
+      return; // No further processing needed.
+    }
+
+    // Reset width and height to determine natural size
+    this.draggables.forEach(function (draggable) {
+      draggable.getDraggableElement().css('height', '');
+      draggable.getDraggableElement().css('width', '');
+    });
+
+    // Compute new maximum sizes of draggables
+    this.maxSizes = this.getMaxDraggableSizes(this.maxSizes);
+
+    // Set draggables' size
+    this.draggables.forEach(function (draggable) {
+      const $draggableElement = draggable.getDraggableElement();
+      if ($draggableElement.hasClass('wide-screen') || $draggableElement.hasClass('h5p-drag-dropped')) {
+        $draggableElement.css('width', `${self.maxSizes.width}px`);
+      }
+      else {
+        $draggableElement.css('width', '');
+      }
+
+      $draggableElement.css('height', `${self.maxSizes.height}px`);
+    });
+
+    // Set droppables' size
+    this.droppables.forEach(function (droppable) {
+      droppable.getElement().style.width = `${self.maxSizes.width}px`;
+      droppable.getElement().style.height = `${self.maxSizes.height}px`;
+
+      droppable.$showSolution.css({width: ''});
+      droppable.$showSolution.css({
+         height: `${self.maxSizes.height}px`,
+         width: droppable.$showSolution.width() // Workaround for MathJax re-rendering, avoid reflowing of text, still flickers
+      });
+    });
+
+    this.$wordContainer.css('line-height', `${1.5 * self.maxSizes.height}px`);
   };
+
+  /**
+   * Get maximum sizes (width, outerWidth, height, outerHeight) from draggables.
+   * @param {object} initial Initial values.
+   * @param {number} [initial.width=0] Initial width.
+   * @param {number} [initial.height=0] Initial height.
+   * @return {object} Maximum sizes from draggables.
+   */
+  DragText.prototype.getMaxDraggableSizes = function (initial = {width: 0, height: 0}) {
+    const measurableDraggables = this.draggables.filter(function (draggable) {
+      // Ignore draggables that have been dropped
+      return !draggable.getDraggableElement().hasClass('h5p-drag-dropped');
+    });
+
+    // Required for scaling as child of content types that adjust font size
+    const currentFontSize = parseInt(this.$inner.css('font-size'), 10);
+    if (this.fontSize !== currentFontSize) {
+      this.fontSize = currentFontSize;
+      if (measurableDraggables.length > 0) {
+        initial = {width: 0, height: 0};
+      }
+    }
+
+    // Get highest values for height and width
+    return measurableDraggables
+      .reduce(function (maxSizes, draggable) {
+        const element = draggable.getDraggableElement();
+        return {
+          width: Math.max(maxSizes.width, element.width()),
+          height: Math.max(maxSizes.height, element.height())
+        };
+      }, initial);
+  }
 
   /**
   * Adds the draggables on the right side of the screen if widescreen is detected.
@@ -430,7 +507,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     //Show Solution button
     self.addButton('show-solution', self.params.showSolution, function () {
       self.droppables.forEach(function (droppable) {
-        droppable.showSolution();
+        const matchingDraggable = self.draggables.filter(function (draggable) {
+          return draggable.getAnswerText() === droppable.text;
+        }).shift();
+        droppable.showSolution(matchingDraggable);
       });
       self.draggables.forEach(draggable => self.setDraggableAriaLabel(draggable));
       self.disableDraggables();
@@ -755,6 +835,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
             .replace(/\\\[(.*?)\\\]/g, '\\\($1\\\)')
             .replace(/\$\$(.*?)\$\$/g, '\\\($1\\\)');
 
+          // Keep track of whether answers contain LaTeX
+          self.containsLatex = self.containsLatex || /\\\(.*?\\\)/.test(solution.text);
+
           const draggable = self.createDraggable(solution.text);
           const droppable = self.createDroppable(solution.text, solution.tip, solution.correctFeedback, solution.incorrectFeedback);
 
@@ -775,6 +858,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     self.shuffleAndAddDraggables(self.$draggables);
     self.$draggables.appendTo(self.$taskContainer);
+    self.$wordContainer.toggleClass('h5p-drag-text-has-latex', self.containsLatex);
     self.$wordContainer.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
@@ -806,14 +890,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.draggables.forEach(function (draggable) {
       var $draggableElement = draggable.getDraggableElement();
 
+      const cssOptions = (draggable.containsLatex) ?
+        {'width': 'auto'} :
+        {'position': 'absolute', 'white-space': 'nowrap', 'width': 'auto', 'padding': 0, 'margin': 0}
+
       //Find the initial natural width of the draggable.
-      var $tmp = $draggableElement.clone().css({
-        'position': 'absolute',
-        'white-space': 'nowrap',
-        'width': 'auto',
-        'padding': 0,
-        'margin': 0
-      }).html(draggable.getAnswerText())
+      var $tmp = $draggableElement.clone()
+        .css(cssOptions)
+        .html(draggable.getAnswerText())
         .appendTo($draggableElement.parent());
       var width = $tmp.outerWidth();
 
@@ -854,6 +938,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     //Make the draggable
     var $draggable = $('<div/>', {
+      class: 'h5p-drag-draggable',
       html: `<span>${answer}</span>`,
       role: 'button',
       'aria-grabbed': 'false',
@@ -1234,10 +1319,17 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Sets feedback on the dropzones.
    */
   DragText.prototype.showSolutions = function () {
+    const self = this;
+
     this.showEvaluation(true);
     this.droppables.forEach(function (droppable) {
       droppable.addFeedback();
-      droppable.showSolution();
+
+      const matchingDraggable = self.draggables.filter(function (draggable) {
+        return draggable.getAnswerText() === droppable.text;
+      }).shift();
+
+      droppable.showSolution(matchingDraggable);
     });
 
     this.removeAllDroppablesFromControls();

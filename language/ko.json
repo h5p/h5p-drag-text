@@ -44,7 +44,7 @@
     },
     {
       "label": "\"Check\" 버튼 텍스트",
-      "default": "확인"
+      "default": "정답 확인"
     },
     {
       "label": "\"Retry\" 버튼 텍스트",

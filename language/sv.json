@@ -11,7 +11,7 @@
       "description": "",
       "important": {
         "description": "<ul><li>Ord som kan dras-och-släppas ska markeras med en asterisk (*) framför och efter det rätta ordet, eller den rätta frasen.</li><li>Du kan lägga till en ledtråd, genom att använda kolon (:) framför ledtråden.</li><li>För varje tom box så finns det endast ett rätt ord.</li><li>Du kan lägga till feedback som visas när uppgiften är genomförd. Använd '\\+' för feedback på rätta svar och '\\-' för feedback på felaktiga svar.</li></ul>",
-        "example": "H5P-innehåll kan redigeras med en *webbläsare:Vad är Chrome för typ av programvara?*. </br> H5P-innehåll är *interaktivt\\+Rätt! \\-Inte rätt, försök igen!*"
+        "example": "H5P-innehåll kan redigeras med en *webbläsare:Vad är Chrome för typ av programvara?*. <br /> H5P-innehåll är *interaktivt\\+Rätt! \\-Inte rätt, försök igen!*"
       }
     },
     {
@@ -137,16 +137,16 @@
       "default": "Du fick :num av :total poäng"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Beskrivning av knappen \"Rätta\" för tillgänglighetshjälpmedel",
+      "default": "Rätta svaren. Svaren kommer att markeras som korrekta, felaktiga eller obesvarade."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "Beskrivning av knappen \"Visa lösning\" för tillgänglighetshjälpmedel",
+      "default": "Visa lösningen. Uppgiften kommer att markeras med dess korrekta lösning."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Beskrivning av knappen \"Försök igen\" för tillgänglighetshjälpmedel",
+      "default": "Försök igen med uppgiften. Nollställer alla svar och startar om uppgiften."
     }
   ]
 }

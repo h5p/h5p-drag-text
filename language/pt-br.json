@@ -11,7 +11,7 @@
       "description": "",
       "important": {
         "description": "<ul><li>Palavras arrastáveis são adicionados com um asterisco(*) na frente e um atrás da palavra/frase correta.</li><li>Você pode adicionar uma dica textual usando dois pontos (:) na frente da dica.</li><li>Para cada espaço vazio há apenas uma palavra correta.</li><li>Você pode feedback para ser exibido quando uma tarefa for completa. Use '\\+' para feedback correto and '\\-' para feedback incorreto.</li></ul>",
-        "example": "Conteúdo H5P pode ser editado usando um *navegador:QUe tipo de programa é o Chrome?*. </br> Conteúdo H5P é  *interativo\\+Correto! \\-Incorreto, tente novamente!*"
+        "example": "Conteúdo H5P pode ser editado usando um *navegador:QUe tipo de programa é o Chrome?*. <br /> Conteúdo H5P é  *interativo\\+Correto! \\-Incorreto, tente novamente!*"
       }
     },
     {

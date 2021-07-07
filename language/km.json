@@ -125,6 +125,10 @@
         },
         {
           "label": "ពិនិត្យចម្លើយភ្លាមៗ"
+        },
+        {
+          "label": "Solutions below content",
+          "description": "If set, will force solution texts to be displayed below the content."
         }
       ]
     },

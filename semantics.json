@@ -264,6 +264,15 @@
         "type": "boolean",
         "default": false,
         "optional": true
+      },
+      {
+        "name": "noWideScreenLayout",
+        "label": "Solutions below content",
+        "description": "If set, will force solution texts to be displayed below the content.",
+        "importance": "low",
+        "type": "boolean",
+        "default": false,
+        "optional": true
       }
     ]
   },

@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "媒體",
+      "fields": [
+        {
+          "label": "類型",
+          "description": "在問題上方顯示可選的媒體."
+        },
+        {
+          "label": "針對圖片停用圖片縮放"
+        }
+      ]
+    },
+    {
       "label": "任務描述",
       "description": "請描述使用者如何進行此任務.",
       "default": "請將答案拖曳至正確的作答框中"

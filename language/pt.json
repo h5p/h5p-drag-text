@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Multimédia",
+      "fields": [
+        {
+          "label": "Tipo",
+          "description": "Multimédia opcional a ser exibida acima da pergunta."
+        },
+        {
+          "label": "Desativar o zoom da imagem"
+        }
+      ]
+    },
+    {
       "label": "Descrição da atividade",
       "description": "Descreva a forma como o utilizador vai completar a atividade.",
       "default": "Arraste as palavras para as caixas corretas"

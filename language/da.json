@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Medie",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Vis valgfrit medie over spørgsmålet."
+        },
+        {
+          "label": "Deaktiver zoom af billede"
+        }
+      ]
+    },
+    {
       "label": "Task description",
       "description": "Describe how the user should solve the task.",
       "default": "Drag the words into the correct boxes"

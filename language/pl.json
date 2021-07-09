@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Typ",
+          "description": "Opcjonalne zdjęcie lub wideo ponad treścią pytania."
+        },
+        {
+          "label": "Zablokuj możliwość powiększania zdjęcia"
+        }
+      ]
+    },
+    {
       "label": "Opis zadania",
       "description": "Opisz sposób rozwiązania zadania.",
       "default": "Przeciągnij słowa w odpowiednie miejsca"

@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Mídia",
+      "fields": [
+        {
+          "label": "Tipo",
+          "description": "Mídia opcional mostrada acima da questão."
+        },
+        {
+          "label": "Desabilita zoom de imagem para questões com imagens"
+        }
+      ]
+    },
+    {
       "label": "Descrição da tarefa",
       "description": "Descreva como o usuário deve resolver a tarefa.",
       "default": "Arraste as palavras aos campos corretos"

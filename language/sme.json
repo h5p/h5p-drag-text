@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Optional media to display above the question."
+        },
+        {
+          "label": "Disable image zooming"
+        }
+      ]
+    },
+    {
       "label": "Task description",
       "description": "Describe how the user should solve the task.",
       "default": "Drag the words into the correct boxes"

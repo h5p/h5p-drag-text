@@ -112,7 +112,7 @@
     },
     {
       "label": "Configuraciones del comportamiento.",
-      "description": "Estas opciones le permitirán controlar cómo se comporta el trabajo.",
+      "description": "Estas opciones le permitirán controlar como se comporta el trabajo.",
       "fields": [
         {
           "label": "Habilitar \"Reintentar\""

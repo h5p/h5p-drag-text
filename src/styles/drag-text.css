@@ -160,7 +160,6 @@
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
   padding: 0;
   color: #255c41;
-  border: none;
   box-shadow: none;
   line-height: 1.5;
   background: none;
@@ -168,17 +167,31 @@
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong {
   padding: 0;
-  border: none;
   color: #b71c1c;
   box-shadow: none;
   line-height: 1.5;
   background: none;
 }
 
+.h5p-drag-text .h5p-drag-droppable-words:not(.h5p-drag-text-has-latex) .h5p-drag-dropped.h5p-drag-draggable-correct,
+.h5p-drag-text .h5p-drag-droppable-words:not(.h5p-drag-text-has-latex) .h5p-drag-dropped.h5p-drag-draggable-wrong {
+  border: none;
+}
+
+.h5p-drag-text .h5p-drag-droppable-words.h5p-drag-text-has-latex .h5p-drag-dropped.h5p-drag-draggable-correct,
+.h5p-drag-text .h5p-drag-droppable-words.h5p-drag-text-has-latex .h5p-drag-dropped.h5p-drag-draggable-wrong {
+  border-color: transparent;
+}
+
 /* Show solution container */
 .h5p-drag-text .h5p-drag-show-solution-container {
   position: relative;
-  display: inline;
+  display: inline-flex;
+  flex-direction: column;
+  height: 1.25em;
+  justify-content: center;
+  vertical-align: middle;
+  top: -0.1em;
 }
 
 .h5p-drag-text .h5p-drag-show-solution-container.incorrect {
@@ -189,6 +202,10 @@
   padding: 0.15em;
   border-radius: 0.25em;
   margin-left: 0.5em;
+}
+
+.h5p-drag-text .h5p-drag-show-solution-container.h5p-drag-text-latex > span {
+  padding-top: 0.5em;
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {
@@ -211,8 +228,17 @@
   padding-top: 0;
 }
 
-.h5p-drag-text .h5p-drag-draggable-wide-screen {
-  display: block;
+.h5p-drag-text .h5p-drag-draggable {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.h5p-drag-text .h5p-drag-draggable:not(.wide-screen) {
+  display: inline-flex;
+}
+
+.h5p-drag-text .h5p-drag-draggable.wide-screen {
+  display: flex;
 }
 
 .h5p-drag-text [aria-dropeffect].ui-droppable.ui-droppable-disabled.ui-state-disabled{

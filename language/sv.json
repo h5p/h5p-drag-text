@@ -13,13 +13,13 @@
       ]
     },
     {
-      "label": "Beskrivning av uppgift",
+      "label": "Uppgiftsbeskrivning",
       "description": "Beskriv hur användaren ska lösa uppgiften.",
-      "default": "Dra orden till rätt boxar"
+      "default": "Dra orden till de rätta boxarna"
     },
     {
       "label": "Text",
-      "placeholder": "*Oslo* är Norges huvudstad, *Stockholm* är huvudstaden Sveriges huvudstad och *Köpenhamn* är Danmarks huvudstad. Alla dessa städer ligger i *Skandinavien:Norra delen av Europa*.",
+      "placeholder": "*Oslo* är Norges huvudstad, *Stockholm* är Sveriges huvudstad och *Köpenhamn* är Danmarks huvudstad. Alla dessa städer ligger i *Skandinavien:Norra delen av Europa*.",
       "description": "",
       "important": {
         "description": "<ul><li>Ord som kan dras-och-släppas ska markeras med en asterisk (*) framför och efter det rätta ordet, eller den rätta frasen.</li><li>Du kan lägga till en ledtråd, genom att använda kolon (:) framför ledtråden.</li><li>För varje tom box så finns det endast ett rätt ord.</li><li>Du kan lägga till feedback som visas när uppgiften är genomförd. Använd '\\+' för feedback på rätta svar och '\\-' för feedback på felaktiga svar.</li></ul>",
@@ -27,7 +27,7 @@
       }
     },
     {
-      "label": "Samlad feedback",
+      "label": "Allmän feedback",
       "fields": [
         {
           "widgets": [
@@ -35,17 +35,17 @@
               "label": "Standard"
             }
           ],
-          "label": "Definiera anpassad feedback för olika poängintervall",
-          "description": "Klicka på knappen \"Lägg till intervall\" för att lägga till så många intervall du behöver. Exempel: 0-20% Inte så bra, 21-91% Medel, 91-100% Jättebra!",
-          "entity": "intervall",
+          "label": "Definiera anpassad feedback för varje poängnivå",
+          "description": "Klicka på \"Lägg till nivå\" knappen för att lägga till så många nivåer du behöver. Exempel: 0-20% Låg nivå, 21-91% Mellannivå, 91-100% Hög nivå!",
+          "entity": "nivå",
           "field": {
             "fields": [
               {
-                "label": "Poängintervall"
+                "label": "Poängnivå"
               },
               {},
               {
-                "label": "Feedback för definierad poängintervall",
+                "label": "Feedback för definierad poängnivå",
                 "placeholder": "Fyll i feedback"
               }
             ]
@@ -71,9 +71,9 @@
       "description": "Etikett som används för tillgänglighet, där skärmläsare kommer att läsa upp släpp-ytans index. Variabel som finns är: @index"
     },
     {
-      "label": "Etikett för tom drag-yta",
-      "default": "Drag-yta @index är tom.",
-      "description": "Etikett som används för tillgänglighet, där skärmläsare kommer att läsa upp att drag-ytan är tom"
+      "label": "Etikett för tom släpp-yta",
+      "default": "Släpp-yta @index är tom.",
+      "description": "Etikett som används för tillgänglighet, där skärmläsare kommer att läsa upp att släpp-ytan är tom"
     },
     {
       "label": "Etikett för innehåller släpp-yta",
@@ -87,11 +87,11 @@
     },
     {
       "label": "Etikett för knappen Visa ledtråd",
-      "default": "Visa ledtråd",
+      "default": "Visa tips",
       "description": "Etikett som används för tillgänglighet, där skärmläsare kommer att läsa upp texten före själva ledtråden läses upp"
     },
     {
-      "label": "Skärmläsartext för rätta svar",
+      "label": "Skärmläsartext för rätt svar",
       "default": "Rätt!"
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "label": "Bekräftelsedialog när en användare vill nollställa ett drag-och-släppbart objekt",
-      "default": "Är du säker på att du vill nollställa detta objekt"
+      "default": "Är du säker på att du vill nollställa denna släpp-yta?"
     },
     {
       "label": "Etikett som används för tillgänglighet, när skärmläsare indikerar att dragning har startats",
@@ -112,7 +112,7 @@
     },
     {
       "label": "Etikett som används för tillgänglighet, när skärmläsare indikerar att dragning har avbrutits",
-      "default": "Avbrytit dragning."
+      "default": "Avbrutit dragning."
     },
     {
       "label": "Etikett som används för tillgänglighet, när skärmläsare indikerar att texten är det rätta svaret",

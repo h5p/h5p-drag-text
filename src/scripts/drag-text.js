@@ -345,6 +345,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           this.setVideo(media);
         }
       }
+      else if (type === 'H5P.Audio') {
+        if (media.params.files) {
+          // Register task audio
+          this.setAudio(media);
+        }
+      }
     }
 
     // Register task introduction text

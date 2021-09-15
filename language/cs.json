@@ -7,11 +7,11 @@
     },
     {
       "label": "Text",
-      "placeholder": "*Oslo* je hlavním městem Norska, *Stockholm* je hlavním městem Švédska a *Copenhagen* je hlavním městem Dánska. Všechna města se nacházejí na poloostrově  *Skandinávie: Severní část Evropy* .",
+      "placeholder": "*Oslo* je hlavním městem Norska, *Stockholm* je hlavním městem Švédska a *Copenhagen* je hlavním městem Dánska. Všechna města se nacházejí na poloostrově *Skandinávie: Severní část Evropy* .",
       "description": "",
       "important": {
         "description": "<ul><li>Přetahovatelná slova jsou přidána s hvězdičkou (*) před a za správným slovem/frází.</li><li>Můžete přidat textovou nápovědu pomocí dvojtečky (:) před nápovědou.</li><li>Pro každé prázdné místo je pouze jedno správné slovo.</li><li>Můžete přidat zpětnou vazbu, která se zobrazí po dokončení úlohy. Použijte '\\+' pro správnou a '\\-' pro nesprávnou zpětnou vazbu.</li></ul>",
-        "example": "Obsah H5P lze upravovat pomocí *prohlížeče:Jaký typ programu je Chrome?*. </br> H5P obsah je *interaktivní\\+Správně! \\-Nesprávně, zkuste znovu!*"
+        "example": "Obsah H5P lze upravovat pomocí *prohlížeče:Jaký typ programu je Chrome?*. <br /> H5P obsah je *interaktivní\\+Správně! \\-Nesprávně, zkuste znovu!*"
       }
     },
     {
@@ -24,7 +24,7 @@
             }
           ],
           "label": "Definujte vlastní zpětnou vazbu pro jakýkoli rozsah skóre",
-          "description": "Klikněte na tlačítko \"Přidat rozsah\" pro přidání tolika rozsahů, kolik potřebujete. Například: 0-20% špatný výsledek, 21-91% průměrný výsledek, 91-100% výborný výsledek!",
+          "description": "Klepnutím na tlačítko \"Přidat rozsah\" přidejte libovolný počet rozsahů. Příklad: 0-20% špatné skóre, 21-91% průměrné skóre, 91-100% výborné skóre!",
           "entity": "rozsah",
           "field": {
             "fields": [
@@ -34,7 +34,7 @@
               {},
               {
                 "label": "Zpětná vazba pro definovaný rozsah skóre",
-                "placeholder": "Vyplňte ve zpětné vazbě"
+                "placeholder": "Vyplňte zpětnou vazbu"
               }
             ]
           }
@@ -42,15 +42,15 @@
       ]
     },
     {
-      "label": "Popisek tlačítka  \"Zkontrolovat\" ",
+      "label": "Popisek tlačítka \"Zkontrolovat\"",
       "default": "Zkontrolovat"
     },
     {
-      "label": "Popisek tlačítka \"Opakovat\" buttn",
+      "label": "Popisek tlačítka \"Opakovat\"",
       "default": "Opakovat"
     },
     {
-      "label": "Popisek tlačítka \"Zobrazit řešení\" ",
+      "label": "Popisek tlačítka \"Zobrazit řešení\"",
       "default": "Zobrazit řešení"
     },
     {
@@ -75,7 +75,7 @@
     },
     {
       "label": "Popisek tlačítka pro zobrazení nápovědy",
-      "default": "Zobrazení nápovědy",
+      "default": "Zobrazit nápovědu",
       "description": "Štítek používaný pro usnadnění přístupu, kde čtecí zařízení přečte nápovědu"
     },
     {
@@ -118,10 +118,10 @@
           "label": "Povolit \"Opakovat\""
         },
         {
-          "label": "Povolit tlačítko \"Zobrazit řešení\" "
+          "label": "Povolit tlačítko \"Zobrazit řešení\""
         },
         {
-          "label": "Povolit tlačítko \"Zkontrolovat\" "
+          "label": "Povolit tlačítko \"Zkontrolovat\""
         },
         {
           "label": "Okamžitá zpětná vazba"
@@ -133,16 +133,16 @@
       "default": "Získal jste :num z :total bodů"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Popisek podpůrné technologie pro tlačítko „Zkontrolovat“",
+      "default": "Zkontrolovat odpovědi. Odpovědi budou označeny jako správné, nesprávné nebo nezodpovězené."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "Popisek podpůrné technologie pro tlačítko „Zobrazit řešení“",
+      "default": "Zobrazit řešení. Úkol bude zobrazen se správným řešením."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Popisek podpůrné technologie pro tlačítko „Opakovat“",
+      "default": "Zopakovat úkol. Resetovat všechny odpovědi a spustit úlohu znovu."
     }
   ]
 }

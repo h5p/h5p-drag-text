@@ -11,7 +11,7 @@
       "description": "",
       "important": {
         "description": "<ul><li>Jaregin daitezkeen hitzak edo esaldiak gehitu dira asterisko  (*) bat aurretik eta beste bat atzetik dutela bere kokaleku egokianin.</li><li>Gehitzen ahal dituzu laguntzak, horien aurretik bi puntu (:) jarrita.</li><li>Hutsune bakoitzak hitz/esaldi zuzen bakarra dago.</li><li>Gehitzen ahal duzu ataza burutu ondoren ikusiko diren feedbackak.     . Erabili '\\+' erantzun zuzenen feedbackarako eta '\\-' erantzun okerretarako.</li></ul>",
-        "example": "H5P edukia editatu daiteke *nabigatzailez:Zer aplikazio mota da Chrome?*. </br> H5P edukia *interaktiboa\\+Asmatu duzu! \\-Ez da zuzena, saiatu berroro!* da."
+        "example": "H5P edukia editatu daiteke *nabigatzailez:Zer aplikazio mota da Chrome?*. <br /> H5P edukia *interaktiboa\\+Asmatu duzu! \\-Ez da zuzena, saiatu berroro!* da."
       }
     },
     {
@@ -24,7 +24,7 @@
             }
           ],
           "label": "Definitu feedback pertsonalizatuak puntuazio tarte bakoitzerako",
-          "description": "Klikatu \"Gehitu tartea\" botoia gehitzeko behar haina tarte. Adibidez: 0-%20 Puntuazio txarra, &21-%90 Tarteko puntuazioa, %91-%100 Puntuazio bikaina!",
+          "description": "Klikatu \"Gehitu tartea\" botoia gehitzeko behar haina tarte. Adibidez: 0-%20 Puntuazio txarra, %21-%90 Tarteko puntuazioa, %91-%100 Puntuazio bikaina!",
           "entity": "tartea",
           "field": {
             "fields": [
@@ -133,16 +133,16 @@
       "default": ":total puntutik :num lortu dituzu"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "\"Egiaztatu\" botoiaren laguntza-teknologientzako etiketa",
+      "default": "Egiaztatu erantzunak. Erantzunak zuzen, oker edo erantzun gabe gisa markatuko dira."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "\"Erakutsi erantzun zuzena\" botoiaren laguntza-teknologientzako etiketa",
+      "default": "Erakutsi erantzun zuzena. Zereginaren erantzun zuzena markatuko da."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "\"Berriz saiatu\" botoiaren laguntza-teknologientzako etiketa",
+      "default": "Zeregina berriz egiten saiatu. Berrabiarazi erantzun guztiak eta hasi zeregina berriz."
     }
   ]
 }

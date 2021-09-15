@@ -11,7 +11,7 @@
       "description": "",
       "important": {
         "description": "<ul><li>Per rendere una parola - o una frase - rilasciabile le si deve aggiungere un asterisco (*) all'inizio e uno alla fine.</li><li>Puoi aggiungere un suggerimento usando i due punti (:) prima del suggerimento stesso.</li><li>Per ogni spazio vuoto c'è un'unica parola corretta.</li><li>Puoi anche aggiungere un feedback da mostrare quando l'attività è completata; usa '\\+' per giusto e '\\-' per sbagliato</li></ul>",
-        "example": "I contenuti H5P possono essere modificati usando un *browser:Che tipo di software è Chrome?*.</br>Il contenuto H5P è *interattivo\\+Giusto! \\-Sbagliato. Riprova!*"
+        "example": "I contenuti H5P possono essere modificati usando un *browser:Che tipo di software è Chrome?*.<br />Il contenuto H5P è *interattivo\\+Giusto! \\-Sbagliato. Riprova!*"
       }
     },
     {

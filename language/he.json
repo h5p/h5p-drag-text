@@ -10,12 +10,12 @@
       "placeholder": "*אוסלו* היא בירת נורווגיה, *שטוקהולם* היא בירת שוודיה ו*קופנהגן* היא בירת דנמרק. כל הערים ממוקמות בחצי האי *הסקנדינבי: בחלק הצפוני של אירופה*.",
       "description": "",
       "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
-        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+        "description": "",
+        "example": ""
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "משוב כללי",
       "fields": [
         {
           "widgets": [
@@ -46,76 +46,76 @@
       "default": "בדוק"
     },
     {
-      "label": "מלל לכפתור \"נסה שוב\"",
-      "default": "נסו שוב"
+      "label": "טקסט לכפתור \"נסה שוב\"",
+      "default": "נסה שוב"
     },
     {
       "label": "מלל לכפתור \"הצג פתרון\"",
-      "default": "הצגת פתרון"
+      "default": "הצג פתרון"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "תווית ממוספרת של אזור יעד",
+      "default": "@index אזור יעד.",
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא את האינדקס של אזור היעד. משתנה זמין: @index"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "תווית אזור יעד ריקה",
+      "default": "@index אזור יעד ריק.",
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא שאזור היעד ריק"
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "מכיל תווית אזור יעד",
+      "default": "אזור יעד @index מכיל את אובייקט הגרירה @draggable.",
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא שאזור היעד מכיל אובייקט גרירה"
     },
     {
-      "label": "Draggable elements label",
-      "default": "@index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "תווית רכיב גרירה",
+      "default": "@index של @count אובייקטי גרירה.",
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא שזה רכיב גרירה. משתנים זמינים: index, @count@"
     },
     {
       "label": "תווית לכפתור הצגת רמז",
       "default": "הצגת עצה",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "description": "תווית משמשת עבור נגישות, היכן שקורא-המסך יקרא אותה לפני קריאת הרמז"
     },
     {
-      "label": "Readspeaker text for correct answer",
+      "label": "טקסט קורא-מסך לתשובה נכונה",
       "default": "נכון!"
     },
     {
-      "label": "Readspeaker text for incorrect answer",
+      "label": "טקסט קורא-מסך עבור תשובה לא נכונה",
       "default": "לא נכון!"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label": "",
+      "default": ""
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop zone?"
+      "label": "",
+      "default": ""
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
+      "label": "תווית משמשת עבור נגישות, היכן שקורא-המסך יציין שגרירה מתבצעת",
+      "default": ""
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label": "תווית משמשת עבור נגישות, היכן שקורא-המסך מציין שהגרירה התבטלה",
+      "default": "התבטלה הגרירה."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Correct answer:"
+      "label": "תווית משמשת עבור נגישות, היכן שקורא-המסך יציין שהטקסט הוא התשובה הנכונה",
+      "default": "תשובה נכונה:"
     },
     {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
-      "default": "Feedback"
+      "label": "כותרת עבור משבצת המכילה משוב עבור תשובות נכונות/לא נכונות",
+      "default": "משוב"
     },
     {
-      "label": "Behavioural settings.",
-      "description": "These options will let you control how the task behaves.",
+      "label": "הגדרות התנהגות הרכיב.",
+      "description": "אפשרויות אלה יאפשרו לך לשלוט בהתנהגות המשימה.",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "הפעלת \"ניסיון חוזר\""
         },
         {
           "label": "אפשר כפתור \"הצגת פתרון\""
@@ -129,20 +129,20 @@
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
+      "label": "ייצוג מילולי של סרגל הניקוד לאלה שמשתמשים בקורא-מסך",
       "default": "קיבלת :num מתוך :total נקודות"
     },
     {
       "label": "תווית טכנולוגיה מסייעת עבור כפתור \"בדיקה\"",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "default": "בדקו את התשובות. המענים יסומנו כנכון, לא נכון, או ריק."
     },
     {
       "label": "תווית טכנולוגיה מסייעת עבור כפתור \"הצגת פתרון\"",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "default": "הציגו את הפתרון. המשימה תסומן עם התשובה הנכונה."
     },
     {
       "label": "תווית טכנולוגיה מסייעת עבור כפתור \"ניסיון חוזר\"",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "default": "נסו שוב את המשימה. אפסו את כל ניסיונות המענה והתחילו מחדש."
     }
   ]
 }

@@ -11,7 +11,7 @@
       "description": "",
       "important": {
         "description": "<ul><li>Sleepbare woorden worden tussen asterisken (*) geplaatst.</li><li>Je kunt een tip toevoegen door een (:) voor de tiptekst te plaatsen.</li><li>Voor elk leeg veld is er slechts één juist woord van toepassing.</li><li>Je kunt feedback tonen als een opgave is afgerond. Gebruik '\\+' voor juiste en '\\-' voor onjuiste antwoorden.</li></ul>",
-        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. </br> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+        "example": "H5P inhoud kan bewerkt worden via een *browser:Welk soort programma is Chrome?*. <br /> H5P inhoud is *interactief\\+Juist! \\-Onjuist, probeer opnieuw!*"
       }
     },
     {
@@ -133,16 +133,16 @@
       "default": "Je hebt :num out van :total points"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Ondersteunende technologie label voor \"Controleer\" button",
+      "default": "Controleer de antwoorden. De antwoorden worden gemarkeerd als correct, incorrect, of niet-beantwoord."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "Ondersteunende technologie label voor \"Toon oplossing\" knop",
+      "default": "Toon de oplossing. De taak wordt gemarkeerd met de juiste oplossing."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Ondersteunende technologie label voor \"Opnieuw\" knop",
+      "default": "Probeer de taak opnieuw. Reset alle antwoorden en start de taak opnieuw."
     }
   ]
 }

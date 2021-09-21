@@ -1489,6 +1489,16 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       .join('[,]');
   };
 
+  /**
+	 * Get parsed texts
+	 *
+	 * @param {string} question
+	 * @returns {string} Array with a string containing solutions of a question
+	 */
+  DragText.prototype.parseText = function (question) {
+    return parseText(question);
+  };
+
   return DragText;
 
 }(H5P.jQuery, H5P.Question, H5P.ConfirmationDialog));

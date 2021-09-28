@@ -5,7 +5,7 @@
   "description": "Drag the Words allows content designers to create textual expressions with missing pieces of text. The end user drags a missing piece of text to its correct place, to form a complete expression.",
   "scripts": {
     "test": "ava",
-    "build": "cross-env NODE_ENV='production' webpack -p && cp dist/h5p-drag-text.js D://H5P-COM//php-h5p-app//storage//app//public//libraries//H5P.DragText-1.8//dist",
+    "build": "cross-env NODE_ENV='production' webpack -p",
     "watch": "webpack --watch"
   },
   "repository": {

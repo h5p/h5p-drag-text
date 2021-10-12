@@ -42,6 +42,7 @@ H5P.TextDroppable = (function ($) {
         tipLabel: self.params.tipLabel,
         tabcontrol: true
       });
+      self.$dropzoneContainer.addClass('has-tip');
       self.$dropzoneContainer.append(self.$tip);
 
       // toggle tabindex on tip, based on dropzone focus

@@ -75,6 +75,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // Set default behavior.
     this.params = $.extend(true, {
+      media: {},
       taskDescription: "Set in adjectives in the following sentence",
       textField: "This is a *nice*, *flexible* content type, which allows you to highlight all the *wonderful* words in this *exciting* sentence.\n" +
         "This is another line of *fantastic* text.",
@@ -323,6 +324,35 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Called from H5P.Question.
    */
   DragText.prototype.registerDomElements = function () {
+    // Register optional media
+    let media = this.params.media;
+    if (media && media.type && media.type.library) {
+      media = media.type;
+      const type = media.library.split(' ')[0];
+      if (type === 'H5P.Image') {
+        if (media.params.file) {
+          // Register task image
+          this.setImage(media.params.file.path, {
+            disableImageZooming: this.params.media.disableImageZooming || false,
+            alt: media.params.alt,
+            title: media.params.title
+          });
+        }
+      }
+      else if (type === 'H5P.Video') {
+        if (media.params.sources) {
+          // Register task video
+          this.setVideo(media);
+        }
+      }
+      else if (type === 'H5P.Audio') {
+        if (media.params.files) {
+          // Register task audio
+          this.setAudio(media);
+        }
+      }
+    }
+
     // Register task introduction text
     this.$introduction = $('<p id="' + this.introductionId + '">' + this.params.taskDescription + '</p>');
     this.setIntroduction(this.$introduction);
@@ -1506,16 +1536,16 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 /**
  * Static helper method to enable parsing of question text into a format useful
  * for generating reports.
- * 
+ *
  * PS: The leading backslash for the correct and incorrect feedback within
  * answer parts must be escaped appropriately:
- * 
+ *
  * Example:
- * 
+ *
  * question: 'H5P content is *interactive\\+Correct! \\-Incorrect, try again!*.'
- * 
+ *
  * produces the following:
- * 
+ *
  * [
  *   {
  *     type: 'text',
@@ -1523,14 +1553,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
  *   },
  *   {
  *     type: 'answer',
- *     correct: 'interactive'  
+ *     correct: 'interactive'
  *   },
  *   {
  *     type: 'text',
  *     content: '.'
  *   }
  * ]
- * 
+ *
  * @param {string} question Question text for an H5P.DragText content item
  */
 H5P.DragText.parseText = function (question) {

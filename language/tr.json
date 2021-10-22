@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Medya",
+      "fields": [
+        {
+          "label": "Tipi",
+          "description": "Soru üzerinde görüntülenecek isteğe bağlı medya."
+        },
+        {
+          "label": "Görsel yakınlaştırmasını devre dışı bırakın"
+        }
+      ]
+    },
+    {
       "label": "Görev tanımlaması",
       "description": "Bu görevin nasıl yapılacağını kullanıcıya anlatın.",
       "default": "Kelimeleri doğru kutulara sürükleyin."

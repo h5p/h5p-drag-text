@@ -46,6 +46,10 @@
       "default": "Seiceáil"
     },
     {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
+    },
+    {
       "label": "Text for \"Triail arís\" button",
       "default": "Triail arís"
     },

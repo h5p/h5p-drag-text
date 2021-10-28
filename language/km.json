@@ -46,6 +46,10 @@
       "default": "ពិនិត្យចម្លើយ"
     },
     {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
+    },
+    {
       "label": "ពាក្យប្រើសម្រាប់ប៊ូតុង \"សាកម្តងទៀត\"",
       "default": "សាកម្តងទៀត"
     },

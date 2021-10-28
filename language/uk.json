@@ -46,6 +46,10 @@
       "default": "Перевірити"
     },
     {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
+    },
+    {
       "label": "Текст для кнопки \"Повторити\"",
       "default": "Повторити"
     },

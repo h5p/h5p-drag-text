@@ -46,6 +46,10 @@
       "default": "بررسی"
     },
     {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
+    },
+    {
       "label": "متن برای دکمه تلاش مجدد",
       "default": "تلاش مجدد"
     },

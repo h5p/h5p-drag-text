@@ -1,9 +1,9 @@
 {
-  "title": "Drag Text",
+  "title": "Drag the Words",
   "description": "Drag and drop pieces of text to create complete sentences.",
   "majorVersion": 1,
-  "minorVersion": 8,
-  "patchVersion": 14,
+  "minorVersion": 9,
+  "patchVersion": 0,
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 19
@@ -44,12 +44,17 @@
     {
       "machineName": "H5P.Question",
       "majorVersion": 1,
-      "minorVersion": 4
+      "minorVersion": 5
     }
   ],
   "editorDependencies": [
     {
       "machineName": "H5PEditor.RangeList",
+      "majorVersion": 1,
+      "minorVersion": 0
+    },
+    {
+      "machineName": "H5PEditor.ShowWhen",
       "majorVersion": 1,
       "minorVersion": 0
     }

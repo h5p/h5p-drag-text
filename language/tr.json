@@ -1,21 +1,33 @@
 {
   "semantics": [
     {
-      "label": "Task description",
-      "description": "Describe how the user should solve the task.",
-      "default": "Drag the words into the correct boxes"
+      "label": "Medya",
+      "fields": [
+        {
+          "label": "Tipi",
+          "description": "Soru üzerinde görüntülenecek isteğe bağlı medya."
+        },
+        {
+          "label": "Görsel yakınlaştırmasını devre dışı bırakın"
+        }
+      ]
+    },
+    {
+      "label": "Görev tanımlaması",
+      "description": "Bu görevin nasıl yapılacağını kullanıcıya anlatın.",
+      "default": "Kelimeleri doğru kutulara sürükleyin."
     },
     {
       "label": "Metin",
-      "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
+      "placeholder": "*Ankara* Türkiye'nin başkentidir. *İstanbul* Marmara Bölgesi'nin, *Diyarbakır* Güneydoğu Anadolu Bölgesi'nin illeridir. Tüm şehirler *Anadolu:Türkiye'nin İstanbul Boğazı'yla Avrupa'dan ayrılan asya kıtasındaki topraklarıdır* yarımadasında bulunur.",
       "description": "",
       "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
-        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+        "description": "<ul><li>Sürüklenebilir kelimeler, doğru kelime/ifadenin önüne ve arkasına yıldız işareti (*) konularak eklenir.</li><li>Önüne iki nokta üst üste (:) koyarak, doğru ifadeden sonra bir ipucu ekleyebilirsiniz.</li><li>Her boşluk için sadece bir doğru kelime vardır.</li><li>Bir görev tamamlandığında görüntülenecek geri bildirim ekleyebilirsiniz. Doğru geri bildirim için '\\+' ve yanlış geri bildirim için '\\-' kullanın.</li></ul>",
+        "example": "*Ankara:Türkiye'nin başkenti* İç Anadolu Bölgesi illerinden biridir. <br /> *Kare\\+Doğru! \\-Yanlış, lütfen tekrar dene!* dört kenarı eş uzunlukta olan bir geometrik şekildir."
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "Toplam Geri bildirim",
       "fields": [
         {
           "widgets": [
@@ -23,18 +35,18 @@
               "label": "Varsayılan"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "Herhangi bir puan aralığı için özel geri bildirim tanımlayın",
+          "description": "İstediğiniz kadar aralık eklemek için \"Aralık ekle\" düğmesini tıklayın. Örnek: %0-20 Kötü puan, %21-91 Ortalama Puan, %91-100 Büyük Puan!",
+          "entity": "aralık",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Puan Aralığı"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Tanımlanmış puan aralığı için geri bildirim",
+                "placeholder": "Geri bildirimi doldurun"
               }
             ]
           }
@@ -42,89 +54,89 @@
       ]
     },
     {
-      "label": "\"Kontrol et\" butonu için metin",
+      "label": "\"Kontrol et\" düğmesi için metin",
       "default": "Kontrol et"
     },
     {
-      "label": "\"Yeniden dene\" butonu için metin",
+      "label": "\"Yeniden dene\" düğmesi için metin",
       "default": "Yeniden dene"
     },
     {
-      "label": "Text for \"Show Solution\" button",
+      "label": "\"Çözümü göster\" düğmesi için metin",
       "default": "Çözümü göster"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "Numaralandırılmış bırakma alanı etiketi",
+      "default": "Bırakma alanı @index.",
+      "description": "Erişilebilirlik için kullanılan ve okuyucunun bırakma alanının dizinini okuyacağı etiket. Kullanılabilir değişken: @index"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Boş bırakma alanı etiketi",
+      "default": "Bırakma alanı @index boş.",
+      "description": "Erişilebilirlik için kullanılan ve okuyucunun bırakma alanının boş olduğunu okuyacağı etiket."
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Bırakma alanı içerir etiketi",
+      "default": "Bırakma alanı @index, sürüklenebilir @draggable içerir.",
+      "description": "Erişilebilirlik için kullanılan ve okuyucunun bırakma alanının sürüklenebilir bir elemanı içerdiğini okuyacağı etiket."
     },
     {
-      "label": "Draggable elements label",
-      "default": "@index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "Sürüklenebilir ögeler etiketi",
+      "default": "@count sürüklenebilir ögeden @index",
+      "description": "Erişilebilirlik için kullanılan ve okuyucunun bunun sürüklenebilir bir öğe olduğunu okuduğu etiket. Kullanılabilir değişkenler: @index, @count"
     },
     {
-      "label": "Label for show tip button",
+      "label": "İpucu göster düğmesi için etiket",
       "default": "İpucu göster",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "description": "Erişilebilirlik için kullanılan ve okuyucunun ipucu görünmeden önce okuyacağı etiket."
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct!"
+      "label": "Doğru cevap için okuyucu metni",
+      "default": "Doğru!"
     },
     {
-      "label": "Readspeaker text for incorrect answer",
-      "default": "Incorrect!"
+      "label": "Yanlış cevap için okuyucu metni",
+      "default": "Yanlış!"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label": "Kullanıcının bir bırakma alanını sıfırlama isteği onay iletişim kutusu başlığı",
+      "default": "Bırakma alanını sıfırla"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop zone?"
+      "label": "Kullanıcının bir bırakma alanını sıfırlama isteği onay iletişim kutusu açıklaması",
+      "default": "Bu bırakma alanını sıfırlamak istediğinizden emin misiniz?"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
+      "label": "Okuyucunun sürüklemenin başlatıldığını belirttiği erişilebilirlik için kullanılan etiket",
+      "default": "Sürüklenebilir öge tutuldu"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
+      "label": "Okuyucunun sürüklemenin iptal edildiğini belirttiği erişilebilirlik için kullanılan etiket",
+      "default": "Sürükleme iptal edildi."
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Correct answer:"
+      "label": "Okuyucunun metnin doğru yanıt olduğunu belirttiği erişilebilirlik için kullanılan etiket",
+      "default": "Doğru cevap:"
     },
     {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
-      "default": "Feedback"
+      "label": "Doğru/yanlış cevaplar için geri bildirim içeren panel başlığı",
+      "default": "Geri Bildirim"
     },
     {
-      "label": "Behavioural settings.",
-      "description": "Bu seçenekler aktivitenin çalışma şeklini denetlemenize izin verir.",
+      "label": "Etkinlik Ayarları",
+      "description": "Bu seçenekler, etkinliğin nasıl davranacağını kontrol etmenizi sağlar.",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "\"Yeniden dene\"yi etkinleştir"
         },
         {
-          "label": "\"Çözümü göster\" butonunu aktifleştirin"
+          "label": "\"Çözüm göster\" düğmesini etkinleştirin"
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "\"Kontrol Et\" düğmesini etkinleştirin"
         },
         {
-          "label": "Instant feedback"
+          "label": "Anlık geri bildirim"
         },
         {
           "label": "Solutions below content",
@@ -133,20 +145,20 @@
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "Bir okuyucu kullananlar için puan çubuğunun metinsel gösterimi",
+      "default": "Toplam :total puandan, :num puan aldınız"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "\"Kontrol Et\" düğmesi için yardımcı teknoloji etiketi",
+      "default": "Cevapları kontrol edin. Cevaplar doğru, yanlış veya cevapsız olarak işaretlenecektir."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "\"Çözüm Göster\" düğmesi için yardımcı teknoloji etiketi",
+      "default": "Çözümü göster. Etkinlik, doğru çözümü ile işaretlenecektir."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "\"Yeniden Dene\" düğmesi için yardımcı teknoloji etiketi",
+      "default": "Görevi yeniden deneyin. Tüm yanıtları sıfırlayın ve görevi yeniden başlatın."
     }
   ]
 }

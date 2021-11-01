@@ -1098,7 +1098,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       }
 
       // Shows evaluation text
-      self.showEvaluation();
+      self.showEvaluation(!self.instantFeedbackEvaluationFilled);
       self.instantFeedbackEvaluationFilled = true;
     } else {
       self.instantFeedbackEvaluationFilled = false;

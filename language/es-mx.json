@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Medio",
+      "fields": [
+        {
+          "label": "Tipo",
+          "description": "Medios opcionales para mostrar sobre la pregunta."
+        },
+        {
+          "label": "Desactivar zoom de imagen para imagen de pregunta"
+        }
+      ]
+    },
+    {
       "label": "Descripción del trabajo",
       "description": "Describe como el usuario debería resolver el trabajo.",
       "default": "Arrastrar las palabras a las cajas correctas"
@@ -112,7 +124,7 @@
     },
     {
       "label": "Configuraciones del comportamiento.",
-      "description": "Estas opciones le permitirán controlar cómo se comporta el trabajo.",
+      "description": "Estas opciones le permitirán controlar como se comporta el trabajo.",
       "fields": [
         {
           "label": "Habilitar \"Reintentar\""

@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Tip",
+          "description": "Opcionalni medij da se prikaže iznad pitanja."
+        },
+        {
+          "label": "Onemogući zumiranje slike"
+        }
+      ]
+    },
+    {
       "label": "Opis zadatka",
       "description": "Opiši kako korisnik treba riješiti problem.",
       "default": "Prevucite riječi u odgovarajuća polja"

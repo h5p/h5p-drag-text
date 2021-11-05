@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Multimedia",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Eit valfritt multimediaelement som skal visast over spørsmålet."
+        },
+        {
+          "label": "Disable image zooming"
+        }
+      ]
+    },
+    {
       "label": "Oppgåve beskriving",
       "description": "Forklar korleis brukeren skal løyse oppgaven.",
       "default": "Dra orda inn i dei rette boksane"

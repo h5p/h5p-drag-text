@@ -20,7 +20,7 @@ H5P.TextDraggable = (function ($) {
     self.initialIndex = index;
 
     // Shortening LaTeX would destroy it
-    this.containsLatex = /\\\(.*?\\\)/.test(self.text);
+    this.containsLatex = self.shortFormat.match(/\\\(.+\\\)|\\\[.+\\\]|\$\$.+\$\$/);
 
     self.shortFormat = self.text;
     //Shortens the draggable string if inside a dropbox.

@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Optional media to display above the question."
+        },
+        {
+          "label": "Disable image zooming"
+        }
+      ]
+    },
+    {
       "label": "សេចក្តីពណ៌នាពីកិច្ចការ",
       "description": "ពន្យល់ថាគេត្រូវធ្វើអ្វីខ្លះដើម្បីបំពេញកិច្ចការ",
       "default": "អូសពាក្យទៅកាន់ប្រអប់ដែលត្រឹមត្រូវ"

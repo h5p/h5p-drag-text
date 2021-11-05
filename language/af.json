@@ -1,6 +1,18 @@
 {
   "semantics": [
     {
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Optional media to display above the question."
+        },
+        {
+          "label": "Disable image zooming"
+        }
+      ]
+    },
+    {
       "label": "Taak beskrywing",
       "description": "Beskryf hoe die gebruiker die taak moet oplos.",
       "default": "Trek die woorde in die regte boksie in"

@@ -81,6 +81,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         "This is another line of *fantastic* text.",
       overallFeedback: [],
       checkAnswer: "Check",
+      submitAnswer: "Submit",
       tryAgain: "Retry",
       behaviour: {
         enableRetry: true,
@@ -114,7 +115,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // Keeps track of if Question has been answered
     this.answered = false;
-    this.instantFeedbackEvaluationFilled = false;
 
     // Convert line breaks to HTML
     this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
@@ -454,6 +454,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         self.$introduction.parent().focus();
       }, !self.params.behaviour.instantFeedback, {
         'aria-label': self.params.a11yCheck,
+      }, {
+        contentData: self.contentData,
+        textIfSubmitting: self.params.submitAnswer,
       });
     }
 
@@ -520,7 +523,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var hasSelectedElement = this.selectedElement !== undefined;
     var isSelectedElement = this.selectedElement ===  event.element;
 
-    // un select the selected
+    // unselect the selected
     if(hasSelectedElement){
       this.selectedElement = undefined;
       this.trigger('stop', { element: tmp });
@@ -779,16 +782,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         if(self.isAnswerPart(part)) {
           // is draggable/droppable
           const solution = lex(part);
-          const draggable = self.createDraggable(solution.text);
-          const droppable = self.createDroppable(solution.text, solution.tip, solution.correctFeedback, solution.incorrectFeedback);
-
-          // trigger instant feedback
-          if (self.params.behaviour.instantFeedback) {
-            draggable.getDraggableElement().on('dragstop', function() {
-              droppable.addFeedback();
-              self.instantFeedbackEvaluation();
-            });
-          }
+          self.createDraggable(solution.text);
+          self.createDroppable(solution.text, solution.tip, solution.correctFeedback, solution.incorrectFeedback);
         }
         else {
           // is normal text
@@ -1128,10 +1123,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       }
 
       // Shows evaluation text
-      self.showEvaluation(!self.instantFeedbackEvaluationFilled);
-      self.instantFeedbackEvaluationFilled = true;
-    } else {
-      self.instantFeedbackEvaluationFilled = false;
+      self.showEvaluation();
+    } 
+    else {
       //Hides "retry" and "show solution" buttons.
       self.hideButton('try-again');
       self.hideButton('show-solution');
@@ -1281,7 +1275,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var self = this;
     // Reset task answer
     self.answered = false;
-    self.instantFeedbackEvaluationFilled = false;
     //Reset draggables parameters and position
     self.resetDraggables();
     //Hides solution text and re-enable draggables

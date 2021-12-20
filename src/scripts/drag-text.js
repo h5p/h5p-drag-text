@@ -298,6 +298,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     const hasChildren = (dropZone.childNodes.length > 0);
 
     if (dropZone) {
+      let ariaLabel;
+
       if (checkButtonPressed) {
         const droppable = this.getDroppableByElement(dropZone);
         let resultString = '';
@@ -307,14 +309,22 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         else {
           resultString = droppable.incorrectFeedback ? droppable.incorrectFeedback : this.params.incorrectText;
         }
-        dropZone.setAttribute('aria-label', `${indexText} ${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`);
+        ariaLabel = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`;
+
+        if (droppable && droppable.containedDraggable) {
+          droppable.containedDraggable.updateAriaDescription(
+            correctFeedback ? this.params.correctText : this.params.incorrectText
+          );
+        }
       }
       else if (hasChildren) {
-        dropZone.setAttribute('aria-label', `${indexText} ${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)}`);
+        ariaLabel = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)}`;
       }
       else {
-        dropZone.setAttribute('aria-label',  `${indexText} ${this.params.empty.replace('@index', index.toString())}`);
+        ariaLabel = `${this.params.empty.replace('@index', index.toString())}`;
       }
+
+      dropZone.setAttribute('aria-label', ariaLabel);
     }
   };
 

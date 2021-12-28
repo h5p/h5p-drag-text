@@ -80,6 +80,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         "This is another line of *fantastic* text.",
       overallFeedback: [],
       checkAnswer: "Check",
+      submitAnswer: "Submit",
       tryAgain: "Retry",
       behaviour: {
         enableRetry: true,
@@ -423,6 +424,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         self.$introduction.parent().focus();
       }, !self.params.behaviour.instantFeedback, {
         'aria-label': self.params.a11yCheck,
+      }, {
+        contentData: self.contentData,
+        textIfSubmitting: self.params.submitAnswer,
       });
     }
 

@@ -8,7 +8,6 @@
     {
       "label": "Question",
       "placeholder": "Paris est la capitale de la *France*",
-      "description": "",
       "important": {
         "description": "<ul><li>Les textes déplaçables s'ajoutent avec un astérisque (*) devant et derrière chaque texte.</li><li>Vous pouvez ajouter un indice en plaçant 2 points (:) avant cet indice.</li><li>Il ne peut y avoir qu'un seul texte correct pour chaque espace à remplir.</li><li>Vous pouvez ajouter un feedback qui apparaîtra une fois l'exercice terminé. Utilisez '\\+' pour créer le feedback en cas de réponse correcte et '\\-' pour le feedback en cas de mauvaise réponse.</li></ul>",
         "example": "Les contenus H5P peuvent être édités en utilisant un *navigateur:Quel type de programme utilisez vous pour consulter des sites Internet ?*. <br /> Un contenu H5P est *interactif\\+Correct ! \\-Incorrect, Recommencez !*"
@@ -44,6 +43,10 @@
     {
       "label": "Texte du bouton \"Vérifier\"",
       "default": "Vérifier"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Texte du bouton \"Recommencer\"",

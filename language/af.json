@@ -8,7 +8,6 @@
     {
       "label": "Teks",
       "placeholder": "*Oslo* is die hoofstad van Noorweë, *Stockholm* is die hoofstad van Swede en *Kopenhagen* is die hoofstad van Denemarke. Alle stede is geleë in die *Skandinawiese: Noordelike deel van Europa* skiereiland.",
-      "description": "",
       "important": {
         "description": "<ul><li>Valbare woorde word bygevoeg met 'n sterretjie (*) voor en agter die korrekte woord/frase.</li><li>Jy kan 'n tekswenk byvoeg deur middel van 'n dubbelpunt (:) voor die wenk.</li><li>Vir elke leë area is daar net een regte woord.</li><li>Jy kan terugvoer byvoeg wat vertoon moet word wanneer 'n taak voltooi is. Gebruik '\\+' vir reg en '\\-' verkeerd vir verkeerde terugvoer.</li></ul>",
         "example": "H5P inhoud kan geredigeer word deur middel van 'n *blaaier:Watter tipe program is Chrome?*. <br /> H5P inhoud is *interaktief\\+Reg! \\-Verkeerd, probeer weer!*"
@@ -44,6 +43,10 @@
     {
       "label": "Teks vir \"Toets\" knoppie",
       "default": "Toets"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Teks vir \"Probeer weer\" knoppie",

@@ -8,7 +8,6 @@
     {
       "label": "テキスト",
       "placeholder": "*オスロ*はノルウェーの首都です。*ストックホルム*はスウェーデンの首都で、*コペンハーゲン*はデンマークの首都です。すべての都市は*スカンジナビア:ヨーロッパの北部*半島に位置しています。",
-      "description": "",
       "important": {
         "description": "<ul><li>ドロップできる語句は、アスタリスク (*) を適切な語句の前後に付けて追加します。</li><li>コロン (:) をヒントの前に付けて、テキストのヒントを追加できます。</li><li>各空欄には、一つだけ適切な語句を置けます。</li><li>タスクが完了したときに表示されるフィードバックを追加できます。正解のフィードバックには '\\+'、不正解のフィードバックには '\\-'を使います。</li></ul>",
         "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
@@ -44,6 +43,10 @@
     {
       "label": "「チェック」ボタンのテキスト",
       "default": "チェック"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "「リトライ」ボタンのテキスト",

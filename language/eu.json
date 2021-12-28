@@ -8,7 +8,6 @@
     {
       "label": "Testua",
       "placeholder": "*Oslo* Norvegiako hiruburua da, *Stockholm* Suediako hiriburua da eta *Kopenhagen* Danimarkako hiriburua da. Hiru hiri *Eskandinavia:Europako iparraldeko* penintsulan daude.",
-      "description": "",
       "important": {
         "description": "<ul><li>Jaregin daitezkeen hitzak edo esaldiak gehitu dira asterisko  (*) bat aurretik eta beste bat atzetik dutela bere kokaleku egokianin.</li><li>Gehitzen ahal dituzu laguntzak, horien aurretik bi puntu (:) jarrita.</li><li>Hutsune bakoitzak hitz/esaldi zuzen bakarra dago.</li><li>Gehitzen ahal duzu ataza burutu ondoren ikusiko diren feedbackak.     . Erabili '\\+' erantzun zuzenen feedbackarako eta '\\-' erantzun okerretarako.</li></ul>",
         "example": "H5P edukia editatu daiteke *nabigatzailez:Zer aplikazio mota da Chrome?*. <br /> H5P edukia *interaktiboa\\+Asmatu duzu! \\-Ez da zuzena, saiatu berroro!* da."
@@ -44,6 +43,10 @@
     {
       "label": "\"Egiaztatu\" botoirako testua",
       "default": "Egiaztatu"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "\"Saiatu berriro\" botoiaren testua",

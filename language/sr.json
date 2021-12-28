@@ -8,7 +8,6 @@
     {
       "label": "Текст",
       "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
-      "description": "",
       "important": {
         "description": "<ul><li>Речи које се преносе додају се у звездици (*) испред и иза тачне речи/фразе.</li><li>Можете додати текстуални савет користећу двотачку (:) испред.</li><li>За свако празно место постоји само једна тачна реч.</li><li>Можете додати повратне информације које ће се приказивати када је задатак завршен. Користите '\\+' за тачну и '\\-' за нетачну повратну информацију.</li></ul>",
         "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
@@ -44,6 +43,10 @@
     {
       "label": "Текст за \"Провери\" дугме",
       "default": "Провери"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Текст за \"Врати\" дугме",

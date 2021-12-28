@@ -8,7 +8,6 @@
     {
       "label": "Testo",
       "placeholder": "*Oslo* è la capitale della Norvegia, *Stoccolma* è la capitale della Svezia e *Copenaghen* è la capitale della Danimarca. Tutte queste città si trovano nella penisola della *Scandinavia:Parte a nord dell'Europa*",
-      "description": "",
       "important": {
         "description": "<ul><li>Per rendere una parola - o una frase - rilasciabile le si deve aggiungere un asterisco (*) all'inizio e uno alla fine.</li><li>Puoi aggiungere un suggerimento usando i due punti (:) prima del suggerimento stesso.</li><li>Per ogni spazio vuoto c'è un'unica parola corretta.</li><li>Puoi anche aggiungere un feedback da mostrare quando l'attività è completata; usa '\\+' per giusto e '\\-' per sbagliato</li></ul>",
         "example": "I contenuti H5P possono essere modificati usando un *browser:Che tipo di software è Chrome?*.<br />Il contenuto H5P è *interattivo\\+Giusto! \\-Sbagliato. Riprova!*"
@@ -44,6 +43,10 @@
     {
       "label": "Testo per il pulsante \"Verifica\"",
       "default": "Verifica"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Testo per il pulsante \"Riprova\"",

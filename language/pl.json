@@ -8,7 +8,6 @@
     {
       "label": "Treść",
       "placeholder": "*Oslo* jest stolicą Norwegii, *Sztokholm* jest stolicą Szwecji, a *Kopenhaga* jest stolicą Danii. Wszystkie te miasta leżą w *Skandynawii:Północnej Europie*.",
-      "description": "",
       "important": {
         "description": "<ul><li>Słowa, które należy przenieść, powinny być oznakowane gwiazdką (*) z obu stron i muszą pasować gramatycznie do zdania.</li><li>Możesz też dodać podpowiedź po dwukropku (:).</li><li>Do każdego pustego miejsca pasuje tylko jeden element przeciągalny.</li><li>Możesz dodać komentarz, który wyświetli się po ukończeniu zadania. Wpisz go po '\\+' (komentarz do odpowiedzi poprawnej) lub po '\\-' (komentarz do odpowiedzi błędnej).</li></ul>",
         "example": "Zasoby H5P można tworzyć w *przeglądarce:Na przykład Google Chrome.*. <br /> Zasoby H5P są *interaktywne\\+Dobrze! \\-Ależ nie, popraw odpowiedź!*"
@@ -44,6 +43,10 @@
     {
       "label": "Etykieta przycisku sprawdzania odpowiedzi",
       "default": "Sprawdź"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Etykieta przycisku ponowienia próby odpowiedzi",

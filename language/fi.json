@@ -8,7 +8,6 @@
     {
       "label": "Teksti",
       "placeholder": "*Helsinki* on Suomessa, *Tukholma* on Ruotsissa. Kumpikin on maansa *pääkaupunki:hallinnollinen keskus*.",
-      "description": "",
       "important": {
         "description": "<ul><li>Merkitse raahattavat sanat tähtien (*) väliin, esimerkiksi *Helsinki*.</li><li>Jos haluat lisätä vihjeen, kirjoita raahattavan sanan perään kaksoispiste ja vihje, esimerkiksi *pääkaupunki:hallinnollinen keskus*.</li><li>Jokaista tyhjää kohtaa vastaa yksi oikea sana.</li><li>Voit lisätä palautteen näytettäväksi kun tehtävä on suoritettu. Käytä '\\+' oikein ja '\\-' väärin palautteelle.</li></ul>",
         "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
@@ -44,6 +43,10 @@
     {
       "label": "Painikkeen \"Tarkista\" nimi",
       "default": "Tarkista"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Painikkeen \"Yritä uudelleen\" nimi",

@@ -8,7 +8,6 @@
     {
       "label": "Texto",
       "placeholder": "*Oslo* é a capital da Noruega, *Estocolmo* é a capital da Suécia e *Copenhague* é a capital da Dinamarca. Todas estas cidades estão localizadas na península *Escandinava:Parte norte da Europa*.",
-      "description": "",
       "important": {
         "description": "<ul><li>Palavras arrastáveis são adicionados com um asterisco(*) na frente e um atrás da palavra/frase correta.</li><li>Você pode adicionar uma dica textual usando dois pontos (:) na frente da dica.</li><li>Para cada espaço vazio há apenas uma palavra correta.</li><li>Você pode feedback para ser exibido quando uma tarefa for completa. Use '\\+' para feedback correto and '\\-' para feedback incorreto.</li></ul>",
         "example": "Conteúdo H5P pode ser editado usando um *navegador:QUe tipo de programa é o Chrome?*. <br /> Conteúdo H5P é  *interativo\\+Correto! \\-Incorreto, tente novamente!*"
@@ -44,6 +43,10 @@
     {
       "label": "Texto do botão \"Verificar resposta\"",
       "default": "Verificar resposta"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Texto do botão \"Tentar novamente\"",

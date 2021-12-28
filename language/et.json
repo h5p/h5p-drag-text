@@ -8,7 +8,6 @@
     {
       "label": "Tekst",
       "placeholder": "*Oslo* on Norra pealinn, *Stockholm* on Rootsi pealinn ja *Kopenhaagen* on Taani pealinn. Kõik need linnad asuvad *Skandinaavia:Euroopa põhjaosa* poolsaarel.",
-      "description": "",
       "important": {
         "description": "<ul><li>Lohistatavad sõnade või fraaside loomiseks märgitakse nende ette ja järele tärn (*).</li><li>Samuti saad lisada tekstivihje, kasutades koolonit (:) vihje ees.</li><li>Igale tühjale kohale sobib vaid üks õige sõna.</li><li>Saad lisada peale ülesande täitmist näidatava tagasiside. Kasuta '\\+' õige ja '\\-' vale vastuse tagasisideks.</li></ul>",
         "example": "H5P sisu töötlemiseks sobib *brauser:Mis tüüpi programm on Chrome?*. <br /> H5P sisu on *interaktiivne\\+Õige! \\-Vale, proovi uuesti!*"
@@ -44,6 +43,10 @@
     {
       "label": "\"Kontrolli\" nupu tekst",
       "default": "Kontrolli"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "\"Proovi uuesti\" nupu tekst",

@@ -8,7 +8,6 @@
     {
       "label": "文字",
       "placeholder": "*奧斯陸* 是挪威的首都, *斯德哥爾摩* 是瑞典的首都, *哥本哈根* 是丹麥的首都.所有的城市都位於 *斯堪地那維亞:歐洲的北部* 半島.",
-      "description": "",
       "important": {
         "description": "<ul><li>請在填空單字前後註記星號(*).</li><li>若需新增文字提示時請使用冒號(:)表示.</li><li>每一個作答框中只有一組正確答案.</li><li>您可添加任務完成時的即時回饋. 正確回饋使用 '\\+' ,錯誤回饋使用 '\\-' .</li></ul>",
         "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
@@ -44,6 +43,10 @@
     {
       "label": "檢查功能鈕名稱",
       "default": "檢查"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "重試功能鈕名稱",

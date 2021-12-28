@@ -8,7 +8,6 @@
     {
       "label": "Текст",
       "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
-      "description": "",
       "important": {
         "description": "<ul><li>Пропущені слова добавляются із зірочкою (*) спереду та ззаду правильного слова/фрази.</li><li>Ви можете добавити текстову підказку, використовуючи двокрапку (:) перед підказкою.</li><li>Для кожного пустого місця є тільки одне правильне слово.</li><li>Ви можете добавити відгук, який буде відображатися після завершення завдання. Використовуйте '\\+' для правильного і '\\-' для неправильного відгуку.</li></ul>",
         "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Правильно! \\-Неправильно, спробуйте ще раз!*"
@@ -44,6 +43,10 @@
     {
       "label": "Текст для кнопки \"Перевірити\"",
       "default": "Перевірити"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Текст для кнопки \"Повторити\"",

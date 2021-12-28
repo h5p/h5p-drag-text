@@ -8,7 +8,6 @@
     {
       "label": "Text",
       "placeholder": "*Oslo* är Norges huvudstad, *Stockholm* är Sveriges huvudstad och *Köpenhamn* är Danmarks huvudstad. Alla dessa städer ligger i *Skandinavien:Norra delen av Europa*.",
-      "description": "",
       "important": {
         "description": "<ul><li>Ord som kan dras-och-släppas ska markeras med en asterisk (*) framför och efter det rätta ordet, eller den rätta frasen.</li><li>Du kan lägga till en ledtråd, genom att använda kolon (:) framför ledtråden.</li><li>För varje tom box så finns det endast ett rätt ord.</li><li>Du kan lägga till feedback som visas när uppgiften är genomförd. Använd '\\+' för feedback på rätta svar och '\\-' för feedback på felaktiga svar.</li></ul>",
         "example": "H5P-innehåll kan redigeras med en *webbläsare:Vad är Chrome för typ av programvara?*. <br /> H5P-innehåll är *interaktivt\\+Rätt! \\-Inte rätt, försök igen!*"
@@ -44,6 +43,10 @@
     {
       "label": "Text för knappen \"Rätta\"",
       "default": "Rätta"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Text för knappen \"Försök igen\"",

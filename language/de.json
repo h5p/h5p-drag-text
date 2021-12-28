@@ -8,7 +8,6 @@
     {
       "label": "Text",
       "placeholder": "*Oslo* ist die Hauptstadt von Norwegen, *Stockholm* ist die Hauptstadt von Schweden und *Kopenhagen* ist die Hauptstadt von Dänemark. Alle Städte befinden sich auf der *skandinavischen: nördlicher Teil von Europa* Halbinsel.",
-      "description": "",
       "important": {
         "description": "<ul><li>Ziehbare Wörter werden mit einem Sternchen (*) vor und hinter dem jeweiligen Wort bzw. Satzteil markiert.</li> <li>Du kannst einen Tipp mit einem Doppelpunkt (:) vor der dem Tipp hinzufügen.</li> <li>Pro Lücke gibt es nur genau eine richtige Antwort.</li> <li>Du kannst auch eine Rückmeldung hinzufügen, die angezeigt wird, wenn eine Aufgabe abgeschlossen wurde. Verwende \"\\+\" für positive und \" \\-\" für negative Rückmeldungen.</li></ul>",
         "example": "H5P-Inhalt kann mit einem *Browser:Was für eine Art von Programm ist Chrome?* bearbeitet werden.<br />H5P-Inhalt ist *interaktiv\\+Richtig!\\-Falsch. Probiere es nochmal!*."
@@ -44,6 +43,10 @@
     {
       "label": "Beschriftung des \"Überprüfen\"-Buttons",
       "default": "Überprüfen"
+    },
+    {
+      "label": "Text for \"Submit\" button",
+      "default": "Submit"
     },
     {
       "label": "Beschriftung des \"Wiederholen\"-Buttons",

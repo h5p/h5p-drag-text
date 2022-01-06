@@ -5,10 +5,10 @@
       "fields": [
         {
           "label": "Tipo",
-          "description": "Multimédia opcional a ser exibida acima da pergunta."
+          "description": "Conteúdo multimédia opcional para mostrar acima da pergunta."
         },
         {
-          "label": "Desativar o zoom da imagem"
+          "label": "Desativar zoom da imagem"
         }
       ]
     },
@@ -22,29 +22,29 @@
       "placeholder": "*Oslo* é a capital da Noruega, *Estocolmo* é a capital da Suécia e *Copenhaga* é a capital da Dinamarca. Todas as cidades estão localizadas na península *Escandinava:Norte da Europa*.",
       "important": {
         "description": "<ul><li>Adicione as palavras a largar através de um asterisco (*) no início e no fim da palavra/frase correta.</li><li>Adicione uma dica contextual utilizando os dois pontos (:) à frente do texto da dica.</li><li>Para todos os espaços existe apenas uma palavra correta</li><li>Pode adicionar feedback quando o utilizador completar a atividade. Utilize '\\+' para feedback correto e '\\-' para feedback incorreto.</li></ul>",
-        "example": "O conteúdo H5P pode ser editado utilizando um *browser:O tipo de programa que o Chrome é.*<br /> O conteúdo H5P é *interativo\\+Correto! \\-Incorreto, tente de novo!*"
+        "example": "O conteúdo H5P pode ser editado utilizando um *navegador:Qual o tipo de programa é o Chrome?*.<br /> O conteúdo H5P é *interativo\\+Correto! \\-Incorreto, tente de novo!*"
       }
     },
     {
-      "label": "Feedback Geral",
+      "label": "Feedback global",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Por defeito"
+              "label": "Padrão"
             }
           ],
-          "label": "Defina feedback personalizado para cada intervalo de pontuação",
-          "description": "Clique em \"Adicionar intervalo\" e adicione quantos intervalos forem necessários. Exemplo: 0-20% Mau, 21-91% Mediano, 91-100% Excelente!",
-          "entity": "intervalo",
+          "label": "Defina o feedback personalizado para qualquer faixa de pontuação",
+          "description": "Clique em \"Adicionar faixa\" e adicione quantas faixas forem necessárias. Exemplo: 0-20% Insuficiente, 21-91% Suficiente, 91-100% Excelente!",
+          "entity": "faixa",
           "field": {
             "fields": [
               {
-                "label": "Intervalo de Pontuação"
+                "label": "Faixa de pontuação"
               },
               {},
               {
-                "label": "Feedback para o intervalo de pontuação definido",
+                "label": "Feedback para determinada faixa de pontuação",
                 "placeholder": "Preencha o feedback"
               }
             ]
@@ -57,8 +57,8 @@
       "default": "Verificar"
     },
     {
-      "label": "Text for \"Submit\" button",
-      "default": "Submit"
+      "label": "Texto para o botão \"Enviar\"",
+      "default": "Enviar"
     },
     {
       "label": "Texto para o botão \"Repetir\"",
@@ -66,26 +66,26 @@
     },
     {
       "label": "Texto para o botão \"Mostrar soluções\"",
-      "default": "Mostrar soluções"
+      "default": "Mostrar solução"
     },
     {
-      "label": "Etiqueta para espaço de largada numerada",
-      "default": "Espaço de largada @index.",
-      "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê o índice do espaço de largada. Variável disponível: @index"
+      "label": "Etiqueta para zona de largar numerada",
+      "default": "Zona de largar @index.",
+      "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê o índice da zona de largar. Variável disponível: @index"
     },
     {
-      "label": "Etiqueta para espaço de largada vazio",
-      "default": "Espaço de largada @index está vazio.",
-      "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê que o espaço de largada está vazio."
+      "label": "Etiqueta para zona de largar vazia",
+      "default": "Zona de largar @index está vazia.",
+      "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê que a zona de largar está vazia"
     },
     {
-      "label": "Etiqueta para espaço de largada com conteúdos",
-      "default": "Espaço de largada @index contém um item @draggable.",
-      "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê que o espaço de largada contém um elemento."
+      "label": "Etiqueta para zona de largar com conteúdos",
+      "default": "Zona de largar @index contém o item @draggable.",
+      "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê que a zona de largar contém um elemento."
     },
     {
       "label": "Etiqueta para elementos arrastáveis",
-      "default": "Elemento @index de @count.",
+      "default": "@index de @count elementos.",
       "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê que este é um elemento arrastável. Variáveis disponíveis: @index, @count"
     },
     {
@@ -102,12 +102,12 @@
       "default": "Incorreto!"
     },
     {
-      "label": "Texto da caixa de diálogo de confirmação para reposição de elementos",
+      "label": "Texto da caixa de diálogo de confirmação para reinicio dos elementos",
       "default": "Repor elemento arrastável"
     },
     {
-      "label": "Descrição da caixa de diálogo de confirmação para reposição de elementos",
-      "default": "Tem a certeza que deseja repor esta zona de largada ao seu estado original?"
+      "label": "Descrição da caixa de diálogo de confirmação para reinicio dos elementos",
+      "default": "Tem a certeza que pretende repor esta zona de largar ao seu estado original?"
     },
     {
       "label": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã indica que uma ação de arrasto foi iniciada.",
@@ -122,42 +122,42 @@
       "default": "Resposta correta:"
     },
     {
-      "label": "Cabeçalho para painel que contém feedback de respostas corretas/incorretas",
+      "label": "Cabeçalho para o painel que contém feedback das respostas corretas/incorretas",
       "default": "Feedback"
     },
     {
-      "label": "Definições de funcionamento",
-      "description": "Estas opções controlam a forma como a atividade se comporta.",
+      "label": "Configurações de funcionamento",
+      "description": "Estas opções permitem controlar o comportamento da atividade.",
       "fields": [
         {
           "label": "Ativar \"Repetir\""
         },
         {
-          "label": "Ativar botão de \"Mostrar Soluções\""
+          "label": "Ativar botão de \"Mostrar Solução\""
         },
         {
-          "label": "Ativar botão de  \"Verificar\""
+          "label": "Ativar botão de \"Verificar\""
         },
         {
-          "label": "Feedback instantâneo"
+          "label": "Feedback imediato"
         }
       ]
     },
     {
-      "label": "Representação textual da barra de resultados para utilizadores de leitor de ecrã",
+      "label": "Representação textual da barra de pontuação para aqueles que usam leitores de ecrã",
       "default": "Conseguiu :num pontos de um total de :total"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Etiqueta de tecnologia assistiva para o botão \"Verificar\"",
+      "default": "Verifique as respostas. As respostas serão marcadas como corretas, incorretas ou sem resposta."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "Etiqueta de tecnologia assistiva para o botão \"Mostrar solução\"",
+      "default": "Mostrar a solução. A atividade será marcada com a respetiva solução correta."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Etiqueta de tecnologia assistiva para o botão \"Repetir\"",
+      "default": "Repetir a atividade. Apagar todas as respostas e reiniciar a atividade."
     }
   ]
 }

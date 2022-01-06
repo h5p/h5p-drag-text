@@ -5,15 +5,15 @@
       "fields": [
         {
           "label": "Mota",
-          "description": "Galderaren gaineko aukerako multimedia."
+          "description": "Galderaren gainean erakusteko aukerazko multimedia."
         },
         {
-          "label": "Desgaitu irudiaren zooma"
+          "label": "Desgaitu irudien zooma"
         }
       ]
     },
     {
-      "label": "Zereginaren deskribapena",
+      "label": "Atazaren deskribapena",
       "description": "Deskribatu zereginaren irtenbidea aurkitzeko modua.",
       "default": "Arrastatu hitzak dagozkien kutxetara"
     },
@@ -21,7 +21,7 @@
       "label": "Testua",
       "placeholder": "*Oslo* Norvegiako hiruburua da, *Stockholm* Suediako hiriburua da eta *Kopenhagen* Danimarkako hiriburua da. Hiru hiri *Eskandinavia:Europako iparraldeko* penintsulan daude.",
       "important": {
-        "description": "<ul><li>Jaregin daitezkeen hitzak edo esaldiak gehitu dira asterisko (*) bat aurretik eta beste bat atzetik dutela bere kokaleku egokianin.</li><li>Gehitzen ahal dituzu laguntzak, horien aurretik bi puntu (:) jarrita.</li><li>Hutsune bakoitzak hitz/esaldi zuzen bakarra dago.</li><li>Gehitzen ahal duzu ataza burutu ondoren ikusiko diren feedbackak. Erabili '\\+' erantzun zuzenen feedbackarako eta '\\-' erantzun okerretarako.</li></ul>",
+        "description": "<ul><li>Jaregin daitezkeen hitzak edo esaldiak gehitu dira izartxo (*) bat aurretik eta beste bat atzetik dutela bere kokaleku egokian.</li><li>Gehitzen ahal dituzu laguntzak, horien aurretik bi puntu (:) jarrita.</li><li>Hutsune bakoitzak hitz/esaldi zuzen bakarra dago.</li><li>Gehitzen ahal duzu ataza burutu ondoren ikusiko diren feedbackak. Erabili '\\+' erantzun zuzenen feedbackarako eta '\\-' erantzun okerretarako.</li></ul>",
         "example": "H5P edukia editatu daiteke *nabigatzailez:Zer aplikazio mota da Chrome?*. <br /> H5P edukia *interaktiboa\\+Asmatu duzu! \\-Ez da zuzena, saiatu berriro!* da"
       }
     },
@@ -57,7 +57,7 @@
       "default": "Egiaztatu"
     },
     {
-      "label": "Text for \"Submit\" button",
+      "label": "\"Bidali\" botoiarentzako botoia",
       "default": "Submit"
     },
     {
@@ -65,7 +65,7 @@
       "default": "Saiatu berriro"
     },
     {
-      "label": "\"Erakutsi erantzuna\" botoiaren testua",
+      "label": "\"Erakutsi emaitza\" botoiaren testua",
       "default": "Erakutsi erantzuna"
     },
     {

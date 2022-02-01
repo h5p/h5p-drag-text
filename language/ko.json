@@ -57,8 +57,8 @@
       "default": "정답 확인"
     },
     {
-      "label": "Text for \"Submit\" button",
-      "default": "Submit"
+      "label": "\"Submit\" 버튼 텍스트",
+      "default": "제출하기"
     },
     {
       "label": "\"Retry\" 버튼 텍스트",
@@ -136,7 +136,7 @@
           "label": "\"Show Solution\" (해답 보기) 버튼 활성화"
         },
         {
-          "label": "\"Check\" (확인) 버튼 활성화"
+          "label": "\"Check\" (정답 확인) 버튼 활성화"
         },
         {
           "label": "즉각적인 피드백"

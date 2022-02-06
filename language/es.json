@@ -58,7 +58,7 @@
     },
     {
       "label": "Texto para botón \"Enviar\"",
-      "default": "Submit"
+      "default": "Enviar"
     },
     {
       "label": "Texto para botón \"Reintentar\"",

@@ -14,7 +14,7 @@
     },
     {
       "label": "Descrição da atividade",
-      "description": "Descreva a forma como o utilizador vai completar a atividade.",
+      "description": "Descreva a forma como o utilizador deve completar a atividade.",
       "default": "Arraste as palavras para as caixas corretas"
     },
     {
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "label": "Texto para o botão \"Verificar\"",
-      "default": "Verificar"
+      "label": "Texto para o botão \"Verificar resposta\"",
+      "default": "Verificar resposta"
     },
     {
       "label": "Texto para o botão \"Enviar\"",

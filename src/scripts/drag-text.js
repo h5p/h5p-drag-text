@@ -160,6 +160,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       this.toggleDropEffect();
       element.setAttribute('aria-grabbed', 'true')
       this.setDraggableAriaLabel(draggable);
+      var dropzoneContainerWith = document.querySelector('.' + DROPZONE_CONTAINER).getBoundingClientRect().width;
+      element.style.maxWidth = `${dropzoneContainerWith * 0.4}px`;
     });
 
     this.on('stop', event => {
@@ -170,6 +172,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       this.toggleDropEffect();
       element.setAttribute('aria-grabbed', 'false')
       this.setDraggableAriaLabel(draggable);
+      element.style.maxWidth = "100%";
     });
 
     // on drop, remove all dragging

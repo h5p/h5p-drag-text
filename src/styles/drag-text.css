@@ -152,9 +152,6 @@
 .h5p-drag-text [aria-grabbed='true'] {
   opacity: 0.5;
   box-shadow: 0 0 0.8em rgba(0,0,0,0.5);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .h5p-drag-text [aria-grabbed].ui-state-disabled {
   opacity: 1;

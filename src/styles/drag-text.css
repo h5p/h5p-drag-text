@@ -155,6 +155,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 .h5p-drag-text [aria-grabbed].ui-state-disabled {
   opacity: 1;

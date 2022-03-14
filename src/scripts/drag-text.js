@@ -911,7 +911,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       'tabindex': '-1'
     }).appendTo($dropzoneContainer)
       .droppable({
-        tolerance: 'intersect',
+        tolerance: 'pointer',
         drop: function (event, ui) {
           var draggable = self.getDraggableByElement(ui.draggable[0]);
           var droppable = self.getDroppableByElement(event.target);

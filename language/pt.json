@@ -81,7 +81,7 @@
     {
       "label": "Etiqueta para zona de largar com conteúdos",
       "default": "Zona de largar @index contém o item @draggable.",
-      "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê que a zona de largar contém um elemento."
+      "description": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã lê que a zona de largar contém um elemento"
     },
     {
       "label": "Etiqueta para elementos arrastáveis",
@@ -110,15 +110,15 @@
       "default": "Tem a certeza que pretende repor esta zona de largar ao seu estado original?"
     },
     {
-      "label": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã indica que uma ação de arrasto foi iniciada.",
+      "label": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã indica que uma ação de arrasto foi iniciada",
       "default": "Um elemento foi agarrado."
     },
     {
-      "label": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã indica que o arrastamento foi cancelado.",
+      "label": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã indica que o arrastamento foi cancelado",
       "default": "Arrastamento cancelado."
     },
     {
-      "label": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã indica que o texto é uma resposta correta.",
+      "label": "Etiqueta utilizada para acessibilidade, onde o leitor de ecrã indica que o texto é uma resposta correta",
       "default": "Resposta correta:"
     },
     {
@@ -126,7 +126,7 @@
       "default": "Feedback"
     },
     {
-      "label": "Configurações de funcionamento",
+      "label": "Configurações gerais.",
       "description": "Estas opções permitem controlar o comportamento da atividade.",
       "fields": [
         {

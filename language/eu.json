@@ -21,7 +21,7 @@
       "label": "Testua",
       "placeholder": "*Oslo* Norvegiako hiruburua da, *Stockholm* Suediako hiriburua da eta *Kopenhagen* Danimarkako hiriburua da. Hiru hiri *Eskandinavia:Europako iparraldeko* penintsulan daude.",
       "important": {
-        "description": "<ul><li>Jaregin daitezkeen hitzak edo esaldiak gehitu dira izartxo (*) bat aurretik eta beste bat atzetik dutela bere kokaleku egokian.</li><li>Gehitzen ahal dituzu laguntzak, horien aurretik bi puntu (:) jarrita.</li><li>Hutsune bakoitzak hitz/esaldi zuzen bakarra dago.</li><li>Gehitzen ahal duzu ataza burutu ondoren ikusiko diren feedbackak. Erabili '\\+' erantzun zuzenen feedbackarako eta '\\-' erantzun okerretarako.</li></ul>",
+        "description": "<ul><li>Jaregin daitezkeen hitzak edo esaldiak gehitu dira izartxo (*) bat aurretik eta beste bat atzetik dutela bere kokaleku egokian.</li><li>Gehitzen ahal dituzu laguntzak, horien aurretik bi puntu (:) jarrita.</li><li>Hutsune bakoitzak hitz/esaldi zuzen bakarra dago.</li><li>Gehitzen ahal duzu ataza burutu ondoren ikusiko diren feedbackak. Erabili '\\+' erantzun zuzenen feedbackerako eta '\\-' erantzun okerretarako.</li></ul>",
         "example": "H5P edukia editatu daiteke *nabigatzailez:Zer aplikazio mota da Chrome?*. <br /> H5P edukia *interaktiboa\\+Asmatu duzu! \\-Ez da zuzena, saiatu berriro!* da"
       }
     },

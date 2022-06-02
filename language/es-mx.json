@@ -5,10 +5,10 @@
       "fields": [
         {
           "label": "Tipo",
-          "description": "Medios opcionales para mostrar sobre la pregunta."
+          "description": "Medio opcional a mostrar arriba de la pregunta."
         },
         {
-          "label": "Desactivar zoom de imagen para imagen de pregunta"
+          "label": "Deshabilitar acercamiento de imagen"
         }
       ]
     },
@@ -20,7 +20,6 @@
     {
       "label": "Texto",
       "placeholder": "*Oslo* es la capital de Noruega, *Estocolmo* es la capital de Suecia y *Copenhague* es la capital de Dinamarca. Todas las ciudades están ubicadas en la península *Escandinava:Parte norte de Europa*.",
-      "description": "",
       "important": {
         "description": "<ul><li>Las palabras desplegables se agregan con un asterisco (*) al frente y detrás de la palabra / frase correcta.</li><li>Puede agregar una sugerencia textual, usando dos puntos (:) en frente de la sugerencia.</li><li>Por cada punto vacío solo hay una palabra correcta.</li><li>Puede agregar comentarios que se mostrarán cuando se complete una tarea. Utilizar '\\+' para los correctos '\\-' para comentarios incorrectos.</li></ul>",
         "example": "El contenido de H5P se puede editar utilizando un *navegador:¿Qué tipo de programa es Chrome?*. <br /> El contenido H5P es *interactivo\\+¡Correcto! \\-¡Incorrecto, prueba de nuevo!*"
@@ -58,7 +57,11 @@
       "default": "Comprobar"
     },
     {
-      "label": "Texto para botón \"Reintentar\"",
+      "label": "Texto para botón \"Enviar\"",
+      "default": "Enviar"
+    },
+    {
+      "label": "Texto para el botón \"Reintentar\"",
       "default": "Reintentar"
     },
     {
@@ -115,7 +118,7 @@
       "default": "Arrastre cancelado."
     },
     {
-      "label": "Etiqueta utilizada para accesibilidad, donde el Lector de texto env oz alta indica que un texto es la respuesta correcta",
+      "label": "Etiqueta utilizada para accesibilidad, donde el Lector de texto en voz alta indica que un texto es la respuesta correcta",
       "default": "Respuesta correcta:"
     },
     {

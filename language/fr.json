@@ -13,7 +13,7 @@
       ]
     },
     {
-      "label": "Consigne",
+      "label": "Task description",
       "description": "La consigne indique ce que l'utilisateur doit faire.",
       "default": "Déplacez les textes dans les emplacements qui leur correspondent."
     },
@@ -26,7 +26,7 @@
       }
     },
     {
-      "label": "Opacité des étiquettes",
+      "label": "Feedback général",
       "fields": [
         {
           "widgets": [

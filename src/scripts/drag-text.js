@@ -81,6 +81,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         "This is another line of *fantastic* text.",
       overallFeedback: [],
       checkAnswer: "Check",
+      submitAnswer: "Submit",
       tryAgain: "Retry",
       behaviour: {
         enableRetry: true,
@@ -114,7 +115,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // Keeps track of if Question has been answered
     this.answered = false;
-    this.instantFeedbackEvaluationFilled = false;
 
     // True if some solution text contains LaTeX
     this.containsLatex = false,
@@ -302,6 +302,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     const hasChildren = (dropZone.childNodes.length > 0);
 
     if (dropZone) {
+      let ariaLabel;
+
       if (checkButtonPressed) {
         const droppable = this.getDroppableByElement(dropZone);
         let resultString = '';
@@ -311,14 +313,22 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         else {
           resultString = droppable.incorrectFeedback ? droppable.incorrectFeedback : this.params.incorrectText;
         }
-        dropZone.setAttribute('aria-label', `${indexText} ${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`);
+        ariaLabel = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`;
+
+        if (droppable && droppable.containedDraggable) {
+          droppable.containedDraggable.updateAriaDescription(
+            correctFeedback ? this.params.correctText : this.params.incorrectText
+          );
+        }
       }
       else if (hasChildren) {
-        dropZone.setAttribute('aria-label', `${indexText} ${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)}`);
+        ariaLabel = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)}`;
       }
       else {
-        dropZone.setAttribute('aria-label',  `${indexText} ${this.params.empty.replace('@index', index.toString())}`);
+        ariaLabel = `${this.params.empty.replace('@index', index.toString())}`;
       }
+
+      dropZone.setAttribute('aria-label', ariaLabel);
     }
   };
 
@@ -540,6 +550,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         self.$introduction.parent().focus();
       }, !self.params.behaviour.instantFeedback, {
         'aria-label': self.params.a11yCheck,
+      }, {
+        contentData: self.contentData,
+        textIfSubmitting: self.params.submitAnswer,
       });
     }
 
@@ -609,7 +622,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var hasSelectedElement = this.selectedElement !== undefined;
     var isSelectedElement = this.selectedElement ===  event.element;
 
-    // un select the selected
+    // unselect the selected
     if(hasSelectedElement){
       this.selectedElement = undefined;
       this.trigger('stop', { element: tmp });
@@ -1228,10 +1241,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       }
 
       // Shows evaluation text
-      self.showEvaluation(!self.instantFeedbackEvaluationFilled);
-      self.instantFeedbackEvaluationFilled = true;
-    } else {
-      self.instantFeedbackEvaluationFilled = false;
+      self.showEvaluation();
+    } 
+    else {
       //Hides "retry" and "show solution" buttons.
       self.hideButton('try-again');
       self.hideButton('show-solution');
@@ -1388,7 +1400,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var self = this;
     // Reset task answer
     self.answered = false;
-    self.instantFeedbackEvaluationFilled = false;
     //Reset draggables parameters and position
     self.resetDraggables();
     //Hides solution text and re-enable draggables

@@ -111,6 +111,10 @@
   display: none;
 }
 
+.h5p-drag-text .ui-droppable-hover {
+  background-color: #80b4ed;
+}
+
 .h5p-drag-text [aria-grabbed] {
   line-height: 1.25;
   cursor: pointer;

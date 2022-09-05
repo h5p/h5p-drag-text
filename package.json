@@ -7,7 +7,7 @@
     "test": "ava",
     "dev": "cross-env NODE_ENV='development' webpack",
     "build": "cross-env NODE_ENV='production' webpack",
-    "watch": "webpack --watch"
+    "watch": "cross-env NODE_ENV='development' webpack --watch"
   },
   "repository": {
     "type": "git",

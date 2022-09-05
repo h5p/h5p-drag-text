@@ -29,6 +29,9 @@ H5P.TextDraggable = (function ($) {
     self.$draggable.on('touchstart', function (event) {
       event.stopPropagation();
     });
+    self.$draggable.on('touchmove', function (event) {
+      event.stopPropagation();
+    });
   }
 
   Draggable.prototype = Object.create(H5P.EventDispatcher.prototype);

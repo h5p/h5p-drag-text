@@ -1,3 +1,7 @@
+
+// Helper to stop propagating events
+const stopPropagation = event => event.stopPropagation();
+
 H5P.TextDraggable = (function ($) {
   //CSS Draggable feedback:
   var DRAGGABLE_DROPPED = 'h5p-drag-dropped';
@@ -26,12 +30,9 @@ H5P.TextDraggable = (function ($) {
     }
 
     // jQuery UI workaround
-    self.$draggable.on('touchstart', function (event) {
-      event.stopPropagation();
-    });
-    self.$draggable.on('touchmove', function (event) {
-      event.stopPropagation();
-    });
+    self.$draggable.on('touchstart', stopPropagation);
+    self.$draggable.on('touchmove', stopPropagation);
+    self.$draggable.on('touchend', stopPropagation);
   }
 
   Draggable.prototype = Object.create(H5P.EventDispatcher.prototype);

@@ -816,7 +816,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       distractor = lex(distractor);
       self.createDraggable(distractor.text);
-    } );
+    });
 
     self.shuffleAndAddDraggables(self.$draggables);
     self.$draggables.appendTo(self.$taskContainer);

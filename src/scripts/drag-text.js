@@ -806,8 +806,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // Add distractors
     parseText(self.distractorsHtml).forEach(function (distractor) {
-      if (distractor.trim() === '') {
-        return; // Skip
+      if (
+        distractor.trim() === '' ||
+        distractor.substring(0, 1) !== '*' ||
+        distractor.substring(distractor.length - 1, distractor.length) !== '*'
+      ) {
+        return; // Skip. Not a valid distractor.
       }
 
       distractor = lex(distractor);
@@ -1146,7 +1150,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       // Shows evaluation text
       self.showEvaluation();
-    } 
+    }
     else {
       //Hides "retry" and "show solution" buttons.
       self.hideButton('try-again');

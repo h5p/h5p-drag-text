@@ -407,6 +407,15 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var self = this;
     self.addDropzoneWidth();
 
+    // Prevent losing focus caused by detaching word container
+    const closestWordContainer = document.activeElement
+      .closest('.h5p-drag-droppable-words');
+
+    let restoreFocusTo = null;
+    if (closestWordContainer === self.$wordContainer.get(0)) {
+      restoreFocusTo = document.activeElement;
+    }
+
     //Find ratio of width to em, and make sure it is less than the predefined ratio, make sure widest draggable is less than a third of parent width.
     if ((self.$inner.width() / parseFloat(self.$inner.css("font-size"), 10) > 43) && (self.widestDraggable <= (self.$inner.width() / 3))) {
       // Adds a class that floats the draggables to the right.
@@ -430,6 +439,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.draggables.forEach(function (draggable) {
         draggable.getDraggableElement().removeClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
       });
+    }
+
+    if (restoreFocusTo) {
+      window.clearTimeout(this.layoutTimeout);
+      this.layoutTimeout = window.setTimeout(() => {
+        restoreFocusTo.focus();
+      }, 1);
     }
   };
 
@@ -460,8 +476,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           self.hideButton('check-answer');
         }
 
-        // Focus top of the task for natural navigation
-        self.$introduction.parent().focus();
+        /*
+         * Allow all dropzones incl. empty ones to be accessed.
+         * Weird to remove and add, but that will ensure tabindex to be correct.
+         */
+        self.removeAllDroppablesFromControls();
+        self.addAllDroppablesToControls();
+
+        self.droppables[0].getElement().focus();
       }, !self.params.behaviour.instantFeedback, {
         'aria-label': self.params.a11yCheck,
       }, {
@@ -1134,7 +1156,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       // Shows evaluation text
       self.showEvaluation();
-    } 
+    }
     else {
       //Hides "retry" and "show solution" buttons.
       self.hideButton('try-again');

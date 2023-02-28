@@ -299,7 +299,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     const hasChildren = (dropZone.childNodes.length > 0);
 
     if (dropZone) {
-      let ariaLabel;
+      let ariaMessage;
 
       if (checkButtonPressed) {
         const droppable = this.getDroppableByElement(dropZone);
@@ -310,7 +310,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         else {
           resultString = droppable.incorrectFeedback ? droppable.incorrectFeedback : this.params.incorrectText;
         }
-        ariaLabel = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`;
+        ariaMessage = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`;
 
         if (droppable && droppable.containedDraggable) {
           droppable.containedDraggable.updateAriaDescription(
@@ -319,13 +319,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         }
       }
       else if (hasChildren) {
-        ariaLabel = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)}`;
+        ariaMessage = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)}`;
       }
       else {
-        ariaLabel = `${this.params.empty.replace('@index', index.toString())}`;
+        ariaMessage = `${this.params.empty.replace('@index', index.toString())}`;
       }
 
-      dropZone.setAttribute('aria-label', ariaLabel);
+      dropZone.setAttribute('aria-label', `${indexText} ${ariaMessage}`);
     }
   };
 

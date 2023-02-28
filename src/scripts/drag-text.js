@@ -476,11 +476,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           self.hideButton('check-answer');
         }
 
-        /*
-         * Allow all dropzones incl. empty ones to be accessed.
-         * Weird to remove and add, but that will ensure tabindex to be correct.
-         */
-        self.removeAllDroppablesFromControls();
+        // Allow all dropzones incl. empty ones to be accessed.
         self.addAllDroppablesToControls();
 
         self.droppables[0].getElement().focus();
@@ -500,8 +496,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.draggables.forEach(draggable => self.setDraggableAriaLabel(draggable));
       self.disableDraggables();
 
-      // Weird to remove and add, but that will ensure tabindex to be correct
-      self.removeAllDroppablesFromControls();
+      // Allow all dropzones incl. empty ones to be accessed.
       self.addAllDroppablesToControls();
 
       self.droppables[0].getElement().focus();

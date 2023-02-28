@@ -499,7 +499,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       });
       self.draggables.forEach(draggable => self.setDraggableAriaLabel(draggable));
       self.disableDraggables();
+
+      // Weird to remove and add, but that will ensure tabindex to be correct
       self.removeAllDroppablesFromControls();
+      self.addAllDroppablesToControls();
+
+      self.droppables[0].getElement().focus();
+
       self.hideButton('show-solution');
     }, self.initShowShowSolutionButton || false, {
       'aria-label': self.params.a11yShowSolution,
@@ -512,6 +518,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         // move draggables to original container
         self.resetDraggables();
       }
+      self.resetDroppables();
       self.answered = false;
 
       self.hideEvaluation();
@@ -1309,6 +1316,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     self.answered = false;
     //Reset draggables parameters and position
     self.resetDraggables();
+    self.resetDroppables();
+
     //Hides solution text and re-enable draggables
     self.hideEvaluation();
     self.hideExplanation();
@@ -1328,6 +1337,22 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Resets the position of all draggables shuffled.
    */
   DragText.prototype.resetDraggables = function () {
+    Util.shuffle(this.draggables).forEach(this.revert, this);
+  };
+
+  /**
+   * Reset dropzones.
+   */
+  DragText.prototype.resetDroppables = function () {
+    const self = this;
+
+    this.droppables.forEach((droppable, index) => {
+      droppable.$dropzone.attr(
+        'aria-label',
+        self.params.dropZoneIndex.replace('@index', (index + 1).toString()) +
+          ' ' + self.params.empty.replace('@index', (index + 1).toString()),
+      )
+    })
     Util.shuffle(this.draggables).forEach(this.revert, this);
   };
 

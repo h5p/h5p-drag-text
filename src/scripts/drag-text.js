@@ -1378,6 +1378,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         }
       }
     }
+
+    // Allow to tab to filled drop zones.
+    this.addAllDroppablesToControls();
+    this.removeControlsFromEmptyDropZones();
   };
 
   /**

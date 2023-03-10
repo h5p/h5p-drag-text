@@ -57,8 +57,8 @@
       "default": "בדוק"
     },
     {
-      "label": "Text for \"Submit\" button",
-      "default": "Submit"
+      "label": "תוכן לכפתור \"הגשה\"",
+      "default": "הגשה"
     },
     {
       "label": "טקסט לכפתור \"נסה שוב\"",
@@ -103,7 +103,7 @@
     },
     {
       "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "default": "איפוס גרירה"
     },
     {
       "label": "Confirmation dialog description that user wants to reset a droppable",
@@ -136,7 +136,7 @@
           "label": "אפשר כפתור \"הצגת פתרון\""
         },
         {
-          "label": "אפשר כפתור \"בדיקה\""
+          "label": "הצגת כפתור \"בדיקה\""
         },
         {
           "label": "משוב מיידי"
@@ -153,11 +153,11 @@
     },
     {
       "label": "תווית טכנולוגיה מסייעת עבור כפתור \"הצגת פתרון\"",
-      "default": "הציגו את הפתרון. המשימה תסומן עם התשובה הנכונה."
+      "default": "הצגת הפתרון. המשימה תסומן עם התשובה הנכונה."
     },
     {
       "label": "תווית טכנולוגיה מסייעת עבור כפתור \"ניסיון חוזר\"",
-      "default": "נסו שוב את המשימה. אפסו את כל ניסיונות המענה והתחילו מחדש."
+      "default": "ניסיון חדש של המשימה. איפוס כל ניסיונות המענה והתחלה מחדש."
     }
   ]
 }

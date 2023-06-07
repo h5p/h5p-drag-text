@@ -345,7 +345,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           this.setImage(media.params.file.path, {
             disableImageZooming: this.params.media.disableImageZooming || false,
             alt: media.params.alt,
-            title: media.params.title
+            title: media.params.title,
+            expandImage: media.params.expandImage,
+            minimizeImage: media.params.minimizeImage
           });
         }
       }

@@ -79,6 +79,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       taskDescription: "Set in adjectives in the following sentence",
       textField: "This is a *nice*, *flexible* content type, which allows you to highlight all the *wonderful* words in this *exciting* sentence.\n" +
         "This is another line of *fantastic* text.",
+      distractors: "",
       overallFeedback: [],
       checkAnswer: "Check",
       submitAnswer: "Submit",
@@ -118,6 +119,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // Convert line breaks to HTML
     this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
+    this.distractorsHtml = this.params.distractors.replace(/(\r\n|\n|\r)/gm, "<br/>");
 
     // introduction field id
     this.introductionId = 'h5p-drag-text-' + contentId + '-introduction';
@@ -804,6 +806,20 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         }
       });
 
+    // Add distractors
+    parseText(self.distractorsHtml).forEach(function (distractor) {
+      if (
+        distractor.trim() === '' ||
+        distractor.substring(0, 1) !== '*' ||
+        distractor.substring(distractor.length - 1, distractor.length) !== '*'
+      ) {
+        return; // Skip. Not a valid distractor.
+      }
+
+      distractor = lex(distractor);
+      self.createDraggable(distractor.text);
+    });
+
     self.shuffleAndAddDraggables(self.$draggables);
     self.$draggables.appendTo(self.$taskContainer);
     self.$wordContainer.appendTo(self.$taskContainer);
@@ -1136,7 +1152,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       // Shows evaluation text
       self.showEvaluation();
-    } 
+    }
     else {
       //Hides "retry" and "show solution" buttons.
       self.hideButton('try-again');
@@ -1153,8 +1169,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * @returns {boolean} allFilled Returns true if all answers are answered
    */
   DragText.prototype.isAllAnswersFilled = function () {
-    return this.draggables.every(function(draggable){
-      return draggable.isInsideDropZone();
+    return this.droppables.every(function (droppable) {
+      return droppable.hasDraggable();
     });
   };
 

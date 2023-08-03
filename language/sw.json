@@ -50,11 +50,37 @@
             ]
           }
         }
-      ]
+      ],
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
     },
     {
       "label": "Maandishi ya kitufe cha \"Weka alama\"",
-      "default": "Weka alama"
+      "default": "Weka alama",
+      "fields": [
+        {
+          "field": {
+            "fields": [
+              {
+                "label": "Score Range"
+              },
+              {},
+              {
+                "label": "Feedback for defined score range",
+                "placeholder": "Fill in the feedback"
+              }
+            ]
+          },
+          "widgets": [
+            {
+              "label": "Default"
+            }
+          ],
+          "label": "Define custom feedback for any score range",
+          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity": "range"
+        }
+      ]
     },
     {
       "label": "Maandishi ya kitufe cha \"Wasilisha\"",
@@ -95,7 +121,8 @@
     },
     {
       "label": "Maandishi ya kisoma maandishi kwa jibu sahihi",
-      "default": "Sahihi!"
+      "default": "Sahihi!",
+      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
       "label": "Maandishi ya kisoma maandishi kwa jibu lisilo sahihi",
@@ -141,11 +168,27 @@
         {
           "label": "Maoni ya papo hapo"
         }
-      ]
+      ],
+      "default": "Feedback"
     },
     {
       "label": "Uwakilishi wa maandishi wa upau wa alama kwa wale wanaotumia kisoma maandishi",
-      "default": "Umepata :num kati ya alama:total"
+      "default": "Umepata :num kati ya alama:total",
+      "description": "These options will let you control how the task behaves.",
+      "fields": [
+        {
+          "label": "Enable \"Retry\""
+        },
+        {
+          "label": "Enable \"Show Solution\" button"
+        },
+        {
+          "label": "Enable \"Check\" button"
+        },
+        {
+          "label": "Instant feedback"
+        }
+      ]
     },
     {
       "label": "Lebo ya teknolojia ya usaidizi kwa kitufe cha \"Weka alama\"",
@@ -158,6 +201,10 @@
     {
       "label": "Lebo ya teknolojia ya usaidizi kwa kitufe cha \"Jaribu tena\"",
       "default": "Jaribu tena kazi hiyo. Weka upya majibu yote na uanze kazi tena."
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry the task. Reset all responses and start the task over again."
     }
   ]
 }

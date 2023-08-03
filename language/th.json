@@ -50,11 +50,37 @@
             ]
           }
         }
-      ]
+      ],
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
     },
     {
       "label": "ข้อความสำหรับปุ่ม \"ตรวจสอบ\"",
-      "default": "ตรวจสอบ"
+      "default": "ตรวจสอบ",
+      "fields": [
+        {
+          "entity": "range",
+          "field": {
+            "fields": [
+              {
+                "label": "Score Range"
+              },
+              {},
+              {
+                "label": "Feedback for defined score range",
+                "placeholder": "Fill in the feedback"
+              }
+            ]
+          },
+          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "widgets": [
+            {
+              "label": "Default"
+            }
+          ],
+          "label": "Define custom feedback for any score range"
+        }
+      ]
     },
     {
       "label": "ข้อความสำหรับปุ่ม \"ส่ง\"",
@@ -95,7 +121,8 @@
     },
     {
       "label": "ข้อความที่อ่านโดยเครื่องอ่านออกเสียงสำหรับคำตอบที่ถูกต้อง",
-      "default": "ถูกต้อง!"
+      "default": "ถูกต้อง!",
+      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
       "label": "ข้อความที่อ่านโดยเครื่องอ่านออกเสียงสำหรับคำตอบที่ไม่ถูกต้อง",
@@ -131,11 +158,38 @@
     },
     {
       "label": "ข้อความที่อ่านโดยเครื่องอ่านออกเสียงสำหรับปุ่ม \"ลองใหม่\"",
-      "default": "ลองใหม่"
+      "default": "ลองใหม่",
+      "description": "These options will let you control how the task behaves.",
+      "fields": [
+        {
+          "label": "Enable \"Retry\""
+        },
+        {
+          "label": "Enable \"Show Solution\" button"
+        },
+        {
+          "label": "Enable \"Check\" button"
+        },
+        {
+          "label": "Instant feedback"
+        }
+      ]
     },
     {
       "label": "ข้อความที่อ่านโดยเครื่องอ่านออกเสียงสำหรับปุ่ม \"แสดงคำตอบ\"",
       "default": "แสดงคำตอบ"
+    },
+    {
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+    },
+    {
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show the solution. The task will be marked with its correct solution."
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry the task. Reset all responses and start the task over again."
     }
   ]
 }

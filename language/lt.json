@@ -35,11 +35,42 @@
             }
           ],
           "label": "Nustatykite tinkintus atsiliepimus bet kokiam balų intervalui",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "description": "Spustelėkite mygtuką „Pridėti diapazoną“, kad pridėtumėte tiek diapazonų, kiek jums reikia. Pavyzdys: 0–20 % blogas balas, 21–91 % vidutinis balas, 91–100 % puikus rezultatas!",
           "field": {
             "fields": [
               {
                 "label": "Balų diapazonas"
+              },
+              {},
+              {
+                "label": "Atsiliepimai apibrėžtam balų diapazonui",
+                "placeholder": "Užpildykite atsiliepimą"
+              }
+            ]
+          }
+        }
+      ],
+      "label": "Bendras atsiliepimas",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+    },
+    {
+      "label": "Tekstas mygtukui „Tikrinti“.",
+      "default": "Tikrinti",
+      "fields": [
+        {
+          "entity": "range",
+          "widgets": [
+            {
+              "label": "Default"
+            }
+          ],
+          "label": "Define custom feedback for any score range",
+          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "field": {
+            "fields": [
+              {
+                "label": "Score Range"
               },
               {},
               {
@@ -49,12 +80,7 @@
             ]
           }
         }
-      ],
-      "label": "Bendras atsiliepimas"
-    },
-    {
-      "label": "Tekstas mygtukui „Tikrinti“.",
-      "default": "Tikrinti"
+      ]
     },
     {
       "label": "Tekstas mygtukui „Pateikti“.",
@@ -95,7 +121,8 @@
     },
     {
       "label": "Readspeaker text for correct answer",
-      "default": "Teisingai!"
+      "default": "Teisingai!",
+      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
     {
       "label": "Readspeaker text for incorrect answer",
@@ -141,11 +168,27 @@
         {
           "label": "Momentinis atsiliepimas"
         }
-      ]
+      ],
+      "default": "Feedback"
     },
     {
       "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "Jūs gavote :num iš :total taškų"
+      "default": "Jūs gavote :num iš :total taškų",
+      "description": "These options will let you control how the task behaves.",
+      "fields": [
+        {
+          "label": "Enable \"Retry\""
+        },
+        {
+          "label": "Enable \"Show Solution\" button"
+        },
+        {
+          "label": "Enable \"Check\" button"
+        },
+        {
+          "label": "Instant feedback"
+        }
+      ]
     },
     {
       "label": "Assistive technology label for \"Check\" button",
@@ -158,6 +201,10 @@
     {
       "label": "Assistive technology label for \"Retry\" button",
       "default": "Bandykite atlikti užduotį dar kartą. Iš naujo nustatyti visus atsakymus ir pradėti užduotį iš naujo."
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry the task. Reset all responses and start the task over again."
     }
   ]
 }

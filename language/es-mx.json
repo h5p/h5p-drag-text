@@ -26,9 +26,9 @@
       }
     },
     {
-      "label": "Distractors",
+      "label": "Distractores",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Escriba soluciones incorrectas extra como distractores. Use el mismo esquema con asterisco (*) como para el texto."
     },
     {
       "label": "Retroalimentación Global",
@@ -74,24 +74,24 @@
       "default": "Mostrar solución"
     },
     {
-      "label": "Etiqueta de zona de caída numerada",
-      "default": "Zona de caída @index.",
-      "description": "Etiqueta utilizada para accesibilidad, donde el Lector de texto en voz alta leerá el índice de una zona de colocación. Variable disponible: @index"
+      "label": "Etiqueta de zona de colocación numerada",
+      "default": "Zona de colocación @index.",
+      "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá el índice de una zona de colocación. Variable disponible: @index"
     },
     {
-      "label": "Etiqueta Zona de Caída Vacía",
-      "default": "Zona de Caída @index está vacía.",
-      "description": "Etiqueta utilizada para la accesibilidad, donde el Lector de texto en voz alta leerá que la zona de colocación está vacía"
+      "label": "Etiqueta para Zona de Colocación vacía",
+      "default": "La zona de Colocación @index está vacía.",
+      "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla leerá que la zona de colocación está vacía"
     },
     {
-      "label": "Contiene etiqueta Zona de Caída",
-      "default": "Zona de Caída @index contiene @draggable que se puede arrastrar.",
-      "description": "Etiqueta utilizada para la accesibilidad, donde el Lector de texto en voz alta leerá que la zona de caída contiene un elemento que se puede arrastrar"
+      "label": "Contiene etiqueta de Zona de Colocación",
+      "default": "La zona de Colocación @index contiene elemento @draggable.",
+      "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá que la zona de colocación contiene un elemento que se puede colocar"
     },
     {
-      "label": "Etiqueta de elementos arrastrables",
-      "default": "@index de @count arrastrables.",
-      "description": "Etiqueta utilizada para la accesibilidad, donde el Lector de texto en voz alta lee que se trata de un elemento que se puede arrastrar. Variable disponible: @index, @count"
+      "label": "Etiqueta de elementos que se pueden colocar",
+      "default": "@index de @count elementos que se pueden colocar.",
+      "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla lee que se trata de un elemento que se puede colocar. Variable disponible: @index, @count"
     },
     {
       "label": "Etiqueta para mostrar el botón de pista",
@@ -107,15 +107,15 @@
       "default": "¡Incorrecto!"
     },
     {
-      "label": "Título del diálogo de confirmación que el usuario quiere restablecer un arrastrable",
-      "default": "Restablecer caída"
+      "label": "Título del diálogo de confirmación cuando el usuario quiere deshacer una colocación",
+      "default": "Restablecer colocación"
     },
     {
-      "label": "Descripción del diálogo de confirmación que el usuario quiere restablecer un arrastrable",
-      "default": "¿Seguro que quiere restablecer esta zona de caída?"
+      "label": "Descripción del diálogo de confirmación cuando el usuario quiere deshacer una colocación",
+      "default": "¿Seguro que quieres restablecer esta zona de colocación?"
     },
     {
-      "label": "Etiqueta utilizada para accesibilidad, donde el Lector de texto en voz alta indica que se inició el arrastre",
+      "label": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla indica que se inició el arrastre",
       "default": "El arrastrable está agarrado."
     },
     {
@@ -153,15 +153,15 @@
       "default": "Obtuvo :num de un total de :total puntos"
     },
     {
-      "label": "Etiqueta de tecnología asistiva para botón \"Comprobar\"",
+      "label": "Etiqueta para las tecnologías de asistencia para el botón \"Comprobar\"",
       "default": "Comprobar las respuestas. Las respuestas serán marcadas como correcta, incorrecta o sin contestar."
     },
     {
-      "label": "Etiqueta de tecnología asistiva para botón \"Mostrar Solución\"",
+      "label": "Descripción para las tecnologías de asistencia del botón \"Mostrar solución\"",
       "default": "Mostrar la solución. El trabajo será calificado con su solución correcta."
     },
     {
-      "label": "Etiqueta de tecnología asistiva para botón \"Reintentar\"",
+      "label": "Descripción para las tecnologías de asistencia del botón \"Reintentar\"",
       "default": "Reintentar el trabajo. Reiniciar todas las respuestas e iniciar el trabajo de nuevo."
     }
   ]

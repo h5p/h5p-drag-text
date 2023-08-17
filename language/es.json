@@ -26,31 +26,31 @@
       }
     },
     {
-      "label": "Distractors",
+      "label": "Distractores",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Escriba soluciones incorrectas extra como distractores. Use el mismo esquema con asterisco (*) como para el texto."
     },
     {
-      "label": "Retroalimentación global",
+      "label": "Retroalimentación Global",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Por defecto"
+              "label": "Predeterminado"
             }
           ],
-          "label": "Definir retroalimentación personalizada para cualquier rango de puntuación",
-          "description": "Haz clic en el botón \"Añadir rango\" para añadir los rangos que necesites. Ejemplo: 0-20% Mala puntuación, 21-91% Puntuación Media, 91-100% ¡Puntuación Estupenda!",
+          "label": "Definir retroalimentación personalizada para cualquier rango de puntaje",
+          "description": "Haga clic en el botón \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0-20% Mal puntaje, 21-91% Puntaje Promedio, 91-100% ¡Magnífico Puntaje!",
           "entity": "rango",
           "field": {
             "fields": [
               {
-                "label": "Rango de puntuación"
+                "label": "Rango del Puntaje"
               },
               {},
               {
-                "label": "Realimentación para rango de puntuación definido",
-                "placeholder": "Escribe tu retroalimentación"
+                "label": "Retroalimentación para rango de puntaje definido",
+                "placeholder": "Completa la retroalimentación"
               }
             ]
           }
@@ -67,7 +67,7 @@
     },
     {
       "label": "Texto para el botón \"Intentar de nuevo\"",
-      "default": "Intentar de nuevo"
+      "default": "Reintentar"
     },
     {
       "label": "Texto para botón \"Mostrar solución\"",
@@ -79,13 +79,13 @@
       "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá el índice de una zona de colocación. Variable disponible: @index"
     },
     {
-      "label": "Etiqueta para zona de colocación vacía",
-      "default": "La zona de colocación @index está vacía.",
+      "label": "Etiqueta para Zona de Colocación vacía",
+      "default": "La zona de Colocación @index está vacía.",
       "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla leerá que la zona de colocación está vacía"
     },
     {
-      "label": "Contiene etiqueta de zona de colocación",
-      "default": "la zona de colocación @index contiene elemento @draggable.",
+      "label": "Contiene etiqueta de Zona de Colocación",
+      "default": "la zona de Colocación @index contiene elemento @draggable.",
       "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá que la zona de colocación contiene un elemento que se puede colocar"
     },
     {

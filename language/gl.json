@@ -26,9 +26,9 @@
       }
     },
     {
-      "label": "Distractors",
+      "label": "Distractores",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Introduza solucións adicionais incorrectas como distractores. Use o mesmo esquema de asterisco (*) que para o texto."
     },
     {
       "label": "Retroalimentación xeral",

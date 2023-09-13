@@ -463,9 +463,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           self.hideButton('try-again');
           self.hideButton('check-answer');
         }
-
-        // Focus top of the task for natural navigation
-        self.$introduction.parent().focus();
       }, !self.params.behaviour.instantFeedback, {
         'aria-label': self.params.a11yCheck,
       }, {

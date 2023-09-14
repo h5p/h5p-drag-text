@@ -26,9 +26,9 @@
       }
     },
     {
-      "label": "Distractors",
+      "label": "Felaktiga svarsalternativ",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Ange alternativa lösningar som felaktiga svarsalternativ. Använd samma upplägg med asterisk (*) som för texten."
     },
     {
       "label": "Allmän feedback",

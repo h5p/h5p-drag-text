@@ -26,9 +26,9 @@
       }
     },
     {
-      "label": "Distractors",
+      "label": "Distraitzaileak",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Sartu distraitzaile gisa okerrak diren irtenbide gehigarriak. Erabili testurako izartxo (*) eskema bera."
     },
     {
       "label": "Feedback Orokorra",

@@ -26,9 +26,9 @@
       }
     },
     {
-      "label": "Distractors",
+      "label": "Distraktory",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Zadejte další řešení, která jsou chybná jako distraktory. Použijte stejné schéma hvězdičky (*) jako pro text."
     },
     {
       "label": "Celková zpětná vazba",
@@ -62,7 +62,7 @@
       "default": "Zkontrolovat"
     },
     {
-      "label": "Text for \"Submit\" button",
+      "label": "Text pro tlačítko „Odeslat“",
       "default": "Submit"
     },
     {

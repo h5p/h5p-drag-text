@@ -137,8 +137,8 @@
 }
 
 .h5p-drag-text [aria-grabbed='true'],
-.h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-state-disabled):hover,
-.h5p-drag-text [aria-grabbed]:not(.ui-state-disabled):hover {
+.h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled):hover,
+.h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled):hover {
   border: 0.1em solid rgb(212,190,216);
   color: #663366;
   background: #edd6e9;
@@ -157,7 +157,7 @@
   opacity: 0.5;
   box-shadow: 0 0 0.8em rgba(0,0,0,0.5);
 }
-.h5p-drag-text [aria-grabbed].ui-state-disabled {
+.h5p-drag-text [aria-grabbed].ui-draggable-disabled {
   opacity: 1;
 }
 
@@ -219,7 +219,7 @@
   display: block;
 }
 
-.h5p-drag-text [aria-dropeffect].ui-droppable.ui-droppable-disabled.ui-state-disabled{
+.h5p-drag-text [aria-dropeffect].ui-droppable.ui-droppable-disabled.ui-draggable-disabled{
   opacity: 1;
 }
 

@@ -26,7 +26,7 @@
       }
     },
     {
-      "label": "ఓవర్ ఆల్ ఫీడ్ బాక్",
+      "label": "డిస్ట్రాక్టర్లు",
       "fields": [
         {
           "widgets": [
@@ -52,30 +52,30 @@
         }
       ],
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "డిస్ట్రాక్టర్లుగా తప్పుగా ఉన్న అదనపు పరిష్కారాలను నమోదు చేయండి. టెక్స్ట్ కోసం అదే నక్షత్రం (*) స్కీమ్‌ని ఉపయోగించండి."
     },
     {
       "default": "చెక్/తనిఖీ",
-      "label": "\"Check\" బటన్ కొరకై టెక్స్ట్",
+      "label": "ఓవర్ ఆల్ ఫీడ్ బ్యాక్",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Default"
+              "label": "డిఫాల్ట్"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "ఏ స్కోర్ పరిధి కైనా సరిపోయే అభిప్రాయాన్ని (ఫీడ్ బ్యాక్) రాయండి",
+          "description": "మీకు అవసరమైనన్ని పరిధులను జోడించడానికి \"పరిధిని జోడించు\" బటన్‌ను క్లిక్ చేయండి. ఉదాహరణ: 0-20% బ్యాడ్ స్కోర్, 21-91% సగటు స్కోర్, 91-100% గొప్ప స్కోర్!",
+          "entity": "పరిధి",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "స్కోర్ పరిధి"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "డిఫైన్ చేసిన స్కోర్ పరిధి కై ఫీడ్ బ్యాక్",
+                "placeholder": "ఫీడ్ బ్యాక్ పూరించండి"
               }
             ]
           }
@@ -83,11 +83,11 @@
       ]
     },
     {
-      "label": "\"Submit\" బటన్ కొరకై టెక్స్ట్",
-      "default": "సమర్పించు / సబ్ మిట్"
+      "label": "\"Check\" బటన్ కొరకై టెక్స్ట్",
+      "default": "సరిచూడు"
     },
     {
-      "label": "\"Retry\" బటన్ కొరకై టెక్స్ట్",
+      "label": "\"Submit\" బటన్ కొరకై టెక్స్ట్",
       "default": "తిరిగి ప్రయత్నించు /రి ట్రై"
     },
     {

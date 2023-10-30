@@ -78,15 +78,35 @@ H5P.TextDroppable = (function ($) {
   /**
    * Displays the solution next to the drop box if it is not correct.
    */
-  Droppable.prototype.showSolution = function () {
+  Droppable.prototype.showSolution = function (correctDraggable) {
+    // Reset fixed width
+    this.$showSolution.css('width', '');
+
     const correct = (this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text);
     if (!correct) {
-      this.$showSolution.html(this.text);
+      if (correctDraggable.containsLatex) {
+        /*
+         * Use LaTeX already rendered for Draggable. MathJax still re-renders,
+         * but way quicker than if adding LaTaX as text. Should probably be tackled
+         * in MathDisplay?
+         * https://github.com/h5p/h5p-math-display/blob/5c2e312822c71f6d8bd33d3260f3ea92b697942e/scripts/mathdisplay.js#L232-L234
+         */
+        this.$showSolution.html(correctDraggable.getDraggableElement().first().html());
+        this.$showSolution.addClass('h5p-drag-text-latex');
+      }
+      else {
+        this.$showSolution.html(this.text);
+      }
     }
 
     this.$showSolution.prepend(correct ? this.$correctText : this.$incorrectText);
     this.$showSolution.toggleClass('incorrect', !correct);
     this.$showSolution.show();
+
+    // Workaround for MathJax re-rendering, avoid reflowing of text, still flickers
+    this.$showSolution.css({
+       width: this.$showSolution.width()
+    });
   };
 
   /**

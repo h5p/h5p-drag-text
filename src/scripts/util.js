@@ -106,11 +106,32 @@ var createElementWithTextPart = function(text) {
   return  el;
 };
 
+/**
+ * Split a text string into an array of segments using a specified separator while allowing for escaped separators using an escape character.
+ * @param {string} text The text to be split into segments.
+ * @param {string} [separator] The separator character to split the text (default is '/').
+ * @param {string} [escapeChar] The escape character used to escape the separator (default is '\').
+ * @returns {string[]} An array of segments split from the text.
+ */
+const splitIgnoreEscaped = (text, separator = '/', escapeChar = '\\\\') => {
+  // escapeChar looks duplicated because it's used in regular expression
+  const unlikelyReplacement = `${H5P.createUUID()}-${H5P.createUUID()}`;
+
+  return text
+    .replace(new RegExp(`${escapeChar}${separator}`, 'g'), unlikelyReplacement)
+    .split(separator)
+    .map((splitSegment) => {
+      return splitSegment
+        .replace(new RegExp(unlikelyReplacement, 'g'), separator);
+    });
+}
+
 export default {
   curry: curry,
   cleanCharacter: cleanCharacter,
   startsWith: startsWith,
   endsWith: endsWith,
   shuffle: shuffle,
-  createElementWithTextPart: createElementWithTextPart
+  createElementWithTextPart: createElementWithTextPart,
+  splitIgnoreEscaped: splitIgnoreEscaped
 };

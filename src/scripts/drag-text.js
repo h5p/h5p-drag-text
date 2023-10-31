@@ -796,7 +796,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         if(self.isAnswerPart(part)) {
           // is draggable/droppable
           const solution = lex(part);
-          self.createDraggable(solution.text);
+
+          Util.splitIgnoreEscaped(solution.text).forEach((answerOption) => {
+            self.createDraggable(answerOption);
+          });
+
           self.createDroppable(solution.text, solution.tip, solution.correctFeedback, solution.incorrectFeedback);
         }
         else {

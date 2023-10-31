@@ -21,7 +21,7 @@
       "label": "Tekst",
       "placeholder": "*Oslo* er hovudstaden i Noreg, *Stockholm* er hovudstaden i Sverige og *København* er hovudstaden i Danmark. Alle byane er lokaliserte i *Skandinavia:den nordlege delen av Europa*.",
       "important": {
-        "description": "<ul><li>Flyttbare ord eller utttrykk markerer du med ein asterisk (*) føre og etter ordet/uttrykket.</li><li>Du kan også legge til eit hint ved å bruke kolon (:). Døme: *Skandinavia:den nordlege delen av Europa*.</li><li>Det finst berre eitt rett svar for kvar tekstboks.</li><li>Du kan legg til ei tilbakemelding som blir vist når oppgåva er fullført. Bruk'\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
+        "description": "<ul><li>Flyttbare ord eller utttrykk markerer du med ein asterisk (*) føre og etter ordet/uttrykket.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Du kan også legge til eit hint ved å bruke kolon (:). Døme: *Skandinavia:den nordlege delen av Europa*.</li><li>Det finst berre eitt rett svar for kvar tekstboks.</li><li>Du kan legg til ei tilbakemelding som blir vist når oppgåva er fullført. Bruk'\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
         "example": "H5P-innhald kan redigerast med ein *nettlesar:Kva slags program er Chrome?*.<br />H5P-innhald er *interaktivt\\+Rett!\\-Feil, prøv igjen*"
       }
     },

@@ -21,8 +21,8 @@
       "label": "Maandishi",
       "placeholder": "*Oslo* ni mji mkuu wa Norway, *Stockholm* ni mji mkuu wa Uswidi na *Copenhagen* ni mji mkuu wa Denmark. Miji yote iko katika peninsula ya *Skandinavia: Kaskazini mwa Ulaya*.",
       "important": {
-        "description": "<ul><li>Maneno yanayoweza kudondoshwa huongezwa kwa kinyota (*) mbele na nyuma ya neno/maneno sahihi.</li><li>Unaweza kuongeza kidokezo cha maandishi, kwa kutumia koloni (:) mbele ya kidokezo.</li><li>Kwa kila sehemu tupu kuna neno moja tu sahihi.</li><li>Unaweza kuongeza maoni yatakayoonyeshwa kazi inapokamilika. Tumia '\\+' kwa maoni sahihi na '\\-' kwa maoni yasiyo sahihi.</li></ul>",
-        "example": "Maudhui ya H5P yanaweza kuhaririwa kwa kutumia *kivinjari: Chrome ni aina gani ya programu?*. <br /> Maudhui ya H5P *yanaingiliana\\+Sahihi! \\-Siyo sahihi, jaribu tena!*"
+        "description": "<ul><li>Maneno yanayoweza kudondoshwa huongezwa kwa kinyota (*) mbele na nyuma ya neno/maneno sahihi.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Unaweza kuongeza kidokezo cha maandishi, kwa kutumia koloni (:) mbele ya kidokezo.</li><li>Kwa kila sehemu tupu kuna neno moja tu sahihi.</li><li>Unaweza kuongeza maoni yatakayoonyeshwa kazi inapokamilika. Tumia '\\+' kwa maoni sahihi na '\\-' kwa maoni yasiyo sahihi.</li></ul>",
+        "example": "Maudhui ya H5P yanaweza kuhaririwa kwa kutumia *kivinjari: Chrome ni aina gani ya programu?*. <br /> Maudhui ya H5P *yanaingiliana/awesome\\+Sahihi! \\-Siyo sahihi, jaribu tena!*"
       }
     },
     {

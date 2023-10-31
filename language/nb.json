@@ -21,7 +21,7 @@
       "label": "Tekst",
       "placeholder": "*Oslo* er hovedstaden i Norge, *Stockholm* er hovedstaden i Sverige og *København* er hovedstaden i Danmark. Alle byene er lokalisert i *Skandinavia:den nordlige delen av Europa*.",
       "important": {
-        "description": "<ul><li>Flyttbare ord eller uttrykk markeres med en asterisk (*) foran og etter ordet/uttrykket.</li><li>Du kan også legge til et hint ved å bruke kolon (:). Eksempel: *Skandinavia:den nordlige delen av Europa*</li><li>Det fins bare ett rett svar for hver tekstboks.</li><li>Det er mulig å legge til ei tilbakemelding som vises når oppgaven er fullført. Bruk '\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
+        "description": "<ul><li>Flyttbare ord eller uttrykk markeres med en asterisk (*) foran og etter ordet/uttrykket.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Du kan også legge til et hint ved å bruke kolon (:). Eksempel: *Skandinavia:den nordlige delen av Europa*</li><li>Det fins bare ett rett svar for hver tekstboks.</li><li>Det er mulig å legge til ei tilbakemelding som vises når oppgaven er fullført. Bruk '\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
         "example": "H5P-innhold kan redigeres med en *nettleser:Hva slags program er Chrome?*.<br />H5P-innhold er *interaktivt\\+Riktig!\\-Feil, prøv igjen*"
       }
     },

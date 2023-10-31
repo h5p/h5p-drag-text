@@ -21,8 +21,8 @@
       "label": "Teksts",
       "placeholder": "*Oslo* ir Norvēģijas galvaspilsēta, *Stokholma* ir Zviedrijas galvaspilsēta un *Kopenhāgena* ir Dānijas galvaspilsēta. Visas pilsētas atrodas *Skandināvijas:Eiropas ziemeļdaļas* pussalā.",
       "important": {
-        "description": "<ul><li>Velkamie vārdi tiek pievienoti ar zvaigznīti (*) pareizā vārda/frāzes priekšā un aiz tā.</li><li>Variet pievienot teksta padomu, padoma priekšā pievienojot kolu (:). .</li><li>Katram tukšajam laukumam ir tikai viens pareizs vārds.</li><li>Variett pievienot atgriezenisko saiti, kas tiks parādīta, kad uzdevums ir pabeigts. Izmantojiet '\\+' atgriezeniskajai saitei par pareizu atbildi un '\\-' atgriezeniskajai saitei par nepareizu atbildi.</li></ul>",
-        "example": "H5P saturu var rediģēt, izmantojot *pārlūkprogrammu:Kāda veida programma ir Chrome?*. <br /> H5P saturs ir *interaktīvs\\+Pareizi! \\-Nepareizi, mēģiniet vēlreiz!*"
+        "description": "<ul><li>Velkamie vārdi tiek pievienoti ar zvaigznīti (*) pareizā vārda/frāzes priekšā un aiz tā.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Variet pievienot teksta padomu, padoma priekšā pievienojot kolu (:). .</li><li>Katram tukšajam laukumam ir tikai viens pareizs vārds.</li><li>Variett pievienot atgriezenisko saiti, kas tiks parādīta, kad uzdevums ir pabeigts. Izmantojiet '\\+' atgriezeniskajai saitei par pareizu atbildi un '\\-' atgriezeniskajai saitei par nepareizu atbildi.</li></ul>",
+        "example": "H5P saturu var rediģēt, izmantojot *pārlūkprogrammu:Kāda veida programma ir Chrome?*. <br /> H5P saturs ir *interaktīvs/awesome\\+Pareizi! \\-Nepareizi, mēģiniet vēlreiz!*"
       }
     },
     {

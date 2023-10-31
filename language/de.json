@@ -21,7 +21,7 @@
       "label": "Text",
       "placeholder": "*Oslo* ist die Hauptstadt von Norwegen, *Stockholm* ist die Hauptstadt von Schweden und *Kopenhagen* ist die Hauptstadt von Dänemark. Alle Städte befinden sich auf der *skandinavischen: nördlicher Teil von Europa* Halbinsel.",
       "important": {
-        "description": "<ul><li>Ziehbare Wörter werden mit einem Sternchen (*) vor und hinter dem jeweiligen Wort bzw. Satzteil markiert.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Du kannst einen Tipp mit einem Doppelpunkt (:) vor der dem Tipp hinzufügen.</li> <li>Pro Lücke gibt es nur genau eine richtige Antwort.</li> <li>Du kannst auch eine Rückmeldung hinzufügen, die angezeigt wird, wenn eine Aufgabe abgeschlossen wurde. Verwende \"\\+\" für positive und \" \\-\" für negative Rückmeldungen.</li></ul>",
+        "description": "<ul><li>Ziehbare Wörter werden mit einem Sternchen (*) vor und hinter dem jeweiligen Wort bzw. Satzteil markiert.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Du kannst einen Tipp mit einem Doppelpunkt (:) vor der dem Tipp hinzufügen.</li><li>Du kannst auch eine Rückmeldung hinzufügen, die angezeigt wird, wenn eine Aufgabe abgeschlossen wurde. Verwende \"\\+\" für positive und \" \\-\" für negative Rückmeldungen.</li></ul>",
         "example": "H5P-Inhalt kann mit einem *Browser:Was für eine Art von Programm ist Chrome?* bearbeitet werden.<br />H5P-Inhalt ist *interaktiv/großartig\\+Richtig!\\-Falsch. Probiere es nochmal!*."
       }
     },

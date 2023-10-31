@@ -21,7 +21,7 @@
       "label": "Tekstas",
       "placeholder": "*Oslas* yra Norvegijos sostinė, *Stokholmas* yra Švedijos sostinė ir *Kopenhaga* yra Danijos sostinė. Visi miestai randasi *Skandinavijos pusiasalyje, Šiaurinėje Europos* dalyje.",
       "important": {
-        "description": "<ul><li>Praleisti žodžiai žymimi žvaigždute (*) priekyje ir gale teisingo žodžio/frazės.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Jūs galite įdėti tekstinį patarimą, naudodami dvitaškį (:) priekyje patarimo.</li><li>Kiekvienai tuščiai vietai yra tik vienas teisingas atsakymas.</li><li>Jūs galite pridėti atsiliepimą, kada užduotis bus užbaigta. Naudokite '\\+' teigiamam ir '\\-' neigiamam atsiliepimui.</li></ul>",
+        "description": "<ul><li>Praleisti žodžiai žymimi žvaigždute (*) priekyje ir gale teisingo žodžio/frazės.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Jūs galite įdėti tekstinį patarimą, naudodami dvitaškį (:) priekyje patarimo.</li><li>Jūs galite pridėti atsiliepimą, kada užduotis bus užbaigta. Naudokite '\\+' teigiamam ir '\\-' neigiamam atsiliepimui.</li></ul>",
         "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive/awesome\\+Correct! \\-Incorrect, try again!*"
       }
     },

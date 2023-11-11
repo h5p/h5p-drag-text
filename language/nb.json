@@ -8,35 +8,35 @@
           "description": "Valgfritt medieelement. Elementet vil bli plassert over spørsmålet."
         },
         {
-          "label": "Deaktiver zoomingfunksjon."
+          "label": "Deaktiver zoomfunksjon."
         }
       ]
     },
     {
       "label": "Oppgavebeskrivelse",
       "description": "Forklar hvordan brukeren skal løse oppgaven.",
-      "default": "Dra orda inn i de riktige boksene"
+      "default": "Dra ordene inn i de riktige boksene."
     },
     {
       "label": "Tekst",
-      "placeholder": "*Oslo* er hovedstaden i Norge, *Stockholm* er hovedstaden i Sverige og *København* er hovedstaden i Danmark. Alle byene er lokalisert i *Skandinavia:den nordlige delen av Europa*.",
+      "placeholder": "*Oslo* er hovedstaden i Norge, *Stockholm* er hovedstaden i Sverige, og *København* er hovedstaden i Danmark. Alle byene er lokalisert i *Skandinavia:den nordlige delen av Europa*.",
       "important": {
-        "description": "<ul><li>Flyttbare ord eller uttrykk markeres med en asterisk (*) foran og etter ordet/uttrykket.</li><li>Du kan også legge til et hint ved å bruke kolon (:). Eksempel: *Skandinavia:den nordlige delen av Europa*</li><li>Det fins bare ett rett svar for hver tekstboks.</li><li>Det er mulig å legge til ei tilbakemelding som vises når oppgaven er fullført. Bruk '\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
-        "example": "H5P-innhold kan redigeres med en *nettleser:Hva slags program er Chrome?*.<br />H5P-innhold er *interaktivt\\+Riktig!\\-Feil, prøv igjen*"
+        "description": "<ul><li>Flyttbare ord eller uttrykk markeres med en asterisk (*) foran og etter ordet/uttrykket.</li><li>Du kan også legge til et hint ved å bruke kolon (:). Eksempel: *Skandinavia:den nordlige delen av Europa*</li><li>Det finnes bare ett rett svar for hver tekstboks.</li><li>Det er mulig å legge til ei tilbakemelding som vises når oppgaven er fullført. Bruk '\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
+        "example": "H5P-innhold kan redigeres med en *nettleser:Hva slags program er Chrome?*.<br />H5P-innhold er *interaktivt\\+Riktig!\\-Feil, prøv igjen*."
       }
     },
     {
-      "label": "Feil svaralternativer",
+      "label": "Svaralternativer som er feil",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Legg inn ekstra svaralternativer som er feil, for å gjøre oppgaven vanskeligere. Bruk stjerne (*) på samme måten som for korrekte svar i teksten."
     },
     {
-      "label": "Tilbakemelding på hele oppgava",
+      "label": "Tilbakemelding på hele oppgaven",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Forhandsinnstilling"
+              "label": "Forhåndsinnstilling"
             }
           ],
           "label": "Opprett poengområder og legg inn tilbakemeldinger.",
@@ -58,52 +58,52 @@
       ]
     },
     {
-      "label": "Etikett for \"Sjekk\"-knapp",
+      "label": "Navn på\"Sjekk\"-knapp",
       "default": "Sjekk"
     },
     {
-      "label": "Text for \"Submit\" button",
-      "default": "Submit"
+      "label": "Navn på \"Send inn\"-knapp",
+      "default": "Send inn"
     },
     {
-      "label": "Text for \"Retry\" button",
-      "default": "Retry"
+      "label": "Navn på \"Prøv igjen\"-knapp",
+      "default": "Prøv igjen"
     },
     {
-      "label": "Tekst for \"Fasit\" knapp",
-      "default": "Fasit"
+      "label": "Navn på \"Vis svar\"-knapp",
+      "default": "Vis svar"
     },
     {
-      "label": "Nummerert slippsone merkelapp",
+      "label": "Merkelapp for nummerert slippsone",
       "default": "Slippsone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "description": "Merking for tilgjengelighet. Skjermleser leser nummeret på slippsonen. Tilgjengelig variabel: @index"
     },
     {
-      "label": "Tom slippsone merkelapp",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Merkelapp for tom slippsone",
+      "default": "Slippsone @index er tom.",
+      "description": "Merking for tilgjengelighet. Skjermleser leser at slippsonen er tom."
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Merkelapp: Slippsonen inneholder flyttbart element",
+      "default": "Slippsone @index inneholder flyttbart element @draggable.",
+      "description": "Merkelapp for tilgjengelighet. Skjermleser leser at slippsonen inneholder et flyttbart element."
     },
     {
-      "label": "Nummerert merkelapp for element som kan dras",
-      "default": "@index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "Merkelapp for flyttbare elementer",
+      "default": "@index av @count flyttbare elementer",
+      "description": "Merking for tilgjengelighet. Skjermleser leser at dette er et flyttbart element. Tilgjengelige variabler: @index, @count"
     },
     {
-      "label": "Ingen slippsone valg-merkelapp",
+      "label": "Navn på \"Vis tips\"-knapp",
       "default": "Vis tips",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "description": "Merking for tilgjengelighet. Skjermleser leser dette før selve tipset blir lest opp."
     },
     {
-      "label": "Rett svar tekst for hjelpemiddelteknologi",
+      "label": "Skjermlesertekst ved riktig svar",
       "default": "Riktig"
     },
     {
-      "label": "Galt svar tekst for hjelpemiddelteknologi",
+      "label": "Skjermlesertekst ved feil svar",
       "default": "Feil"
     },
     {

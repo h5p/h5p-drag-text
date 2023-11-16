@@ -154,7 +154,7 @@
     },
     {
       "label": "Merkelapp for \"Sjekk\"-knapp for assisterende teknologi",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "default": "Vis fasit. Oppgaven blir merket med riktig løsning."
     },
     {
       "label": "Assistive technology label for \"Show Solution\" button",

@@ -107,53 +107,53 @@
       "default": "Feil"
     },
     {
-      "label": "Bekreftelsesdialogtittel om at brukeren vil nullstille et flyttbart element",
+      "label": "Tittel på bekreftelsesdialog om at bruker vil nullstille et flyttbart element",
       "default": "Nullstill flyttbart element"
     },
     {
-      "label": "Bekreftelsesdialogbeskrivelse om at brukeren vil nullstille et flyttbart element",
+      "label": "Tekst i bekreftelsesdialog når bruker vil nullstille et flyttbart element",
       "default": "Er du sikker på at du vil nullstille dette elementet?"
     },
     {
-      "label": "Merkelapp for universal utforming, når brukeren indikerer at dragning har startet",
-      "default": "Draggable is grabbed."
+      "label": "Merkelapp for tilgjengelighet. Skjermleser sier at flytting har startet.",
+      "default": "Flyttbart element er tatt tak i."
     },
     {
-      "label": "LMerkelapp for universal utforming, når brukeren indikerer at dragnig er avbrutt",
-      "default": "Dragning avbrutt."
+      "label": "Merkelapp for tilgjengelighet. Skjermleser sier at flytting er avbrutt.",
+      "default": "Flytting er avbrutt."
     },
     {
-      "label": "Merkelapp for korrekt svar",
-      "default": "Svar:"
+      "label": "Merkelapp for tilgjengelighet. Skjermleser sier at svaret er korrekt.",
+      "default": "Riktig svar:"
     },
     {
-      "label": "Merkelapp for feil svar",
+      "label": "Tittel på avsnittet som gir bruker tilbakemelding om riktige og feil svar",
       "default": "Tilbakemelding"
     },
     {
-      "label": "Innstillinger for oppgave-oppførsel",
-      "description": "Disse instillingene lar deg bestemme hvordan oppgavetypen skal oppføre seg.",
+      "label": "Oppgaveinnstillinger",
+      "description": "Disse innstillingene lar deg bestemme hvordan oppgaven skal oppføre seg.",
       "fields": [
         {
           "label": "Aktiver \"Prøv igjen\"-knapp"
         },
         {
-          "label": "Aktiver \"Fasit\" knapp"
+          "label": "Aktiver \"Vis svar\"-knapp"
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "Aktiver \"Sjekk\"-knapp"
         },
         {
-          "label": "Instant feedback"
+          "label": "Øyeblikkelig tilbakemelding"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "Tekstalternativ til resultatlinja for skjermleserbrukere",
+      "default": "Du fikk :num av :total poeng."
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
+      "label": "Merkelapp for \"Sjekk\"-knapp for assisterende teknologi",
       "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
     },
     {

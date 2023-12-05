@@ -26,6 +26,11 @@
       }
     },
     {
+      "label": "Distraitzaileak",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Sartu distraitzaile gisa okerrak diren irtenbide gehigarriak. Erabili testurako izartxo (*) eskema bera."
+    },
+    {
       "label": "Feedback Orokorra",
       "fields": [
         {

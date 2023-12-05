@@ -26,6 +26,11 @@
       }
     },
     {
+      "label": "Distractores",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Introduza solucións adicionais incorrectas como distractores. Use o mesmo esquema de asterisco (*) que para o texto."
+    },
+    {
       "label": "Retroalimentación xeral",
       "fields": [
         {

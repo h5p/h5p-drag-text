@@ -26,6 +26,11 @@
       }
     },
     {
+      "label": "Felaktiga svarsalternativ",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Ange alternativa lösningar som felaktiga svarsalternativ. Använd samma upplägg med asterisk (*) som för texten."
+    },
+    {
       "label": "Allmän feedback",
       "fields": [
         {

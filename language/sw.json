@@ -26,6 +26,11 @@
       }
     },
     {
+      "label": "Distractors",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+    },
+    {
       "label": "Maoni ya Jumla",
       "fields": [
         {
@@ -53,8 +58,8 @@
       ]
     },
     {
-      "label": "Maandishi ya kitufe cha \"Weka alama\"",
-      "default": "Weka alama"
+      "label": "Text for \"Check\" button",
+      "default": "Check"
     },
     {
       "label": "Maandishi ya kitufe cha \"Wasilisha\"",
@@ -144,10 +149,6 @@
       ]
     },
     {
-      "label": "Uwakilishi wa maandishi wa upau wa alama kwa wale wanaotumia kisoma maandishi",
-      "default": "Umepata :num kati ya alama:total"
-    },
-    {
       "label": "Lebo ya teknolojia ya usaidizi kwa kitufe cha \"Weka alama\"",
       "default": "Weka alama majibu. Majibu yatatiwa alama kuwa sahihi, siyo sahihi au haijajibiwa."
     },
@@ -158,6 +159,10 @@
     {
       "label": "Lebo ya teknolojia ya usaidizi kwa kitufe cha \"Jaribu tena\"",
       "default": "Jaribu tena kazi hiyo. Weka upya majibu yote na uanze kazi tena."
+    },
+    {
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry the task. Reset all responses and start the task over again."
     }
   ]
 }

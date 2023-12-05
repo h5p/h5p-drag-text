@@ -26,6 +26,12 @@
       }
     },
     {
+      "label": "Distractors",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+    },
+    {
+      "label": "Bendras atsiliepimas",
       "fields": [
         {
           "entity": "diapazonas",
@@ -35,7 +41,7 @@
             }
           ],
           "label": "Nustatykite tinkintus atsiliepimus bet kokiam balų intervalui",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "description": "Spustelėkite mygtuką „Pridėti diapazoną“, kad pridėtumėte tiek diapazonų, kiek jums reikia. Pavyzdys: 0–20 % blogas balas, 21–91 % vidutinis balas, 91–100 % puikus rezultatas!",
           "field": {
             "fields": [
               {
@@ -43,18 +49,17 @@
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Atsiliepimai apibrėžtam balų diapazonui",
+                "placeholder": "Užpildykite atsiliepimą"
               }
             ]
           }
         }
-      ],
-      "label": "Bendras atsiliepimas"
+      ]
     },
     {
-      "label": "Tekstas mygtukui „Tikrinti“.",
-      "default": "Tikrinti"
+      "label": "Text for \"Check\" button",
+      "default": "Check"
     },
     {
       "label": "Tekstas mygtukui „Pateikti“.",

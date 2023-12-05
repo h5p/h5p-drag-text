@@ -15,15 +15,20 @@
     {
       "label": "Oppgavebeskrivelse",
       "description": "Forklar hvordan brukeren skal løse oppgaven.",
-      "default": "Drag the words into the correct boxes"
+      "default": "Dra orda inn i de riktige boksene"
     },
     {
       "label": "Tekst",
-      "placeholder": "*Oslo* er hovedstaden i Norge, *Stockholm* er hovedstaden i Sverige og *København* er hovedstaden i Danmark. Alle byene er lokalisert i *Skandinavia:Nordlige delen av europa*.",
+      "placeholder": "*Oslo* er hovedstaden i Norge, *Stockholm* er hovedstaden i Sverige og *København* er hovedstaden i Danmark. Alle byene er lokalisert i *Skandinavia:den nordlige delen av Europa*.",
       "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
-        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+        "description": "<ul><li>Flyttbare ord eller uttrykk markeres med en asterisk (*) foran og etter ordet/uttrykket.</li><li>Du kan også legge til et hint ved å bruke kolon (:). Eksempel: *Skandinavia:den nordlige delen av Europa*</li><li>Det fins bare ett rett svar for hver tekstboks.</li><li>Det er mulig å legge til ei tilbakemelding som vises når oppgaven er fullført. Bruk '\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
+        "example": "H5P-innhold kan redigeres med en *nettleser:Hva slags program er Chrome?*.<br />H5P-innhold er *interaktivt\\+Riktig!\\-Feil, prøv igjen*"
       }
+    },
+    {
+      "label": "Feil svaralternativer",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
     },
     {
       "label": "Tilbakemelding på hele oppgava",

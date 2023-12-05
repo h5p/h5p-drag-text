@@ -26,16 +26,21 @@
       }
     },
     {
-      "label": "ఓవర్ ఆల్ ఫీడ్ బాక్",
+      "label": "Distractors",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "డిస్ట్రాక్టర్లుగా తప్పుగా ఉన్న అదనపు పరిష్కారాలను నమోదు చేయండి. టెక్స్ట్ కోసం అదే నక్షత్రం (*) స్కీమ్‌ని ఉపయోగించండి."
+    },
+    {
+      "label": "ఓవర్ ఆల్ ఫీడ్ బ్యాక్",
       "fields": [
         {
           "widgets": [
             {
-              "label": "డీఫాల్ట్"
+              "label": "డిఫాల్ట్"
             }
           ],
-          "label": "ఏ స్కోర్ పరిధికైనా అనుకూలమైన ఫీడ్ బ్యాక్ ను డిఫైన్ చెయ్యండి",
-          "description": "\"Add range\" బటన్ ను క్లిక్ చేసి కావల్సినన్ని స్కోర్ పరిధులను చేర్చండి. ఉదాహరణ: 0-20% బ్యాడ్ స్కోర్, 21-91% యావరేజ్ స్కోర్, 91-100% గ్రేట్ స్కోర్!",
+          "label": "ఏ స్కోర్ పరిధి కైనా సరిపోయే అభిప్రాయాన్ని (ఫీడ్ బ్యాక్) రాయండి",
+          "description": "మీకు అవసరమైనన్ని పరిధులను జోడించడానికి \"పరిధిని జోడించు\" బటన్‌ను క్లిక్ చేయండి. ఉదాహరణ: 0-20% బ్యాడ్ స్కోర్, 21-91% సగటు స్కోర్, 91-100% గొప్ప స్కోర్!",
           "entity": "పరిధి",
           "field": {
             "fields": [
@@ -44,8 +49,8 @@
               },
               {},
               {
-                "label": "నిర్వచింపబడిన స్కోర్ పరిధి కై ఫీడ్ బ్యాక్",
-                "placeholder": "ఫీడ్ బ్యాక్ ను ఫిల్ చేయండి"
+                "label": "డిఫైన్ చేసిన స్కోర్ పరిధి కై ఫీడ్ బ్యాక్",
+                "placeholder": "ఫీడ్ బ్యాక్ పూరించండి"
               }
             ]
           }
@@ -53,16 +58,16 @@
       ]
     },
     {
-      "default": "చెక్/తనిఖీ",
-      "label": "\"Check\" బటన్ కొరకై టెక్స్ట్"
+      "label": "\"Check\" బటన్ కొరకై టెక్స్ట్",
+      "default": "సరిచూడు"
     },
     {
       "label": "\"Submit\" బటన్ కొరకై టెక్స్ట్",
-      "default": "సమర్పించు / సబ్ మిట్"
+      "default": "తిరిగి ప్రయత్నించు /రి ట్రై"
     },
     {
-      "label": "\"Retry\" బటన్ కొరకై టెక్స్ట్",
-      "default": "తిరిగి ప్రయత్నించు /రి ట్రై"
+      "label": "Text for \"Retry\" button",
+      "default": "Retry"
     },
     {
       "label": "\"Show solution\" బటన్ కొరకై టెక్స్ట్",
@@ -94,8 +99,8 @@
       "description": "యాక్సెసిబిలిటీ కోసం ఉపయోగించే లేబుల్, రీడ్ స్పీకర్ చిట్కా చదివేముందే దీనిని చదువుతుంది"
     },
     {
-      "label": "సరైన సమాధానం కోసం స్పీకర్ టెక్స్ట్",
-      "default": "సరైన సమాధానం!"
+      "label": "Readspeaker text for correct answer",
+      "default": "Correct!"
     },
     {
       "label": "తప్పు సమాధానం కై రీడ్ స్పీకర్ టెక్స్ట్",
@@ -126,38 +131,38 @@
       "default": "ఫీడ్ బాక్"
     },
     {
-      "label": "బిహేవియరల్ సెట్టింగ్స్.",
-      "description": "ఇవి టాస్క్ ఎలా ప్రవర్తించాలో నియంత్రించడానికి పనికొచ్చే ఆప్షన్లు .",
+      "label": "Behavioural settings.",
+      "description": "These options will let you control how the task behaves.",
       "fields": [
         {
-          "label": "\"Retry\" ను ఎనేబుల్ చెయ్యి"
+          "label": "Enable \"Retry\""
         },
         {
-          "label": "\"సమాధానాలు చూపించు\" బటన్ ఎనేబుల్ చెయ్యి"
+          "label": "Enable \"Show Solution\" button"
         },
         {
-          "label": "\"చెక్\" బటన్ ను ఎనేబుల్ చెయ్యి"
+          "label": "Enable \"Check\" button"
         },
         {
-          "label": "తక్షణ ఫీడ్ బాక్"
+          "label": "Instant feedback"
         }
       ]
     },
     {
-      "label": "రీడ్‌స్పీకర్‌ని ఉపయోగించే వారి కోసం స్కోర్ బార్ యొక్క టెక్స్టువల్ రిప్రెజెంటేషన్",
-      "default": "మీరు :మొత్తం పాయింట్లలో :పాయింట్లు పొందారు"
+      "label": "Textual representation of the score bar for those using a readspeaker",
+      "default": "You got :num out of :total points"
     },
     {
-      "label": "\"Check\" బటన్ కై అసిస్టివ్ టెక్నాలజీ వివరణ",
-      "default": "సమాధానాలను తనిఖీ చేయండి. సమాధానాలు సరైనవి, తప్పు లేదా సమాధానం ఇవ్వనివిగా గుర్తించబడతాయి."
+      "label": "Assistive technology label for \"Check\" button",
+      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
     },
     {
-      "label": "\"సొల్యూషన్ చూపించు\" బటన్ కై అసిస్టివ్ టెక్నాలజీ వివరణ",
-      "default": "సొల్యూషన్ చూపించు. ఈ టాస్క్ సరైన సమాధానం తో చూపించబడుతుంది."
+      "label": "Assistive technology label for \"Show Solution\" button",
+      "default": "Show the solution. The task will be marked with its correct solution."
     },
     {
-      "label": "\"తిరిగి ప్రయత్నించు\"బటన్ కై అసిస్టివ్ టెక్నాలజీ వివరణ",
-      "default": "టాస్క్ ను మళ్లీ ప్రయత్నించండి. అన్ని సమాధానాలను రీసెట్ చేసి, టాస్క్ మళ్లీ ప్రారంభించు."
+      "label": "Assistive technology label for \"Retry\" button",
+      "default": "Retry the task. Reset all responses and start the task over again."
     }
   ]
 }

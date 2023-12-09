@@ -2,7 +2,7 @@
   "title": "Drag the Words",
   "description": "Drag and drop pieces of text to create complete sentences.",
   "majorVersion": 1,
-  "minorVersion": 11,
+  "minorVersion": 12,
   "patchVersion": 0,
 
   "coreApi": {

@@ -56,7 +56,7 @@ H5PUpgrades['H5P.DragText'] = (function ($) {
         finished(null, parameters, extras);
       },
 
-      11: function (parameters, finished, extras) {
+      12: function (parameters, finished, extras) {
         if (typeof parameters?.textField === 'string') {
           const asteriskPositions = Array.from(parameters.textField)
             .reduce((indexes, char, index) => {

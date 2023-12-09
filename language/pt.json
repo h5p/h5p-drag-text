@@ -21,8 +21,8 @@
       "label": "Mensagem",
       "placeholder": "*Oslo* é a capital da Noruega, *Estocolmo* é a capital da Suécia e *Copenhaga* é a capital da Dinamarca. Todas as cidades estão localizadas na península *Escandinava:Norte da Europa*.",
       "important": {
-        "description": "<ul><li>Adicione as palavras a largar através de um asterisco (*) no início e no fim da palavra/frase correta.</li><li>Adicione uma dica contextual utilizando os dois pontos (:) à frente do texto da dica.</li><li>Para todos os espaços existe apenas uma palavra correta</li><li>Pode adicionar feedback quando o utilizador completar a atividade. Utilize '\\+' para feedback correto e '\\-' para feedback incorreto.</li></ul>",
-        "example": "O conteúdo H5P pode ser editado utilizando um *navegador:Qual o tipo de programa é o Chrome?*.<br /> O conteúdo H5P é *interativo\\+Correto! \\-Incorreto, tente de novo!*"
+        "description": "<ul><li>Adicione as palavras a largar através de um asterisco (*) no início e no fim da palavra/frase correta.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Adicione uma dica contextual utilizando os dois pontos (:) à frente do texto da dica.</li><li>Pode adicionar feedback quando o utilizador completar a atividade. Utilize '\\+' para feedback correto e '\\-' para feedback incorreto.</li></ul>",
+        "example": "O conteúdo H5P pode ser editado utilizando um *navegador:Qual o tipo de programa é o Chrome?*.<br /> O conteúdo H5P é *interativo/awesome\\+Correto! \\-Incorreto, tente de novo!*"
       }
     },
     {

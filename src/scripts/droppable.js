@@ -1,3 +1,5 @@
+import Util from './util.js';
+
 H5P.TextDroppable = (function ($) {
   //CSS Main Containers:
   //Special Sub-containers:
@@ -173,7 +175,9 @@ H5P.TextDroppable = (function ($) {
     if (this.containedDraggable === null) {
       return false;
     }
-    return this.containedDraggable.getAnswerText() === this.text;
+
+    return Util.splitIgnoreEscaped(this.text)
+      .includes(this.containedDraggable.getAnswerText());
   };
 
   /**

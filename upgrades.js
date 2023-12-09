@@ -54,6 +54,40 @@ H5PUpgrades['H5P.DragText'] = (function ($) {
         }
 
         finished(null, parameters, extras);
+      },
+
+      12: function (parameters, finished, extras) {
+        if (typeof parameters?.textField === 'string') {
+          const asteriskPositions = Array.from(parameters.textField)
+            .reduce((indexes, char, index) => {
+              return (char === '*') ?
+                [...indexes, index] :
+                indexes;
+            }, []);
+
+            let lookAtIndex = 0;
+            let textWithReplacement = '';
+            while (lookAtIndex < parameters.textField.length) {
+              const currentChar = parameters.textField[lookAtIndex];
+              let replacement = currentChar;
+
+              if (currentChar === '/') {
+                const nextAsteriskIndex = asteriskPositions
+                  .findIndex((position) => position > lookAtIndex);
+
+                if (nextAsteriskIndex % 2 === 1) {
+                  replacement = '\\/';
+                }
+              }
+
+              textWithReplacement = `${textWithReplacement}${replacement}`;
+              lookAtIndex++;
+            }
+
+            parameters.textField = textWithReplacement;
+        }
+
+        finished(null, parameters, extras);
       }
     }
   };

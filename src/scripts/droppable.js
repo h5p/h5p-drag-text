@@ -81,6 +81,11 @@ H5P.TextDroppable = (function ($) {
   Droppable.prototype.showSolution = function () {
     const correct = (this.containedDraggable !== null) && (this.containedDraggable.getAnswerText() === this.text);
     if (!correct) {
+
+      const currentAriaLabel = this.$dropzone.attr('aria-label');
+      const correctAnswer = `${this.params.correctAnswer} ${this.text}`;
+      this.$dropzone.attr('aria-label', `${currentAriaLabel} ${correctAnswer}`);
+
       this.$showSolution.html(this.text);
     }
 

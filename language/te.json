@@ -26,8 +26,8 @@
       }
     },
     {
-      "label": "Distractors",
-      "placeholder": "*Reykjavík* *Helsinki*",
+      "label": "డిస్ట్రాక్టర్లు",
+      "placeholder": "*రేక్జావిక్* *హెల్సింకి*",
       "description": "డిస్ట్రాక్టర్లుగా తప్పుగా ఉన్న అదనపు పరిష్కారాలను నమోదు చేయండి. టెక్స్ట్ కోసం అదే నక్షత్రం (*) స్కీమ్‌ని ఉపయోగించండి."
     },
     {
@@ -63,11 +63,11 @@
     },
     {
       "label": "\"Submit\" బటన్ కొరకై టెక్స్ట్",
-      "default": "తిరిగి ప్రయత్నించు /రి ట్రై"
+      "default": "సబ్ మిట్"
     },
     {
-      "label": "Text for \"Retry\" button",
-      "default": "Retry"
+      "label": "\"Retry\" బటన్ కొరకై టెక్స్ట్",
+      "default": "తిరిగి ప్రయత్నించు /రి ట్రై"
     },
     {
       "label": "\"Show solution\" బటన్ కొరకై టెక్స్ట్",
@@ -90,7 +90,7 @@
     },
     {
       "label": "డ్రాగబుల్ ఎలిమెంట్స్ లేబుల్",
-      "default": "@index of @count draggables.",
+      "default": "@కౌంట్ డ్రాగబుల్స్ యొక్క @సూచిక.",
       "description": "రీడ్ స్పీకర్ ఇది డ్రాగ్ చేయగల ఎలిమెంట్ అని చదివే చోట యాక్సెసిబిలిటీ కోసం లేబుల్ ఉపయోగించబడుతుంది. అందుబాటులో ఉన్న వేరియబుల్ : @index, @count"
     },
     {
@@ -99,12 +99,12 @@
       "description": "యాక్సెసిబిలిటీ కోసం ఉపయోగించే లేబుల్, రీడ్ స్పీకర్ చిట్కా చదివేముందే దీనిని చదువుతుంది"
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct!"
+      "label": "సరైన సమాధానం కై రీడ్ స్పీకర్ టెక్స్ట్",
+      "default": "సరైన సమాధానం!"
     },
     {
       "label": "తప్పు సమాధానం కై రీడ్ స్పీకర్ టెక్స్ట్",
-      "default": "సరికాదు!"
+      "default": "సరైన జవాబు కాదు!"
     },
     {
       "label": "యూజరు డ్రాపబుల్‌ని రీసెట్ చేయాలనుకుంటున్నపుడు వాడే కన్ఫర్మేషన్ డైలాగ్ శీర్షిక",
@@ -123,7 +123,7 @@
       "default": "డ్రాగింగ్ కేన్సిల్ చేయబడింది."
     },
     {
-      "label": "ఇది, రీడ్ స్పీకర్ టెక్స్ట్ సరైన సమాధానం అని సూచించే చోట యాక్సెసిబిలిటీ కోసం వాడే లేబుల్.",
+      "label": "ఇది, రీడ్ స్పీకర్ టెక్స్ట్ సరైన సమాధానం అని సూచించే చోట యాక్సెసిబిలిటీ కోసం వాడే లేబుల్",
       "default": "సరైన సమాధానం:"
     },
     {
@@ -131,38 +131,38 @@
       "default": "ఫీడ్ బాక్"
     },
     {
-      "label": "Behavioural settings.",
-      "description": "These options will let you control how the task behaves.",
+      "label": "బిహేవియరల్ సెట్టింగ్స్.",
+      "description": "ఈ ఆప్షన్లు టాస్క్ బిహేవియర్ నియంత్రించడానికి అనుమతిస్తాయి.",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "ఎనేబుల్ \"రి ట్రై\""
         },
         {
-          "label": "Enable \"Show Solution\" button"
+          "label": "\"సమాధానం చూపించు\" బటన్‌ను ఎనేబుల్ చెయ్యి"
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "\"చెక్\" బటన్‌ను ఎనేబుల్ చెయ్యి"
         },
         {
-          "label": "Instant feedback"
+          "label": "ఇన్స్టంట్ ఫీడ్ బాక్"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "రీడ్‌స్పీకర్‌ని ఉపయోగించే వారి కోసం స్కోర్ బార్ యొక్క టెక్స్టువల్ రిప్రెజెంటేషన్",
+      "default": "మీరు :మొత్తం పాయింట్లలో :పాయింట్లు పొందారు"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "\"Check\" బటన్ కై అసిస్టివ్ టెక్నాలజీ లేబుల్",
+      "default": "సమాధానాలను తనిఖీ చేయండి. సమాధానాలు సరైనవి, తప్పు లేదా సమాధానం ఇవ్వనివిగా గుర్తించబడతాయి."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "\"సమాధానం చూపించు\"బటన్ కై అసిస్టివ్ టెక్నాలజీ వివరణ",
+      "default": "సమాధానం చూపించు.ఈ టాస్క్ సరైన సమాధానంతో పూరించబడుతుంది."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "\"రి ట్రై\" బటన్ కై అసిస్టివ్ టెక్నాలజీ లేబుల్",
+      "default": "టాస్క్ ను మళ్లీ ప్రయత్నించు. అన్ని సమాధానాలను రీసెట్ చేసి, టాస్క్ మళ్లీ ప్రారంభించు."
     }
   ]
 }

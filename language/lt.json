@@ -27,7 +27,7 @@
     },
     {
       "label": "Distractors",
-      "placeholder": "*Reykjavík* *Helsinki*",
+      "placeholder": "*Reikjavikas* *Helsinkis*",
       "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
     },
     {
@@ -58,8 +58,8 @@
       ]
     },
     {
-      "label": "Text for \"Check\" button",
-      "default": "Check"
+      "label": "Mygtuko \"Tikrinti\" tekstas",
+      "default": "Tikrinti"
     },
     {
       "label": "Tekstas mygtukui „Pateikti“.",
@@ -94,7 +94,7 @@
       "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
     },
     {
-      "label": "Mygtuko rodyti patarimą pavadinimas",
+      "label": "Mygtuko „Rodyti patarimą“ pavadinimas",
       "default": "Rodyti patarimą",
       "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
     },
@@ -108,7 +108,7 @@
     },
     {
       "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Iš naujo nustatyti metimą"
+      "default": "Atstatyti metimą"
     },
     {
       "label": "Confirmation dialog description that user wants to reset a droppable",
@@ -116,7 +116,7 @@
     },
     {
       "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Metamasis yra paimtas."
+      "default": "Metamas elementas yra paimtas."
     },
     {
       "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
@@ -162,7 +162,7 @@
     },
     {
       "label": "Assistive technology label for \"Retry\" button",
-      "default": "Bandykite atlikti užduotį dar kartą. Iš naujo nustatyti visus atsakymus ir pradėti užduotį iš naujo."
+      "default": "Bandyti atlikti užduotį dar kartą. Iš naujo nustatyti visus atsakymus ir pradėti užduotį iš naujo."
     }
   ]
 }

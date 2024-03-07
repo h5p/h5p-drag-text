@@ -1456,8 +1456,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     definition.interactionType = 'fill-in';
     definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
 
-    var question = this.textFieldHtml;
-    var taskDescription = this.params.taskDescription + '<br/>';
+    // The below replaceAll makes sure we don't get any unwanted XAPI_PLACEHOLDERs in the questions and description
+    var question = this.textFieldHtml.replaceAll(/_{10,}/gi, '_________');
+    var taskDescription = this.params.taskDescription.replaceAll(/_{10,}/gi, '_________') + '<br/>';
 
     // Create the description
     definition.description = {

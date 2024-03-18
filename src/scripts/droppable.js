@@ -248,6 +248,13 @@ H5P.TextDroppable = (function ($) {
   };
 
   /**
+   * Disable dropzone.
+   */
+  Droppable.prototype.disableDropzone = function () {
+    this.$dropzone.droppable({ disabled: true });
+  };
+
+  /**
    * Removes the short format of draggable when it is outside a dropbox.
    */
   Droppable.prototype.removeShortFormat = function () {

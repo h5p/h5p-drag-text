@@ -1069,7 +1069,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.trigger('resize');
 
     // Resize seems to set focus to the iframe
-    //droppable.getElement().focus();
+    droppable.getElement().focus();
   };
 
   /**

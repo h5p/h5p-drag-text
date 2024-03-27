@@ -403,9 +403,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.resize = function () {
     const focused = document.activeElement;
     this.changeLayoutToFitWidth();
-    if (window.fullScreen ) { // HFP-3889 restore focus after resize
-      focused.focus();
-    }
+    focused.focus(); // HFP-3889 restore focus after resize
   };
 
   /**

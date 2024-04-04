@@ -421,7 +421,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
 
       // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
+      const canHasFocus = document.activeElement;
       self.$wordContainer.detach().appendTo(self.$taskContainer);
+      if (canHasFocus !== document.activeElement) {
+        // Moving changes focus, set it back
+        canHasFocus.focus();
+      }
 
       // Set all draggables to be blocks
       self.draggables.forEach(function (draggable) {

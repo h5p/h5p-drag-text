@@ -401,11 +401,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Changes layout responsively when resized.
    */
   DragText.prototype.resize = function () {
-    const focused = document.activeElement;
     this.changeLayoutToFitWidth();
-    if (window.fullScreen ) { // HFP-3889 restore focus after resize
-      focused.focus();
-    }
   };
 
   /**

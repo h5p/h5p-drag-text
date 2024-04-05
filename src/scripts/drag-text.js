@@ -401,11 +401,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Changes layout responsively when resized.
    */
   DragText.prototype.resize = function () {
-    const focused = document.activeElement;
     this.changeLayoutToFitWidth();
-    if (window.fullScreen ) { // HFP-3889 restore focus after resize
-      focused.focus();
-    }
   };
 
   /**
@@ -421,7 +417,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
 
       // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
+      const canHasFocus = document.activeElement;
       self.$wordContainer.detach().appendTo(self.$taskContainer);
+      if (canHasFocus !== document.activeElement) {
+        // Moving changes focus, set it back
+        canHasFocus.focus();
+      }
 
       // Set all draggables to be blocks
       self.draggables.forEach(function (draggable) {
@@ -1067,9 +1068,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
 
     this.trigger('resize');
-
-    // Resize seems to set focus to the iframe
-    droppable.getElement().focus();
   };
 
   /**

@@ -85,6 +85,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       submitAnswer: "Submit",
       tryAgain: "Retry",
       behaviour: {
+	numLines: null,
         enableRetry: true,
         enableSolutionsButton: true,
         enableCheckButton: true,
@@ -116,6 +117,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // Keeps track of if Question has been answered
     this.answered = false;
+
+    // If NumLines Parameter is properly set this will select a random set of paragraphs from the base textField parameter	  
+    if (!(this.params.behaviour.numLines <= 1 || this.params.behaviour.numLines >= this.params.textField.split('\n\n').length)) {
+      this.params.textField = this.params.textField.split('\n\n').filter((line, index, self) => self.indexOf(line) === index).sort(() => Math.random() - 0.5).slice(0, this.params.behaviour.numLines).join('\n\n')
+    }
 
     // Convert line breaks to HTML
     this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");

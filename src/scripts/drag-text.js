@@ -301,7 +301,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     const hasChildren = (dropZone.childNodes.length > 0);
 
     if (dropZone) {
-      let ariaLabel;
+      let ariaMessage;
 
       if (checkButtonPressed) {
         const droppable = this.getDroppableByElement(dropZone);
@@ -312,7 +312,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         else {
           resultString = droppable.incorrectFeedback ? droppable.incorrectFeedback : this.params.incorrectText;
         }
-        ariaLabel = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`;
+        ariaMessage = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)} ${resultString}.`;
 
         if (droppable && droppable.containedDraggable) {
           droppable.containedDraggable.updateAriaDescription(
@@ -321,13 +321,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         }
       }
       else if (hasChildren) {
-        ariaLabel = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)}`;
+        ariaMessage = `${this.params.contains.replace('@index', index.toString()).replace('@draggable', text)}`;
       }
       else {
-        ariaLabel = `${this.params.empty.replace('@index', index.toString())}`;
+        ariaMessage = `${this.params.empty.replace('@index', index.toString())}`;
       }
 
-      dropZone.setAttribute('aria-label', ariaLabel);
+      dropZone.setAttribute('aria-label', `${indexText} ${ariaMessage}`);
     }
   };
 
@@ -411,6 +411,15 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var self = this;
     self.addDropzoneWidth();
 
+    // Prevent losing focus caused by detaching word container
+    const closestWordContainer = document.activeElement
+      .closest('.h5p-drag-droppable-words');
+
+    let restoreFocusTo = null;
+    if (closestWordContainer === self.$wordContainer.get(0)) {
+      restoreFocusTo = document.activeElement;
+    }
+
     //Find ratio of width to em, and make sure it is less than the predefined ratio, make sure widest draggable is less than a third of parent width.
     if ((self.$inner.width() / parseFloat(self.$inner.css("font-size"), 10) > 43) && (self.widestDraggable <= (self.$inner.width() / 3))) {
       // Adds a class that floats the draggables to the right.
@@ -439,6 +448,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.draggables.forEach(function (draggable) {
         draggable.getDraggableElement().removeClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
       });
+    }
+
+    if (restoreFocusTo) {
+      window.clearTimeout(this.layoutTimeout);
+      this.layoutTimeout = window.setTimeout(() => {
+        restoreFocusTo.focus();
+      }, 1);
     }
   };
 
@@ -469,8 +485,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           self.hideButton('check-answer');
         }
 
-        // Focus top of the task for natural navigation
-        self.$introduction.parent().focus();
+        // Allow all dropzones incl. empty ones to be accessed.
+        self.addAllDroppablesToControls();
+
+        self.droppables[0].getElement().focus();
       }, !self.params.behaviour.instantFeedback, {
         'aria-label': self.params.a11yCheck,
       }, {
@@ -486,7 +504,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       });
       self.draggables.forEach(draggable => self.setDraggableAriaLabel(draggable));
       self.disableDraggables();
-      self.removeAllDroppablesFromControls();
+
+      // Allow all dropzones incl. empty ones to be accessed.
+      self.addAllDroppablesToControls();
+
+      self.droppables[0].getElement().focus();
+
       self.hideButton('show-solution');
     }, self.initShowShowSolutionButton || false, {
       'aria-label': self.params.a11yShowSolution,
@@ -499,6 +522,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         // move draggables to original container
         self.resetDraggables();
       }
+      self.resetDroppables();
       self.answered = false;
 
       self.hideEvaluation();
@@ -1307,6 +1331,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     self.answered = false;
     //Reset draggables parameters and position
     self.resetDraggables();
+    self.resetDroppables();
+
     //Hides solution text and re-enable draggables
     self.hideEvaluation();
     self.hideExplanation();
@@ -1326,6 +1352,22 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    * Resets the position of all draggables shuffled.
    */
   DragText.prototype.resetDraggables = function () {
+    Util.shuffle(this.draggables).forEach(this.revert, this);
+  };
+
+  /**
+   * Reset dropzones.
+   */
+  DragText.prototype.resetDroppables = function () {
+    const self = this;
+
+    this.droppables.forEach((droppable, index) => {
+      droppable.$dropzone.attr(
+        'aria-label',
+        self.params.dropZoneIndex.replace('@index', (index + 1).toString()) +
+          ' ' + self.params.empty.replace('@index', (index + 1).toString()),
+      )
+    })
     Util.shuffle(this.draggables).forEach(this.revert, this);
   };
 
@@ -1398,6 +1440,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         }
       }
     }
+
+    // Allow to tab to filled drop zones.
+    this.addAllDroppablesToControls();
+    this.removeControlsFromEmptyDropZones();
   };
 
   /**

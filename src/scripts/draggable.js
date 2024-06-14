@@ -23,9 +23,12 @@ H5P.TextDraggable = (function ($) {
     self.index = index;
     self.initialIndex = index;
 
+    // Shortening LaTeX would destroy it
+    this.containsLatex = self.shortFormat.match(/\\\(.+\\\)|\\\[.+\\\]|\$\$.+\$\$/);
+
     self.shortFormat = self.text;
     //Shortens the draggable string if inside a dropbox.
-    if (self.shortFormat.length > 20 && !self.shortFormat.match(/\\\(.+\\\)|\\\[.+\\\]|\$\$.+\$\$/)) {
+    if (!this.containsLatex && self.shortFormat.length > 20) {
       self.shortFormat = self.shortFormat.slice(0, 17) + '...';
     }
 
@@ -220,6 +223,10 @@ H5P.TextDraggable = (function ($) {
    * Sets short format of draggable when inside a dropbox.
    */
   Draggable.prototype.setShortFormat = function () {
+    if (this.containsLatex) {
+      return; // Prevent unnecessary re-rerendering
+    }
+
     this.$draggable.html(this.shortFormat);
   };
 
@@ -236,6 +243,10 @@ H5P.TextDraggable = (function ($) {
    * Removes the short format of draggable when it is outside a dropbox.
    */
   Draggable.prototype.removeShortFormat = function () {
+    if (this.containsLatex) {
+      return; // Prevent unnecessary re-rerendering
+    }
+
     this.$draggable.html(this.text);
   };
 

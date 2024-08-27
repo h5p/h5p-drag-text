@@ -43,9 +43,9 @@ H5P.TextDroppable = (function ($) {
         tabcontrol: true
       });
 
-      // self.$tip can be undefined if self.tip e.g. contains only spaces 
+      // self.$tip can be a non-jQuery object if self.tip e.g. contains only spaces 
       // (ref H5P.JoubelUI.createTip)
-      if (self.$tip !== undefined) {
+      if (self.$tip instanceof H5P.jQuery) {
         self.$dropzoneContainer.append(self.$tip);
 
         // toggle tabindex on tip, based on dropzone focus

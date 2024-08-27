@@ -42,12 +42,17 @@ H5P.TextDroppable = (function ($) {
         tipLabel: self.params.tipLabel,
         tabcontrol: true
       });
-      self.$dropzoneContainer.append(self.$tip);
 
-      // toggle tabindex on tip, based on dropzone focus
-      self.$dropzone.focus(() => self.$tip.attr('tabindex', '0'));
-      self.$dropzone.blur(() => self.removeTipTabIndexIfNoFocus());
-      self.$tip.blur(() => self.removeTipTabIndexIfNoFocus());
+      // self.$tip can be a non-jQuery object if self.tip e.g. contains only spaces 
+      // (ref H5P.JoubelUI.createTip)
+      if (self.$tip instanceof H5P.jQuery) {
+        self.$dropzoneContainer.append(self.$tip);
+
+        // toggle tabindex on tip, based on dropzone focus
+        self.$dropzone.focus(() => self.$tip.attr('tabindex', '0'));
+        self.$dropzone.blur(() => self.removeTipTabIndexIfNoFocus());
+        self.$tip.blur(() => self.removeTipTabIndexIfNoFocus());
+      }
     }
 
     self.$incorrectText = $('<div/>', {

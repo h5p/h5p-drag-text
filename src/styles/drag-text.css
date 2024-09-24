@@ -1,7 +1,7 @@
 /* The main containers for the module, specific to this module. */
 .h5p-drag-text {
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--ui-base);
   overflow: hidden;
 }
 
@@ -58,7 +58,7 @@
   right: 0.5em;
   font-family: 'H5PFontAwesome4';
   content: "\f00c";
-  color: #255c41;
+  color: var(--feedback-correct-main);
 }
 
 .h5p-drag-text .h5p-drag-wrong-feedback:before {
@@ -66,7 +66,7 @@
   right: 0.5em;
   font-family: 'H5PFontAwesome4';
   content: "\f00d";
-  color: #b71c1c;
+  color: var(--feedback-incorrect-main);
 }
 
 /* Dropzone styling */
@@ -111,7 +111,7 @@
 }
 
 .h5p-drag-text .ui-droppable-hover {
-  background-color: #80b4ed;
+  background-color: var(--main-cta-base);
 }
 .ui-draggable-handle:before{
   background-color: var(--alternative-dark);
@@ -161,9 +161,9 @@
   width: 100%;
   margin: -0.1em 0 0 0;
   white-space: nowrap;
-  color: #1a4473;
+  color: red;
   border: 0.1em solid #a9c3d0;
-  background: #cee0f4;
+  background: darkred;
 }
 
 .h5p-drag-text [aria-grabbed='true'] {

@@ -77,15 +77,14 @@
 }
 .h5p-drag-text [aria-dropeffect] {
   position:relative;
-  top: -0.1em;
   width: 10em;
-  height: 1.25em;
-  background-color: #cee0f4;
-  border-radius: 0.25em;
+  height: 1.25rem;
+  background-color: var(--alternative-darker);
+  border-radius: var(--border-radius-medium);
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  padding: 0.1em 1.65em 0.1em 0;
+  padding: var(--spacing-xxs) var(--spacing-l) var(--spacing-xxs) 0;
 }
 
 .h5p-drag-text [aria-dropeffect].h5p-drag-correct-feedback {
@@ -114,25 +113,38 @@
 .h5p-drag-text .ui-droppable-hover {
   background-color: #80b4ed;
 }
+.ui-draggable-handle:before{
+  background-color: var(--alternative-dark);
+  color: var(--text-primary);
+  font-family: 'h5p-theme';
+  content: "\e90f";
+  padding: var(--spacing-xxs) 0;
+  width: var(--spacing-m);
+}
 
 .h5p-drag-text [aria-grabbed] {
-  line-height: 1.25;
   border-radius: 0.25em;
-  padding: 0.1em 0.6em;
-  margin: 0.3em;
+  padding: 0;
+  margin: var(--spacing-xs);
   vertical-align: top;
   text-align: center;
-  display: inline-block;
-  border: 0.1em solid #c6c6c6;
+  display: grid !important;
+  grid-template-columns: 1fr 5fr;
   overflow: hidden;
-
-  background: #ddd;
-
-  box-shadow: 0 0 0.3em rgba(0,0,0,0.2);
+  font-weight: bold;
+  background: var(--alternative-base);
+  border-radius: var(--border-radius-large);
+  box-shadow: 0px 2px 0em 0px rgb(206 209 236);
   z-index: 3;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+.h5p-drag-text [aria-grabbed] span{
+  padding: 0 var(--spacing-m);
+  display: inline-block;
+  align-content: center;
 }
 
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled) {
@@ -142,14 +154,12 @@
 .h5p-drag-text [aria-grabbed='true'],
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled):hover,
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled):hover {
-  border: 0.1em solid rgb(212,190,216);
-  color: #663366;
-  background: #edd6e9;
+  color: var(--text-primary);
+  background: var(--alternative-dark);
 }
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped {
   width: 100%;
   margin: -0.1em 0 0 0;
-  padding: 0.1em 0.825em;
   white-space: nowrap;
   color: #1a4473;
   border: 0.1em solid #a9c3d0;
@@ -195,7 +205,7 @@
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {
-  line-height: 1.75;
+  line-height: var(--spacing-xl);
 }
 
 .h5p-drag-text [aria-grabbed='true'] {
@@ -206,6 +216,11 @@
   width: 100%;
   position: relative;
   display: inline-block;
+  background-color: var(--alternative-light);
+  border: solid 1px var(--alternative-base);
+  border-radius: var(--border-radius-small);
+  padding: var(--spacing-m);
+  width: calc(100% - var(--spacing-m) - var(--spacing-m));
 }
 
 /* Wide Screen css : */

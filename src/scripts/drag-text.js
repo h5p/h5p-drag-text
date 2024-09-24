@@ -71,7 +71,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.$ = $(this);
     this.contentId = contentId;
     this.contentData = contentData;
-    Question.call(this, 'drag-text');
+    Question.call(this, 'drag-text', true);
 
     // Set default behavior.
     this.params = $.extend(true, {
@@ -474,6 +474,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       }, !self.params.behaviour.instantFeedback, {
         'aria-label': self.params.a11yCheck,
       }, {
+        classes: 'h5p-theme-primary-cta h5p-theme-check',
         contentData: self.contentData,
         textIfSubmitting: self.params.submitAnswer,
       });
@@ -490,6 +491,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.hideButton('show-solution');
     }, self.initShowShowSolutionButton || false, {
       'aria-label': self.params.a11yShowSolution,
+    },
+    {
+      classes: 'h5p-theme-secondary-cta h5p-theme-show-results',
     });
 
     //Retry button
@@ -519,6 +523,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.read(self.params.taskDescription);
     }, self.initShowTryAgainButton || false, {
       'aria-label': self.params.a11yRetry,
+    },
+    {
+      classes: 'h5p-theme-secondary-cta h5p-theme-retry',
     });
   };
 

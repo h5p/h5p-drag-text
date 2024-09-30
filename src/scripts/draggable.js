@@ -220,7 +220,7 @@ H5P.TextDraggable = (function ($) {
    * Sets short format of draggable when inside a dropbox.
    */
   Draggable.prototype.setShortFormat = function () {
-    this.$draggable.html(this.shortFormat);
+    this.$draggable.find('span').html(this.shortFormat);
   };
 
   /**
@@ -236,7 +236,7 @@ H5P.TextDraggable = (function ($) {
    * Removes the short format of draggable when it is outside a dropbox.
    */
   Draggable.prototype.removeShortFormat = function () {
-    this.$draggable.html(this.text);
+    this.$draggable.find('span').html(this.text);
   };
 
   /**

@@ -132,6 +132,7 @@
   grid-template-columns: 1fr 5fr;
   overflow: hidden;
   font-weight: bold;
+  line-height: var(--spacing-secondary-large);
   background: var(--alternative-base);
   border-radius: var(--border-radius-large);
   box-shadow: 0px 2px 0em 0px rgb(206 209 236);
@@ -161,9 +162,7 @@
   width: 100%;
   margin: -0.1em 0 0 0;
   white-space: nowrap;
-  color: red;
   border: 0.1em solid #a9c3d0;
-  background: darkred;
 }
 
 .h5p-drag-text [aria-grabbed='true'] {
@@ -176,7 +175,7 @@
   border: none;
   box-shadow: none;
   line-height: 1.5;
-  background: none;
+  background-color: var(--feedback-correct-secondary);
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong {
@@ -185,7 +184,7 @@
   color: #b71c1c;
   box-shadow: none;
   line-height: 1.5;
-  background: none;
+  background-color: var(--feedback-incorrect-secondary);
 }
 
 /* Show solution container */

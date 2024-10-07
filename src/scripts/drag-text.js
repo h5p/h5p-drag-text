@@ -935,6 +935,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     return draggable;
   };
 
+  /**
+   * Get index of currently hovered droppable.
+   * @returns {number} 0-based index of hovered droppable, or -1 if none is hovered.
+   */
   DragText.prototype.getHoveredDroppableIndex = function() {
     return this.hoveredDroppables.length > 0 ? this.hoveredDroppables[this.hoveredDroppables.length - 1] : -1;
   };

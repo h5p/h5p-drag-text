@@ -935,6 +935,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     return draggable;
   };
 
+  DragText.prototype.getHoveredDroppableIndex = function() {
+    return this.hoveredDroppables.length > 0 ? this.hoveredDroppables[this.hoveredDroppables.length - 1] : -1;
+  };
+
   /**
    * Creates a Droppable
    *
@@ -953,6 +957,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       'class': DROPZONE_CONTAINER
     });
 
+    this.hoveredDroppables = [];
+
     var $dropzone = $('<div/>', {
       'aria-dropeffect': 'none',
       'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + ' ' + this.params.empty.replace('@index', draggableIndex.toString()),
@@ -960,24 +966,36 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     }).appendTo($dropzoneContainer)
       .droppable({
         tolerance: 'touch',
-        over: (event) => {
-          self.droppables.forEach(droppable => {
-            if (droppable.getElement() !== event.target) {
-              droppable.disableDropzone();
-            }
+        over: () => {
+          this.hoveredDroppables.push(draggableIndex - 1);
+          this.hoveredDroppables.sort((a, b) => b - a);
+
+          const hoveredIndex = this.getHoveredDroppableIndex();
+          self.droppables.forEach((droppable, index) => {
+            droppable.toggleHovered(index === hoveredIndex);
           });
         },
         out: () => {
-          self.droppables.forEach(droppable => {
-            droppable.enableDropzone();
+          this.hoveredDroppables = this.hoveredDroppables.filter(index => index !== draggableIndex - 1);
+          const hoveredIndex = this.getHoveredDroppableIndex();
+
+          self.droppables.forEach((droppable, index) => {
+            droppable.toggleHovered(index === hoveredIndex);
           });
         },
         drop: function (event, ui) {
-          var draggable = self.getDraggableByElement(ui.draggable[0]);
-          var droppable = self.getDroppableByElement(event.target);
+          const hoveredIndex = self.getHoveredDroppableIndex();
+          if (hoveredIndex === -1) {
+            return; // Should never happen
+          }
 
+          var draggable = self.getDraggableByElement(ui.draggable[0]);
+          var droppable = droppable = self.droppables[hoveredIndex];
+
+          // Reset hovered droppables
+          self.hoveredDroppables = [];
           self.droppables.forEach(droppable => {
-            droppable.enableDropzone();
+            droppable.toggleHovered(false);
           });
 
           /**

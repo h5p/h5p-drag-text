@@ -252,6 +252,7 @@ H5P.TextDroppable = (function ($) {
    * @param {boolean} hovered Truth to make droppable look hovered, falsy for unhovered.
    */
   Droppable.prototype.toggleHovered = function (hovered) {
+    this.containedDraggable?.$draggable?.get(0).classList.toggle('hover', hovered);
     this.$dropzone.get(0).classList.toggle('ui-droppable-hover', hovered);
   };
 

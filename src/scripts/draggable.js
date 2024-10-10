@@ -221,6 +221,10 @@ H5P.TextDraggable = (function ($) {
    */
   Draggable.prototype.setShortFormat = function () {
     this.$draggable.find('span').html(this.shortFormat);
+
+    if (this.shortFormat !== this.text) {
+      H5P.Tooltip(this.$draggable[0], { text: this.text });
+    }
   };
 
   /**
@@ -237,6 +241,8 @@ H5P.TextDraggable = (function ($) {
    */
   Draggable.prototype.removeShortFormat = function () {
     this.$draggable.find('span').html(this.text);
+
+    this.$draggable.find('.h5p-tooltip').remove();
   };
 
   /**

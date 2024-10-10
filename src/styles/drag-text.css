@@ -142,7 +142,6 @@
   display: grid !important;
   grid-template-columns: 1fr 5fr;
   line-height: var(--spacing-m);
-  overflow: hidden;
   font-weight: bold;
   background: var(--alternative-base);
   border-radius: var(--border-radius-large);
@@ -177,6 +176,11 @@
 
 .h5p-drag-text [aria-grabbed='true'] {
   box-shadow: 0 0 0.8em rgba(0,0,0,0.5);
+}
+
+.h5p-drag-text [aria-grabbed] .h5p-tooltip {
+  height: fit-content;
+  white-space: initial;
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {

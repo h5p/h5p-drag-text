@@ -4,7 +4,7 @@
   background: var(--ui-base);
   overflow: hidden;
 }
-
+.h5p-drag-text .h5p-drag-draggables-container
 .h5p-drag-text .hidden {
   display: none;
 }
@@ -56,16 +56,16 @@
 .h5p-drag-text .h5p-drag-correct-feedback:before {
   position: absolute;
   right: 0.5em;
-  font-family: 'H5PFontAwesome4';
-  content: "\f00c";
+  font-family: 'h5p-theme';
+  content: "\e903";
   color: var(--feedback-correct-main);
 }
 
 .h5p-drag-text .h5p-drag-wrong-feedback:before {
   position: absolute;
   right: 0.5em;
-  font-family: 'H5PFontAwesome4';
-  content: "\f00d";
+  font-family: 'h5p-theme';
+  content: "\e902";
   color: var(--feedback-incorrect-main);
 }
 
@@ -85,17 +85,18 @@
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  padding: var(--spacing-xxs) var(--spacing-l) var(--spacing-xxs) 0;
+  padding-right: var(--spacing-l);
 }
 
 .h5p-drag-text [aria-dropeffect].h5p-drag-correct-feedback {
-  background: #9dd8bb;
+  background: var(--feedback-correct-secondary);
+  border-color: var(--feedback-correct-third);
 }
 
 .h5p-drag-text [aria-dropeffect].h5p-drag-wrong-feedback {
-  color: var(--feedback-incorrect-main) !important;
-  background-color: var(--feedback-incorrect-secondary) !important;
-  border: 1px solid var(--feedback-incorrect-third) !important;
+  color: var(--feedback-incorrect-main);
+  background-color: var(--feedback-incorrect-secondary);
+  border-color: var(--feedback-incorrect-third);
 }
 
 .h5p-drag-text [aria-dropeffect]:before {
@@ -106,7 +107,7 @@
 .h5p-drag-text .h5p-drag-draggables-container {
   position: relative;
   padding-top: 0.5em;
-  display: inline-block;
+  display: ruby;
 }
 
 .h5p-drag-text .h5p-drag-draggables-container.hide {
@@ -116,13 +117,20 @@
 .h5p-drag-text .ui-droppable-hover {
   background-color: var(--main-cta-base);
 }
+
 .ui-draggable-handle:before{
   background-color: var(--alternative-dark);
   color: var(--text-primary);
   font-family: 'h5p-theme';
   content: "\e90f";
-  padding: var(--spacing-xxs) 0;
   width: var(--spacing-m);
+  align-items: center;
+  height: 100%;
+  display: flex;
+}
+
+.h5p-drag-text [aria-grabbed] span{
+  padding: var(--spacing-xxs) 0;
 }
 
 .h5p-drag-text [aria-grabbed] {
@@ -146,7 +154,6 @@
 }
 
 .h5p-drag-text [aria-grabbed] span{
-  padding: 0 var(--spacing-m);
   display: inline-block;
   align-content: center;
 }
@@ -181,6 +188,10 @@
   background-color: var(--feedback-correct-secondary);
 }
 
+.h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct:before {
+display: none;
+}
+
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong {
   padding: 0;
   border: none;
@@ -189,6 +200,8 @@
   line-height: 1.5;
   background-color: var(--feedback-incorrect-secondary);
 }
+
+
 
 /* Show solution container */
 .h5p-drag-text .h5p-drag-show-solution-container {
@@ -229,6 +242,7 @@
 .h5p-drag-text .h5p-drag-wide-screen {
   float: right;
   padding-top: 0;
+  display: inline-block;
 }
 
 .h5p-drag-text .h5p-drag-draggable-wide-screen {

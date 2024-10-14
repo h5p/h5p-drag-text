@@ -52,18 +52,18 @@
   font-size: 0.9em;
 }
 
-/* Feedback for dropzones */
-.h5p-drag-text .h5p-drag-correct-feedback:before {
-  position: absolute;
-  right: 0.5em;
+/* Feedback icon */
+.h5p-drag-text .h5p-drag-draggable-correct:after {
+  display: inline-grid;
+  align-items: center;
   font-family: 'h5p-theme';
   content: "\e903";
   color: var(--feedback-correct-main);
 }
 
-.h5p-drag-text .h5p-drag-wrong-feedback:before {
-  position: absolute;
-  right: 0.5em;
+.h5p-drag-text .h5p-drag-draggable-wrong:after {
+  display: inline-grid;
+  align-items: center;
   font-family: 'h5p-theme';
   content: "\e902";
   color: var(--feedback-incorrect-main);
@@ -78,14 +78,13 @@
 .h5p-drag-text [aria-dropeffect] {
   position:relative;
   width: 10em;
-  height: 1.25rem;
+  height: calc(var(--spacing-m) + 2 * var(--spacing-xxs));
   border: solid 2px var(--alternative-darker);
   background-color: var(--alternative-dark);
   border-radius: var(--border-radius-medium);
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  padding-right: var(--spacing-l);
 }
 
 .h5p-drag-text [aria-dropeffect].h5p-drag-correct-feedback {
@@ -118,18 +117,18 @@
   background-color: var(--main-cta-base);
 }
 
-.ui-draggable-handle:before{
-  background-color: var(--alternative-dark);
-  color: var(--text-primary);
+.ui-draggable-handle:not(.ui-draggable-disabled):before {
   font-family: 'h5p-theme';
   content: "\e90f";
-  width: var(--spacing-m);
+  display: inline-grid;
   align-items: center;
   height: 100%;
-  display: flex;
+  width: var(--spacing-m);
+  background-color: var(--alternative-dark);
+  color: var(--text-primary);
 }
 
-.h5p-drag-text [aria-grabbed] span{
+.h5p-drag-text [aria-grabbed] span {
   padding: var(--spacing-xxs) 0;
 }
 
@@ -184,6 +183,7 @@
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
+  grid-template-columns: 1fr 5fr 1fr;
   padding: 0;
   color: #255c41;
   border: none;
@@ -192,11 +192,8 @@
   background-color: var(--feedback-correct-secondary);
 }
 
-.h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct:before {
-display: none;
-}
-
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong {
+  grid-template-columns: 1fr 5fr 1fr;
   padding: 0;
   border: none;
   color: #b71c1c;
@@ -225,6 +222,11 @@ display: none;
 
 .h5p-drag-text .h5p-drag-droppable-words {
   line-height: var(--spacing-xl);
+
+  -webkit-background-size: 100% 20px;
+  background-size: 100% var(--spacing-xl);
+  background-image: -moz-linear-gradient(transparent calc(var(--spacing-xl) - 1px), red 0px);
+  background-image: -webkit-linear-gradient(transparent calc(var(--spacing-xl) - 1px), red 0);
 }
 
 .h5p-drag-text [aria-grabbed='true'] {

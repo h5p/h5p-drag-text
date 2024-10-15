@@ -131,7 +131,7 @@
 
 .h5p-drag-text [aria-grabbed] {
   display: flex;
-  gap: var(--spacing-s);
+  /*gap: var(--spacing-xxs);*/
   align-items: center;
   border-radius: 0.25em;
   padding: 0;
@@ -194,7 +194,7 @@
   grid-template-columns: 1fr 5fr 1fr;
   padding: 0;
   border: none;
-  color: var(--feedback-incorrect-main);
+  color: var(--feedback-incorrect-main) !important;
   box-shadow: none;
   line-height: 1.5;
   background-color: var(--feedback-incorrect-secondary);

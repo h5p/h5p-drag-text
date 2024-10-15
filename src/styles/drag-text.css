@@ -152,6 +152,7 @@
 .h5p-drag-text [aria-grabbed] span{
   display: inline-block;
   align-content: center;
+  margin: auto;
   color: var(--text-primary);
 }
 
@@ -242,10 +243,6 @@
   float: right;
   padding-top: 0;
   display: inline-block;
-}
-
-.h5p-drag-text .h5p-drag-draggable-wide-screen {
-  display: block;
 }
 
 .h5p-drag-text [aria-dropeffect].ui-droppable.ui-droppable-disabled.ui-draggable-disabled{

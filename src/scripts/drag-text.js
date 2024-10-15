@@ -859,7 +859,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var widestDragagble = 0;
     var fontSize = parseInt(this.$inner.css('font-size'), 10);
     var staticMinimumWidth = 3 * fontSize;
-    var staticPadding = fontSize; // Needed to make room for feedback icons
 
     //Find widest draggable
     this.draggables.forEach(function (draggable) {
@@ -884,8 +883,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         width = $tmp.width();
       }
 
-      if (width + staticPadding > widest) {
-        widest = width + staticPadding;
+      if (width > widest) {
+        widest = width;
       }
       $tmp.remove();
     });

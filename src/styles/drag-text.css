@@ -120,12 +120,9 @@
 .ui-draggable-handle:not(.ui-draggable-disabled):before {
   font-family: 'h5p-theme';
   content: "\e90f";
-  display: inline-grid;
-  align-items: center;
-  height: 100%;
   width: var(--spacing-m);
+  padding: var(--spacing-xxs) 0;
   color: var(--text-third);
-  background-color: var(--alternative-dark); /*TODO: 50%opacity*/
 }
 
 .h5p-drag-text [aria-grabbed] span {
@@ -133,13 +130,14 @@
 }
 
 .h5p-drag-text [aria-grabbed] {
+  display: flex;
+  gap: var(--spacing-s);
+  align-items: center;
   border-radius: 0.25em;
   padding: 0;
   margin: var(--spacing-xs);
   vertical-align: top;
   text-align: center;
-  display: grid !important;
-  grid-template-columns: 1fr 5fr;
   line-height: var(--spacing-m);
   font-weight: bold;
   background: var(--alternative-base);
@@ -184,7 +182,6 @@
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
-  grid-template-columns: 1fr 5fr 1fr;
   padding: 0;
   color: var(--feedback-correct-main);
   border: none;

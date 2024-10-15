@@ -78,8 +78,8 @@
 .h5p-drag-text [aria-dropeffect] {
   position:relative;
   width: 10em;
-  height: calc(var(--spacing-m) + 2 * var(--spacing-xxs));
-  border: solid 2px var(--alternative-darker);
+  height: calc(4 * var(--spacing-xxs));
+  border: solid 2px var(--alternative-dark);
   background-color: var(--alternative-dark);
   border-radius: var(--border-radius-medium);
   display: inline-block;
@@ -124,12 +124,12 @@
   align-items: center;
   height: 100%;
   width: var(--spacing-m);
-  background-color: var(--alternative-dark);
-  color: var(--text-primary);
+  color: var(--text-third);
+  background-color: var(--alternative-dark); /*TODO: 50%opacity*/
 }
 
 .h5p-drag-text [aria-grabbed] span {
-  padding: var(--spacing-xxs) 0;
+  height: calc(4 * var(--spacing-xxs));
 }
 
 .h5p-drag-text [aria-grabbed] {
@@ -144,7 +144,7 @@
   font-weight: bold;
   background: var(--alternative-base);
   border-radius: var(--border-radius-large);
-  box-shadow: 0px 2px 0em 0px rgb(206 209 236);
+  box-shadow: 0px 2px 0em 0px var(--alternative-dark);
   z-index: 3;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -154,6 +154,7 @@
 .h5p-drag-text [aria-grabbed] span{
   display: inline-block;
   align-content: center;
+  color: var(--text-primary);
 }
 
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled) {
@@ -185,7 +186,7 @@
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
   grid-template-columns: 1fr 5fr 1fr;
   padding: 0;
-  color: #255c41;
+  color: var(--feedback-correct-main);
   border: none;
   box-shadow: none;
   line-height: 1.5;
@@ -196,13 +197,11 @@
   grid-template-columns: 1fr 5fr 1fr;
   padding: 0;
   border: none;
-  color: #b71c1c;
+  color: var(--feedback-incorrect-main);
   box-shadow: none;
   line-height: 1.5;
   background-color: var(--feedback-incorrect-secondary);
 }
-
-
 
 /* Show solution container */
 .h5p-drag-text .h5p-drag-show-solution-container {
@@ -211,10 +210,10 @@
 }
 
 .h5p-drag-text .h5p-drag-show-solution-container.incorrect {
-  color: #255c41;
+  color: var(--feedback-correct-main);
   font-weight: bold;
-  border: 1px #255c41 dashed;
-  background-color: #d4f6e6;
+  border: 1px var(--feedback-correct-third) dashed;
+  background-color: var(--feedback-correct-secondary);
   padding: 0.15em;
   border-radius: 0.25em;
   margin-left: 0.5em;
@@ -222,11 +221,12 @@
 
 .h5p-drag-text .h5p-drag-droppable-words {
   line-height: var(--spacing-xl);
-
+  background-color: var(--alternative-light);
   -webkit-background-size: 100% 20px;
+  color: var(--text-primary);
   background-size: 100% var(--spacing-xl);
-  background-image: -moz-linear-gradient(transparent calc(var(--spacing-xl) - 1px), red 0px);
-  background-image: -webkit-linear-gradient(transparent calc(var(--spacing-xl) - 1px), red 0);
+  background-image: -moz-linear-gradient(transparent calc(var(--spacing-xl) - 1px), var(--stroke-1) 0px);
+  background-image: -webkit-linear-gradient(transparent calc(var(--spacing-xl) - 1px), var(--stroke-1) 0);
 }
 
 .h5p-drag-text [aria-grabbed='true'] {
@@ -237,11 +237,7 @@
   width: 100%;
   position: relative;
   display: inline-block;
-  background-color: var(--alternative-light);
-  border: solid 1px var(--alternative-base);
   border-radius: var(--border-radius-small);
-  padding: var(--spacing-m);
-  width: calc(100% - var(--spacing-m) - var(--spacing-m));
 }
 
 /* Wide Screen css : */

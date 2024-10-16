@@ -237,6 +237,15 @@
   display: inline-block;
   border-radius: var(--border-radius-small);
 }
+.h5p-drag-text .h5p-drag-droppable-words-container{
+    color: var(--text-primary);
+    background-color: var(--alternative-light);
+    color: var(--text-secondary);
+    border: solid 1px var(--alternative-base);
+    border-radius: var(--border-radius-medium);
+    padding: var(--spacing-m);
+    margin: 0 var(--spacing-m);
+}
 
 /* Wide Screen css : */
 .h5p-drag-text .h5p-drag-wide-screen {

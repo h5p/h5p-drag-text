@@ -410,6 +410,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.changeLayoutToFitWidth = function () {
     var self = this;
     self.addDropzoneWidth();
+    const $wordParent = self.$wordContainer.parent();
 
     //Find ratio of width to em, and make sure it is less than the predefined ratio, make sure widest draggable is less than a third of parent width.
     if ((self.$inner.width() / parseFloat(self.$inner.css("font-size"), 10) > 43) && (self.widestDraggable <= (self.$inner.width() / 3))) {
@@ -418,7 +419,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
       const canHasFocus = document.activeElement;
-      self.$wordContainer.detach().appendTo(self.$taskContainer);
+      $wordParent.detach().appendTo(self.$taskContainer);
       if (canHasFocus !== document.activeElement) {
         // Moving changes focus, set it back
         canHasFocus.focus();
@@ -430,10 +431,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       });
 
       // Set margin so the wordContainer does not expand when there are no more draggables left.
-      self.$wordContainer.css({'margin-right': self.$draggables.width()});
+      $wordParent.css({'margin-right': self.$draggables.width()});
     } else {
       // Remove the specific wide screen settings.
-      self.$wordContainer.css({'margin-right': 0});
+      $wordParent.css({'margin-right': 0});
       self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
       self.$draggables.detach().appendTo(self.$taskContainer);
       self.draggables.forEach(function (draggable) {

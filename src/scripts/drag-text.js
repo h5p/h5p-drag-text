@@ -834,7 +834,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     self.shuffleAndAddDraggables(self.$draggables);
     self.$draggables.appendTo(self.$taskContainer);
-    self.$wordContainer.appendTo(self.$taskContainer);
+    $('<div>', { class: 'h5p-drag-droppable-words-container' })
+      .append(self.$wordContainer)
+      .appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
   };

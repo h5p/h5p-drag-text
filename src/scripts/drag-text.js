@@ -226,12 +226,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    */
   DragText.prototype.updateDroppableElement = function(event) {
     const dropZone = event.data.target;
-    const draggable = event.data.element;
+    const draggable = this.getDraggableByElement(event.data.element);
     const droppable = this.getDroppableByElement(dropZone);
 
     if (dropZone) {
-      this.setDroppableLabel(dropZone, draggable.textContent, droppable.getIndex());
+      this.setDroppableLabel(dropZone, event.data.element.textContent, droppable.getIndex());
     }
+
+    draggable.setTooltipText(event.type === 'drop' ? draggable.text : '');
   };
 
   /**

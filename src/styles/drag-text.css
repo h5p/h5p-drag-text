@@ -219,12 +219,12 @@
 
 .h5p-drag-text .h5p-drag-droppable-words {
   line-height: var(--spacing-xl);
-  background-color: var(--alternative-light);
+ /* background-color: var(--alternative-light);*/
   -webkit-background-size: 100% 20px;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   background-size: 100% var(--spacing-xl);
-  background-image: -moz-linear-gradient(transparent calc(var(--spacing-xl) - 1px), var(--stroke-1) 0px);
-  background-image: -webkit-linear-gradient(transparent calc(var(--spacing-xl) - 1px), var(--stroke-1) 0);
+  background-image: -moz-linear-gradient(transparent calc(var(--spacing-xl) - 1px), var(--alternative-base) 0px);
+  background-image: -webkit-linear-gradient(transparent calc(var(--spacing-xl) - 1px), var(--alternative-base) 0);
 }
 
 .h5p-drag-text [aria-grabbed='true'] {

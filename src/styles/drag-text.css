@@ -126,7 +126,8 @@
 }
 
 .h5p-drag-text [aria-grabbed] span {
-  height: calc(4 * var(--spacing-xxs));
+  /* TODO: figure out why this line add numbers in front of the draggable 
+  height: calc(4 * var(--spacing-xxs));*/
 }
 
 .h5p-drag-text [aria-grabbed] {
@@ -154,6 +155,7 @@
   align-content: center;
   margin: auto;
   color: var(--text-primary);
+  padding-right: var(--spacing-xs);
 }
 
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled) {
@@ -243,8 +245,9 @@
     color: var(--text-secondary);
     border: solid 1px var(--alternative-base);
     border-radius: var(--border-radius-medium);
-    padding: var(--spacing-m);
-    margin: 0 var(--spacing-m);
+    padding: var(--spacing-s);
+    font-weight: 500;
+
 }
 
 /* Wide Screen css : */

@@ -104,9 +104,9 @@
 
 /* Draggable styling */
 .h5p-drag-text .h5p-drag-draggables-container {
+  display: flex;
   position: relative;
   padding-top: 0.5em;
-  display: ruby;
 }
 
 .h5p-drag-text .h5p-drag-draggables-container.hide {
@@ -117,7 +117,7 @@
   background-color: var(--main-cta-base);
 }
 
-.ui-draggable-handle:not(.ui-draggable-disabled):before {
+.h5p-drag-text .ui-draggable-handle:not(.ui-draggable-disabled):before {
   font-family: 'h5p-theme';
   content: "\e90f";
   width: var(--spacing-m);
@@ -234,27 +234,31 @@
 }
 
 .h5p-drag-text .h5p-drag-task {
+  display: inline-block;
   width: 100%;
   position: relative;
-  display: inline-block;
   border-radius: var(--border-radius-small);
 }
-.h5p-drag-text .h5p-drag-droppable-words-container{
-    color: var(--text-primary);
-    background-color: var(--alternative-light);
-    color: var(--text-secondary);
-    border: solid 1px var(--alternative-base);
-    border-radius: var(--border-radius-medium);
-    padding: var(--spacing-s);
-    font-weight: 500;
 
+.h5p-drag-text .h5p-drag-task.h5p-drag-wide-screen {
+  display: flex;
+}
+
+.h5p-drag-text .h5p-drag-droppable-words-container{
+  color: var(--text-primary);
+  background-color: var(--alternative-light);
+  color: var(--text-secondary);
+  border: solid 1px var(--alternative-base);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-s);
+  font-weight: 500;
 }
 
 /* Wide Screen css : */
-.h5p-drag-text .h5p-drag-wide-screen {
-  float: right;
+.h5p-drag-text .h5p-drag-wide-screen .h5p-drag-draggables-container {
+  flex-direction: column;
+  min-width: fit-content;
   padding-top: 0;
-  display: inline-block;
 }
 
 .h5p-drag-text [aria-dropeffect].ui-droppable.ui-droppable-disabled.ui-draggable-disabled{

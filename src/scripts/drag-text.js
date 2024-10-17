@@ -410,36 +410,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.changeLayoutToFitWidth = function () {
     var self = this;
     self.addDropzoneWidth();
-    const $wordParent = self.$wordContainer.parent();
 
     //Find ratio of width to em, and make sure it is less than the predefined ratio, make sure widest draggable is less than a third of parent width.
     if ((self.$inner.width() / parseFloat(self.$inner.css("font-size"), 10) > 43) && (self.widestDraggable <= (self.$inner.width() / 3))) {
-      // Adds a class that floats the draggables to the right.
-      self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
-
-      // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
-      const canHasFocus = document.activeElement;
-      $wordParent.detach().appendTo(self.$taskContainer);
-      if (canHasFocus !== document.activeElement) {
-        // Moving changes focus, set it back
-        canHasFocus.focus();
-      }
-
-      // Set all draggables to be blocks
-      self.draggables.forEach(function (draggable) {
-        draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
-      });
-
-      // Set margin so the wordContainer does not expand when there are no more draggables left.
-      $wordParent.css({'margin-right': self.$draggables.width()});
+      self.$taskContainer.addClass(DRAGGABLES_WIDE_SCREEN);
     } else {
-      // Remove the specific wide screen settings.
-      $wordParent.css({'margin-right': 0});
-      self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
-      self.$draggables.detach().appendTo(self.$taskContainer);
-      self.draggables.forEach(function (draggable) {
-        draggable.getDraggableElement().removeClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
-      });
+      self.$taskContainer.removeClass(DRAGGABLES_WIDE_SCREEN);
     }
   };
 
@@ -834,10 +810,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
 
     self.shuffleAndAddDraggables(self.$draggables);
-    self.$draggables.appendTo(self.$taskContainer);
     $('<div>', { class: 'h5p-drag-droppable-words-container' })
       .append(self.$wordContainer)
       .appendTo(self.$taskContainer);
+    self.$draggables.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
   };

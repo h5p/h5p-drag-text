@@ -148,9 +148,10 @@
   font-weight: bold;
   background: var(--alternative-base);
   border-radius: var(--border-radius-medium);
-  box-shadow: 0px 2px 0em 0px var(--alternative-dark);
+  box-shadow: 0px 1px 0em 0px var(--alternative-dark);
   z-index: 3;
   border: solid 2px var(--alternative-base);
+  border-bottom-color: var(--alternative-dark);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -183,6 +184,7 @@
   margin: -8px 0 0 -4px ;
   white-space: nowrap;
   border: 2px solid var(--alternative-base);
+  border-bottom-color:  var(--alternative-darker);
 }
 
 .h5p-drag-text [aria-grabbed='true'] {
@@ -195,8 +197,8 @@
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
-      box-shadow: none;
-    border: solid 2px var(--feedback-correct-third);
+  box-shadow: none;
+  border: solid 2px var(--feedback-correct-third);
   color: var(--feedback-correct-main);
   background-color: var(--feedback-correct-secondary);
 }

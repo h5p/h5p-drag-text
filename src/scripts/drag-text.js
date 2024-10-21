@@ -54,7 +54,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   //Special Sub-containers:
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
-  var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
 
   /**
    * Initialize module.
@@ -200,6 +199,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.on('resize', this.resize, this);
 
     // toggle the draggable container
+    this.toggleDraggablesContainer();
     this.on('revert', this.toggleDraggablesContainer, this);
     this.on('drop', this.toggleDraggablesContainer, this);
 
@@ -867,6 +867,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       }
       $tmp.remove();
     });
+
+    // Make room for feedback icons
+    widest += 16;
+
     // Set min size
     if (widest < staticMinimumWidth) {
       widest = staticMinimumWidth;

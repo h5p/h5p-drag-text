@@ -72,7 +72,8 @@
 /* Dropzone styling */
 .h5p-drag-text .h5p-drag-dropzone-container {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-content: center;
   height: calc(var(--spacing-l) * 0.8 + 4px);
   padding-right: calc(var(--spacing-xxs)/5);
   margin: 0 var(--spacing-xxs) 4px;
@@ -80,6 +81,8 @@
 }
 .h5p-drag-text [aria-dropeffect] {
   position:relative;
+  display: flex;
+  align-items: center;
   width: 10rem;
   height: calc(100% - 4px);
   border: solid 2px var(--alternative-dark);
@@ -132,17 +135,15 @@
 .h5p-drag-text .ui-draggable-handle:not(.ui-draggable-disabled):before {
   font-family: 'h5p-theme';
   content: "\e90f";
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
   width: var(--spacing-m);
+  line-height: var(--spacing-l);
   color: var(--text-third);
   background-color: color-mix(in srgb, var(--alternative-dark), transparent 30%);
-  padding: var(--spacing-xs) 0;
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--alternative-dark), transparent 30%);
   border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
-}
-
-.h5p-drag-text [aria-grabbed] span {
-  /* TODO: figure out why this line add numbers in front of the draggable 
-  height: calc(4 * var(--spacing-xxs));*/
 }
 
 .h5p-drag-text [aria-grabbed] {
@@ -165,9 +166,10 @@
   -ms-user-select: none;
 }
 
-.h5p-drag-text [aria-grabbed] span{
+.h5p-drag-text [aria-grabbed] span {
   display: inline-block;
   align-content: center;
+  width: fit-content;
   margin: auto;
   color: var(--text-primary);
   padding: var(--spacing-xxs) var(--spacing-xs) var(--spacing-xxs) var(--spacing-xs);
@@ -187,11 +189,18 @@
   border-color: var(--alternative-dark);
   box-shadow: 0px 3px 0.3em 0px var(--alternative-darker);
   border-color: var(--main-cta-base);
-  
 }
+
+.h5p-drag-text [aria-grabbed='true'].ui-draggable-handle:before,
+.h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled):hover:before,
+.h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled):hover:before {
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped {
   width: 100%;
-  margin: -8px 0 0 -4px ;
+  margin: 0 -2px;
   white-space: nowrap;
   border: 2px solid var(--alternative-base);
  /* border-bottom-color:  var(--alternative-darker);*/
@@ -231,6 +240,7 @@
 .h5p-drag-text .h5p-drag-show-solution-container {
   position: relative;
   display: inline;
+  line-height: var(--spacing-s);
 }
 
 .h5p-drag-text .h5p-drag-show-solution-container.incorrect {
@@ -265,7 +275,7 @@
   gap: var(--spacing-s);
 }
 
-.h5p-drag-text .h5p-drag-droppable-words-container{
+.h5p-drag-text .h5p-drag-droppable-words-container {
   color: var(--text-primary);
   background-color: var(--alternative-light);
   color: var(--text-secondary);
@@ -273,17 +283,21 @@
   border-radius: var(--border-radius-medium);
   padding: var(--spacing-s);
   font-weight: 500;
-  width: 100%;
+  width: auto;
 }
 
 /* Wide Screen css : */
+.h5p-drag-text .h5p-drag-wide-screen .h5p-drag-droppable-words-container {
+  width: 100%;
+}
+
 .h5p-drag-text .h5p-drag-wide-screen .h5p-drag-draggables-container {
   flex-direction: column;
   min-width: fit-content;
   padding-top: 0;
 }
 
-.h5p-drag-text [aria-dropeffect].ui-droppable.ui-droppable-disabled.ui-draggable-disabled{
+.h5p-drag-text [aria-dropeffect].ui-droppable.ui-droppable-disabled.ui-draggable-disabled {
   opacity: 1;
 }
 
@@ -292,12 +306,11 @@
   text-overflow: ellipsis;
 }
 
-.h5p-drag-text .correct-answer {
-  width: 1px;
-  height: 1px;
+.h5p-drag-text .hidden-but-read {
+  position: absolute;
+  height: 0;
+  width: 0;
   overflow: hidden;
-  display: inline-block;
-  color: transparent;
 }
 
 .h5p-drag-text .h5p-question-introduction {

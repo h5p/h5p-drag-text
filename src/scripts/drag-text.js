@@ -527,7 +527,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var isSelectedElement = this.selectedElement ===  event.element;
 
     // unselect the selected
-    if(hasSelectedElement){
+    if(hasSelectedElement) {
       this.selectedElement = undefined;
       this.trigger('stop', { element: tmp });
     }
@@ -1037,6 +1037,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         element: revertedDraggable.getElement(),
         target: droppable.getElement()
       });
+    }
+    else if (this.selectedElement === draggable.getElement()) {
+      draggable.revertDraggableTo(droppable.$dropzoneContainer);
     }
 
     droppable.setDraggable(draggable);

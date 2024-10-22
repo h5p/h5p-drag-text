@@ -52,12 +52,12 @@ H5P.TextDroppable = (function ($) {
 
     self.$incorrectText = $('<div/>', {
       html: self.params.incorrectText + " " + self.params.correctAnswer,
-      'class': 'correct-answer'
+      'class': 'hidden-but-read'
     });
 
     self.$correctText = $('<div/>', {
       html: self.params.correctText,
-      'class': 'correct-answer'
+      'class': 'hidden-but-read'
     });
 
     self.$showSolution = $('<div/>', {

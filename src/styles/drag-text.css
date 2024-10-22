@@ -13,12 +13,12 @@
   font-size: var(--font-size-m);
   font-weight: normal;
   padding: 0;
-  margin: 0 0 1em;
+  margin: 0 0 var(--spacing-s);
 }
 
 .h5p-drag-text button.h5p-drag-button:before {
   font-family: 'H5PFontAwesome4';
-  padding-right: 0.5em;
+  padding-right: var(--spacing-xxs);
 }
 
 /* Button icons */
@@ -45,8 +45,8 @@
 
 /* Tooltip styling */
 .h5p-drag-text .joubel-tip-container {
-  top: -1.1em;
-  right: -0.6em;
+  top: -1.1rem;
+  right: -0.6rem;
   position: absolute;
   z-index: 4;
   font-size: var(--font-size-m);
@@ -74,13 +74,13 @@
   position: relative;
   display: inline-block;
   height: calc(var(--spacing-l) * 0.8 + 4px);
-  padding-right: 0.1em;
+  padding-right: calc(var(--spacing-xxs)/5);
   margin: 0 var(--spacing-xxs) 4px;
   vertical-align: middle;
 }
 .h5p-drag-text [aria-dropeffect] {
   position:relative;
-  width: 10em;
+  width: 10rem;
   height: calc(100% - 4px);
   border: solid 2px var(--alternative-dark);
   background-color: var(--alternative-dark);
@@ -110,7 +110,7 @@
 .h5p-drag-text .h5p-drag-draggables-container {
   display: flex;
   position: relative;
-  padding-top: 0.5em;
+  padding-top: var(--spacing-xxs);
   flex-wrap: wrap;
 }
 
@@ -200,12 +200,9 @@
 
 .h5p-drag-text [aria-grabbed='true'] {
   z-index: 5;
-  box-shadow: 0 0 0.8em rgba(0,0,0,0.5);
-}
-
-.h5p-drag-text [aria-grabbed] .h5p-tooltip {
-  height: fit-content;
-  white-space: initial;
+  box-shadow: 0 0 0.5em 0 var(--main-cta-base);
+  border-color: var(--main-cta-base);
+  background-color:  color-mix(in srgb, var(--main-cta-light), transparent 70%); 
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
@@ -243,7 +240,7 @@
   background-color: var(--feedback-correct-secondary);
   padding: calc(var(--spacing-xs) / 2);
   border-radius: var(--border-radius-medium);
-  margin-left: 0.5em;
+  margin-left: var(--spacing-xxs);
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {

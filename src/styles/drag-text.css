@@ -140,7 +140,6 @@
   display: inline-flex;
   align-items: center;
   height: 100%;
-  width: var(--spacing-m);
   line-height: var(--spacing-l);
   color: var(--text-third);
   background-color: color-mix(in srgb, var(--alternative-dark), transparent 30%);

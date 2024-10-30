@@ -140,7 +140,7 @@
   display: inline-flex;
   align-items: center;
   height: 100%;
-  line-height: var(--spacing-l);
+  line-height: calc(var(--spacing-s) + 2 * var(--spacing-xxs) + 4px);
   color: var(--text-third);
   background-color: color-mix(in srgb, var(--alternative-dark), transparent 30%);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--alternative-dark), transparent 30%);
@@ -197,7 +197,7 @@
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled):hover:before {
   color: var(--contrast-cta);
   background-color: var(--main-cta-base);
-  box-shadow: none;
+  box-shadow: 0 0 0 2px var(--main-cta-base);
 }
 
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped {

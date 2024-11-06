@@ -494,28 +494,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     //Retry button
     self.addButton('try-again', self.params.tryAgain, function () {
-      // Reset and shuffle draggables if Question is answered
-      if (self.answered) {
-        // move draggables to original container
-        self.resetDraggables();
-      }
-      self.answered = false;
-
-      self.hideEvaluation();
-      self.hideExplanation();
-
-      self.hideButton('try-again');
-      self.hideButton('show-solution');
-
-      if (self.params.behaviour.instantFeedback) {
-        self.enableAllDropzonesAndDraggables();
-      } else {
-        self.showButton('check-answer');
-        self.enableDraggables();
-      }
-      self.hideAllSolutions();
-
-      self.stopWatch.reset();
+      self.resetTask();
       self.read(self.params.taskDescription);
     }, self.initShowTryAgainButton || false, {
       'aria-label': self.params.a11yRetry,
@@ -1319,6 +1298,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.showButton('check-answer');
     }
     self.hideAllSolutions();
+    self.stopWatch.reset();
     this.trigger('resize');
   };
 

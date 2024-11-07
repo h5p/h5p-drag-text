@@ -22,13 +22,13 @@
       "placeholder": "Oslo je glavno mesto *Norveške*. Helsinki so glavno mesto *Finske*.",
       "important": {
         "description": "<ul><li>Besede za premikanje se označi z zvezdico (*) pred in za pravilno besedo/besedno zvezo.</li><li>Namig za udeležence se od odgovora loči z dvopičjem (:).</li><li>Za vsak prazen okvir je na razpolago le ena pravilna beseda.</li><li>Možno je dodati tudi povratno informacijo, ki se pokaže po zaključku naloge. Dodan zapis '\\+' pomeni pravilen, '\\-' pa nepravilen odgovor.</li></ul>",
-        "example": "Za brskanje po spletu lahko uporabimo *spletni brskalnik:Takšen program je na primer Chrome*. Vsebina H5P je *interaktivna\\+Pravilno!\\-Nepravilno. Poskusi ponovno.*"
+        "example": "Za brskanje po spletu lahko uporabimo *spletni brskalnik:Takšna programa sta na primer Chrome in Edge.*. Google je *spletni iskalnik\\+Pravilno!\\-Nepravilno. Poskusi ponovno.*."
       }
     },
     {
-      "label": "Distractors",
-      "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "label": "Zavajajoči odgovori",
+      "placeholder": "*Reykjavík* *Ljubljana*",
+      "description": "Dodatne besede/besedne zveze, ki se pokažejo ob pravilnih odgovorih in otežijo nalogo. Zapišejo se po enakem principu, in sicer med dve zvezdici (*)."
     },
     {
       "label": "Splošna povratna informacija",
@@ -62,8 +62,8 @@
       "default": "Preveri"
     },
     {
-      "label": "Text for \"Submit\" button",
-      "default": "Submit"
+      "label": "Besedilo za gumb \"Oddaj\"",
+      "default": "Oddaj"
     },
     {
       "label": "Besedilo za gumb \"Poskusi ponovno\"",
@@ -153,16 +153,16 @@
       "default": "Napredek :num od :total"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Preveri\"",
+      "default": "Preveri pravilnost odgovorov. Odgovori bodo označeni kot pravilni, napačni ali brez odgovorov."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Prikaži rešitev\"",
+      "default": "Prikaži rešitev. Pravilni odgovori bodo označeni."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Poskusi ponovno\"",
+      "default": "Poskusi ponovno. Ponastavi vse odzive in znova zažene nalogo."
     }
   ]
 }

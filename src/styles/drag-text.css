@@ -1,7 +1,7 @@
 /* The main containers for the module, specific to this module. */
 .h5p-drag-text {
   position: relative;
-  background: var(--ui-base);
+  background: var(--h5p-theme-ui-base);
   overflow: hidden;
 }
 .h5p-drag-text .h5p-drag-draggables-container
@@ -10,15 +10,15 @@
 }
 
 .h5p-drag-text .h5p-drag-inner p {
-  font-size: var(--font-size-m);
+  font-size: var(--h5p-theme-font-size-m);
   font-weight: normal;
   padding: 0;
-  margin: 0 0 var(--spacing-s);
+  margin: 0 0 var(--h5p-theme-spacing-s);
 }
 
 .h5p-drag-text button.h5p-drag-button:before {
   font-family: 'H5PFontAwesome4';
-  padding-right: var(--spacing-xxs);
+  padding-right: var(--h5p-theme-spacing-xxs);
 }
 
 /* Button icons */
@@ -51,7 +51,7 @@
   right: -0.6rem;
   position: absolute;
   z-index: 4;
-  font-size: var(--font-size-m);
+  font-size: var(--h5p-theme-font-size-m);
 }
 
 /* Feedback icon */
@@ -60,7 +60,7 @@
   align-items: center;
   font-family: 'h5p-theme';
   content: "\e903";
-  color: var(--feedback-correct-main);
+  color: var(--h5p-theme-feedback-correct-main);
 }
 
 .h5p-drag-text .h5p-drag-draggable-wrong:after {
@@ -68,7 +68,7 @@
   align-items: center;
   font-family: 'h5p-theme';
   content: "\e902";
-  color: var(--feedback-incorrect-main);
+  color: var(--h5p-theme-feedback-incorrect-main);
 }
 
 /* Dropzone styling */
@@ -76,9 +76,9 @@
   position: relative;
   display: inline-flex;
   align-content: center;
-  height: calc(var(--spacing-l) * 0.8 + 4px);
-  padding-right: calc(var(--spacing-xxs)/5);
-  margin: 0 var(--spacing-xxs) 4px;
+  height: calc(var(--h5p-theme-spacing-l) * 0.8 + 4px);
+  padding-right: calc(var(--h5p-theme-spacing-xxs)/5);
+  margin: 0 var(--h5p-theme-spacing-xxs) 4px;
   vertical-align: middle;
 }
 .h5p-drag-text [aria-dropeffect] {
@@ -87,24 +87,24 @@
   align-items: center;
   width: 10rem;
   height: calc(100% - 4px);
-  border: solid 2px var(--alternative-dark);
-  background-color: var(--alternative-dark);
-  border-radius: var(--border-radius-medium);
+  border: solid 2px var(--h5p-theme-alternative-dark);
+  background-color: var(--h5p-theme-alternative-dark);
+  border-radius: var(--h5p-theme-border-radius-medium);
   vertical-align: middle;
   text-align: center;
-  margin: 0 var(--spacing-xxs);
+  margin: 0 var(--h5p-theme-spacing-xxs);
   transition: all 0.1s linear 0s;
 }
 
 .h5p-drag-text [aria-dropeffect].h5p-drag-correct-feedback {
-  background: var(--feedback-correct-secondary);
-  border-color: var(--feedback-correct-third);
+  background: var(--h5p-theme-feedback-correct-secondary);
+  border-color: var(--h5p-theme-feedback-correct-third);
 }
 
 .h5p-drag-text [aria-dropeffect].h5p-drag-wrong-feedback {
-  color: var(--feedback-incorrect-main);
-  background-color: var(--feedback-incorrect-secondary);
-  border-color: var(--feedback-incorrect-third);
+  color: var(--h5p-theme-feedback-incorrect-main);
+  background-color: var(--h5p-theme-feedback-incorrect-secondary);
+  border-color: var(--h5p-theme-feedback-incorrect-third);
 }
 
 .h5p-drag-text [aria-dropeffect]:before {
@@ -115,7 +115,7 @@
 .h5p-drag-text .h5p-drag-draggables-container {
   display: flex;
   position: relative;
-  padding-top: var(--spacing-xxs);
+  padding-top: var(--h5p-theme-spacing-xxs);
   flex-wrap: wrap;
 }
 
@@ -124,9 +124,9 @@
 }
 
 .h5p-drag-text .ui-droppable-hover, .h5p-drag-task:has(.h5p-drag-draggables-container [aria-grabbed="true"]) .ui-droppable:hover{
-  background-color: color-mix(in srgb, var(--main-cta-base), transparent 60%);
+  background-color: color-mix(in srgb, var(--h5p-theme-main-cta-base), transparent 60%);
   border-style: dashed;
-  border-color: var(--main-cta-dark);
+  border-color: var(--h5p-theme-main-cta-dark);
   cursor: pointer;
 }
 
@@ -140,28 +140,28 @@
   display: inline-flex;
   align-items: center;
   height: 100%;
-  line-height: calc(var(--spacing-s) + 2 * var(--spacing-xxs) + 4px);
-  color: var(--text-third);
-  background-color: color-mix(in srgb, var(--alternative-dark), transparent 30%);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--alternative-dark), transparent 30%);
-  border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
+  line-height: calc(var(--h5p-theme-spacing-s) + 2 * var(--h5p-theme-spacing-xxs) + 4px);
+  color: var(--h5p-theme-text-third);
+  background-color: color-mix(in srgb, var(--h5p-theme-alternative-dark), transparent 30%);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--h5p-theme-alternative-dark), transparent 30%);
+  border-radius: var(--h5p-theme-border-radius-small) 0 0 var(--h5p-theme-border-radius-small);
 }
 
 .h5p-drag-text [aria-grabbed] {
   display: flex;
   align-items: center;
-  padding: 0 var(--spacing-xxs) 0 0;
-  margin: var(--spacing-xxs);
+  padding: 0 var(--h5p-theme-spacing-xxs) 0 0;
+  margin: var(--h5p-theme-spacing-xxs);
   vertical-align: top;
   text-align: center;
-  line-height: var(--spacing-s);
+  line-height: var(--h5p-theme-spacing-s);
   font-weight: bold;
-  background: var(--alternative-base);
-  border-radius: var(--border-radius-medium);
-  box-shadow: 0px 1px 0em 0px var(--alternative-dark);
+  background: var(--h5p-theme-alternative-base);
+  border-radius: var(--h5p-theme-border-radius-medium);
+  box-shadow: 0px 1px 0em 0px var(--h5p-theme-alternative-dark);
   z-index: 3;
-  border: solid 2px var(--alternative-base);
-  border-bottom-color: var(--alternative-dark);
+  border: solid 2px var(--h5p-theme-alternative-base);
+  border-bottom-color: var(--h5p-theme-alternative-dark);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -172,10 +172,10 @@
   align-content: center;
   width: fit-content;
   margin: auto;
-  color: var(--text-primary);
-  padding: var(--spacing-xxs) var(--spacing-xs) var(--spacing-xxs) var(--spacing-xs);
+  color: var(--h5p-theme-text-primary);
+  padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xs);
   line-height: 1;
-  font-size: var(--font-size-m);
+  font-size: var(--h5p-theme-font-size-m);
 }
 
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled) {
@@ -185,105 +185,105 @@
 .h5p-drag-text [aria-grabbed='true'],
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled):hover,
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled):hover {
-  color: var(--text-primary);
-  background: var(--alternative-dark);
-  border-color: var(--alternative-dark);
-  box-shadow: 0px 3px 0.3em 0px var(--alternative-darker);
-  border-color: var(--main-cta-base);
+  color: var(--h5p-theme-text-primary);
+  background: var(--h5p-theme-alternative-dark);
+  border-color: var(--h5p-theme-alternative-dark);
+  box-shadow: 0px 3px 0.3em 0px var(--h5p-theme-alternative-darker);
+  border-color: var(--h5p-theme-main-cta-base);
 }
 
 .h5p-drag-text [aria-grabbed='true'].ui-draggable-handle:before,
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled):hover:before,
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled):hover:before {
-  color: var(--contrast-cta);
-  background-color: var(--main-cta-base);
-  box-shadow: 0 0 0 2px var(--main-cta-base);
+  color: var(--h5p-theme-contrast-cta);
+  background-color: var(--h5p-theme-main-cta-base);
+  box-shadow: 0 0 0 2px var(--h5p-theme-main-cta-base);
 }
 
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped {
   width: 100%;
   margin: 0 -2px;
   white-space: nowrap;
-  border: 2px solid var(--alternative-base);
- /* border-bottom-color:  var(--alternative-darker);*/
-  border-color: var(--alternative-darker);
+  border: 2px solid var(--h5p-theme-alternative-base);
+ /* border-bottom-color:  var(--h5p-theme-alternative-darker);*/
+  border-color: var(--h5p-theme-alternative-darker);
 }
 
 .h5p-drag-text [aria-grabbed='true'] {
   z-index: 5;
-  box-shadow: 0 0 0.5em 0 var(--main-cta-base);
-  border-color: var(--main-cta-base);
-  background-color:  color-mix(in srgb, var(--main-cta-light), transparent 70%); 
+  box-shadow: 0 0 0.5em 0 var(--h5p-theme-main-cta-base);
+  border-color: var(--h5p-theme-main-cta-base);
+  background-color:  color-mix(in srgb, var(--h5p-theme-main-cta-light), transparent 70%); 
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
   box-shadow: none;
-  border: solid 2px var(--feedback-correct-third);
-  color: var(--feedback-correct-main);
-  background-color: var(--feedback-correct-secondary);
+  border: solid 2px var(--h5p-theme-feedback-correct-third);
+  color: var(--h5p-theme-feedback-correct-main);
+  background-color: var(--h5p-theme-feedback-correct-secondary);
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong {
   grid-template-columns: 1fr 5fr 1fr;
   box-shadow: none;
-  border: solid 2px var(--feedback-incorrect-third);
-  background-color: var(--feedback-incorrect-secondary);
+  border: solid 2px var(--h5p-theme-feedback-incorrect-third);
+  background-color: var(--h5p-theme-feedback-incorrect-secondary);
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong > span{
-  color: var(--feedback-incorrect-main) !important;
+  color: var(--h5p-theme-feedback-incorrect-main) !important;
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct > span{
-  color: var(--feedback-correct-main) !important;
+  color: var(--h5p-theme-feedback-correct-main) !important;
 }
 
 /* Show solution container */
 .h5p-drag-text .h5p-drag-show-solution-container {
   position: relative;
   display: inline;
-  line-height: var(--spacing-s);
+  line-height: var(--h5p-theme-spacing-s);
 }
 
 .h5p-drag-text .h5p-drag-show-solution-container.incorrect {
-  color: var(--feedback-correct-main);
+  color: var(--h5p-theme-feedback-correct-main);
   font-weight: bold;
-  border: 2px var(--feedback-correct-main) dashed;
-  background-color: var(--feedback-correct-secondary);
-  padding: calc(var(--spacing-xs) / 2);
-  border-radius: var(--border-radius-medium);
-  margin-left: var(--spacing-xxs);
+  border: 2px var(--h5p-theme-feedback-correct-main) dashed;
+  background-color: var(--h5p-theme-feedback-correct-secondary);
+  padding: calc(var(--h5p-theme-spacing-xs) / 2);
+  border-radius: var(--h5p-theme-border-radius-medium);
+  margin-left: var(--h5p-theme-spacing-xxs);
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {
-  line-height: var(--spacing-xl);
- /* background-color: var(--alternative-light);*/
+  line-height: var(--h5p-theme-spacing-xl);
+ /* background-color: var(--h5p-theme-alternative-light);*/
   -webkit-background-size: 100% 20px;
-  color: var(--text-secondary);
-  background-size: 100% var(--spacing-xl);
-  background-image: -moz-linear-gradient(transparent calc(var(--spacing-xl) - 1px), var(--alternative-base) 0px);
-  background-image: -webkit-linear-gradient(transparent calc(var(--spacing-xl) - 1px), var(--alternative-base) 0);
+  color: var(--h5p-theme-text-secondary);
+  background-size: 100% var(--h5p-theme-spacing-xl);
+  background-image: -moz-linear-gradient(transparent calc(var(--h5p-theme-spacing-xl) - 1px), var(--h5p-theme-alternative-base) 0px);
+  background-image: -webkit-linear-gradient(transparent calc(var(--h5p-theme-spacing-xl) - 1px), var(--h5p-theme-alternative-base) 0);
 }
 
 .h5p-drag-text .h5p-drag-task {
   display: inline-block;
   width: 100%;
   position: relative;
-  border-radius: var(--border-radius-small);
+  border-radius: var(--h5p-theme-border-radius-small);
 }
 
 .h5p-drag-text .h5p-drag-task.h5p-drag-wide-screen {
   display: flex;
-  gap: var(--spacing-s);
+  gap: var(--h5p-theme-spacing-s);
 }
 
 .h5p-drag-text .h5p-drag-droppable-words-container {
-  color: var(--text-primary);
-  background-color: var(--alternative-light);
-  color: var(--text-secondary);
-  border: solid 1px var(--alternative-base);
-  border-radius: var(--border-radius-medium);
-  padding: var(--spacing-s);
+  color: var(--h5p-theme-text-primary);
+  background-color: var(--h5p-theme-alternative-light);
+  color: var(--h5p-theme-text-secondary);
+  border: solid 1px var(--h5p-theme-alternative-base);
+  border-radius: var(--h5p-theme-border-radius-medium);
+  padding: var(--h5p-theme-spacing-s);
   font-weight: 500;
   width: auto;
 }

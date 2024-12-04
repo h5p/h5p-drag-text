@@ -248,6 +248,15 @@ H5P.TextDroppable = (function ($) {
   };
 
   /**
+   * Toggles the hovered class on the droppable.
+   * @param {boolean} hovered Truth to make droppable look hovered, falsy for unhovered.
+   */
+  Droppable.prototype.toggleHovered = function (hovered) {
+    this.containedDraggable?.$draggable?.get(0).classList.toggle('hover', hovered);
+    this.$dropzone.get(0).classList.toggle('ui-droppable-hover', hovered);
+  };
+
+  /**
    * Removes the short format of draggable when it is outside a dropbox.
    */
   Droppable.prototype.removeShortFormat = function () {

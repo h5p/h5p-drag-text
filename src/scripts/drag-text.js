@@ -935,6 +935,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   };
 
   /**
+   * Get index of currently hovered droppable.
+   * @returns {number} 0-based index of hovered droppable, or -1 if none is hovered.
+   */
+  DragText.prototype.getHoveredDroppableIndex = function() {
+    return this.hoveredDroppables.length > 0 ? this.hoveredDroppables[this.hoveredDroppables.length - 1] : -1;
+  };
+
+  /**
    * Creates a Droppable
    *
    * @param {string} answer
@@ -952,16 +960,46 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       'class': DROPZONE_CONTAINER
     });
 
+    this.hoveredDroppables = [];
+
     var $dropzone = $('<div/>', {
       'aria-dropeffect': 'none',
       'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + ' ' + this.params.empty.replace('@index', draggableIndex.toString()),
       'tabindex': '-1'
     }).appendTo($dropzoneContainer)
       .droppable({
-        tolerance: 'pointer',
+        tolerance: 'touch',
+        over: () => {
+          this.hoveredDroppables.push(draggableIndex - 1);
+          this.hoveredDroppables.sort((a, b) => b - a);
+
+          const hoveredIndex = this.getHoveredDroppableIndex();
+          self.droppables.forEach((droppable, index) => {
+            droppable.toggleHovered(index === hoveredIndex);
+          });
+        },
+        out: () => {
+          this.hoveredDroppables = this.hoveredDroppables.filter(index => index !== draggableIndex - 1);
+          const hoveredIndex = this.getHoveredDroppableIndex();
+
+          self.droppables.forEach((droppable, index) => {
+            droppable.toggleHovered(index === hoveredIndex);
+          });
+        },
         drop: function (event, ui) {
+          const hoveredIndex = self.getHoveredDroppableIndex();
+          if (hoveredIndex === -1) {
+            return; // Should never happen
+          }
+
           var draggable = self.getDraggableByElement(ui.draggable[0]);
-          var droppable = self.getDroppableByElement(event.target);
+          var droppable = droppable = self.droppables[hoveredIndex];
+
+          // Reset hovered droppables
+          self.hoveredDroppables = [];
+          self.droppables.forEach(droppable => {
+            droppable.toggleHovered(false);
+          });
 
           /**
            * Note that drop will run for all initialized DragText dropzones globally. Even other

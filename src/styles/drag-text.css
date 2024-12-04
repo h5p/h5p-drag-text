@@ -256,13 +256,7 @@
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {
-  line-height: var(--h5p-theme-spacing-xl);
- /* background-color: var(--h5p-theme-alternative-light);*/
-  -webkit-background-size: 100% 20px;
   color: var(--h5p-theme-text-secondary);
-  background-size: 100% var(--h5p-theme-spacing-xl);
-  background-image: -moz-linear-gradient(transparent calc(var(--h5p-theme-spacing-xl) - 1px), var(--h5p-theme-alternative-base) 0px);
-  background-image: -webkit-linear-gradient(transparent calc(var(--h5p-theme-spacing-xl) - 1px), var(--h5p-theme-alternative-base) 0);
 }
 
 .h5p-drag-text .h5p-drag-task {
@@ -278,14 +272,14 @@
 }
 
 .h5p-drag-text .h5p-drag-droppable-words-container {
-  color: var(--h5p-theme-text-primary);
+  height: fit-content;
+  width: auto;
+  padding: 0 var(--h5p-theme-spacing-s);
   background-color: var(--h5p-theme-alternative-light);
   color: var(--h5p-theme-text-secondary);
   border: solid 1px var(--h5p-theme-alternative-base);
   border-radius: var(--h5p-theme-border-radius-medium);
-  padding: var(--h5p-theme-spacing-s);
   font-weight: 500;
-  width: auto;
 }
 
 /* Wide Screen css : */

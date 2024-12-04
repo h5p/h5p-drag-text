@@ -215,7 +215,6 @@
   z-index: 5;
   box-shadow: 0 0 0.5em 0 var(--h5p-theme-main-cta-base);
   border-color: var(--h5p-theme-main-cta-base);
-  background-color:  color-mix(in srgb, var(--h5p-theme-main-cta-light), transparent 70%); 
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {

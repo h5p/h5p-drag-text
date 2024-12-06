@@ -78,7 +78,7 @@
   align-content: center;
   height: calc(var(--h5p-theme-spacing-l) * 0.8 + 4px);
   padding-right: calc(var(--h5p-theme-spacing-xxs)/5);
-  margin: 0 var(--h5p-theme-spacing-xxs) 4px;
+  margin-bottom: 4px;
   vertical-align: middle;
 }
 .h5p-drag-text [aria-dropeffect] {
@@ -92,7 +92,6 @@
   border-radius: var(--h5p-theme-border-radius-medium);
   vertical-align: middle;
   text-align: center;
-  margin: 0 var(--h5p-theme-spacing-xxs);
   transition: all 0.1s linear 0s;
 }
 
@@ -259,7 +258,8 @@
   line-height: 1;
   display: inline-block;
   height: fit-content;
-  margin: -2px 0;
+  margin: calc(-1* var(--h5p-theme-spacing-xxs)/2)  0;
+  margin-left: 4px;
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {

@@ -244,6 +244,7 @@
   position: relative;
   display: inline;
   line-height: var(--h5p-theme-spacing-s);
+  line-break: auto;
 }
 
 .h5p-drag-text .h5p-drag-show-solution-container.incorrect {
@@ -254,6 +255,11 @@
   padding: calc(var(--h5p-theme-spacing-xs) / 2);
   border-radius: var(--h5p-theme-border-radius-medium);
   margin-left: var(--h5p-theme-spacing-xxs);
+  padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xs);
+  line-height: 1;
+  display: inline-block;
+  height: fit-content;
+  margin: -2px 0;
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {

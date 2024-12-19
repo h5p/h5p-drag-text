@@ -17,19 +17,7 @@
 }
 
 .h5p-drag-text button.h5p-drag-button:before {
-  font-family: 'H5PFontAwesome4';
   padding-right: var(--h5p-theme-spacing-xxs);
-}
-
-/* Button icons */
-.h5p-drag-text .h5p-drag-check-button:before {
-  content: "\f058";
-}
-.h5p-drag-text .h5p-drag-retry-button:before {
-  content: "\f021";
-}
-.h5p-drag-text .h5p-drag-show-solution-button:before {
-  content: "\f06e";
 }
 
 /* Buttons starting state: */
@@ -43,12 +31,10 @@
   display: none;
 }
 
-
-
 /* Tooltip styling */
 .h5p-drag-text .joubel-tip-container {
-  top: -1.1rem;
-  right: -0.6rem;
+  top: calc(var(--h5p-theme-spacing-s)*-1.6);
+  right: calc(var(--h5p-theme-spacing-s)*-0.6);
   position: absolute;
   z-index: 4;
   font-size: var(--h5p-theme-font-size-m);
@@ -93,6 +79,14 @@
   vertical-align: middle;
   text-align: center;
   transition: all 0.1s linear 0s;
+}
+
+.h5p-drag-text [aria-grabbed]:focus,
+.h5p-drag-text [aria-dropeffect]:focus{
+    z-index: 3000;
+    outline: 2px ridge var(--h5p-theme-main-cta-base);
+    border-radius: 4px;
+    outline-offset: 2px;
 }
 
 .h5p-drag-text [aria-dropeffect].h5p-drag-correct-feedback {
@@ -206,7 +200,6 @@
   margin: 0 -2px;
   white-space: nowrap;
   border: 2px solid var(--h5p-theme-alternative-base);
- /* border-bottom-color:  var(--h5p-theme-alternative-darker);*/
   border-color: var(--h5p-theme-alternative-darker);
 }
 

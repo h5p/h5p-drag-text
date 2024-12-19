@@ -62,7 +62,7 @@ H5P.TextDroppable = (function ($) {
 
     self.$showSolution = $('<div/>', {
       'class': SHOW_SOLUTION_CONTAINER
-    }).appendTo(self.$dropzoneContainer).hide();
+    }).hide();
   }
 
   Droppable.prototype.removeTipTabIndexIfNoFocus = function () {
@@ -113,7 +113,9 @@ H5P.TextDroppable = (function ($) {
    */
   Droppable.prototype.appendDroppableTo = function ($container) {
     this.$dropzoneContainer.appendTo($container);
+    this.$showSolution.appendTo($container);
   };
+
   /**
    * Appends the draggable contained within this dropzone to the argument.
    * Returns the Draggable that was reverted, if any exists

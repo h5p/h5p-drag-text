@@ -33,7 +33,7 @@
 
 /* Tooltip styling */
 .h5p-drag-text .joubel-tip-container {
-  top: calc(var(--h5p-theme-spacing-s)*-1.6);
+  top: calc(var(--h5p-theme-spacing-s)*-1.2);
   right: calc(var(--h5p-theme-spacing-s)*-0.6);
   position: absolute;
   z-index: 4;

@@ -177,7 +177,7 @@
 
 .h5p-drag-text [aria-grabbed='true'],
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled):hover,
-.h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled).hover
+.h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled).hover,
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled):hover {
   color: var(--h5p-theme-text-primary);
   background: var(--h5p-theme-alternative-dark);

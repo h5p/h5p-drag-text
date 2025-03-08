@@ -84,7 +84,11 @@ H5P.TextDraggable = (function ($) {
    * @param {jQuery} $container Container the draggable will append to.
    */
   Draggable.prototype.appendDraggableTo = function ($container) {
+    const canHasFocus = this.$draggable[0] === document.activeElement;
     this.$draggable.detach().css({left: 0, top: 0}).appendTo($container);
+    if (canHasFocus) {
+      this.$draggable.focus();
+    }
   };
 
   /**

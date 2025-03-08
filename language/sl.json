@@ -26,9 +26,9 @@
       }
     },
     {
-      "label": "Distractors",
-      "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "label": "Zavajajoči odgovori",
+      "placeholder": "*Reykjavík* *Ljubljana*",
+      "description": "Dodatne besede/besedne zveze, ki se pokažejo ob pravilnih odgovorih in otežijo nalogo. Zapišejo se po enakem principu, in sicer med dve zvezdici (*)."
     },
     {
       "label": "Splošna povratna informacija",
@@ -62,8 +62,8 @@
       "default": "Preveri"
     },
     {
-      "label": "Text for \"Submit\" button",
-      "default": "Submit"
+      "label": "Besedilo za gumb \"Oddaj\"",
+      "default": "Oddaj"
     },
     {
       "label": "Besedilo za gumb \"Poskusi ponovno\"",
@@ -153,16 +153,16 @@
       "default": "Napredek :num od :total"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Preveri\"",
+      "default": "Preveri pravilnost odgovorov. Odgovori bodo označeni kot pravilni, napačni ali brez odgovorov."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Prikaži rešitev\"",
+      "default": "Prikaži rešitev. Pravilni odgovori bodo označeni."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Poskusi ponovno\"",
+      "default": "Poskusi ponovno. Ponastavi vse odzive in znova zažene nalogo."
     }
   ]
 }

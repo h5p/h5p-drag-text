@@ -417,7 +417,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
 
       // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
+      const canHasFocus = document.activeElement;
       self.$wordContainer.detach().appendTo(self.$taskContainer);
+      if (canHasFocus !== document.activeElement) {
+        // Moving changes focus, set it back
+        canHasFocus.focus();
+      }
 
       // Set all draggables to be blocks
       self.draggables.forEach(function (draggable) {
@@ -489,28 +494,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     //Retry button
     self.addButton('try-again', self.params.tryAgain, function () {
-      // Reset and shuffle draggables if Question is answered
-      if (self.answered) {
-        // move draggables to original container
-        self.resetDraggables();
-      }
-      self.answered = false;
-
-      self.hideEvaluation();
-      self.hideExplanation();
-
-      self.hideButton('try-again');
-      self.hideButton('show-solution');
-
-      if (self.params.behaviour.instantFeedback) {
-        self.enableAllDropzonesAndDraggables();
-      } else {
-        self.showButton('check-answer');
-        self.enableDraggables();
-      }
-      self.hideAllSolutions();
-
-      self.stopWatch.reset();
+      self.resetTask();
       self.read(self.params.taskDescription);
     }, self.initShowTryAgainButton || false, {
       'aria-label': self.params.a11yRetry,
@@ -1067,9 +1051,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
 
     this.trigger('resize');
-
-    // Resize seems to set focus to the iframe
-    droppable.getElement().focus();
   };
 
   /**
@@ -1321,6 +1302,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.showButton('check-answer');
     }
     self.hideAllSolutions();
+    self.stopWatch.reset();
     this.trigger('resize');
   };
 
@@ -1460,8 +1442,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     definition.interactionType = 'fill-in';
     definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
 
-    var question = this.textFieldHtml;
-    var taskDescription = this.params.taskDescription + '<br/>';
+    // The below replaceAll makes sure we don't get any unwanted XAPI_PLACEHOLDERs in the questions and description
+    var question = this.textFieldHtml.replaceAll(/_{10,}/gi, '_________');
+    var taskDescription = this.params.taskDescription.replaceAll(/_{10,}/gi, '_________') + '<br/>';
 
     // Create the description
     definition.description = {

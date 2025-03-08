@@ -4,7 +4,6 @@
   "majorVersion": 1,
   "minorVersion": 12,
   "patchVersion": 0,
-
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 19

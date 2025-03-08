@@ -21,8 +21,8 @@
       "label": "Text",
       "placeholder": "*Oslo* je hlavním městem Norska, *Stockholm* je hlavním městem Švédska a *Copenhagen* je hlavním městem Dánska. Všechna města se nacházejí na poloostrově *Skandinávie: Severní část Evropy* .",
       "important": {
-        "description": "<ul><li>Přetahovatelná slova jsou přidána s hvězdičkou (*) před a za správným slovem/frází.</li><li>Můžete přidat textovou nápovědu pomocí dvojtečky (:) před nápovědou.</li><li>Pro každé prázdné místo je pouze jedno správné slovo.</li><li>Můžete přidat zpětnou vazbu, která se zobrazí po dokončení úlohy. Použijte '\\+' pro správnou a '\\-' pro nesprávnou zpětnou vazbu.</li></ul>",
-        "example": "Obsah H5P lze upravovat pomocí *prohlížeče:Jaký typ programu je Chrome?*. <br /> H5P obsah je *interaktivní\\+Správně! \\-Nesprávně, zkuste znovu!*"
+        "description": "<ul><li>Přetahovatelná slova jsou přidána s hvězdičkou (*) před a za správným slovem/frází.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Můžete přidat textovou nápovědu pomocí dvojtečky (:) před nápovědou.</li><li>Můžete přidat zpětnou vazbu, která se zobrazí po dokončení úlohy. Použijte '\\+' pro správnou a '\\-' pro nesprávnou zpětnou vazbu.</li></ul>",
+        "example": "Obsah H5P lze upravovat pomocí *prohlížeče:Jaký typ programu je Chrome?*. <br /> H5P obsah je *interaktivní/awesome\\+Správně! \\-Nesprávně, zkuste znovu!*"
       }
     },
     {

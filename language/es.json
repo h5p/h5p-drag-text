@@ -21,8 +21,8 @@
       "label": "Texto",
       "placeholder": "*Oslo* es la capital de Noruega, *Estocolmo* es la capital de Suecia y *Copenhague* es la capital de Dinamarca. Todas las ciudades están ubicadas en la península *Escandinava:Parte norte de Europa*.",
       "important": {
-        "description": "<ul><li>Las palabras que se podrán arrastrar se agregan con un asterisco (*) al frente y detrás de la palabra / frase correcta.</li><li>Puedes agregar una sugerencia textual, usando dos puntos (:) antes de la sugerencia.</li><li>Por cada hueco vacío solo hay una palabra correcta.</li><li>Puedes agregar retroalimentación que se mostrarán cuando se complete la tarea. Utiliza '\\+' para retroalimentación en caso de respuesta correcta '\\-' para retroalimentación para las incorrectas.</li></ul>",
-        "example": "El contenido de H5P se puede editar utilizando un *navegador:¿Qué tipo de programa es Chrome?*. <br /> El contenido de H5P es *interactivo\\+Correcto! \\-Incorrecto, prueba de nuevo!*"
+        "description": "<ul><li>Las palabras que se podrán arrastrar se agregan con un asterisco (*) al frente y detrás de la palabra / frase correcta.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Puedes agregar una sugerencia textual, usando dos puntos (:) antes de la sugerencia.</li><li>Puedes agregar retroalimentación que se mostrarán cuando se complete la tarea. Utiliza '\\+' para retroalimentación en caso de respuesta correcta '\\-' para retroalimentación para las incorrectas.</li></ul>",
+        "example": "El contenido de H5P se puede editar utilizando un *navegador:¿Qué tipo de programa es Chrome?*. <br /> El contenido de H5P es *interactivo/awesome\\+Correcto! \\-Incorrecto, prueba de nuevo!*"
       }
     },
     {

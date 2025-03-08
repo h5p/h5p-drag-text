@@ -21,8 +21,8 @@
       "label": "Besedilo naloge",
       "placeholder": "Oslo je glavno mesto *Norveške*. Helsinki so glavno mesto *Finske*.",
       "important": {
-        "description": "<ul><li>Besede za premikanje se označi z zvezdico (*) pred in za pravilno besedo/besedno zvezo.</li><li>Namig za udeležence se od odgovora loči z dvopičjem (:).</li><li>Za vsak prazen okvir je na razpolago le ena pravilna beseda.</li><li>Možno je dodati tudi povratno informacijo, ki se pokaže po zaključku naloge. Dodan zapis '\\+' pomeni pravilen, '\\-' pa nepravilen odgovor.</li></ul>",
-        "example": "Za brskanje po spletu lahko uporabimo *spletni brskalnik:Takšna programa sta na primer Chrome in Edge.*. Google je *spletni iskalnik\\+Pravilno!\\-Nepravilno. Poskusi ponovno.*."
+        "description": "<ul><li>Besede za premikanje se označi z zvezdico (*) pred in za pravilno besedo/besedno zvezo.</li><li>Alternative answers are separated with a forward slash (/). Use a backward slash in front to write a forward slash (\\/).</li><li>Namig za udeležence se od odgovora loči z dvopičjem (:).</li><li>Možno je dodati tudi povratno informacijo, ki se pokaže po zaključku naloge. Dodan zapis '\\+' pomeni pravilen, '\\-' pa nepravilen odgovor.</li></ul>",
+        "example": "Za brskanje po spletu lahko uporabimo *spletni brskalnik:Takšen program je na primer Chrome*. Vsebina H5P je *interaktivna/awesome\\+Pravilno!\\-Nepravilno. Poskusi ponovno.*"
       }
     },
     {

@@ -8,27 +8,27 @@
           "description": "Valfritt medieelement. Elementet vil bli plassert over spørsmålet."
         },
         {
-          "label": "Deaktiver zoomingfunksjon."
+          "label": "Deaktiver zoomfunksjon."
         }
       ]
     },
     {
       "label": "Oppgåvebeskriving",
       "description": "Forklar korleis brukaren skal løyse oppgåva.",
-      "default": "Dra orda inn i dei rette boksane"
+      "default": "Dra orda inn i dei rette boksane."
     },
     {
       "label": "Tekst",
-      "placeholder": "*Oslo* er hovudstaden i Noreg, *Stockholm* er hovudstaden i Sverige og *København* er hovudstaden i Danmark. Alle byane er lokaliserte i *Skandinavia:den nordlege delen av Europa*.",
+      "placeholder": "*Oslo* er hovudstaden i Noreg, *Stockholm* er hovudstaden i Sverige, og *København* er hovudstaden i Danmark. Alle byane er lokaliserte i *Skandinavia:den nordlege delen av Europa*.",
       "important": {
-        "description": "<ul><li>Flyttbare ord eller utttrykk markerer du med ein asterisk (*) føre og etter ordet/uttrykket.</li><li>Du kan også legge til eit hint ved å bruke kolon (:). Døme: *Skandinavia:den nordlege delen av Europa*.</li><li>Det finst berre eitt rett svar for kvar tekstboks.</li><li>Du kan legg til ei tilbakemelding som blir vist når oppgåva er fullført. Bruk'\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
-        "example": "H5P-innhald kan redigerast med ein *nettlesar:Kva slags program er Chrome?*.<br />H5P-innhald er *interaktivt\\+Rett!\\-Feil, prøv igjen*"
+        "description": "<ul><li>Flyttbare ord eller utttrykk markerer du med ein asterisk (*) føre og etter ordet/uttrykket.</li><li>Du kan også legge til eit hint ved å bruke kolon (:). Døme: *Skandinavia:den nordlege delen av Europa*.</li><li>Det finst berre eitt rett svar for kvar tekstboks.</li><li>Du kan legge til ei tilbakemelding som blir vist når oppgåva er fullført. Bruk'\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
+        "example": "H5P-innhald kan redigerast med ein *nettlesar:Kva slags program er Chrome?*.<br />H5P-innhald er *interaktivt\\+Rett!\\-Feil, prøv igjen*."
       }
     },
     {
-      "label": "Feil svaralternativ",
+      "label": "Svaralternativ som er feil",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Legg inn ekstra svaralternativ som er feil, for å gjere oppgåva vanskelegare. Bruk stjerne (*) på same måten som for rette svar i teksten."
     },
     {
       "label": "Tilbakemelding på heile oppgåva",
@@ -58,111 +58,111 @@
       ]
     },
     {
-      "label": "Tekst for \"Sjekk\"-knapp",
+      "label": "Namn på \"Sjekk\"-knapp",
       "default": "Sjekk"
     },
     {
-      "label": "Text for \"Submit\" button",
-      "default": "Submit"
+      "label": "Namn på \"Send inn\"-knapp",
+      "default": "Send inn"
     },
     {
-      "label": "Text for \"Retry\" button",
-      "default": "Retry"
+      "label": "Namn på \"Prøv igjen\"-knapp",
+      "default": "Prøv igjen"
     },
     {
-      "label": "Tekst for \"Fasit\" knapp",
-      "default": "Fasit"
+      "label": "Namn på \"Vis svar\"-knapp",
+      "default": "Vis svar"
     },
     {
-      "label": "Nummerert slippsone merkelapp",
-      "default": "Slippsone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "Merkelapp for nummerert sleppsone",
+      "default": "Sleppsone @index.",
+      "description": "Merking for tilgjengelegheit. Skjermlesar les nummeret på sleppsona. Tilgjengeleg variabel: @index"
     },
     {
-      "label": "Tom slippsone merkelapp",
-      "default": "Slippsone @index er tom.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "Merkelapp for tom sleppsone",
+      "default": "Sleppsone @index er tom.",
+      "description": "Merking for tilgjengelegheit. Skjermlesar les at sleppsona er tom."
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Slippsone @index inneheld dragbar @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "Merkelapp: Sleppsona inneheld eit flyttbart element",
+      "default": "Sleppsone @index inneheld flyttbart element @draggable.",
+      "description": "Merking for tilgjengelegheit. Skjermlesar les at sleppsona inneheld eit flyttbart element."
     },
     {
-      "label": "Nummerert merkelapp for element som kan dras",
-      "default": "@index av @count dragbare.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "Merkelapp for flyttbare element",
+      "default": "@index av @count flyttbare element",
+      "description": "Merking for tilgjengelegheit. Skjermlesar les at dette er eit flyttbart element. Tilgjengelege variablar: @index, @count"
     },
     {
-      "label": "Ingen slippsone valg-merkelapp",
+      "label": "Namn på \"Vis tips\"-knapp",
       "default": "Vis tips",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "description": "Merking for tilgjengelegheit. Skjermlesar les dette før sjølve tipset blir lese."
     },
     {
-      "label": "Readspeaker tekst for korrekt svar",
-      "default": "Riktig"
+      "label": "Skjermlesartekst ved rett svar",
+      "default": "Rett"
     },
     {
-      "label": "Readspeaker tekst for feil svar",
+      "label": "Skjermlesartekst ved feil svar",
       "default": "Feil"
     },
     {
-      "label": "Bekreftelsesdialogtittel om at brukeren vil nullstille et flyttbart element",
+      "label": "Tittel på stadfestingsdialog om at brukaren vil nullstille eit flyttbart element",
       "default": "Nullstill flyttbart element"
     },
     {
-      "label": "Bekreftelsesdialogbeskrivelse om at brukeren vil nullstille et flyttbart element",
+      "label": "Tekst i stadfestingsdialogen når brukaren vil nullstille eit flyttbart element",
       "default": "Er du sikker på at du vil nullstille dette elementet?"
     },
     {
-      "label": "Merkelapp for universal utforming, når brukeren indikerer at dragning har startet",
-      "default": "Dragbar er gripe."
+      "label": "Merkelapp for tilgjengelegheit. Skjermlesar seier at flytting har starta.",
+      "default": "Flyttbart element er teke tak i."
     },
     {
-      "label": "LMerkelapp for universal utforming, når brukeren indikerer at dragnig er avbrutt",
-      "default": "Dragning avbrutt."
+      "label": "Merkelapp for tilgjengelegheit. Skjermlesar seier at flytting er avbrote.",
+      "default": "Flyttinga er avbroten."
     },
     {
-      "label": "Merkelapp for korrekt svar",
-      "default": "Svar:"
+      "label": "Merkelapp for tilgjengelegheit. Skjermlesar seier at svaret er rett.",
+      "default": "Rett svar:"
     },
     {
-      "label": "Merkelapp for feil svar",
+      "label": "Tittel på avsnittet som gir brukaren tilbakemelding om rette og feil svar",
       "default": "Tilbakemelding"
     },
     {
-      "label": "Innstillinger for oppgave-åtferd",
-      "description": "Disse instillingene lar deg bestemme hvordan oppgavetypen skal oppføre seg.",
+      "label": "Oppgåveinnstillingar",
+      "description": "Desse innstillingane lar deg bestemme korleis oppgåva skal oppføre seg.",
       "fields": [
         {
           "label": "Aktiver \"Prøv igjen\"-knapp"
         },
         {
-          "label": "Aktiver \"Fasit\" knapp"
+          "label": "Aktiver \"Vis svar\"-knapp"
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "Aktiver \"Sjekk\"-knapp"
         },
         {
-          "label": "Instant feedback"
+          "label": "Tilbakemelding med ein gong"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "Du fekk :num av :total poeng"
+      "label": "Tekstalternativ til resultatlinja, for skjermlesarbrukarar",
+      "default": "Du fekk :num av :total poeng."
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Beskriving av \"Sjekk\"-knapp, for assisterande teknologi",
+      "default": "Sjekk svara. Svara blir merkte som rette, feil eller utan svar."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "Beskriving av \"Vis svar\"-knapp, for assisterande teknologi",
+      "default": "Vis svar. Oppgåva blir merkt med rette svar."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Beskriving av \"Prøv igjen\"-knapp, for assisterande teknologi",
+      "default": "Prøv igjen. Alle svara blir nullstilte, og oppgåva startar på nytt."
     }
   ]
 }

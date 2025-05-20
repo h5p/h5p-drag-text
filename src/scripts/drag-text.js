@@ -70,7 +70,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.$ = $(this);
     this.contentId = contentId;
     this.contentData = contentData;
-    Question.call(this, 'drag-text', true);
+    Question.call(this, 'drag-text', { theme: true });
 
     // Set default behavior.
     this.params = $.extend(true, {

@@ -451,7 +451,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       }, !self.params.behaviour.instantFeedback, {
         'aria-label': self.params.a11yCheck,
       }, {
-        classes: 'h5p-theme-primary-cta h5p-theme-check',
+        icon: 'check',
         contentData: self.contentData,
         textIfSubmitting: self.params.submitAnswer,
       });
@@ -470,7 +470,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       'aria-label': self.params.a11yShowSolution,
     },
     {
-      classes: 'h5p-theme-secondary-cta h5p-theme-show-results',
+      styleType: 'secondary',
+      icon: 'show-results',
     });
 
     //Retry button
@@ -502,7 +503,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       'aria-label': self.params.a11yRetry,
     },
     {
-      classes: 'h5p-theme-secondary-cta h5p-theme-retry',
+      styleType: 'secondary',
+      icon: 'retry',
     });
   };
 

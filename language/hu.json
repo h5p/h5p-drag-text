@@ -5,52 +5,51 @@
       "fields": [
         {
           "label": "Típus",
-          "description": "Lehetséges Média ami a kérdés felett jelenik meg."
+          "description": "A kérdés felett megjelenítendő média tartalom (opcionális)."
         },
         {
-          "label": "Kép ráközelítés tiltása"
+          "label": "Képnagyítás tiltása"
         }
       ]
     },
     {
-      "label": "Task description",
-      "description": "Describe how the user should solve the task.",
-      "default": "Drag the words into the correct boxes"
+      "label": "Feladat leírása",
+      "default": "Írja be a hiányzó szavakat",
+      "description": "útmutató a felhasználónak, miként oldja meg ezt a feladatot."
     },
     {
-      "label": "Text",
-      "placeholder": "*Oslo* is the capital of Norway, *Stockholm* is the capital of Sweden and *Copenhagen* is the capital of Denmark. All cities are located in the *Scandinavian:Northern Part of Europe* peninsula.",
-      "important": {
-        "description": "<ul><li>Droppable words are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>For every empty spot there is only one correct word.</li><li>You may add feedback to be displayed when a task is completed. Use '\\+' for correct and '\\-' for incorrect feedback.</li></ul>",
-        "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
+      "label": "Szövegblokkok",
+      "entity": "szövegblokk",
+      "field": {
+        "label": "Szöveg",
+        "placeholder": "Oslo *Norvégia* fővárosa.",
+        "important": {
+          "description": "<ul><li> A hiányzó szavak megadása csillag karakterrel (*) történik, a helyes szó/kifejezés elején és végén elhelyezve azt.</li><li>Több jó válaszlehetőség megadására az előre perjel (/) használható.</li><li>Szöveges segítség adható a kettőspont segítségével (:), amint a segítség elé kell elhelyezni.</li></ul>",
+          "example": "A H5P tartalom szerkesztéséhez szükséges egy *böngésző/web-böngésző:Valami, amit minden nap használunk*."
+        }
       }
     },
     {
-      "label": "Distractors",
-      "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
-    },
-    {
-      "label": "Overall Feedback",
+      "label": "Globális visszajelzés",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Default"
+              "label": "Alapértelmezett"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "Egyéni visszajelzés megadása tetszőleges eredmény intervallumokra",
+          "description": "Kattintson az \"Új intervallum\" gombra további intervallumok hozzáadásához. Például: 0-20% Rossz eredmény, 21-91% Átlagos eredmény, 91-100% Kimagasló eredmény!",
+          "entity": "intervallum",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Eredmény intervallum"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Visszajelzés az adott eredmény intervallumnál",
+                "placeholder": "Adja meg a visszajelzést"
               }
             ]
           }
@@ -58,111 +57,158 @@
       ]
     },
     {
-      "label": "Text for \"Check\" button",
-      "default": "Check"
+      "label": "\"Megoldások mutatása\" gomb felirata",
+      "default": "Megoldás mutatása"
     },
     {
-      "label": "Text for \"Submit\" button",
-      "default": "Submit"
+      "label": "\"Újra\" gomb felirata",
+      "default": "Újra"
     },
     {
-      "label": "Text for \"Retry\" button",
-      "default": "Retry"
+      "label": "\"Ellenőrzés\" gomb felirata",
+      "default": "Ellenőrzés"
     },
     {
-      "label": "Text for \"Show Solution\" button",
-      "default": "Show solution"
+      "label": "\"Leadás\" gomb felirata",
+      "default": "Leadás"
     },
     {
-      "label": "Numbered Drop zone label",
-      "default": "Drop Zone @index.",
-      "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      "label": "\"Nincs kitöltve\" üzenet szövege",
+      "default": "A megoldás megtekintéséhez írjon minden hiányzó részhez"
     },
     {
-      "label": "Empty Drop Zone label",
-      "default": "Drop Zone @index is empty.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      "label": "\"A(z) ':ans' válasz helyes\" üzenet szövege",
+      "default": "A(z) ':ans' válasz helyes"
     },
     {
-      "label": "Contains Drop Zone label",
-      "default": "Drop Zone @index contains draggable @draggable.",
-      "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      "label": "\"A(z) ':ans' válasz helytelen\" üzenet szövege",
+      "default": "A(z) ':ans' válasz helytelen"
     },
     {
-      "label": "Draggable elements label",
-      "default": "@index of @count draggables.",
-      "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      "label": "\"Helyes megoldás\" üzenet szövege",
+      "default": "Helyes megoldás"
     },
     {
-      "label": "Label for show tip button",
-      "default": "Show tip",
-      "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      "label": "\"Helytelen megoldás\" üzenet szövege",
+      "default": "Helytelen megoldás"
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct!"
+      "label": "Megoldás címkéje támogató-segítő eszközöknek",
+      "default": "Helyes válasz:"
     },
     {
-      "label": "Readspeaker text for incorrect answer",
-      "default": "Incorrect!"
+      "label": "Válaszmező címkéje támogató-segítő eszközöknek",
+      "description": "Hasznája a @num és @total kifejezéseket az adott válaszmező és az összes válaszmező számának megadásához",
+      "default": "Válaszmező @num a @total mezőből"
     },
     {
-      "label": "Confirmation dialog title that user wants to reset a droppable",
-      "default": "Reset drop"
+      "label": "A támogató-segítő eszközöknek szóló címke, mely jelzi, hogy az adott mezőhöz segítség tartozik",
+      "default": "Segítség elérhető"
     },
     {
-      "label": "Confirmation dialog description that user wants to reset a droppable",
-      "default": "Are you sure you want to reset this drop zone?"
+      "label": "Segítség ikon felirata",
+      "default": "Segítség"
     },
     {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
-      "default": "Draggable is grabbed."
-    },
-    {
-      "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
-      "default": "Cancelled dragging."
-    },
-    {
-      "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
-      "default": "Correct answer:"
-    },
-    {
-      "label": "Header for panel containing feedback for correct/incorrect answers",
-      "default": "Feedback"
-    },
-    {
-      "label": "Behavioural settings.",
-      "description": "These options will let you control how the task behaves.",
+      "label": "Viselkedési beállítások.",
+      "description": "Ezekkel a beállításokkal felülírhatók a viselkedési beállítások.",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "\"Újra\" engedélyezve"
         },
         {
-          "label": "Enable \"Show Solution\" button"
+          "label": "\"Megoldás mutatása\" gomb engedélyezve"
         },
         {
-          "label": "Enable \"Check\" button"
+          "label": "\"Ellenőrzés\" gomb engedélyezve"
         },
         {
-          "label": "Instant feedback"
+          "label": "Automatikusan ellenőrizze az beírt válaszokat"
+        },
+        {
+          "label": "Kis/nagybetű érzékeny",
+          "description": "Elvárja, hogy a felhasználó válasza teljesen megegyezzen a helyes válasszal."
+        },
+        {
+          "label": "Minden mező kitöltése kötelező, mielőtt a megoldást megtekinthető"
+        },
+        {
+          "label": "Válaszmezők elhelyezése külön sorokban"
+        },
+        {
+          "label": "Megerősítő felület megjelenítése az \"Ellenőrzés\" gombnál",
+          "description": "Ez a beállítás nem használható az \"Automatikusan ellenőrizze az beírt válaszokat\" opcióval együtt"
+        },
+        {
+          "label": "Megerősítő felület megjelenítése az \"Újra\" gombnál"
+        },
+        {
+          "label": "Kisebb helyesírási hibák elfogadása",
+          "description": "Bekapcsolása esetén az apróbb elírásokat tartalmazó válaszok is helyesnek minősülnek (3-9 karakternél: 1 elírás, 9-nél több karakternél: 2 elírás)"
         }
       ]
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "default": "You got :num out of :total points"
+      "label": "Ellenőrzés megerősítő felület",
+      "fields": [
+        {
+          "label": "Fejléc szövege",
+          "default": "Kész?"
+        },
+        {
+          "label": "Üzenet szövege",
+          "default": "Biztosan be akarja fejezni?"
+        },
+        {
+          "label": "Mégse gomb felirata",
+          "default": "Mégse"
+        },
+        {
+          "label": "Megerősítés gomb felirata",
+          "default": "Befejezés"
+        }
+      ]
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Újrapróbálkozás megerősítő felület",
+      "fields": [
+        {
+          "label": "Fejléc szövege",
+          "default": "Újrakezdi?"
+        },
+        {
+          "label": "Üzenet szövege",
+          "default": "Biztosan újra akarja kezdeni?"
+        },
+        {
+          "label": "Mégse gomb felirata",
+          "default": "Mégse"
+        },
+        {
+          "label": "Megerősítés gomb felirata",
+          "default": "Újrakezdés"
+        }
+      ]
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "A pontszámjelző sáv szöveges megjelenítése a szövegfelolvasót használók számára",
+      "default": "Elért pontszám: :num / :total"
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Az \"Ellenőrzés\" gomb leírása támogató-segítő eszközöknek",
+      "default": "Válaszok ellenőzése. A válaszokat helyes, helytelen vagy nem megválaszolt formában jelöli meg."
+    },
+    {
+      "label": "A \"Megoldás mutatása\" gomb leírása támogató-segítő eszközöknek",
+      "default": "Megoldás mutatása. Megmutatja a feldat helyes megoldását."
+    },
+    {
+      "label": "Az \"Újra\" gomb leírása támogató-segítő eszközöknek",
+      "default": "Feladat újrapróbálása. Minden válasz visszaállítása és a feladat újbóli megoldása."
+    },
+    {
+      "label": "A feladat elkézdésének leírása támogató-segítő eszközöknek",
+      "default": "Ellenőrző mód"
     }
   ]
 }

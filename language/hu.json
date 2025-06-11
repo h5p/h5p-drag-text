@@ -5,7 +5,7 @@
       "fields": [
         {
           "label": "Típus",
-          "description": "A kérdés felett megjelenítendő média tartalom (opcionális)."
+          "description": "Opcionális média, ami a kérdés felett jelenik meg."
         },
         {
           "label": "Képnagyítás tiltása"
@@ -14,20 +14,21 @@
     },
     {
       "label": "Feladat leírása",
-      "default": "Írja be a hiányzó szavakat",
-      "description": "útmutató a felhasználónak, miként oldja meg ezt a feladatot."
+      "description": "Ismertesse, hogy a felhasználónak hogyan kell megoldania a feladatot!",
+      "default": "Húzza a szavakat a megfelelő mezőkbe"
     },
     {
-      "label": "Szövegblokkok",
-      "entity": "szövegblokk",
-      "field": {
-        "label": "Szöveg",
-        "placeholder": "Oslo *Norvégia* fővárosa.",
-        "important": {
-          "description": "<ul><li> A hiányzó szavak megadása csillag karakterrel (*) történik, a helyes szó/kifejezés elején és végén elhelyezve azt.</li><li>Több jó válaszlehetőség megadására az előre perjel (/) használható.</li><li>Szöveges segítség adható a kettőspont segítségével (:), amint a segítség elé kell elhelyezni.</li></ul>",
-          "example": "A H5P tartalom szerkesztéséhez szükséges egy *böngésző/web-böngésző:Valami, amit minden nap használunk*."
-        }
+      "label": "Szöveg",
+      "placeholder": "*Oslo* Norvégia fővárosa, *Stockholm* Svédország fővárosa és *Koppenhága* Dánia fővárosa. Minden város a *Skandináv:Európa északi része*-félszigeten található.",
+      "important": {
+        "description": "<ul><li>A behúzandó szavak megadása csillag karakterekkel (*) történik, az adott szó/kifejezés elején és végén elhelyezve azokat.</li><li>Szöveges segítség adható a kettőspont segítségével (:), amit a segítség elé kell elhelyezni.</li><li>Minden üres helyhez csak egy helyes szó tartozik.</li><li>Hozzáadhat visszajelzést, amely megjelenik egy feladat befejezésekor. Használja a „\\+” jelzést a helyes és a „\\-” jelzést a helytelen visszajelzéshez.</li></ul>",
+        "example": "A H5P tartalom szerkeszthető *böngészővel:Milyen típusú program a Chrome?*. <br /> A H5P tartalom *interaktív\\+Helyes! \\-Helytelen, próbálja újra!*"
       }
+    },
+    {
+      "label": "Elterelők",
+      "placeholder": "*Reykjavík* *Helsinki*",
+      "description": "Adjon meg további, helytelen megoldásokat, amelyek figyelemelterelőként szolgálhatnak. Használja ugyanúgy a csillag (*) karaktert, mint a szöveg esetében."
     },
     {
       "label": "Globális visszajelzés",
@@ -57,136 +58,93 @@
       ]
     },
     {
-      "label": "\"Megoldások mutatása\" gomb felirata",
-      "default": "Megoldás mutatása"
-    },
-    {
-      "label": "\"Újra\" gomb felirata",
-      "default": "Újra"
-    },
-    {
-      "label": "\"Ellenőrzés\" gomb felirata",
+      "label": "\"Ellenőrzés\" gomb szövege",
       "default": "Ellenőrzés"
     },
     {
-      "label": "\"Leadás\" gomb felirata",
+      "label": "\"Leadás\" gomb szövege",
       "default": "Leadás"
     },
     {
-      "label": "\"Nincs kitöltve\" üzenet szövege",
-      "default": "A megoldás megtekintéséhez írjon minden hiányzó részhez"
+      "label": "\"Újra\" gomb szövege",
+      "default": "Újra"
     },
     {
-      "label": "\"A(z) ':ans' válasz helyes\" üzenet szövege",
-      "default": "A(z) ':ans' válasz helyes"
+      "label": "\"Megoldás mutatása\" gomb felülírása",
+      "default": "Megoldás mutatása"
     },
     {
-      "label": "\"A(z) ':ans' válasz helytelen\" üzenet szövege",
-      "default": "A(z) ':ans' válasz helytelen"
+      "label": "Számozott behúzási zóna felirata",
+      "default": "Behúzási zóna @index.",
+      "description": "A kisegítő lehetőségekhez használt címke, ahol a szövegfelolvasó felolvassa a behúzási zóna indexét. Rendelkezésre álló változó: @index"
     },
     {
-      "label": "\"Helyes megoldás\" üzenet szövege",
-      "default": "Helyes megoldás"
+      "label": "Üres behúzási zóna felirata",
+      "default": "A behúzási zóna @index üres.",
+      "description": "A támogató-segítő eszközöknél használt címke, ahol a szövegfelolvasó felolvassa, hogy a behúzási zóna üres"
     },
     {
-      "label": "\"Helytelen megoldás\" üzenet szövege",
-      "default": "Helytelen megoldás"
+      "label": "Kitöltött behúzási zóna felirata",
+      "default": "A behúzási zóna @index már tartalmazza a(z) @draggable elemet.",
+      "description": "A támogató-segítő eszközöknél használt címke, ahol a szövegfelolvasó felolvassa, hogy a behúzási zónában már van valami"
     },
     {
-      "label": "Megoldás címkéje támogató-segítő eszközöknek",
+      "label": "Behúzható elemek felirata",
+      "default": "@index behúzható a @count elemből.",
+      "description": "A támogató-segítő eszközöknél használt címke, ahol a szövegfelolvasó felolvassa, hogy ez egy húzható elem. Rendelkezésre álló változók: @index, @count"
+    },
+    {
+      "label": "Segítség megjelenítése gomb felirata",
+      "default": "Segítség mutatása",
+      "description": "A támogató-segítő eszközöknél használt címke, amit a szövegfelolvasó még a segítség felolvasása előtt felolvas"
+    },
+    {
+      "label": "Szövegfelolvasó szövege a helyes válasznál",
+      "default": "Helyes! "
+    },
+    {
+      "label": "Szövegfelolvasó szövege a helytelen válasznál",
+      "default": "Helytelen!"
+    },
+    {
+      "label": "Megerősítés párbeszédablak címe, ha a felhasználó vissza akar állítani egy húzható elemet",
+      "default": "Behúzás visszaállítása"
+    },
+    {
+      "label": "Megerősítés párbeszédablak leírása, ha a felhasználó vissza akar állítani egy húzható elemet",
+      "default": "Biztos, hogy alaphelyzetbe állítja ezt a behúzási zónát?"
+    },
+    {
+      "label": "A támogató-segítő eszközöknél használt címke, ahol a szövegfelolvasó jelzi, hogy a húzás megkezdődött",
+      "default": "A behúzható elem megfogva."
+    },
+    {
+      "label": "A támogató-segítő eszközöknél használt címke, ahol a szövegfelolvasó jelzi, hogy a húzás megszakadt",
+      "default": "A húzás megszakítva."
+    },
+    {
+      "label": "A támogató-segítő eszközöknél használt címke, ahol a szövegfelolvasó jelzi, hogy a szöveg a helyes válasz",
       "default": "Helyes válasz:"
     },
     {
-      "label": "Válaszmező címkéje támogató-segítő eszközöknek",
-      "description": "Hasznája a @num és @total kifejezéseket az adott válaszmező és az összes válaszmező számának megadásához",
-      "default": "Válaszmező @num a @total mezőből"
+      "label": "A helyes/helytelen válaszokkal kapcsolatos visszajelzéseket tartalmazó panel fejléce",
+      "default": "Visszajelzés"
     },
     {
-      "label": "A támogató-segítő eszközöknek szóló címke, mely jelzi, hogy az adott mezőhöz segítség tartozik",
-      "default": "Segítség elérhető"
-    },
-    {
-      "label": "Segítség ikon felirata",
-      "default": "Segítség"
-    },
-    {
-      "label": "Viselkedési beállítások.",
-      "description": "Ezekkel a beállításokkal felülírhatók a viselkedési beállítások.",
+      "label": "Viselkedési beállítások",
+      "description": "Ezekkel a beállításokkal szabályozható a feladat viselkedése.",
       "fields": [
         {
           "label": "\"Újra\" engedélyezve"
         },
         {
-          "label": "\"Megoldás mutatása\" gomb engedélyezve"
+          "label": "\"Megoldás mutatása\" gomb felülírása"
         },
         {
-          "label": "\"Ellenőrzés\" gomb engedélyezve"
+          "label": "\"Ellenőrzés\" engedélyezve"
         },
         {
-          "label": "Automatikusan ellenőrizze az beírt válaszokat"
-        },
-        {
-          "label": "Kis/nagybetű érzékeny",
-          "description": "Elvárja, hogy a felhasználó válasza teljesen megegyezzen a helyes válasszal."
-        },
-        {
-          "label": "Minden mező kitöltése kötelező, mielőtt a megoldást megtekinthető"
-        },
-        {
-          "label": "Válaszmezők elhelyezése külön sorokban"
-        },
-        {
-          "label": "Megerősítő felület megjelenítése az \"Ellenőrzés\" gombnál",
-          "description": "Ez a beállítás nem használható az \"Automatikusan ellenőrizze az beírt válaszokat\" opcióval együtt"
-        },
-        {
-          "label": "Megerősítő felület megjelenítése az \"Újra\" gombnál"
-        },
-        {
-          "label": "Kisebb helyesírási hibák elfogadása",
-          "description": "Bekapcsolása esetén az apróbb elírásokat tartalmazó válaszok is helyesnek minősülnek (3-9 karakternél: 1 elírás, 9-nél több karakternél: 2 elírás)"
-        }
-      ]
-    },
-    {
-      "label": "Ellenőrzés megerősítő felület",
-      "fields": [
-        {
-          "label": "Fejléc szövege",
-          "default": "Kész?"
-        },
-        {
-          "label": "Üzenet szövege",
-          "default": "Biztosan be akarja fejezni?"
-        },
-        {
-          "label": "Mégse gomb felirata",
-          "default": "Mégse"
-        },
-        {
-          "label": "Megerősítés gomb felirata",
-          "default": "Befejezés"
-        }
-      ]
-    },
-    {
-      "label": "Újrapróbálkozás megerősítő felület",
-      "fields": [
-        {
-          "label": "Fejléc szövege",
-          "default": "Újrakezdi?"
-        },
-        {
-          "label": "Üzenet szövege",
-          "default": "Biztosan újra akarja kezdeni?"
-        },
-        {
-          "label": "Mégse gomb felirata",
-          "default": "Mégse"
-        },
-        {
-          "label": "Megerősítés gomb felirata",
-          "default": "Újrakezdés"
+          "label": "Azonnali visszajelzés"
         }
       ]
     },
@@ -195,20 +153,16 @@
       "default": "Elért pontszám: :num / :total"
     },
     {
-      "label": "Az \"Ellenőrzés\" gomb leírása támogató-segítő eszközöknek",
-      "default": "Válaszok ellenőzése. A válaszokat helyes, helytelen vagy nem megválaszolt formában jelöli meg."
+      "label": "\"Ellenőrzés\" gomb felirata támogató-segítő eszközöknek",
+      "default": "Válaszok ellenőrzése. A válaszokat helyesnek, helytelennek vagy megválaszolatlannak jelöli."
     },
     {
-      "label": "A \"Megoldás mutatása\" gomb leírása támogató-segítő eszközöknek",
-      "default": "Megoldás mutatása. Megmutatja a feldat helyes megoldását."
+      "label": "\"Megoldás mutatása\" gomb leírása támogató-segítő eszközöknek",
+      "default": "Megoldás mutatása. A feladat helyes megoldásának mutatása."
     },
     {
-      "label": "Az \"Újra\" gomb leírása támogató-segítő eszközöknek",
-      "default": "Feladat újrapróbálása. Minden válasz visszaállítása és a feladat újbóli megoldása."
-    },
-    {
-      "label": "A feladat elkézdésének leírása támogató-segítő eszközöknek",
-      "default": "Ellenőrző mód"
+      "label": "\"Újra\" gomb címkéje támogató-segítő eszközöknek",
+      "default": "Feladat újrapróbálása. Minden válasz visszaállítása és a feladat újrakezdése."
     }
   ]
 }

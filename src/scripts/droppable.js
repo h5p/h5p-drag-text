@@ -39,41 +39,25 @@ H5P.TextDroppable = (function ($) {
 
     if (self.tip) {
       self.$tip = H5P.JoubelUI.createTip(self.tip, {
-        tipLabel: self.params.tipLabel,
-        tabcontrol: true
+        tipLabel: self.params.tipLabel
       });
       self.$dropzoneContainer.append(self.$tip);
-
-      // toggle tabindex on tip, based on dropzone focus
-      self.$dropzone.focus(() => self.$tip.attr('tabindex', '0'));
-      self.$dropzone.blur(() => self.removeTipTabIndexIfNoFocus());
-      self.$tip.blur(() => self.removeTipTabIndexIfNoFocus());
     }
 
     self.$incorrectText = $('<div/>', {
       html: self.params.incorrectText + " " + self.params.correctAnswer,
-      'class': 'correct-answer'
+      'class': 'hidden-but-read'
     });
 
     self.$correctText = $('<div/>', {
       html: self.params.correctText,
-      'class': 'correct-answer'
+      'class': 'hidden-but-read'
     });
 
     self.$showSolution = $('<div/>', {
       'class': SHOW_SOLUTION_CONTAINER
-    }).appendTo(self.$dropzoneContainer).hide();
+    }).hide();
   }
-
-  Droppable.prototype.removeTipTabIndexIfNoFocus = function () {
-    const self = this;
-
-    setTimeout(() => {
-      if(!self.$dropzone.is(':focus') && !self.$tip.is(':focus')){
-        self.$tip.attr('tabindex', '-1');
-      }
-    }, 0);
-  };
 
   /**
    * Displays the solution next to the drop box if it is not correct.
@@ -113,7 +97,9 @@ H5P.TextDroppable = (function ($) {
    */
   Droppable.prototype.appendDroppableTo = function ($container) {
     this.$dropzoneContainer.appendTo($container);
+    this.$showSolution.appendTo($container);
   };
+
   /**
    * Appends the draggable contained within this dropzone to the argument.
    * Returns the Draggable that was reverted, if any exists
@@ -245,6 +231,15 @@ H5P.TextDroppable = (function ($) {
    */
   Droppable.prototype.enableDropzone = function () {
     this.$dropzone.droppable({ disabled: false});
+  };
+
+  /**
+   * Toggles the hovered class on the droppable.
+   * @param {boolean} hovered Truth to make droppable look hovered, falsy for unhovered.
+   */
+  Droppable.prototype.toggleHovered = function (hovered) {
+    this.containedDraggable?.$draggable?.get(0).classList.toggle('hover', hovered);
+    this.$dropzone.get(0).classList.toggle('ui-droppable-hover', hovered);
   };
 
   /**

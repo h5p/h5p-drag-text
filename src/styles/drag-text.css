@@ -1,35 +1,23 @@
 /* The main containers for the module, specific to this module. */
 .h5p-drag-text {
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--h5p-theme-ui-base);
   overflow: hidden;
 }
-
+.h5p-drag-text .h5p-drag-draggables-container
 .h5p-drag-text .hidden {
   display: none;
 }
 
 .h5p-drag-text .h5p-drag-inner p {
-  font-size: 1em;
+  font-size: var(--h5p-theme-font-size-m);
   font-weight: normal;
   padding: 0;
-  margin: 0 0 1em;
+  margin: 0 0 var(--h5p-theme-spacing-s);
 }
 
 .h5p-drag-text button.h5p-drag-button:before {
-  font-family: 'H5PFontAwesome4';
-  padding-right: 0.5em;
-}
-
-/* Button icons */
-.h5p-drag-text .h5p-drag-check-button:before {
-  content: "\f058";
-}
-.h5p-drag-text .h5p-drag-retry-button:before {
-  content: "\f021";
-}
-.h5p-drag-text .h5p-drag-show-solution-button:before {
-  content: "\f06e";
+  padding-right: var(--h5p-theme-spacing-xxs);
 }
 
 /* Buttons starting state: */
@@ -45,55 +33,71 @@
 
 /* Tooltip styling */
 .h5p-drag-text .joubel-tip-container {
-  top: -1.1em;
-  right: -0.6em;
+  top: calc(var(--h5p-theme-spacing-s)*-1.2);
+  right: calc(var(--h5p-theme-spacing-s)*-0.6);
   position: absolute;
   z-index: 4;
-  font-size: 0.9em;
+  font-size: var(--h5p-theme-font-size-m);
+  line-height: normal;
 }
 
-/* Feedback for dropzones */
-.h5p-drag-text .h5p-drag-correct-feedback:before {
-  position: absolute;
-  right: 0.5em;
-  font-family: 'H5PFontAwesome4';
-  content: "\f00c";
-  color: #255c41;
+/* Feedback icon */
+.h5p-drag-text .h5p-drag-draggable-correct:after {
+  display: inline-grid;
+  align-items: center;
+  font-family: 'h5p-theme';
+  content: "\e903";
+  color: var(--h5p-theme-feedback-correct-main);
 }
 
-.h5p-drag-text .h5p-drag-wrong-feedback:before {
-  position: absolute;
-  right: 0.5em;
-  font-family: 'H5PFontAwesome4';
-  content: "\f00d";
-  color: #b71c1c;
+.h5p-drag-text .h5p-drag-draggable-wrong:after {
+  display: inline-grid;
+  align-items: center;
+  font-family: 'h5p-theme';
+  content: "\e902";
+  color: var(--h5p-theme-feedback-incorrect-main);
 }
 
 /* Dropzone styling */
 .h5p-drag-text .h5p-drag-dropzone-container {
   position: relative;
-  display: inline;
-  padding-right: 0.1em;
+  display: inline-flex;
+  align-content: center;
+  height: calc(var(--h5p-theme-spacing-l) * 0.8 + 4px);
+  padding-right: calc(var(--h5p-theme-spacing-xxs)/5);
+  margin-bottom: 3px;
+  vertical-align: middle;
 }
 .h5p-drag-text [aria-dropeffect] {
   position:relative;
-  top: -0.1em;
-  width: 10em;
-  height: 1.25em;
-  background-color: #cee0f4;
-  border-radius: 0.25em;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  width: 10rem;
+  height: calc(100% - 4px);
+  border: solid 2px var(--h5p-theme-alternative-dark);
+  background-color: var(--h5p-theme-alternative-dark);
+  border-radius: var(--h5p-theme-border-radius-medium);
   vertical-align: middle;
   text-align: center;
-  padding: 0.1em 1.65em 0.1em 0;
+  transition: all 0.1s linear 0s;
+}
+
+.h5p-drag-text [aria-grabbed]:focus,
+.h5p-drag-text [aria-dropeffect]:focus {
+  outline: 2px ridge var(--h5p-theme-main-cta-base);
+  border-radius: 4px;
+  outline-offset: 2px;
 }
 
 .h5p-drag-text [aria-dropeffect].h5p-drag-correct-feedback {
-  background: #9dd8bb;
+  background: var(--h5p-theme-feedback-correct-secondary);
+  border-color: var(--h5p-theme-feedback-correct-third);
 }
 
 .h5p-drag-text [aria-dropeffect].h5p-drag-wrong-feedback {
-  background: #f7d0d0;
+  color: var(--h5p-theme-feedback-incorrect-main);
+  background-color: var(--h5p-theme-feedback-incorrect-secondary);
+  border-color: var(--h5p-theme-feedback-incorrect-third);
 }
 
 .h5p-drag-text [aria-dropeffect]:before {
@@ -102,37 +106,69 @@
 
 /* Draggable styling */
 .h5p-drag-text .h5p-drag-draggables-container {
+  display: flex;
   position: relative;
-  padding-top: 0.5em;
-  display: inline-block;
+  padding-top: var(--h5p-theme-spacing-xxs);
+  flex-wrap: wrap;
 }
 
 .h5p-drag-text .h5p-drag-draggables-container.hide {
   display: none;
 }
 
-.h5p-drag-text .ui-droppable-hover {
-  background-color: #80b4ed;
+.h5p-drag-text .ui-droppable-hover, .h5p-drag-task:has(.h5p-drag-draggables-container [aria-grabbed="true"]) .ui-droppable:hover{
+  background-color: color-mix(in srgb, var(--h5p-theme-main-cta-base), transparent 60%);
+  border-style: dashed;
+  border-color: var(--h5p-theme-main-cta-dark);
+  cursor: pointer;
+}
+
+.h5p-drag-text .h5p-hidden-read{
+  opacity: 0;
+}
+
+.h5p-drag-text .ui-draggable-handle:not(.ui-draggable-disabled):before {
+  font-family: 'h5p-theme';
+  content: "\e90f";
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  line-height: calc(var(--h5p-theme-spacing-s) + 2 * var(--h5p-theme-spacing-xxs) + 4px);
+  color: var(--h5p-theme-text-third);
+  background-color: color-mix(in srgb, var(--h5p-theme-alternative-dark), transparent 30%);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--h5p-theme-alternative-dark), transparent 30%);
+  border-radius: var(--h5p-theme-border-radius-small) 0 0 var(--h5p-theme-border-radius-small);
 }
 
 .h5p-drag-text [aria-grabbed] {
-  line-height: 1.25;
-  border-radius: 0.25em;
-  padding: 0.1em 0.6em;
-  margin: 0.3em;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--h5p-theme-spacing-xxs) 0 0;
+  margin: var(--h5p-theme-spacing-xxs);
   vertical-align: top;
   text-align: center;
-  display: inline-block;
-  border: 0.1em solid #c6c6c6;
-  overflow: hidden;
-
-  background: #ddd;
-
-  box-shadow: 0 0 0.3em rgba(0,0,0,0.2);
+  line-height: var(--h5p-theme-spacing-s);
+  font-weight: bold;
+  background: var(--h5p-theme-alternative-base);
+  border-radius: var(--h5p-theme-border-radius-medium);
+  box-shadow: 0px 1px 0em 0px var(--h5p-theme-alternative-dark);
   z-index: 3;
+  border: solid 2px var(--h5p-theme-alternative-base);
+  border-bottom-color: var(--h5p-theme-alternative-dark);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+.h5p-drag-text [aria-grabbed] span {
+  display: inline-block;
+  align-content: center;
+  width: fit-content;
+  margin: auto;
+  color: var(--h5p-theme-text-primary);
+  padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xs);
+  line-height: 1;
+  font-size: var(--h5p-theme-font-size-m);
 }
 
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled) {
@@ -141,84 +177,123 @@
 
 .h5p-drag-text [aria-grabbed='true'],
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled):hover,
+.h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled).hover,
 .h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled):hover {
-  border: 0.1em solid rgb(212,190,216);
-  color: #663366;
-  background: #edd6e9;
+  color: var(--h5p-theme-text-primary);
+  background: var(--h5p-theme-alternative-dark);
+  border-color: var(--h5p-theme-alternative-dark);
+  box-shadow: 0px 3px 0.3em 0px var(--h5p-theme-alternative-darker);
+  border-color: var(--h5p-theme-main-cta-base);
 }
+
+.h5p-drag-text [aria-grabbed='true'].ui-draggable-handle:before,
+.h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled):hover:before,
+.h5p-drag-text [aria-grabbed].h5p-drag-dropped:not(.ui-draggable-disabled).hover:before,
+.h5p-drag-text [aria-grabbed]:not(.ui-draggable-disabled):hover:before {
+  color: var(--h5p-theme-contrast-cta);
+  background-color: var(--h5p-theme-main-cta-base);
+  box-shadow: 0 0 0 2px var(--h5p-theme-main-cta-base);
+}
+
 .h5p-drag-text [aria-grabbed].h5p-drag-dropped {
   width: 100%;
-  margin: -0.1em 0 0 0;
-  padding: 0.1em 0.825em;
+  margin: 0 -2px;
   white-space: nowrap;
-  color: #1a4473;
-  border: 0.1em solid #a9c3d0;
-  background: #cee0f4;
+  border: 2px solid var(--h5p-theme-alternative-base);
+  border-color: var(--h5p-theme-alternative-darker);
 }
 
 .h5p-drag-text [aria-grabbed='true'] {
-  box-shadow: 0 0 0.8em rgba(0,0,0,0.5);
+  z-index: 5;
+  box-shadow: 0 0 0.5em 0 var(--h5p-theme-main-cta-base);
+  border-color: var(--h5p-theme-main-cta-base);
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {
-  padding: 0;
-  color: #255c41;
-  border: none;
   box-shadow: none;
-  line-height: 1.5;
-  background: none;
+  border: solid 2px var(--h5p-theme-feedback-correct-third);
+  color: var(--h5p-theme-feedback-correct-main);
+  background-color: var(--h5p-theme-feedback-correct-secondary);
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong {
-  padding: 0;
-  border: none;
-  color: #b71c1c;
   box-shadow: none;
-  line-height: 1.5;
-  background: none;
+  border: solid 2px var(--h5p-theme-feedback-incorrect-third);
+  background-color: var(--h5p-theme-feedback-incorrect-secondary);
+}
+
+.h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong > span {
+  color: var(--h5p-theme-feedback-incorrect-main) !important;
+}
+
+.h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct > span {
+  color: var(--h5p-theme-feedback-correct-main) !important;
+}
+
+.h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-wrong::before {
+  color: var(--h5p-theme-feedback-incorrect-main);
+  background-color: var(--h5p-theme-feedback-incorrect-third);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--h5p-theme-feedback-incorrect-third), transparent 30%);
 }
 
 /* Show solution container */
 .h5p-drag-text .h5p-drag-show-solution-container {
   position: relative;
   display: inline;
+  line-height: var(--h5p-theme-spacing-s);
+  line-break: auto;
 }
 
 .h5p-drag-text .h5p-drag-show-solution-container.incorrect {
-  color: #255c41;
+  color: var(--h5p-theme-feedback-correct-main);
   font-weight: bold;
-  border: 1px #255c41 dashed;
-  background-color: #d4f6e6;
-  padding: 0.15em;
-  border-radius: 0.25em;
-  margin-left: 0.5em;
+  border: 2px var(--h5p-theme-feedback-correct-main) dashed;
+  background-color: var(--h5p-theme-feedback-correct-secondary);
+  border-radius: var(--h5p-theme-border-radius-medium);
+  margin-left: var(--h5p-theme-spacing-xxs);
+  padding: calc(var(--h5p-theme-spacing-xxs) - 3px) var(--h5p-theme-spacing-xs);
+  line-height: 1;
 }
 
 .h5p-drag-text .h5p-drag-droppable-words {
-  line-height: 1.75;
-}
-
-.h5p-drag-text [aria-grabbed='true'] {
-  z-index: 2;
+  color: var(--h5p-theme-text-secondary);
 }
 
 .h5p-drag-text .h5p-drag-task {
+  display: inline-block;
   width: 100%;
   position: relative;
-  display: inline-block;
+  border-radius: var(--h5p-theme-border-radius-small);
+}
+
+.h5p-drag-text .h5p-drag-task.h5p-drag-wide-screen {
+  display: flex;
+  gap: var(--h5p-theme-spacing-s);
+}
+
+.h5p-drag-text .h5p-drag-droppable-words-container {
+  height: fit-content;
+  width: auto;
+  padding: 0 var(--h5p-theme-spacing-s);
+  background-color: var(--h5p-theme-alternative-light);
+  color: var(--h5p-theme-text-secondary);
+  border: solid 1px var(--h5p-theme-alternative-base);
+  border-radius: var(--h5p-theme-border-radius-medium);
+  font-weight: 500;
 }
 
 /* Wide Screen css : */
-.h5p-drag-text .h5p-drag-wide-screen {
-  float: right;
+.h5p-drag-text .h5p-drag-wide-screen .h5p-drag-droppable-words-container {
+  width: 100%;
+}
+
+.h5p-drag-text .h5p-drag-wide-screen .h5p-drag-draggables-container {
+  flex-direction: column;
+  min-width: fit-content;
   padding-top: 0;
 }
 
-.h5p-drag-text .h5p-drag-draggable-wide-screen {
-  display: block;
-}
-
-.h5p-drag-text [aria-dropeffect].ui-droppable.ui-droppable-disabled.ui-draggable-disabled{
+.h5p-drag-text [aria-dropeffect].ui-droppable.ui-droppable-disabled.ui-draggable-disabled {
   opacity: 1;
 }
 
@@ -227,12 +302,11 @@
   text-overflow: ellipsis;
 }
 
-.h5p-drag-text .correct-answer {
-  width: 1px;
-  height: 1px;
+.h5p-drag-text .hidden-but-read {
+  position: absolute;
+  height: 0;
+  width: 0;
   overflow: hidden;
-  display: inline-block;
-  color: transparent;
 }
 
 .h5p-drag-text .h5p-question-introduction {

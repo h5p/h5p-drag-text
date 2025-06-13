@@ -54,7 +54,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
   //Special Sub-containers:
   var DRAGGABLES_WIDE_SCREEN = 'h5p-drag-wide-screen';
-  var DRAGGABLE_ELEMENT_WIDE_SCREEN = 'h5p-drag-draggable-wide-screen';
 
   /**
    * Initialize module.
@@ -71,7 +70,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.$ = $(this);
     this.contentId = contentId;
     this.contentData = contentData;
-    Question.call(this, 'drag-text');
+    Question.call(this, 'drag-text', { theme: true });
 
     // Set default behavior.
     this.params = $.extend(true, {
@@ -200,6 +199,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     this.on('resize', this.resize, this);
 
     // toggle the draggable container
+    this.toggleDraggablesContainer();
     this.on('revert', this.toggleDraggablesContainer, this);
     this.on('drop', this.toggleDraggablesContainer, this);
 
@@ -413,32 +413,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     //Find ratio of width to em, and make sure it is less than the predefined ratio, make sure widest draggable is less than a third of parent width.
     if ((self.$inner.width() / parseFloat(self.$inner.css("font-size"), 10) > 43) && (self.widestDraggable <= (self.$inner.width() / 3))) {
-      // Adds a class that floats the draggables to the right.
-      self.$draggables.addClass(DRAGGABLES_WIDE_SCREEN);
-
-      // Detach and reappend the wordContainer so it will fill up the remaining space left by draggables.
-      const canHasFocus = document.activeElement;
-      self.$wordContainer.detach().appendTo(self.$taskContainer);
-      if (canHasFocus !== document.activeElement) {
-        // Moving changes focus, set it back
-        canHasFocus.focus();
-      }
-
-      // Set all draggables to be blocks
-      self.draggables.forEach(function (draggable) {
-        draggable.getDraggableElement().addClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
-      });
-
-      // Set margin so the wordContainer does not expand when there are no more draggables left.
-      self.$wordContainer.css({'margin-right': self.$draggables.width()});
+      self.$taskContainer.addClass(DRAGGABLES_WIDE_SCREEN);
     } else {
-      // Remove the specific wide screen settings.
-      self.$wordContainer.css({'margin-right': 0});
-      self.$draggables.removeClass(DRAGGABLES_WIDE_SCREEN);
-      self.$draggables.detach().appendTo(self.$taskContainer);
-      self.draggables.forEach(function (draggable) {
-        draggable.getDraggableElement().removeClass(DRAGGABLE_ELEMENT_WIDE_SCREEN);
-      });
+      self.$taskContainer.removeClass(DRAGGABLES_WIDE_SCREEN);
     }
   };
 
@@ -474,6 +451,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       }, !self.params.behaviour.instantFeedback, {
         'aria-label': self.params.a11yCheck,
       }, {
+        icon: 'check',
         contentData: self.contentData,
         textIfSubmitting: self.params.submitAnswer,
       });
@@ -490,6 +468,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.hideButton('show-solution');
     }, self.initShowShowSolutionButton || false, {
       'aria-label': self.params.a11yShowSolution,
+    },
+    {
+      styleType: 'secondary',
+      icon: 'show-results',
     });
 
     //Retry button
@@ -498,6 +480,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.read(self.params.taskDescription);
     }, self.initShowTryAgainButton || false, {
       'aria-label': self.params.a11yRetry,
+    },
+    {
+      styleType: 'secondary',
+      icon: 'retry',
     });
   };
 
@@ -522,7 +508,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var isSelectedElement = this.selectedElement ===  event.element;
 
     // unselect the selected
-    if(hasSelectedElement){
+    if(hasSelectedElement) {
       this.selectedElement = undefined;
       this.trigger('stop', { element: tmp });
     }
@@ -616,10 +602,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var self = this;
     var dialog = new ConfirmationDialog({
       headerText: self.params.resetDropTitle,
-      dialogText: self.params.resetDropDescription
+      dialogText: self.params.resetDropDescription,
+      theme: true
     });
 
-    dialog.appendTo(document.body);
+    dialog.appendTo(self.$inner.closest('.h5p-drag-text').get(0));
     dialog.on('confirmed', callback, scope || this);
 
     return dialog;
@@ -772,7 +759,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       'class': DRAGGABLES_CONTAINER
     });
 
-    self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
+    self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER + ' h5p-theme-lines'});
 
     // parse text
     parseText(self.textFieldHtml)
@@ -805,8 +792,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
 
     self.shuffleAndAddDraggables(self.$draggables);
+    $('<div>', { class: 'h5p-drag-droppable-words-container' })
+      .append(self.$wordContainer)
+      .appendTo(self.$taskContainer);
     self.$draggables.appendTo(self.$taskContainer);
-    self.$wordContainer.appendTo(self.$taskContainer);
     self.$taskContainer.appendTo($container);
     self.addDropzoneWidth();
   };
@@ -831,7 +820,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     var widestDragagble = 0;
     var fontSize = parseInt(this.$inner.css('font-size'), 10);
     var staticMinimumWidth = 3 * fontSize;
-    var staticPadding = fontSize; // Needed to make room for feedback icons
 
     //Find widest draggable
     this.draggables.forEach(function (draggable) {
@@ -856,11 +844,20 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         width = $tmp.width();
       }
 
-      if (width + staticPadding > widest) {
-        widest = width + staticPadding;
+      // Include the width of the handle if not there
+      if ($draggableElement.hasClass('ui-draggable-disabled')) {
+        width += 16;
+      }
+
+      if (width > widest) {
+        widest = width;
       }
       $tmp.remove();
     });
+
+    // Make room for feedback icons
+    widest += 16;
+
     // Set min size
     if (widest < staticMinimumWidth) {
       widest = staticMinimumWidth;
@@ -920,6 +917,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   };
 
   /**
+   * Get index of currently hovered droppable.
+   * @returns {number} 0-based index of hovered droppable, or -1 if none is hovered.
+   */
+  DragText.prototype.getHoveredDroppableIndex = function() {
+    return this.hoveredDroppables.length > 0 ? this.hoveredDroppables[this.hoveredDroppables.length - 1] : -1;
+  };
+
+  /**
    * Creates a Droppable
    *
    * @param {string} answer
@@ -937,16 +942,46 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       'class': DROPZONE_CONTAINER
     });
 
+    this.hoveredDroppables = [];
+
     var $dropzone = $('<div/>', {
       'aria-dropeffect': 'none',
       'aria-label':  this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + ' ' + this.params.empty.replace('@index', draggableIndex.toString()),
       'tabindex': '-1'
     }).appendTo($dropzoneContainer)
       .droppable({
-        tolerance: 'pointer',
+        tolerance: 'touch',
+        over: () => {
+          this.hoveredDroppables.push(draggableIndex - 1);
+          this.hoveredDroppables.sort((a, b) => b - a);
+
+          const hoveredIndex = this.getHoveredDroppableIndex();
+          self.droppables.forEach((droppable, index) => {
+            droppable.toggleHovered(index === hoveredIndex);
+          });
+        },
+        out: () => {
+          this.hoveredDroppables = this.hoveredDroppables.filter(index => index !== draggableIndex - 1);
+          const hoveredIndex = this.getHoveredDroppableIndex();
+
+          self.droppables.forEach((droppable, index) => {
+            droppable.toggleHovered(index === hoveredIndex);
+          });
+        },
         drop: function (event, ui) {
+          const hoveredIndex = self.getHoveredDroppableIndex();
+          if (hoveredIndex === -1) {
+            return; // Should never happen
+          }
+
           var draggable = self.getDraggableByElement(ui.draggable[0]);
-          var droppable = self.getDroppableByElement(event.target);
+          var droppable = droppable = self.droppables[hoveredIndex];
+
+          // Reset hovered droppables
+          self.hoveredDroppables = [];
+          self.droppables.forEach(droppable => {
+            droppable.toggleHovered(false);
+          });
 
           /**
            * Note that drop will run for all initialized DragText dropzones globally. Even other
@@ -1027,6 +1062,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         element: revertedDraggable.getElement(),
         target: droppable.getElement()
       });
+    }
+    else if (this.selectedElement === draggable.getElement()) {
+      draggable.revertDraggableTo(droppable.$dropzoneContainer);
     }
 
     droppable.setDraggable(draggable);

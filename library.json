@@ -3,7 +3,7 @@
   "description": "Drag and drop pieces of text to create complete sentences.",
   "majorVersion": 1,
   "minorVersion": 10,
-  "patchVersion": 17,
+  "patchVersion": 24,
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 19

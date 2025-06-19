@@ -1,6 +1,6 @@
 var H5PUpgrades = H5PUpgrades || {};
 
-H5PUpgrades['H5P.DragText'] = (function ($) {
+H5PUpgrades['H5P.DragText'] = (function () {
   return {
     1: {
       1: {
@@ -57,4 +57,4 @@ H5PUpgrades['H5P.DragText'] = (function ($) {
       }
     }
   };
-})(H5P.jQuery);
+})();

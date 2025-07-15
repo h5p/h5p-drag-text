@@ -117,7 +117,7 @@
 }
 
 .h5p-drag-text .ui-droppable-hover, .h5p-drag-task:has(.h5p-drag-draggables-container [aria-grabbed="true"]) .ui-droppable:hover{
-  background-color: color-mix(in srgb, var(--h5p-theme-main-cta-base), transparent 60%);
+  background-color: color-mix(in srgb, var(--h5p-theme-contrast-cta-white), transparent 60%);
   border-style: dashed;
   border-color: var(--h5p-theme-main-cta-dark);
   cursor: pointer;
@@ -205,8 +205,8 @@
 
 .h5p-drag-text [aria-grabbed='true'] {
   z-index: 5;
-  box-shadow: 0 0 0.5em 0 var(--h5p-theme-main-cta-base);
-  border-color: var(--h5p-theme-main-cta-base);
+  box-shadow: 0 0 0.5em 0 var(--h5p-theme-contrast-cta-white);
+  border-color: var(--h5p-theme-contrast-cta-white);
 }
 
 .h5p-drag-text .h5p-drag-dropped.h5p-drag-draggable-correct {

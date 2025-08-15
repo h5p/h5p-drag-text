@@ -106,11 +106,23 @@ var createElementWithTextPart = function(text) {
   return  el;
 };
 
+const debounce = function(callback, delay) {
+  let timeout = null;
+
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      callback(...args);
+    }, delay);
+  };
+}
+
 export default {
   curry: curry,
   cleanCharacter: cleanCharacter,
   startsWith: startsWith,
   endsWith: endsWith,
   shuffle: shuffle,
-  createElementWithTextPart: createElementWithTextPart
+  createElementWithTextPart: createElementWithTextPart,
+  debounce
 };

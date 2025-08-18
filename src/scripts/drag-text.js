@@ -116,6 +116,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     // Keeps track of if Question has been answered
     this.answered = false;
 
+    this.debouncedResize = Util.debounce(() => {
+      this.trigger('resize');
+    }, 50);
+
     // Convert line breaks to HTML
     this.textFieldHtml = this.params.textField.replace(/(\r\n|\n|\r)/gm, "<br/>");
     this.distractorsHtml = this.params.distractors.replace(/(\r\n|\n|\r)/gm, "<br/>");
@@ -1015,6 +1019,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           self.drop(draggable, droppable);
         }
       });
+
+    const ro = new ResizeObserver(() => {
+      self.debouncedResize();
+    });
+    ro.observe($dropzone.get(0));
 
     var droppable = new Droppable(answer, tip, correctFeedback, incorrectFeedback, $dropzone, $dropzoneContainer, draggableIndex, self.params);
     droppable.appendDroppableTo(self.$wordContainer);

@@ -41,6 +41,23 @@
   line-height: normal;
 }
 
+/* Feedback icon */
+.h5p-drag-text .h5p-drag-draggable-correct:after {
+  display: inline-grid;
+  align-items: center;
+  font-family: 'h5p-theme';
+  content: "\e903";
+  color: var(--h5p-theme-feedback-correct-main);
+}
+
+.h5p-drag-text .h5p-drag-draggable-wrong:after {
+  display: inline-grid;
+  align-items: center;
+  font-family: 'h5p-theme';
+  content: "\e902";
+  color: var(--h5p-theme-feedback-incorrect-main);
+}
+
 /* Dropzone styling */
 .h5p-drag-text .h5p-drag-dropzone-container {
   position: relative;

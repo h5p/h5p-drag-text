@@ -905,33 +905,26 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   DragText.prototype.createDraggable = function (answer) {
     var self = this;
 
-    //Make the draggable
-    var $draggable = $('<div/>', {
-      html: `<span>${answer}</span>`,
-      role: 'button',
-      'aria-grabbed': 'false',
-      tabindex: '-1'
-    }).draggable({
-      revert: function(isValidDrop) {
+    const draggableElement = H5P.Components.Draggable({
+      label: answer,
+      hasHandle: true,
+      handleRevert: (isValidDrop) => {
         if (!isValidDrop) {
           self.revert(draggable);
         }
         return false;
       },
-      drag: self.propagateDragEvent('drag', self),
-      start: self.propagateDragEvent('start', self),
-      stop: function (event) {
+      handleDragEvent: self.propagateDragEvent('drag', self),
+      handleDragStartEvent: self.propagateDragEvent('start', self),
+      handleDragStopEvent: (event) => {
         self.trigger('stop', {
           element: draggable.getElement(),
           target: event.target
         });
-      },
-      containment: self.$taskContainer
-    }).append($('<span>', {
-      'class': 'h5p-hidden-read'
-    }));
+      }
+    });
 
-    var draggable = new Draggable(answer, $draggable, self.draggables.length);
+    var draggable = new Draggable(answer, $(draggableElement), self.draggables.length);
     draggable.on('addedToZone', function () {
       self.triggerXAPI('interacted');
     });

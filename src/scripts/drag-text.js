@@ -784,7 +784,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       'class': DRAGGABLES_CONTAINER
     });
 
-    self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER + ' h5p-theme-lines'});
+    self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
 
     // parse text
     parseText(self.textFieldHtml)

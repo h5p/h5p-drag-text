@@ -8,8 +8,8 @@ H5P.TextDroppable = (function ($) {
   var WRONG_FEEDBACK = 'h5p-drag-wrong-feedback';
 
   //CSS Draggable feedback:
-  var DRAGGABLE_FEEDBACK_CORRECT = 'h5p-drag-draggable-correct';
-  var DRAGGABLE_FEEDBACK_WRONG = 'h5p-drag-draggable-wrong';
+  var DRAGGABLE_FEEDBACK_CORRECT = 'h5p-draggable-correct';
+  var DRAGGABLE_FEEDBACK_WRONG = 'h5p-draggable-wrong';
 
   /**
    * Private class for keeping track of droppable zones.

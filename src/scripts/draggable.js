@@ -4,7 +4,7 @@ const stopPropagation = event => event.stopPropagation();
 
 H5P.TextDraggable = (function ($) {
   //CSS Draggable feedback:
-  var DRAGGABLE_DROPPED = 'h5p-drag-dropped';
+  var DRAGGABLE_DROPPED = 'h5p-draggable--dropped';
   /**
    * Private class for keeping track of draggable text.
    *

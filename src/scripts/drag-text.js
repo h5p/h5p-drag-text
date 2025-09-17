@@ -475,7 +475,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     },
     {
       styleType: 'secondary',
-      icon: 'show-results',
+      icon: 'show-solutions',
     });
 
     //Retry button

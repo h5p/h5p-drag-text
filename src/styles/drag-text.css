@@ -82,8 +82,8 @@
   transition: all 0.1s linear 0s;
 }
 
-.h5p-drag-text [aria-grabbed]:focus,
-.h5p-drag-text [aria-dropeffect]:focus {
+.h5p-drag-text [aria-grabbed]:focus-visible,
+.h5p-drag-text [aria-dropeffect]:focus-visible {
   outline: 2px ridge var(--h5p-theme-contrast-cta-white);
   border-radius: 4px;
   outline-offset: 2px;

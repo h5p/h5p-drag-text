@@ -9,6 +9,10 @@
   display: none;
 }
 
+.h5p-drag-text .h5p-draggable {
+  margin: var(--h5p-theme-spacing-xxs);
+}
+
 .h5p-drag-text .h5p-drag-inner p {
   font-size: var(--h5p-theme-font-size-m);
   font-weight: normal;

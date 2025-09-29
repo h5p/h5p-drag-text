@@ -9,7 +9,7 @@
   display: none;
 }
 
-.h5p-drag-text .h5p-draggable {
+.h5p-drag-text .h5p-draggable:not(.h5p-draggable--dropped) {
   margin: var(--h5p-theme-spacing-xxs);
 }
 

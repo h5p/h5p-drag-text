@@ -24,6 +24,11 @@
   white-space: nowrap;
 }
 
+.h5p-drag-text .h5p-draggable.h5p-draggable--has-handle.h5p-draggable-correct,
+.h5p-drag-text .h5p-draggable.h5p-draggable--has-handle.h5p-draggable-wrong {
+  padding-left: var(--handle-width);
+}
+
 .h5p-drag-text .h5p-drag-inner p {
   font-size: var(--h5p-theme-font-size-m);
   font-weight: normal;

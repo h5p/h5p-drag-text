@@ -29,8 +29,7 @@
   padding-left: var(--handle-width);
 }
 
-.h5p-drag-text:has(.h5p-draggable-correct) .h5p-drag-draggables-container .h5p-draggable,
-.h5p-drag-text:has(.h5p-draggable-wrong) .h5p-drag-draggables-container .h5p-draggable {
+.h5p-drag-text:has(.h5p-question-evaluation-container.evaluation-mode) .h5p-drag-draggables-container .h5p-draggable {
   padding-left: 0;
 }
 

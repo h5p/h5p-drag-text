@@ -82,50 +82,11 @@
   color: var(--h5p-theme-feedback-incorrect-main);
 }
 
-/* Dropzone styling */
-.h5p-drag-text .h5p-drag-dropzone-container {
-  position: relative;
-  display: inline-flex;
-  align-content: center;
-  height: calc(var(--h5p-theme-spacing-l) * 0.8 + 4px);
-  padding-right: calc(var(--h5p-theme-spacing-xxs)/5);
-  margin-bottom: 3px;
-  vertical-align: middle;
-}
-.h5p-drag-text [aria-dropeffect] {
-  position:relative;
-  display: flex;
-  align-items: center;
-  width: 10rem;
-  height: calc(100% - 4px);
-  border: solid 2px var(--h5p-theme-alternative-dark);
-  background-color: var(--h5p-theme-alternative-dark);
-  border-radius: var(--h5p-theme-border-radius-medium);
-  vertical-align: middle;
-  text-align: center;
-  transition: all 0.1s linear 0s;
-}
-
 .h5p-drag-text [aria-grabbed]:focus-visible,
 .h5p-drag-text [aria-dropeffect]:focus-visible {
   outline: 2px ridge var(--h5p-theme-contrast-cta-white);
   border-radius: 4px;
   outline-offset: 2px;
-}
-
-.h5p-drag-text [aria-dropeffect].h5p-drag-correct-feedback {
-  background: var(--h5p-theme-feedback-correct-secondary);
-  border-color: var(--h5p-theme-feedback-correct-third);
-}
-
-.h5p-drag-text [aria-dropeffect].h5p-drag-wrong-feedback {
-  color: var(--h5p-theme-feedback-incorrect-main);
-  background-color: var(--h5p-theme-feedback-incorrect-secondary);
-  border-color: var(--h5p-theme-feedback-incorrect-third);
-}
-
-.h5p-drag-text [aria-dropeffect]:before {
-  line-height: 1.25;
 }
 
 /* Draggable styling */

@@ -9,8 +9,29 @@
   display: none;
 }
 
-.h5p-drag-text .h5p-draggable {
+.h5p-drag-text .h5p-draggable.h5p-draggable--dropped {
+  width: calc(100% - var(--handle-width));
+}
+
+.h5p-drag-text .h5p-draggable:not(.h5p-draggable--dropped) {
   margin: var(--h5p-theme-spacing-xxs);
+}
+
+.h5p-drag-text .h5p-draggable.h5p-draggable--dropped span:not(.h5p-hidden-read) {
+  width: calc(100% - 2 * var(--h5p-theme-spacing-xs)); /* var is inline padding of Draggable component */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.h5p-drag-text .h5p-draggable.h5p-draggable--has-handle.h5p-draggable-correct,
+.h5p-drag-text .h5p-draggable.h5p-draggable--has-handle.h5p-draggable-wrong {
+  padding-left: var(--handle-width);
+}
+
+.h5p-drag-text:has(.h5p-draggable-correct) .h5p-drag-draggables-container .h5p-draggable,
+.h5p-drag-text:has(.h5p-draggable-wrong) .h5p-drag-draggables-container .h5p-draggable {
+  padding-left: 0;
 }
 
 .h5p-drag-text .h5p-drag-inner p {

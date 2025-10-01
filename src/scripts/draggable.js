@@ -220,11 +220,17 @@ H5P.TextDraggable = (function ($) {
    * Sets short format of draggable when inside a dropbox.
    */
   Draggable.prototype.setShortFormat = function () {
-    this.$draggable.find('span').html(this.shortFormat);
+    const span = this.$draggable[0].querySelector('span');
 
-    if (this.shortFormat !== this.text) {
-      H5P.Tooltip(this.$draggable[0], { text: this.text });
-    }
+    // On restart, the dropzones are transitioning in width, 300ms required before width is stable
+    const delay = span.clientWidth === 0 ? 300 : 0;
+
+    window.setTimeout(() => {
+      const isOverflowing = span.scrollWidth > span.clientWidth;
+      if (isOverflowing) {
+        this.tooltip = H5P.Tooltip(this.$draggable[0], { text: this.text });
+      }
+    }, delay);
   };
 
   /**
@@ -240,9 +246,7 @@ H5P.TextDraggable = (function ($) {
    * Removes the short format of draggable when it is outside a dropbox.
    */
   Draggable.prototype.removeShortFormat = function () {
-    this.$draggable.find('span').html(this.text);
-
-    this.$draggable.find('.h5p-tooltip').remove();
+    this.tooltip?.remove();
   };
 
   /**

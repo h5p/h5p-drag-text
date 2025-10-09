@@ -965,7 +965,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         this.hoveredDroppables.sort((a, b) => b - a);
 
         const hoveredIndex = this.getHoveredDroppableIndex();
-        self.droppables.forEach((droppable, index) => {
+        this.droppables.forEach((droppable, index) => {
           droppable.toggleHovered(index === hoveredIndex);
         });
       },
@@ -973,22 +973,22 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         this.hoveredDroppables = this.hoveredDroppables.filter(index => index !== draggableIndex - 1);
         const hoveredIndex = this.getHoveredDroppableIndex();
 
-        self.droppables.forEach((droppable, index) => {
+        this.droppables.forEach((droppable, index) => {
           droppable.toggleHovered(index === hoveredIndex);
         });
       },
-      handleDropEvent: function (event, ui) {
-        const hoveredIndex = self.getHoveredDroppableIndex();
+      handleDropEvent: (event, ui) => {
+        const hoveredIndex = this.getHoveredDroppableIndex();
         if (hoveredIndex === -1) {
           return; // Should never happen
         }
 
-        var draggable = self.getDraggableByElement(ui.draggable[0]);
-        var droppable = droppable = self.droppables[hoveredIndex];
+        const draggable = this.getDraggableByElement(ui.draggable[0]);
+        const droppable = this.droppables[hoveredIndex];
 
         // Reset hovered droppables
-        self.hoveredDroppables = [];
-        self.droppables.forEach(droppable => {
+        this.hoveredDroppables = [];
+        this.droppables.forEach(droppable => {
           droppable.toggleHovered(false);
         });
 
@@ -1000,7 +1000,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         if (!draggable || !droppable) {
           return;
         }
-        self.drop(draggable, droppable);
+        this.drop(draggable, droppable);
       }
     });
     const $dropzoneContainer = $(dropzoneContainer);

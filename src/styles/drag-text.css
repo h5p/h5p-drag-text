@@ -107,13 +107,6 @@
   display: none;
 }
 
-.h5p-drag-task:has(.h5p-drag-draggables-container [aria-grabbed="true"]) .ui-droppable:hover{
-  background-color: color-mix(in srgb, var(--h5p-theme-contrast-cta-white), transparent 60%);
-  border-style: dashed;
-  border-color: var(--h5p-theme-main-cta-dark);
-  cursor: pointer;
-}
-
 /* Show solution container */
 .h5p-drag-text .h5p-drag-show-solution-container {
   position: relative;

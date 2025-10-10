@@ -796,7 +796,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           self.createDraggable(solution.text);
           self.createDroppable({
             index,
-            text: solution.text,
+            answer: solution.text,
             tip: solution.tip,
             correctFeedback: solution.correctFeedback,
             incorrectFeedback: solution.incorrectFeedback,

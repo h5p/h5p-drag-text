@@ -786,6 +786,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     self.$wordContainer = $('<div/>', {'class': WORDS_CONTAINER});
 
+    let index = 0;
     // parse text
     parseText(self.textFieldHtml)
       .forEach(function(part) {
@@ -793,7 +794,14 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
           // is draggable/droppable
           const solution = lex(part);
           self.createDraggable(solution.text);
-          self.createDroppable(solution.text, solution.tip, solution.correctFeedback, solution.incorrectFeedback);
+          self.createDroppable({
+            index,
+            text: solution.text,
+            tip: solution.tip,
+            correctFeedback: solution.correctFeedback,
+            incorrectFeedback: solution.incorrectFeedback,
+          });
+          index++;
         }
         else {
           // is normal text
@@ -935,14 +943,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
   };
 
   /**
-   * Get index of currently hovered droppable.
-   * @returns {number} 0-based index of hovered droppable, or -1 if none is hovered.
-   */
-  DragText.prototype.getHoveredDroppableIndex = function() {
-    return this.hoveredDroppables.length > 0 ? this.hoveredDroppables[this.hoveredDroppables.length - 1] : -1;
-  };
-
-  /**
    * Creates a Droppable
    *
    * @param {string} answer
@@ -950,47 +950,20 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    *
    * @returns {H5P.TextDroppable}
    */
-  DragText.prototype.createDroppable = function (answer, tip, correctFeedback, incorrectFeedback) {
-    var self = this;
-
-    var draggableIndex = this.draggables.length;
-
-    this.hoveredDroppables = [];
+  DragText.prototype.createDroppable = function ({index, answer, tip, correctFeedback, incorrectFeedback}) {
+    const draggableIndex = this.draggables.length;
 
     const dropzoneContainer = H5P.Components.Dropzone({
+      index,
       ariaLabel: this.params.dropZoneIndex.replace('@index', draggableIndex.toString()) + ' ' + this.params.empty.replace('@index', draggableIndex.toString()),
       tolerance: 'touch',
-      handleDropOverEvent: () => {
-        this.hoveredDroppables.push(draggableIndex - 1);
-        this.hoveredDroppables.sort((a, b) => b - a);
-
-        const hoveredIndex = this.getHoveredDroppableIndex();
-        this.droppables.forEach((droppable, index) => {
-          droppable.toggleHovered(index === hoveredIndex);
-        });
-      },
-      handleDropOutEvent: () => {
-        this.hoveredDroppables = this.hoveredDroppables.filter(index => index !== draggableIndex - 1);
-        const hoveredIndex = this.getHoveredDroppableIndex();
-
-        this.droppables.forEach((droppable, index) => {
-          droppable.toggleHovered(index === hoveredIndex);
-        });
-      },
-      handleDropEvent: (event, ui) => {
-        const hoveredIndex = this.getHoveredDroppableIndex();
-        if (hoveredIndex === -1) {
+      handleDropEvent: (event, ui, index) => {
+        if (index < 0) {
           return; // Should never happen
         }
 
         const draggable = this.getDraggableByElement(ui.draggable[0]);
-        const droppable = this.droppables[hoveredIndex];
-
-        // Reset hovered droppables
-        this.hoveredDroppables = [];
-        this.droppables.forEach(droppable => {
-          droppable.toggleHovered(false);
-        });
+        const droppable = this.droppables[index];
 
         /**
          * Note that drop will run for all initialized DragText dropzones globally. Even other
@@ -1007,14 +980,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     const $dropzone = $(dropzoneContainer.querySelector(':scope > div'));
 
     const ro = new ResizeObserver(() => {
-      self.debouncedResize();
+      this.debouncedResize();
     });
     ro.observe($dropzone.get(0));
 
-    var droppable = new Droppable(answer, tip, correctFeedback, incorrectFeedback, $dropzone, $dropzoneContainer, draggableIndex, self.params);
-    droppable.appendDroppableTo(self.$wordContainer);
-
-    self.droppables.push(droppable);
+    const droppable = new Droppable(answer, tip, correctFeedback, incorrectFeedback, $dropzone, $dropzoneContainer, draggableIndex, this.params);
+    droppable.appendDroppableTo(this.$wordContainer);
+    this.droppables.push(droppable);
 
     return droppable;
   };

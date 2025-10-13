@@ -789,24 +789,21 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     let index = 0;
     // parse text
     parseText(self.textFieldHtml)
-      .forEach(function(part) {
-        if(self.isAnswerPart(part)) {
+      .forEach((part) => {
+        if(this.isAnswerPart(part)) {
           // is draggable/droppable
           const solution = lex(part);
-          self.createDraggable(solution.text);
-          self.createDroppable({
+          this.createDraggable(solution.text);
+          this.createDroppable({
             index,
-            answer: solution.text,
-            tip: solution.tip,
-            correctFeedback: solution.correctFeedback,
-            incorrectFeedback: solution.incorrectFeedback,
+            ...solution,
           });
           index++;
         }
         else {
           // is normal text
           var el = Util.createElementWithTextPart(part);
-          self.$wordContainer.append(el);
+          this.$wordContainer.append(el);
         }
       });
 
@@ -950,8 +947,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    *
    * @returns {H5P.TextDroppable}
    */
-  DragText.prototype.createDroppable = function ({index, answer, tip, correctFeedback, incorrectFeedback}) {
-    const draggableIndex = this.draggables.length;
+  DragText.prototype.createDroppable = function ({index, text, tip, correctFeedback, incorrectFeedback}) {
+    const draggableIndex = index+1;
 
     const dropzoneContainer = H5P.Components.Dropzone({
       index,
@@ -984,7 +981,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     });
     ro.observe($dropzone.get(0));
 
-    const droppable = new Droppable(answer, tip, correctFeedback, incorrectFeedback, $dropzone, $dropzoneContainer, draggableIndex, this.params);
+    const droppable = new Droppable(text, tip, correctFeedback, incorrectFeedback, $dropzone, $dropzoneContainer, draggableIndex, this.params);
     droppable.appendDroppableTo(this.$wordContainer);
     this.droppables.push(droppable);
 

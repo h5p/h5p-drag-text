@@ -492,6 +492,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
       self.hideButton('try-again');
       self.hideButton('show-solution');
+      self.toggleHandleVisibilityOfUndraggedDraggables(true);
 
       if (self.params.behaviour.instantFeedback) {
         self.enableAllDropzonesAndDraggables();
@@ -724,8 +725,25 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     // Set feedback score
     this.setFeedback(scoreText, score, maxScore, this.params.scoreBarLabel);
 
-    return score === maxScore;
+    const isMaxScore = score === maxScore;
+    const keepDraggableHandles = this.params.behaviour.instantFeedback && !isMaxScore;
+    this.toggleHandleVisibilityOfUndraggedDraggables(keepDraggableHandles);
+
+    return isMaxScore;
   };
+
+  /**
+   * Hide handles on draggables that have not been dragged
+   * @param {boolean} shouldBeHidden True if handles should be hidden, false if they should be shown.
+   */
+  DragText.prototype.toggleHandleVisibilityOfUndraggedDraggables = function(shouldBeShown) {
+    if (typeof shouldBeShown !== 'boolean') {
+      return;
+    }
+
+    this.$draggables[0].classList.toggle('no-handles', !shouldBeShown);
+  };
+
 
   /**
    * Returns the number of correct entries
@@ -1316,6 +1334,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     //Show and hide buttons
     self.hideButton('try-again');
     self.hideButton('show-solution');
+    self.toggleHandleVisibilityOfUndraggedDraggables(true);
 
     if (!self.params.behaviour.instantFeedback) {
       self.showButton('check-answer');

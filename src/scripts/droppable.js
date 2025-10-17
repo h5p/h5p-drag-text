@@ -82,6 +82,14 @@ H5P.TextDroppable = (function ($) {
   };
 
   /**
+   * Set border width of correct solution "draggable" (retained from Draggable Component).
+   * @param {string} width CSS width value.
+   */
+  Droppable.prototype.setSolutionDraggableBorderWidth = function (width) {
+    this.$showSolution[0].style.setProperty('--border-width', width);
+  };
+
+  /**
    * Returns the html element
    *
    * @return {HTMLElement}

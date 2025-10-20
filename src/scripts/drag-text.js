@@ -396,8 +396,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       }
 
       const style = window.getComputedStyle(referenceDraggable.getElement());
+      const borderWidth = style.getPropertyValue('border-width');
       this.droppables.forEach((droppable) => {
-        const borderWidth = style.getPropertyValue('border-width');
         droppable.setSolutionDraggableBorderWidth(borderWidth);
       });
     });

@@ -10,7 +10,7 @@
 }
 
 .h5p-drag-text .h5p-draggable.h5p-draggable--dropped {
-  width: calc(100% - var(--handle-width));
+  width: calc(100% + (var(--border-width) * 2));
 }
 
 .h5p-drag-text .h5p-draggable:not(.h5p-draggable--dropped) {

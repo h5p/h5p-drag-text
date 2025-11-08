@@ -912,10 +912,8 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         width = $tmp.width();
       }
 
-      // Include the width of the handle if not there
-      if ($draggableElement.hasClass('ui-draggable-disabled')) {
-        width += 16;
-      }
+      // Add width of handle
+      width += 16;
 
       if (width > widest) {
         widest = width;

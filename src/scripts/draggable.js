@@ -227,6 +227,8 @@ H5P.TextDraggable = (function ($) {
 
     window.setTimeout(() => {
       const isOverflowing = span.scrollWidth > span.clientWidth;
+      const draggable = this.$draggable[0];
+      draggable.setContent({ label: this.shortFormat });
       if (isOverflowing) {
         this.tooltip = H5P.Tooltip(this.$draggable[0], { text: this.text });
       }
@@ -246,6 +248,8 @@ H5P.TextDraggable = (function ($) {
    * Removes the short format of draggable when it is outside a dropbox.
    */
   Draggable.prototype.removeShortFormat = function () {
+    const draggable = this.$draggable[0];
+    draggable.setContent({ label: this.text });
     this.tooltip?.remove();
   };
 

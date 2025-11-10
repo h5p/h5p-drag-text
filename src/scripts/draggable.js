@@ -226,10 +226,9 @@ H5P.TextDraggable = (function ($) {
     const delay = span.clientWidth === 0 ? 300 : 0;
 
     window.setTimeout(() => {
-      const isOverflowing = span.scrollWidth > span.clientWidth;
       const draggable = this.$draggable[0];
       draggable.setContent({ label: this.shortFormat });
-      if (isOverflowing) {
+      if (this.shortFormat !== this.text) {
         this.tooltip = H5P.Tooltip(this.$draggable[0], { text: this.text });
       }
     }, delay);

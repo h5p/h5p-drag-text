@@ -9,16 +9,16 @@ var H5PPresave = H5PPresave || {};
  * @constructor
  */
 H5PPresave['H5P.DragText'] = function (content, finished) {
-  var presave = H5PEditor.Presave;
-  var score = 0;
+  const presave = H5PEditor.Presave;
+  let score = 0;
   if (isContentValid()) {
-    var pattern = /\*.*?\*/g;
+    const pattern = /\*.*?\*/g;
     score = content.textField.match(pattern || []).length;
   }
 
   presave.validateScore(score);
 
-  finished({maxScore: score});
+  finished({ maxScore: score });
 
   /**
    * Check if required parameters is present

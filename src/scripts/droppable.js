@@ -1,15 +1,15 @@
 H5P.TextDroppable = (function ($) {
-  //CSS Main Containers:
-  //Special Sub-containers:
-  var SHOW_SOLUTION_CONTAINER = "h5p-drag-show-solution-container";
+  // CSS Main Containers:
+  // Special Sub-containers:
+  const SHOW_SOLUTION_CONTAINER = 'h5p-drag-show-solution-container';
 
-  //CSS Dropzone feedback:
-  var CORRECT_FEEDBACK = 'h5p-dropzone-correct';
-  var WRONG_FEEDBACK = 'h5p-dropzone-wrong';
+  // CSS Dropzone feedback:
+  const CORRECT_FEEDBACK = 'h5p-dropzone-correct';
+  const WRONG_FEEDBACK = 'h5p-dropzone-wrong';
 
-  //CSS Draggable feedback:
-  var DRAGGABLE_FEEDBACK_CORRECT = 'h5p-draggable-correct';
-  var DRAGGABLE_FEEDBACK_WRONG = 'h5p-draggable-wrong';
+  // CSS Draggable feedback:
+  const DRAGGABLE_FEEDBACK_CORRECT = 'h5p-draggable-correct';
+  const DRAGGABLE_FEEDBACK_WRONG = 'h5p-draggable-wrong';
 
   /**
    * Private class for keeping track of droppable zones.
@@ -23,7 +23,7 @@ H5P.TextDroppable = (function ($) {
    * @param {Object} params Behavior settings
    */
   function Droppable(text, tip, correctFeedback, incorrectFeedback, dropzone, dropzoneContainer, index, params) {
-    var self = this;
+    const self = this;
     self.text = text;
     self.tip = tip;
     self.correctFeedback = correctFeedback;
@@ -39,23 +39,23 @@ H5P.TextDroppable = (function ($) {
 
     if (self.tip) {
       self.$tip = H5P.JoubelUI.createTip(self.tip, {
-        tipLabel: self.params.tipLabel
+        tipLabel: self.params.tipLabel,
       });
       self.$dropzoneContainer.append(self.$tip);
     }
 
     self.$incorrectText = $('<div/>', {
-      html: self.params.incorrectText + " " + self.params.correctAnswer,
-      'class': 'hidden-but-read'
+      html: `${self.params.incorrectText} ${self.params.correctAnswer}`,
+      class: 'hidden-but-read',
     });
 
     self.$correctText = $('<div/>', {
       html: self.params.correctText,
-      'class': 'hidden-but-read'
+      class: 'hidden-but-read',
     });
 
     self.$showSolution = $('<div/>', {
-      'class': SHOW_SOLUTION_CONTAINER
+      class: SHOW_SOLUTION_CONTAINER,
     }).hide();
   }
 
@@ -129,7 +129,7 @@ H5P.TextDroppable = (function ($) {
    * @param {Draggable} droppedDraggable A draggable that has been dropped on this box.
    */
   Droppable.prototype.setDraggable = function (droppedDraggable) {
-    var self = this;
+    const self = this;
     if (self.containedDraggable === droppedDraggable) {
       return;
     }
@@ -174,22 +174,22 @@ H5P.TextDroppable = (function ($) {
    * Sets CSS styling feedback for this drop box.
    */
   Droppable.prototype.addFeedback = function () {
-    //Draggable is correct
+    // Draggable is correct
     if (this.isCorrect()) {
       this.$dropzone.removeClass(WRONG_FEEDBACK).addClass(CORRECT_FEEDBACK);
 
-      //Draggable feedback
+      // Draggable feedback
       this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).addClass(DRAGGABLE_FEEDBACK_CORRECT);
     }
     else if (this.containedDraggable === null) {
-      //Does not contain a draggable
+      // Does not contain a draggable
       this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
     }
     else {
-      //Draggable is wrong
+      // Draggable is wrong
       this.$dropzone.removeClass(CORRECT_FEEDBACK).addClass(WRONG_FEEDBACK);
 
-      //Draggable feedback
+      // Draggable feedback
       if (this.containedDraggable !== null) {
         this.containedDraggable.getDraggableElement().addClass(DRAGGABLE_FEEDBACK_WRONG).removeClass(DRAGGABLE_FEEDBACK_CORRECT);
       }
@@ -202,7 +202,7 @@ H5P.TextDroppable = (function ($) {
   Droppable.prototype.removeFeedback = function () {
     this.$dropzone.removeClass(WRONG_FEEDBACK).removeClass(CORRECT_FEEDBACK);
 
-    //Draggable feedback
+    // Draggable feedback
     if (this.containedDraggable !== null) {
       this.containedDraggable.getDraggableElement().removeClass(DRAGGABLE_FEEDBACK_WRONG).removeClass(DRAGGABLE_FEEDBACK_CORRECT);
     }
@@ -231,14 +231,14 @@ H5P.TextDroppable = (function ($) {
     if (this.containedDraggable !== null) {
       this.containedDraggable.disableDraggable();
     }
-    this.$dropzone.droppable({ disabled: true});
+    this.$dropzone.droppable({ disabled: true });
   };
 
   /**
    * Enable dropzone.
    */
   Droppable.prototype.enableDropzone = function () {
-    this.$dropzone.droppable({ disabled: false});
+    this.$dropzone.droppable({ disabled: false });
   };
 
   /**
@@ -269,6 +269,6 @@ H5P.TextDroppable = (function ($) {
   };
 
   return Droppable;
-})(H5P.jQuery);
+}(H5P.jQuery));
 
 export default H5P.TextDroppable;

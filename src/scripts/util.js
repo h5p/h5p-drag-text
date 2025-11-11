@@ -5,20 +5,19 @@
  *
  * @return {function}
  */
-var curry =function(fn) {
-  var arity = fn.length;
+const curry = function (fn) {
+  const arity = fn.length;
 
   return function f1() {
-    var args = Array.prototype.slice.call(arguments, 0);
+    const args = Array.prototype.slice.call(arguments, 0);
     if (args.length >= arity) {
       return fn.apply(null, args);
     }
-    else {
-      return function f2() {
-        var args2 = Array.prototype.slice.call(arguments, 0);
-        return f1.apply(null, args.concat(args2));
-      };
-    }
+
+    return function f2() {
+      const args2 = Array.prototype.slice.call(arguments, 0);
+      return f1.apply(null, args.concat(args2));
+    };
   };
 };
 
@@ -30,8 +29,8 @@ var curry =function(fn) {
  *
  * @return {boolean}
  */
-var startsWith = function(symbol, str) {
-  return str.substr(0,1) === symbol;
+const startsWith = function (symbol, str) {
+  return str.substr(0, 1) === symbol;
 };
 
 /**
@@ -42,7 +41,7 @@ var startsWith = function(symbol, str) {
  *
  * @return {boolean}
  */
-var endsWith = function(symbol, str) {
+const endsWith = function (symbol, str) {
   return str.substr(-1) === symbol;
 };
 
@@ -54,12 +53,12 @@ var endsWith = function(symbol, str) {
  *
  * @return {string}
  */
-var cleanCharacter = curry(function(char, str) {
-  if(startsWith(char, str)) {
+const cleanCharacter = curry((char, str) => {
+  if (startsWith(char, str)) {
     str = str.slice(1);
   }
 
-  if(endsWith(char, str)) {
+  if (endsWith(char, str)) {
     str = str.slice(0, -1);
   }
 
@@ -73,19 +72,19 @@ var cleanCharacter = curry(function(char, str) {
  *
  * @return {Array}
  */
-var shuffle = function (array) {
-  var counter = array.length;
+const shuffle = function (array) {
+  let counter = array.length;
 
   // While there are elements in the array
   while (counter > 0) {
     // Pick a random index
-    var index = Math.floor(Math.random() * counter);
+    const index = Math.floor(Math.random() * counter);
 
     // Decrease counter by 1
     counter--;
 
     // And swap the last element with it
-    var temp = array[counter];
+    const temp = array[counter];
     array[counter] = array[index];
     array[index] = temp;
   }
@@ -100,13 +99,13 @@ var shuffle = function (array) {
  *
  * @return {HTMLElement}
  */
-var createElementWithTextPart = function(text) {
-  var el = document.createElement('span');
+const createElementWithTextPart = function (text) {
+  const el = document.createElement('span');
   el.innerHTML = text;
-  return  el;
+  return el;
 };
 
-const debounce = function(callback, delay) {
+const debounce = function (callback, delay) {
   let timeout = null;
 
   return function (...args) {
@@ -115,14 +114,14 @@ const debounce = function(callback, delay) {
       callback(...args);
     }, delay);
   };
-}
+};
 
 export default {
-  curry: curry,
-  cleanCharacter: cleanCharacter,
-  startsWith: startsWith,
-  endsWith: endsWith,
-  shuffle: shuffle,
-  createElementWithTextPart: createElementWithTextPart,
-  debounce
+  curry,
+  cleanCharacter,
+  startsWith,
+  endsWith,
+  shuffle,
+  createElementWithTextPart,
+  debounce,
 };

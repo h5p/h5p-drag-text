@@ -9,7 +9,7 @@ import Util from './util';
  *
  * @return {string[]}
  */
-const parseText = text => text.split(/(\*.*?\*)/).filter(str => str.length > 0);
+const parseText = (text) => text.split(/(\*.*?\*)/).filter((str) => str.length > 0);
 
 /**
  * @typedef {object} Solution
@@ -24,8 +24,7 @@ const parseText = text => text.split(/(\*.*?\*)/).filter(str => str.length > 0);
  * @param {string} solutionText
  * @returns {Solution}
  */
-const lex = solutionText => {
-
+const lex = (solutionText) => {
   let tip = solutionText.match(/(:([^\\*]+))/g);
   let correctFeedback = solutionText.match(/(\\\+([^\\*:]+))/g);
   let incorrectFeedback = solutionText.match(/(\\\-([^\\*:]+))/g);
@@ -35,23 +34,25 @@ const lex = solutionText => {
 
   if (tip) {
     text = text.replace(tip, '');
-    tip = tip[0].replace(':','');
+    tip = tip[0].replace(':', '');
     tip = tip.replace(/\s+$/, '');
   }
   if (correctFeedback) {
     text = text.replace(correctFeedback, '');
-    correctFeedback = correctFeedback[0].replace('\\+','');
+    correctFeedback = correctFeedback[0].replace('\\+', '');
     correctFeedback = correctFeedback.replace(/\s+$/, '');
   }
   if (incorrectFeedback) {
     text = text.replace(incorrectFeedback, '');
-    incorrectFeedback = incorrectFeedback[0].replace('\\-','');
+    incorrectFeedback = incorrectFeedback[0].replace('\\-', '');
     incorrectFeedback = incorrectFeedback.replace(/\s+$/, '');
   }
 
   text = text.replace(/\s+$/, ''); // remove trailing spaces and tabs
 
-  return { tip, correctFeedback, incorrectFeedback, text };
+  return {
+    tip, correctFeedback, incorrectFeedback, text,
+  };
 };
 
 export { parseText, lex };

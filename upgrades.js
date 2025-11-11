@@ -4,19 +4,19 @@ H5PUpgrades['H5P.DragText'] = (function () {
   return {
     1: {
       1: {
-        contentUpgrade: function (parameters, finished) {
+        contentUpgrade(parameters, finished) {
           // Moved all behavioural settings into "behaviour" group.
           parameters.behaviour = {
             enableRetry: parameters.enableTryAgain === undefined ? true : parameters.enableTryAgain,
             enableSolutionsButton: parameters.enableShowSolution === undefined ? true : parameters.enableShowSolution,
-            instantFeedback: parameters.instantFeedback === undefined ? false : parameters.instantFeedback
+            instantFeedback: parameters.instantFeedback === undefined ? false : parameters.instantFeedback,
           };
           delete parameters.enableTryAgain;
           delete parameters.enableShowSolution;
           delete parameters.instantFeedback;
 
           finished(null, parameters);
-        }
+        },
       },
 
       /**
@@ -28,14 +28,14 @@ H5PUpgrades['H5P.DragText'] = (function () {
        * @param {object} parameters
        * @param {function} finished
        */
-      6: function (parameters, finished) {
+      6(parameters, finished) {
         if (parameters && parameters.score) {
           parameters.overallFeedback = [
             {
-              'from': 0,
-              'to': 100,
-              'feedback': parameters.score
-            }
+              from: 0,
+              to: 100,
+              feedback: parameters.score,
+            },
           ];
 
           delete parameters.score;
@@ -44,8 +44,8 @@ H5PUpgrades['H5P.DragText'] = (function () {
         finished(null, parameters);
       },
 
-      8: function (parameters, finished, extras) {
-        var title = (parameters) ? parameters.taskDescription : 'Drag the Words';
+      8(parameters, finished, extras) {
+        const title = (parameters) ? parameters.taskDescription : 'Drag the Words';
         extras = extras || {};
         extras.metadata = extras.metadata || {};
 
@@ -54,7 +54,7 @@ H5PUpgrades['H5P.DragText'] = (function () {
         }
 
         finished(null, parameters, extras);
-      }
-    }
+      },
+    },
   };
-})();
+}());

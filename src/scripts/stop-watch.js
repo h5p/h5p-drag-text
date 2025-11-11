@@ -18,7 +18,7 @@ H5P.DragText.StopWatch = (function () {
    *
    * @return {H5P.DragText.StopWatch}
    */
-  StopWatch.prototype.start = function(){
+  StopWatch.prototype.start = function () {
     /**
      * @property {number}
      */
@@ -31,7 +31,7 @@ H5P.DragText.StopWatch = (function () {
    *
    * @return {number}
    */
-  StopWatch.prototype.stop = function(){
+  StopWatch.prototype.stop = function () {
     this.duration = this.duration + Date.now() - this.startTime;
     return this.passedTime();
   };
@@ -39,7 +39,7 @@ H5P.DragText.StopWatch = (function () {
   /**
    * Sets the duration to 0
    */
-  StopWatch.prototype.reset = function(){
+  StopWatch.prototype.reset = function () {
     this.duration = 0;
     this.startTime = Date.now();
   };
@@ -49,11 +49,11 @@ H5P.DragText.StopWatch = (function () {
    *
    * @return {number}
    */
-  StopWatch.prototype.passedTime = function(){
+  StopWatch.prototype.passedTime = function () {
     return Math.round(this.duration / 10) / 100;
   };
 
   return StopWatch;
-})();
+}());
 
 export default H5P.DragText.StopWatch;

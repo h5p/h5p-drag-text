@@ -1,10 +1,9 @@
-
 // Helper to stop propagating events
-const stopPropagation = event => event.stopPropagation();
+const stopPropagation = (event) => event.stopPropagation();
 
 H5P.TextDraggable = (function ($) {
-  //CSS Draggable feedback:
-  var DRAGGABLE_DROPPED = 'h5p-draggable--dropped';
+  // CSS Draggable feedback:
+  const DRAGGABLE_DROPPED = 'h5p-draggable--dropped';
   /**
    * Private class for keeping track of draggable text.
    *
@@ -15,7 +14,7 @@ H5P.TextDraggable = (function ($) {
    */
   function Draggable(text, draggable, index) {
     H5P.EventDispatcher.call(this);
-    var self = this;
+    const self = this;
     self.text = text;
     self.insideDropzone = null;
     self.$draggable = $(draggable);
@@ -24,9 +23,9 @@ H5P.TextDraggable = (function ($) {
     self.initialIndex = index;
 
     self.shortFormat = self.text;
-    //Shortens the draggable string if inside a dropbox.
+    // Shortens the draggable string if inside a dropbox.
     if (self.shortFormat.length > 20 && !self.shortFormat.match(/\\\(.+\\\)|\\\[.+\\\]|\$\$.+\$\$/)) {
-      self.shortFormat = self.shortFormat.slice(0, 17) + '...';
+      self.shortFormat = `${self.shortFormat.slice(0, 17)}...`;
     }
 
     // jQuery UI workaround
@@ -67,7 +66,6 @@ H5P.TextDraggable = (function ($) {
     return this.initialIndex;
   };
 
-
   /**
    * Checks if a index is this droppables initial index
    *
@@ -85,7 +83,7 @@ H5P.TextDraggable = (function ($) {
    */
   Draggable.prototype.appendDraggableTo = function ($container) {
     const canHasFocus = this.$draggable[0] === document.activeElement;
-    this.$draggable.detach().css({left: 0, top: 0}).appendTo($container);
+    this.$draggable.detach().css({ left: 0, top: 0 }).appendTo($container);
     if (canHasFocus) {
       this.$draggable.focus();
     }
@@ -98,15 +96,15 @@ H5P.TextDraggable = (function ($) {
    */
   Draggable.prototype.revertDraggableTo = function ($container) {
     // get the relative distance between draggable and container.
-    var offLeft = this.$draggable.offset().left - $container.offset().left;
-    var offTop = this.$draggable.offset().top - $container.offset().top;
+    const offLeft = this.$draggable.offset().left - $container.offset().left;
+    const offTop = this.$draggable.offset().top - $container.offset().top;
 
     // Prepend draggable to new container, but keep the offset,
     // then animate to new container's top:0, left:0
     this.$draggable.detach()
       .prependTo($container)
-      .css({left: offLeft, top: offTop})
-      .animate({left: 0, top: 0});
+      .css({ left: offLeft, top: offTop })
+      .animate({ left: 0, top: 0 });
   };
 
   /**
@@ -117,7 +115,8 @@ H5P.TextDraggable = (function ($) {
   Draggable.prototype.toggleDroppedFeedback = function (isDropped) {
     if (isDropped) {
       this.$draggable.addClass(DRAGGABLE_DROPPED);
-    } else {
+    }
+    else {
       this.$draggable.removeClass(DRAGGABLE_DROPPED);
     }
   };
@@ -126,14 +125,14 @@ H5P.TextDraggable = (function ($) {
    * Disables the draggable, making it immovable.
    */
   Draggable.prototype.disableDraggable = function () {
-    this.$draggable.draggable({ disabled: true});
+    this.$draggable.draggable({ disabled: true });
   };
 
   /**
    * Enables the draggable, making it movable.
    */
   Draggable.prototype.enableDraggable = function () {
-    this.$draggable.draggable({ disabled: false});
+    this.$draggable.draggable({ disabled: false });
   };
 
   /**
@@ -178,7 +177,7 @@ H5P.TextDraggable = (function ($) {
    * @returns {Droppable}
    */
   Draggable.prototype.removeFromZone = function () {
-    var dropZone = this.insideDropzone;
+    const dropZone = this.insideDropzone;
 
     if (this.insideDropzone !== null) {
       this.insideDropzone.removeFeedback();
@@ -271,6 +270,6 @@ H5P.TextDraggable = (function ($) {
   };
 
   return Draggable;
-})(H5P.jQuery);
+}(H5P.jQuery));
 
 export default H5P.TextDraggable;

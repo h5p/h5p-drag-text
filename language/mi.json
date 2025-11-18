@@ -1,0 +1,168 @@
+{
+  "semantics": [
+    {
+      "label": "Arapāho",
+      "fields": [
+        {
+          "label": "Momo",
+          "description": "He kōwhiringa kia tāpiritia tētahi rauemi arapāho ki runga i te pātai."
+        },
+        {
+          "label": "Monoa te āheinga topa ata"
+        }
+      ]
+    },
+    {
+      "label": "Whakamārama mō te ngohe",
+      "description": "Whakamāramahia mai te ara mā te kaiwhakamahi e mahi ai i tēnei ngohe.",
+      "default": "Tōia ngā kupu ki ngā wāhi tuku e tika ana."
+    },
+    {
+      "label": "Tuhinga",
+      "placeholder": "Ko *Hikurangi* te maunga mō Ngāti Porou, ko *Taupiri* te maunga mō te Kīngitanga, ko *Tongariro* te maunga mō Tūwharetoa.  Kei  *Te Ika a Māui: Te moutere* ēnei maunga e tū ana.",
+      "important": {
+        "description": "<ul><li>Ka tohua ngā kupu ka taea te tuku mā te tohuwhetū (*) kei mua, kei muri hoki i te kupu tika, ngā kupu tika rānei.</li><li>Ka taea te tāpiri he tuhinga tīwhiri mā te whakauru i te irarua (:) ki mua i te tīwhiri.</li><li>Mō ia tūnga wātea, kotahi anake te kupu e tika ana.</li><li>Ka tae hoki te tāpiri he urupare e whakaaturia i te oting o te mahi. Whakamahia '\\+' mō ngā urupare tika '\\-' mō ngā urupare hē.</li></ul>",
+        "example": "Ka taea te whakawhanake ngā ihirangi H5P pēnei i tēnei *pūtirotiro:He aha te momo taupānga o Chrome?*. <br /> He  *pāhekoheko\\+Kei te tika! \\-Kei te hē, whakamātauria anōtia!*"
+      }
+    },
+    {
+      "label": "Kupu tinihanga",
+      "placeholder": "*Aoraki* *Te Waipounamu*",
+      "description": "Tukuna he otinga hē, kia manawarau ai te kaiwhakamahi. Whakamahia ngā tohuwhetū (*) pērā ki ngā tuhinga o runga."
+    },
+    {
+      "label": "Urupare Whānui",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Taunoa"
+            }
+          ],
+          "label": "Whakatauria he urupare motuhake mō ia wehenga piro",
+          "description": "Pāwhiria te pātene \"Tāpirihia he wehenga\" ki te tāpiri i ngā wehenga piro e hiahia ana koe. Hei tauira: 0-20% Ngoikore, 21-91% Whiwhinga Kai Parāoa, 91-100% Autaia!",
+          "entity": "wehenga",
+          "field": {
+            "fields": [
+              {
+                "label": "Wehenga Piro"
+              },
+              {},
+              {
+                "label": "Urupare mō te wehenga piro",
+                "placeholder": "Tuhia te urupare ki konei."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Tapanga mō te pātene \"Tirohia\" ",
+      "default": "Tirohia"
+    },
+    {
+      "label": "Tapanga mō te pātene \"Tukuna\" ",
+      "default": "Tukuna"
+    },
+    {
+      "label": "Tapanga mō te pātene  \"Whakamātau anō\" ",
+      "default": "Whakamātau anō"
+    },
+    {
+      "label": "Tapanga mō te pātene \"Whakaatu otinga\" ",
+      "default": "Whakaatu otinga"
+    },
+    {
+      "label": "Tapanga nama mō te wāhi tuku",
+      "default": "Wāhi Tuku @index.",
+      "description": "Tapanga mō te tomopai, ka pānui te taupānga pānui tuhinga i te nama o te wāhi tuku. Mō te taurangi: @index"
+    },
+    {
+      "label": "Tapanga mō te wāhi tuku wātea",
+      "default": "Kei te wātea te wāhi tuku @index.",
+      "description": "Tapanga mō te tomopai, ka kī te taupānga pānui tuhinga - kei te wātea te wāhi tuku, mō te taurangi: @index"
+    },
+    {
+      "label": "Tapanga mō te kupu tō kei te wāhi tuku",
+      "default": "Kei te Wāhi Tuku @index ko te @draggable.",
+      "description": "Tapanga mō te tomopai, ka kī te taupānga pānui tuhinga - he kupu tō kei te wāhi tuku."
+    },
+    {
+      "label": "Tapanga mō ngā kupu tō",
+      "default": "@index o @count ngā kupu tō.",
+      "description": "Tapanga mō te tomopai, ka kī te taupānga pānui tuhinga he kupu tō tēnei. Mō ngā taurangi: @index, @count"
+    },
+    {
+      "label": "Tapanga mō te pātene whakaatu tīwhiri",
+      "default": "He tīwhiri",
+      "description": "Tapanga mō te whakaatu tīwhiri, ka pānuitia e te taupānga pānui tuhinga i mua i te pātene whakaatu tīwhiri."
+    },
+    {
+      "label": "Ngā kupu a te taupānga pānui tuhinga mō te whakautu tika",
+      "default": "Kei te tika!"
+    },
+    {
+      "label": "Ngā kupu a te taupānga pānui tuhinga mō te whakautu hē",
+      "default": "Kei te hē!"
+    },
+    {
+      "label": "Taitara o te pouaka kōrero Whakaū, mō ngā wā ka hiahia te kaiwhakamahi ki te whakahoki i tētahi kupu tō",
+      "default": "Whakahokia tēnei wāhi tuku"
+    },
+    {
+      "label": "Whakamārama o te pouaka kōrero Whakaū, mō ngā wā ka hiahia te kaiwhakamahi ki te whakahoki i tētahi kupu tō",
+      "default": "Āe mārika ka hiahia koe ki te whakahoki tēnei wāhi tuku?"
+    },
+    {
+      "label": "Tapanga mō te tomopai, ka whakaatu te taupānga pānui tuhinga, kua tīmata te tō",
+      "default": "Kei te tō."
+    },
+    {
+      "label": "Tapanga mō te tomopai, ka whakaatu te taupānga pānui tuhinga, kua monoa te tō",
+      "default": "Kua monoa te tō."
+    },
+    {
+      "label": "Tapanga mō te tomopai, ka whakaatu te taupānga pānui tuhinga, kua tika te kupu tō",
+      "default": "Te whakautu tika:"
+    },
+    {
+      "label": "Pane mō te pae e whakaatu ana i ngā urupare mō ngā whakautu tika, hē rānei",
+      "default": "Urupare"
+    },
+    {
+      "label": "Kōwhiringa whanonga",
+      "description": "Mā ēnei kōwhiringa whanonga, ka taea te whakahaere i ngā whanonga o tēnei ngohe.",
+      "fields": [
+        {
+          "label": "Whakakāngia te pātene \"Whakamātau anō\""
+        },
+        {
+          "label": "Whakakāngia te pātene \"Whakaaturia te otinga\" "
+        },
+        {
+          "label": "Whakakāngia te pātene \"Tukuna\" "
+        },
+        {
+          "label": "Urupare wawe"
+        }
+      ]
+    },
+    {
+      "label": "Whakaaturanga ā-tuhi o te pae piro mō te hunga e whakamahi ana i ngā taupānga pānui tuhinga",
+      "default": "I whiwhi koe :num o :total ka taea"
+    },
+    {
+      "label": "Tapanga hangarau tomopai mō te pātene \"Tirohia\" ",
+      "default": "Tirohia ngā whakautu. Ka tohua ngā whakautu tika, hē, kāore i whakautua rānei."
+    },
+    {
+      "label": "Tapanga hangarau tomopai mō te pātene \"Whakaatu otinga\" ",
+      "default": "Ka whakaaturia te otinga tika mō tēnei pātai, ngohe rānei."
+    },
+    {
+      "label": "Tapanga hangarau tomopai mō te pātene  \"Whakamātau anō\" ",
+      "default": "Whakamātauria anōtia te ngohe. Ka whakakorengia ngā whakautu, ā, ka tīmatahia anōtia te ngohe."
+    }
+  ]
+}

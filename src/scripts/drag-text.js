@@ -380,26 +380,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // Register buttons
     this.addButtons();
-
-    this.copyDraggableBorderWidthToDroppableSolutions();
-  };
-
-  /**
-   * Copy draggable border width to droppable solutions pseudo-draggables.
-   */
-  DragText.prototype.copyDraggableBorderWidthToDroppableSolutions = function () {
-    window.requestAnimationFrame(() => {
-      const referenceDraggable = this.draggables[0];
-      if (!referenceDraggable) {
-        return;
-      }
-
-      const style = window.getComputedStyle(referenceDraggable.getElement());
-      const borderWidth = style.getPropertyValue('border-width');
-      this.droppables.forEach((droppable) => {
-        droppable.setSolutionDraggableBorderWidth(borderWidth);
-      });
-    });
   };
 
   /**
@@ -941,9 +921,11 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     }
     this.widestDraggable = widestDragagble;
     this.widest = widest;
+    const borderWidth = this.draggables[0].getElement().getBorderWidth();
     // Adjust all droppable to widest size.
     this.droppables.forEach((droppable) => {
       droppable.getDropzone().width(self.widest);
+      droppable.setSolutionDraggableBorderWidth(borderWidth);
     });
   };
 

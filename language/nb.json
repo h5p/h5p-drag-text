@@ -15,7 +15,7 @@
     {
       "label": "Oppgavebeskrivelse",
       "description": "Forklar hvordan brukeren skal løse oppgaven.",
-      "default": "Dra ordene inn i de riktige boksene."
+      "default": "Dra orda inn i de riktige boksene."
     },
     {
       "label": "Tekst",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "label": "Navn på\"Sjekk\"-knapp",
+      "label": "Navn på \"Sjekk\"-knapp",
       "default": "Sjekk"
     },
     {
@@ -115,7 +115,7 @@
       "default": "Er du sikker på at du vil nullstille dette elementet?"
     },
     {
-      "label": "Merkelapp for tilgjengelighet. Skjermleser sier at flytting har startet.",
+      "label": "Merkelapp for tilgjengelighet. Skjermleser sier at flytting er påbegynt.",
       "default": "Flyttbart element er tatt tak i."
     },
     {
@@ -149,20 +149,20 @@
       ]
     },
     {
-      "label": "Tekstalternativ til resultatlinja for skjermleserbrukere",
+      "label": "Tekstalternativ til resultatlinja, for skjermleserbrukere",
       "default": "Du fikk :num av :total poeng."
     },
     {
-      "label": "Merkelapp for \"Sjekk\"-knapp for assisterende teknologi",
+      "label": "Merkelapp for \"Sjekk\"-knapp, for assisterende teknologi",
       "default": "Sjekk svar. Svara blir merket som riktig, feil eller ubesvart."
     },
     {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
+      "label": "Beskrivelse av \"Vis svar\"-knapp, for assisterende teknologi",
+      "default": "Vis svar. Oppgaven blir merka med rette svar."
     },
     {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
+      "label": "Navn på \"Prøv igjen\"-knapp, for assisterende teknologi.",
+      "default": "Prøv igjen. Alle svara blir nullstilt, og oppgaven starter på nytt."
     }
   ]
 }

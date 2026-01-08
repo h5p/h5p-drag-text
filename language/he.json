@@ -27,7 +27,7 @@
     },
     {
       "label": "Distractors",
-      "placeholder": "*Reykjavík* *Helsinki*",
+      "placeholder": "*רקויאק* *הלסינקי*",
       "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
     },
     {

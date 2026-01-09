@@ -1357,6 +1357,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.showButton('check-answer');
     }
     self.hideAllSolutions();
+    self.stopWatch.reset();
     this.trigger('resize');
   };
 

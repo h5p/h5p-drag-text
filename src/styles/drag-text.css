@@ -68,6 +68,9 @@
   margin-bottom: 3px;
   vertical-align: middle;
 }
+.h5p-drag-text .h5p-drag-dropzone-container.has-tip {
+  margin-right: 0.25em;
+}
 .h5p-drag-text [aria-dropeffect] {
   position:relative;
   display: flex;

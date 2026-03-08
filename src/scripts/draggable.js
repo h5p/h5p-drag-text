@@ -32,6 +32,8 @@ H5P.TextDraggable = (function ($) {
     self.$draggable.on('touchstart', stopPropagation);
     self.$draggable.on('touchmove', stopPropagation);
     self.$draggable.on('touchend', stopPropagation);
+
+    self.tooltip = H5P.Tooltip(self.$draggable.get(0), {position: 'bottom'});
   }
 
   Draggable.prototype = Object.create(H5P.EventDispatcher.prototype);
@@ -231,6 +233,18 @@ H5P.TextDraggable = (function ($) {
         this.tooltip = H5P.Tooltip(this.$draggable[0], { text: this.text });
       }
     }, delay);
+  };
+
+  /**
+   * Set tooltip text.
+   * @param {string} text Tooltip text.
+   */
+  Draggable.prototype.setTooltipText = function (text) {
+    if (typeof text !== 'string') {
+      return;
+    }
+
+    this.tooltip.setText(text);
   };
 
   /**

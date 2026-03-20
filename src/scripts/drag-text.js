@@ -921,12 +921,17 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     }
     this.widestDraggable = widestDragagble;
     this.widest = widest;
-    const borderWidth = this.draggables[0].getElement().getBorderWidth();
-    // Adjust all droppable to widest size.
+
     this.droppables.forEach((droppable) => {
       droppable.getDropzone().width(self.widest);
-      droppable.setSolutionDraggableBorderWidth(borderWidth);
     });
+
+    if (this.draggables.length > 0) {
+      const borderWidth = this.draggables[0].getElement().getBorderWidth();
+      this.droppables.forEach((droppable) => {
+        droppable.setSolutionDraggableBorderWidth(borderWidth);
+      });
+    }
   };
 
   /**

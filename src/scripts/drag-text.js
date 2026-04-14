@@ -646,7 +646,10 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       theme: true,
     });
 
-    dialog.appendTo(self.$inner.closest('.h5p-drag-text').get(0));
+    const wrapper = this.isRoot()
+      ? self.$inner.closest('.h5p-drag-text').get(0)
+      : document.querySelector('.h5p-container');
+    dialog.appendTo(wrapper);
     dialog.on('confirmed', callback, scope || this);
 
     return dialog;

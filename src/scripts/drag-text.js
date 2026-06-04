@@ -950,6 +950,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     const draggableElement = H5P.Components.Draggable({
       label: answer,
       hasHandle: true,
+      getDropZones: () => self.droppables.map((d) => d.$dropzoneContainer[0]),
       handleRevert: (isValidDrop) => {
         if (!isValidDrop) {
           self.revert(draggable);
@@ -993,13 +994,13 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       index,
       ariaLabel: `${this.params.dropZoneIndex.replace('@index', draggableIndex.toString())} ${this.params.empty.replace('@index', draggableIndex.toString())}`,
       tolerance: 'touch',
-      handleDropEvent: (event, ui, index) => {
-        if (index < 0) {
+      handleDropEvent: (draggableEl, dropIndex) => {
+        if (dropIndex < 0) {
           return; // Should never happen
         }
 
-        const draggable = this.getDraggableByElement(ui.draggable[0]);
-        const droppable = this.droppables[index];
+        const draggable = this.getDraggableByElement(draggableEl);
+        const droppable = this.droppables[dropIndex];
 
         /**
          * Note that drop will run for all initialized DragText dropzones globally. Even other
@@ -1048,7 +1049,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    */
   DragText.prototype.propagateDragEvent = Util.curry((eventName, self, event) => {
     self.trigger(eventName, {
-      element: event.target,
+      element: event.currentTarget,
     });
   });
 

@@ -125,14 +125,14 @@ H5P.TextDraggable = (function ($) {
    * Disables the draggable, making it immovable.
    */
   Draggable.prototype.disableDraggable = function () {
-    this.$draggable.draggable({ disabled: true });
+    this.$draggable[0].setDisabled(true);
   };
 
   /**
    * Enables the draggable, making it movable.
    */
   Draggable.prototype.enableDraggable = function () {
-    this.$draggable.draggable({ disabled: false });
+    this.$draggable[0].setDisabled(false);
   };
 
   /**

@@ -99,12 +99,18 @@ H5P.TextDraggable = (function ($) {
     const offLeft = this.$draggable.offset().left - $container.offset().left;
     const offTop = this.$draggable.offset().top - $container.offset().top;
 
+    const canHasFocus = this.$draggable[0] === document.activeElement;
+
     // Prepend draggable to new container, but keep the offset,
     // then animate to new container's top:0, left:0
     this.$draggable.detach()
       .prependTo($container)
       .css({ left: offLeft, top: offTop })
       .animate({ left: 0, top: 0 });
+
+    if (canHasFocus) {
+      this.$draggable.focus();
+    }
   };
 
   /**

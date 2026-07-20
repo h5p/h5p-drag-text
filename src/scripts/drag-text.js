@@ -185,7 +185,9 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
 
     // on revert, re add element to drag controls
     this.on('revert', function (event) {
-      this.dragControls.insertElementAt(event.data.element, 0);
+      if (!this.dragControls.elements.includes(event.data.element)) {
+        this.dragControls.insertElementAt(event.data.element, 0);
+      }
     }, this);
 
     this.on('drop', this.updateDroppableElement, this);
@@ -565,7 +567,12 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
    */
   DragText.prototype.focusOnFirstEmptyDropZone = function () {
     const dropZone = this.droppables
-      .filter((droppable) => !droppable.hasDraggable())[0];
+      .filter((droppable) => !droppable.hasDraggable())[0] || this.droppables[0];
+
+    if (!dropZone) {
+      return;
+    }
+
     const element = dropZone.getElement();
 
     this.dropControls.setTabbable(element);

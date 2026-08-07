@@ -231,14 +231,14 @@ H5P.TextDroppable = (function ($) {
     if (this.containedDraggable !== null) {
       this.containedDraggable.disableDraggable();
     }
-    this.$dropzoneContainer[0].setDisabled(true);
+    this.$dropzone.droppable({ disabled: true });
   };
 
   /**
    * Enable dropzone.
    */
   Droppable.prototype.enableDropzone = function () {
-    this.$dropzoneContainer[0].setDisabled(false);
+    this.$dropzone.droppable({ disabled: false });
   };
 
   /**

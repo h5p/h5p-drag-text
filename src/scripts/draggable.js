@@ -95,6 +95,12 @@ H5P.TextDraggable = (function ($) {
    * @params {jQuery} $container The parent which the draggable will revert to.
    */
   Draggable.prototype.revertDraggableTo = function ($container) {
+    // Prevent shifting the draggable if it is already in the container.
+    if (this.$draggable.parent().is($container)) {
+      this.$draggable.animate({ left: 0, top: 0 });
+      return;
+    }
+
     // get the relative distance between draggable and container.
     const offLeft = this.$draggable.offset().left - $container.offset().left;
     const offTop = this.$draggable.offset().top - $container.offset().top;

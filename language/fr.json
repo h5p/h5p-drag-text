@@ -26,9 +26,9 @@
       }
     },
     {
-      "label": "Distractors",
+      "label": "Distracteurs",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Indiquez les éléments supplémentaires qui sont faux en tant que distracteurs. Utilisez le même schéma d'astérisques (*) que pour le texte."
     },
     {
       "label": "Feedback général",
@@ -62,7 +62,7 @@
       "default": "Vérifier"
     },
     {
-      "label": "Text for \"Submit\" button",
+      "label": "Texte pour le bouton \"Envoyer\"",
       "default": "Vérifier"
     },
     {
@@ -153,8 +153,8 @@
       "default": "Vous avez obtenu :num sur un total de :points"
     },
     {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      "label": "Étiquette pour les technologies d'assistance du bouton \"Vérifier\"",
+      "default": "Vérifier les réponses. Les réponses seront marquées comme correctes, incorrectes ou sans réponse."
     },
     {
       "label": "Vignette de technologie fonctionnelle pour la touche « Montrer la solution »",

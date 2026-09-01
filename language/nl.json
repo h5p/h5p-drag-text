@@ -26,9 +26,9 @@
       }
     },
     {
-      "label": "Distractors",
+      "label": "Afleiders",
       "placeholder": "*Reykjavík* *Helsinki*",
-      "description": "Enter extra solutions that are wrong as distractors. Use the same asterisk (*) scheme as for the text."
+      "description": "Vul hier extra -verkeerde- oplossingen in die dienen als afleiders. Zet elke oplossing tussen asterisken (*) zoals bij de tekst."
     },
     {
       "label": "Algehele feedback",

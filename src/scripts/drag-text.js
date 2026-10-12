@@ -1071,7 +1071,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
     const droppable = draggable.removeFromZone();
     const target = droppable ? droppable.getElement() : undefined;
     draggable.revertDraggableTo(this.$draggables);
-    this.setDraggableAriaLabel(draggable);
 
     this.trigger('revert', { element: draggable.getElement(), target });
     this.trigger('resize');

@@ -18,7 +18,6 @@ H5P.TextDraggable = (function ($) {
     self.text = text;
     self.insideDropzone = null;
     self.$draggable = $(draggable);
-    self.$ariaLabel = self.$draggable.find('.h5p-hidden-read');
     self.index = index;
     self.initialIndex = index;
 
@@ -161,7 +160,7 @@ H5P.TextDraggable = (function ($) {
    * @param {String} label [description]
    */
   Draggable.prototype.updateAriaLabel = function (label) {
-    this.$ariaLabel.html(label);
+    this.$draggable[0].querySelector('.h5p-hidden-read').innerHTML = label;
   };
 
   /**
@@ -228,6 +227,18 @@ H5P.TextDraggable = (function ($) {
   };
 
   /**
+   * Changes the displayed text without losing the screen reader label.
+   *
+   * @param {String} label Text to display.
+   */
+  Draggable.prototype.setDisplayText = function (label) {
+    const draggable = this.$draggable[0];
+    const ariaLabel = draggable.querySelector('.h5p-hidden-read').innerHTML;
+    draggable.setContent({ label });
+    this.updateAriaLabel(ariaLabel);
+  };
+
+  /**
    * Sets short format of draggable when inside a dropbox.
    */
   Draggable.prototype.setShortFormat = function () {
@@ -237,8 +248,7 @@ H5P.TextDraggable = (function ($) {
     const delay = span.clientWidth === 0 ? 300 : 0;
 
     window.setTimeout(() => {
-      const draggable = this.$draggable[0];
-      draggable.setContent({ label: this.shortFormat });
+      this.setDisplayText(this.shortFormat);
       if (this.shortFormat !== this.text) {
         this.tooltip = H5P.Tooltip(this.$draggable[0], { text: this.text });
       }
@@ -258,8 +268,7 @@ H5P.TextDraggable = (function ($) {
    * Removes the short format of draggable when it is outside a dropbox.
    */
   Draggable.prototype.removeShortFormat = function () {
-    const draggable = this.$draggable[0];
-    draggable.setContent({ label: this.text });
+    this.setDisplayText(this.text);
     this.tooltip?.remove();
   };
 

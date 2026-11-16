@@ -151,18 +151,6 @@
     {
       "label": "閱讀器導讀文字-評分欄",
       "default": "您得到了:num 分，總分 :total "
-    },
-    {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
-    },
-    {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
-    },
-    {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
     }
   ]
 }

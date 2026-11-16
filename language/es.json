@@ -151,18 +151,6 @@
     {
       "label": "Representación textual de la barra de puntuación cuando se usa un lector de pantalla",
       "default": "Has obtenido :num de un total de :total puntos"
-    },
-    {
-      "label": "Etiqueta para las tecnologías de asistencia para el botón \"Comprobar\"",
-      "default": "Comprueba las respuestas. Las respuestas se marcarán como correctas, incorrectas o sin respuesta."
-    },
-    {
-      "label": "Descripción para las tecnologías de asistencia del botón \"Mostrar solución\"",
-      "default": "Mostrar la solución. El trabajo será calificado con su solución correcta."
-    },
-    {
-      "label": "Descripción para las tecnologías de asistencia del botón \"Intentar de nuevo\"",
-      "default": "Vuelve a intentar la tarea. Borra todas tus respuestas y empieza de nuevo."
     }
   ]
 }

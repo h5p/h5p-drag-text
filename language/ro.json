@@ -151,18 +151,6 @@
     {
       "label": "Reprezentarea textuală a barei de punctaj pentru cei care folosesc un cititor de ecran",
       "default": "Ați obținut :num din :total puncte"
-    },
-    {
-      "label": "Etichetă tehnologie asistivă pentru butonul „Verifică”",
-      "default": "Verifică răspunsurile. Răspunsurile vor fi marcate ca fiind corecte, incorecte sau fără răspuns."
-    },
-    {
-      "label": "Etichetă tehnologie asistivă pentru butonul „Arată soluția”",
-      "default": "Arată soluția. Sarcina va fi marcată cu soluția sa corectă."
-    },
-    {
-      "label": "Etichetă tehnologie asistivă pentru butonul „Reîncearcă”",
-      "default": "Reîncearcă sarcina. Resetează toate răspunsurile și începe sarcina de la capăt."
     }
   ]
 }

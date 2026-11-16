@@ -151,18 +151,6 @@
     {
       "label": "Representação textual da barra de pontuação para aqueles que usam leitores de ecrã",
       "default": "Conseguiu :num pontos de um total de :total"
-    },
-    {
-      "label": "Etiqueta de tecnologia assistiva para o botão \"Verificar\"",
-      "default": "Verifique as respostas. As respostas serão marcadas como corretas, incorretas ou sem resposta."
-    },
-    {
-      "label": "Etiqueta de tecnologia assistiva para o botão \"Mostrar solução\"",
-      "default": "Mostrar a solução. A atividade será marcada com a respetiva solução correta."
-    },
-    {
-      "label": "Etiqueta de tecnologia assistiva para o botão \"Repetir\"",
-      "default": "Repetir a atividade. Apagar todas as respostas e reiniciar a atividade."
     }
   ]
 }

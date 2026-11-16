@@ -151,18 +151,6 @@
     {
       "label": "Tekstalternativ til resultatlinja, for skjermleserbrukere",
       "default": "Du fikk :num av :total poeng."
-    },
-    {
-      "label": "Merkelapp for \"Sjekk\"-knapp, for assisterende teknologi",
-      "default": "Sjekk svar. Svara blir merket som riktig, feil eller ubesvart."
-    },
-    {
-      "label": "Beskrivelse av \"Vis svar\"-knapp, for assisterende teknologi",
-      "default": "Vis svar. Oppgaven blir merka med rette svar."
-    },
-    {
-      "label": "Navn på \"Prøv igjen\"-knapp, for assisterende teknologi.",
-      "default": "Prøv igjen. Alle svara blir nullstilt, og oppgaven starter på nytt."
     }
   ]
 }

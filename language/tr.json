@@ -151,18 +151,6 @@
     {
       "label": "Bir okuyucu kullananlar için puan çubuğunun metinsel gösterimi",
       "default": "Toplam :total puandan, :num puan aldınız"
-    },
-    {
-      "label": "\"Kontrol Et\" düğmesi için yardımcı teknoloji etiketi",
-      "default": "Cevapları kontrol edin. Cevaplar doğru, yanlış veya cevapsız olarak işaretlenecektir."
-    },
-    {
-      "label": "\"Çözüm Göster\" düğmesi için yardımcı teknoloji etiketi",
-      "default": "Çözümü göster. Etkinlik, doğru çözümü ile işaretlenecektir."
-    },
-    {
-      "label": "\"Yeniden Dene\" düğmesi için yardımcı teknoloji etiketi",
-      "default": "Görevi yeniden deneyin. Tüm yanıtları sıfırlayın ve görevi yeniden başlatın."
     }
   ]
 }

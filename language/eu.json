@@ -151,18 +151,6 @@
     {
       "label": "Puntuazio barraren testu adierazpena irakurgailua erabiltzen dutenentzat",
       "default": ":total puntutik :num puntu lortu duzu"
-    },
-    {
-      "label": "\"Egiaztatu\" botoiaren laguntza-teknologientzako etiketa",
-      "default": "Egiaztatu erantzunak. Erantzunak zuzen, oker edo erantzun gabe gisa markatuko dira."
-    },
-    {
-      "label": "\"Erakutsi erantzun zuzena\" botoiaren laguntza-teknologientzako etiketa",
-      "default": "Erakutsi erantzun zuzena. Zereginaren erantzun zuzena markatuko da."
-    },
-    {
-      "label": "\"Berriz saiatu\" botoiaren laguntza-teknologientzako etiketa",
-      "default": "Zeregina berriz egiten saiatu. Berrabiarazi erantzun guztiak eta hasi zeregina berriz."
     }
   ]
 }

@@ -151,18 +151,6 @@
     {
       "label": "Besedilo, ki ga bralnik zaslona uporabi za izražanje napredka",
       "default": "Napredek :num od :total"
-    },
-    {
-      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Preveri\"",
-      "default": "Preveri pravilnost odgovorov. Odgovori bodo označeni kot pravilni, napačni ali brez odgovorov."
-    },
-    {
-      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Prikaži rešitev\"",
-      "default": "Prikaži rešitev. Pravilni odgovori bodo označeni."
-    },
-    {
-      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Poskusi ponovno\"",
-      "default": "Poskusi ponovno. Ponastavi vse odzive in znova zažene nalogo."
     }
   ]
 }

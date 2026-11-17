@@ -151,18 +151,6 @@
     {
       "label": "Representació textual de la barra de puntuació pera als que utilitzen un altaveu de lectura",
       "default": "Heu fet :num de :total punts"
-    },
-    {
-      "label": "Etiqueta de la tecnologia d’assistència per al botó \"Comprova\"",
-      "default": "Comprova les respostes. Les respostes es marcaran com a correctes, incorrectes o sense resposta."
-    },
-    {
-      "label": "Etiqueta de la tecnologia d’assistència per al botó \"Mostra la solució\"",
-      "default": "Mostra la solució. La tasca es marcarà amb la seva solució correcta."
-    },
-    {
-      "label": "Etiqueta de la tecnologia d’assistència per a l’etiqueta \"Torna-ho a provar\"",
-      "default": "Intenta de nou la tasca. Reajusta totes les respostes i comença la tasca de nou."
     }
   ]
 }

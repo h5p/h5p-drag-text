@@ -20,6 +20,7 @@
     {
       "label": "Tekstas",
       "placeholder": "*Oslas* yra Norvegijos sostinė, *Stokholmas* yra Švedijos sostinė ir *Kopenhaga* yra Danijos sostinė. Visi miestai randasi *Skandinavijos pusiasalyje, Šiaurinėje Europos* dalyje.",
+      "description": "",
       "important": {
         "description": "<ul><li>Praleisti žodžiai žymimi žvaigždute (*) priekyje ir gale teisingo žodžio/frazės.</li><li>Jūs galite įdėti tekstinį patarimą, naudodami dvitaškį (:) priekyje patarimo.</li><li>Kiekvienai tuščiai vietai yra tik vienas teisingas atsakymas.</li><li>Jūs galite pridėti atsiliepimą, kada užduotis bus užbaigta. Naudokite '\\+' teigiamam ir '\\-' neigiamam atsiliepimui.</li></ul>",
         "example": "H5P content may be edited using a *browser:What type of program is Chrome?*. <br /> H5P content is *interactive\\+Correct! \\-Incorrect, try again!*"
@@ -34,7 +35,6 @@
       "label": "Bendras atsiliepimas",
       "fields": [
         {
-          "entity": "diapazonas",
           "widgets": [
             {
               "label": "Numatytasis"
@@ -42,6 +42,7 @@
           ],
           "label": "Nustatykite tinkintus atsiliepimus bet kokiam balų intervalui",
           "description": "Spustelėkite mygtuką „Pridėti diapazoną“, kad pridėtumėte tiek diapazonų, kiek jums reikia. Pavyzdys: 0–20 % blogas balas, 21–91 % vidutinis balas, 91–100 % puikus rezultatas!",
+          "entity": "diapazonas",
           "field": {
             "fields": [
               {
@@ -151,18 +152,6 @@
     {
       "label": "Textual representation of the score bar for those using a readspeaker",
       "default": "Jūs gavote :num iš :total taškų"
-    },
-    {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
-    },
-    {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Rodyti sprendimą. Užduotis bus pažymėta teisingu jos sprendimu."
-    },
-    {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Bandyti atlikti užduotį dar kartą. Iš naujo nustatyti visus atsakymus ir pradėti užduotį iš naujo."
     }
   ]
 }

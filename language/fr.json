@@ -20,6 +20,7 @@
     {
       "label": "Question",
       "placeholder": "Paris est la capitale de la *France*",
+      "description": "",
       "important": {
         "description": "<ul><li>Les textes déplaçables s'ajoutent avec un astérisque (*) devant et derrière chaque texte.</li><li>Vous pouvez ajouter un indice en plaçant 2 points (:) avant cet indice.</li><li>Il ne peut y avoir qu'un seul texte correct pour chaque espace à remplir.</li><li>Vous pouvez ajouter un feedback qui apparaîtra une fois l'exercice terminé. Utilisez '\\+' pour créer le feedback en cas de réponse correcte et '\\-' pour le feedback en cas de mauvaise réponse.</li></ul>",
         "example": "Les contenus H5P peuvent être édités en utilisant un *navigateur:Quel type de programme utilisez vous pour consulter des sites Internet ?*. <br /> Un contenu H5P est *interactif\\+Correct ! \\-Incorrect, Recommencez !*"
@@ -151,18 +152,6 @@
     {
       "label": "Représentation textuelle du panneau du score pour les utilisateurs des outils de la vocalisation (comme ReadSpeaker)",
       "default": "Vous avez obtenu :num sur un total de :points"
-    },
-    {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
-    },
-    {
-      "label": "Vignette de technologie fonctionnelle pour la touche « Montrer la solution »",
-      "default": "Afficher la solution. La tâche sera notée avec sa solution correcte."
-    },
-    {
-      "label": "Vignette de technologie fonctionnelle pour la touche « Réessayer »",
-      "default": "Réessayer la tâche. Réinitialiser toutes les réponses et recommencer la tâche."
     }
   ]
 }

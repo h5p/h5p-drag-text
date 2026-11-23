@@ -20,6 +20,7 @@
     {
       "label": "Text",
       "placeholder": "*Oslo* és la capital de Noruega, *Estocolm* és la capital de Suècia i *Copenhaguen* és la capital de Dinamarca. Totes les ciutats estan situades a la península de *Scandinava: Part nord d’Europa*.",
+      "description": "",
       "important": {
         "description": "<ul><li>Les paraules que es poden deixar anar s’afegeixen amb un asterisc (*) davant i darrere de la paraula o frase correcta.</li><li>Podeu afegir una pista textual amb dos punts (:) davant de la pista.</li><li>Per cada espai buit, només hi ha una paraula correcta.</li><li>Podeu afegir suggeriments perquè es mostrin en completar una tasca. Utilitzeu '\\+' per als suggeriments correctes i '\\-' per als incorrectes.</li></ul>",
         "example": "El contingut d’H5P es pot editar utilitzant un *navegador:Quin tipus de programa és Chrome?*. <br /> El contingut d’H5P és *interactiu\\+Correcte \\-Incorrecte; torna-ho a provar.*"
@@ -151,18 +152,6 @@
     {
       "label": "Representació textual de la barra de puntuació pera als que utilitzen un altaveu de lectura",
       "default": "Heu fet :num de :total punts"
-    },
-    {
-      "label": "Etiqueta de la tecnologia d’assistència per al botó \"Comprova\"",
-      "default": "Comprova les respostes. Les respostes es marcaran com a correctes, incorrectes o sense resposta."
-    },
-    {
-      "label": "Etiqueta de la tecnologia d’assistència per al botó \"Mostra la solució\"",
-      "default": "Mostra la solució. La tasca es marcarà amb la seva solució correcta."
-    },
-    {
-      "label": "Etiqueta de la tecnologia d’assistència per a l’etiqueta \"Torna-ho a provar\"",
-      "default": "Intenta de nou la tasca. Reajusta totes les respostes i comença la tasca de nou."
     }
   ]
 }

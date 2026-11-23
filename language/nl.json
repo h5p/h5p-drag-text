@@ -20,6 +20,7 @@
     {
       "label": "Tekst",
       "placeholder": "*Amsterdam* is de hoofdstad van Nederland, *Brussel* is de hoofdstad van België en *Luxemburg* is de hoofdstad van Luxemburg. Alle steden liggen in de *Benelux:afkorting*.",
+      "description": "",
       "important": {
         "description": "<ul><li>Sleepbare woorden worden tussen asterisken (*) geplaatst.</li><li>Je kunt een tip toevoegen door een (:) voor de tiptekst te plaatsen.</li><li>Voor elk leeg veld is er slechts één juist woord van toepassing.</li><li>Je kunt feedback tonen als een opgave is afgerond. Gebruik '\\+' voor juiste en '\\-' voor onjuiste antwoorden.</li></ul>",
         "example": "H5P-inhoud kan bewerkt worden via een *browser:Welk soort programma is Chrome?*. <br /> H5P inhoud is *interactief\\+Juist! \\-Onjuist, probeer opnieuw!*"
@@ -151,18 +152,6 @@
     {
       "label": "Tekstuele weergave van de scorebalk voor de gebruikers van de voorlezer",
       "default": "Je hebt :num out van de :total punten"
-    },
-    {
-      "label": "Ondersteunende technologie label voor \"Controleer\"-knop",
-      "default": "Controleer de antwoorden. De antwoorden worden gemarkeerd als correct, incorrect, of niet-beantwoord."
-    },
-    {
-      "label": "Ondersteunende technologie label voor \"Toon oplossing\"-knop",
-      "default": "Toon de oplossing. De taak wordt gemarkeerd met de juiste oplossing."
-    },
-    {
-      "label": "Ondersteunende technologie label voor \"Opnieuw\"-knop",
-      "default": "Probeer de taak opnieuw. Reset alle antwoorden en start de taak opnieuw."
     }
   ]
 }

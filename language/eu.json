@@ -20,6 +20,7 @@
     {
       "label": "Testua",
       "placeholder": "*Oslo* Norvegiako hiruburua da, *Stockholm* Suediako hiriburua da eta *Kopenhagen* Danimarkako hiriburua da. Hiru hiri *Eskandinavia:Europako iparraldeko* penintsulan daude.",
+      "description": "",
       "important": {
         "description": "<ul><li>Jaregin daitezkeen hitzak edo esaldiak gehitu dira izartxo (*) bat aurretik eta beste bat atzetik dutela bere kokaleku egokian.</li><li>Gehitzen ahal dituzu laguntzak, horien aurretik bi puntu (:) jarrita.</li><li>Hutsune bakoitzak hitz/esaldi zuzen bakarra dago.</li><li>Gehitzen ahal duzu ataza burutu ondoren ikusiko diren feedbackak. Erabili '\\+' erantzun zuzenen feedbackerako eta '\\-' erantzun okerretarako.</li></ul>",
         "example": "H5P edukia editatu daiteke *nabigatzailez:Zer aplikazio mota da Chrome?*. <br /> H5P edukia *interaktiboa\\+Asmatu duzu! \\-Ez da zuzena, saiatu berriro!* da"
@@ -151,18 +152,6 @@
     {
       "label": "Puntuazio barraren testu adierazpena irakurgailua erabiltzen dutenentzat",
       "default": ":total puntutik :num puntu lortu duzu"
-    },
-    {
-      "label": "\"Egiaztatu\" botoiaren laguntza-teknologientzako etiketa",
-      "default": "Egiaztatu erantzunak. Erantzunak zuzen, oker edo erantzun gabe gisa markatuko dira."
-    },
-    {
-      "label": "\"Erakutsi erantzun zuzena\" botoiaren laguntza-teknologientzako etiketa",
-      "default": "Erakutsi erantzun zuzena. Zereginaren erantzun zuzena markatuko da."
-    },
-    {
-      "label": "\"Berriz saiatu\" botoiaren laguntza-teknologientzako etiketa",
-      "default": "Zeregina berriz egiten saiatu. Berrabiarazi erantzun guztiak eta hasi zeregina berriz."
     }
   ]
 }

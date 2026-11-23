@@ -104,9 +104,6 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       cancelledDragging: "Cancelled dragging.",
       correctAnswer: "Correct answer:",
       scoreBarLabel: 'You got :num out of :total points',
-      a11yCheck: 'Check the answers. The responses will be marked as correct, incorrect, or unanswered.',
-      a11yShowSolution: 'Show the solution. The task will be marked with its correct solution.',
-      a11yRetry: 'Retry the task. Reset all responses and start the task over again.',
     }, params);
 
     this.contentData = contentData;
@@ -472,7 +469,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
         // Focus top of the task for natural navigation
         self.$introduction.parent().focus();
       }, !self.params.behaviour.instantFeedback, {
-        'aria-label': self.params.a11yCheck,
+        'aria-label': self.params.checkAnswer,
       }, {
         contentData: self.contentData,
         textIfSubmitting: self.params.submitAnswer,
@@ -489,7 +486,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.removeAllDroppablesFromControls();
       self.hideButton('show-solution');
     }, self.initShowShowSolutionButton || false, {
-      'aria-label': self.params.a11yShowSolution,
+      'aria-label': self.params.showSolution,
     });
 
     //Retry button
@@ -497,7 +494,7 @@ H5P.DragText = (function ($, Question, ConfirmationDialog) {
       self.resetTask();
       self.read(self.params.taskDescription);
     }, self.initShowTryAgainButton || false, {
-      'aria-label': self.params.a11yRetry,
+      'aria-label': self.params.tryAgain,
     });
   };
 

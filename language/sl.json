@@ -20,6 +20,7 @@
     {
       "label": "Besedilo naloge",
       "placeholder": "Oslo je glavno mesto *Norveške*. Helsinki so glavno mesto *Finske*.",
+      "description": "",
       "important": {
         "description": "<ul><li>Besede za premikanje se označi z zvezdico (*) pred in za pravilno besedo/besedno zvezo.</li><li>Namig za udeležence se od odgovora loči z dvopičjem (:).</li><li>Za vsak prazen okvir je na razpolago le ena pravilna beseda.</li><li>Možno je dodati tudi povratno informacijo, ki se pokaže po zaključku naloge. Dodan zapis '\\+' pomeni pravilen, '\\-' pa nepravilen odgovor.</li></ul>",
         "example": "Za brskanje po spletu lahko uporabimo *spletni brskalnik:Takšna programa sta na primer Chrome in Edge.*. Google je *spletni iskalnik\\+Pravilno!\\-Nepravilno. Poskusi ponovno.*."
@@ -151,18 +152,6 @@
     {
       "label": "Besedilo, ki ga bralnik zaslona uporabi za izražanje napredka",
       "default": "Napredek :num od :total"
-    },
-    {
-      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Preveri\"",
-      "default": "Preveri pravilnost odgovorov. Odgovori bodo označeni kot pravilni, napačni ali brez odgovorov."
-    },
-    {
-      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Prikaži rešitev\"",
-      "default": "Prikaži rešitev. Pravilni odgovori bodo označeni."
-    },
-    {
-      "label": "Besedilo, ki ga bralnik zaslona uporabi za gumb \"Poskusi ponovno\"",
-      "default": "Poskusi ponovno. Ponastavi vse odzive in znova zažene nalogo."
     }
   ]
 }

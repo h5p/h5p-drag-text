@@ -20,6 +20,7 @@
     {
       "label": "Tekst",
       "placeholder": "*Oslo* er hovudstaden i Noreg, *Stockholm* er hovudstaden i Sverige og *København* er hovudstaden i Danmark. Alle byane er lokaliserte i *Skandinavia:den nordlege delen av Europa*.",
+      "description": "",
       "important": {
         "description": "<ul><li>Flyttbare ord eller utttrykk markerer du med ein asterisk (*) føre og etter ordet/uttrykket.</li><li>Du kan også legge til eit hint ved å bruke kolon (:). Døme: *Skandinavia:den nordlege delen av Europa*.</li><li>Det finst berre eitt rett svar for kvar tekstboks.</li><li>Du kan legg til ei tilbakemelding som blir vist når oppgåva er fullført. Bruk'\\+' for positiv og '\\-' for negativ tilbakemelding.</li></ul>",
         "example": "H5P-innhald kan redigerast med ein *nettlesar:Kva slags program er Chrome?*.<br />H5P-innhald er *interaktivt\\+Rett!\\-Feil, prøv igjen*"
@@ -151,18 +152,6 @@
     {
       "label": "Textual representation of the score bar for those using a readspeaker",
       "default": "Du fekk :num av :total poeng"
-    },
-    {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
-    },
-    {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
-    },
-    {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
     }
   ]
 }

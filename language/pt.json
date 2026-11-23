@@ -20,6 +20,7 @@
     {
       "label": "Mensagem",
       "placeholder": "*Oslo* é a capital da Noruega, *Estocolmo* é a capital da Suécia e *Copenhaga* é a capital da Dinamarca. Todas as cidades estão localizadas na península *Escandinava:Norte da Europa*.",
+      "description": "",
       "important": {
         "description": "<ul><li>Adicione as palavras a largar através de um asterisco (*) no início e no fim da palavra/frase correta.</li><li>Adicione uma dica contextual utilizando os dois pontos (:) à frente do texto da dica.</li><li>Para todos os espaços existe apenas uma palavra correta</li><li>Pode adicionar feedback quando o utilizador completar a atividade. Utilize '\\+' para feedback correto e '\\-' para feedback incorreto.</li></ul>",
         "example": "O conteúdo H5P pode ser editado utilizando um *navegador:Qual o tipo de programa é o Chrome?*.<br /> O conteúdo H5P é *interativo\\+Correto! \\-Incorreto, tente de novo!*"
@@ -151,18 +152,6 @@
     {
       "label": "Representação textual da barra de pontuação para aqueles que usam leitores de ecrã",
       "default": "Conseguiu :num pontos de um total de :total"
-    },
-    {
-      "label": "Etiqueta de tecnologia assistiva para o botão \"Verificar\"",
-      "default": "Verifique as respostas. As respostas serão marcadas como corretas, incorretas ou sem resposta."
-    },
-    {
-      "label": "Etiqueta de tecnologia assistiva para o botão \"Mostrar solução\"",
-      "default": "Mostrar a solução. A atividade será marcada com a respetiva solução correta."
-    },
-    {
-      "label": "Etiqueta de tecnologia assistiva para o botão \"Repetir\"",
-      "default": "Repetir a atividade. Apagar todas as respostas e reiniciar a atividade."
     }
   ]
 }

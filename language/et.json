@@ -20,6 +20,7 @@
     {
       "label": "Tekst",
       "placeholder": "*Oslo* on Norra pealinn, *Stockholm* on Rootsi pealinn ja *Kopenhaagen* on Taani pealinn. Kõik need linnad asuvad *Skandinaavia:Euroopa põhjaosa* poolsaarel.",
+      "description": "",
       "important": {
         "description": "<ul><li>Lohistatavad sõnade või fraaside loomiseks märgitakse nende ette ja järele tärn (*).</li><li>Samuti saad lisada tekstivihje, kasutades koolonit (:) vihje ees.</li><li>Igale tühjale kohale sobib vaid üks õige sõna.</li><li>Saad lisada peale ülesande täitmist näidatava tagasiside. Kasuta '\\+' õige ja '\\-' vale vastuse tagasisideks.</li></ul>",
         "example": "H5P sisu töötlemiseks sobib *brauser:Mis tüüpi programm on Chrome?*. <br /> H5P sisu on *interaktiivne\\+Õige! \\-Vale, proovi uuesti!*"
@@ -151,18 +152,6 @@
     {
       "label": "Tekstilugeri kasutajale määratud punktisumma rea tekstiline esitus",
       "default": "Sa said :num punkti :total punktist"
-    },
-    {
-      "label": "Assistive technology label for \"Check\" button",
-      "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
-    },
-    {
-      "label": "Assistive technology label for \"Show Solution\" button",
-      "default": "Show the solution. The task will be marked with its correct solution."
-    },
-    {
-      "label": "Assistive technology label for \"Retry\" button",
-      "default": "Retry the task. Reset all responses and start the task over again."
     }
   ]
 }
